@@ -1,0 +1,449 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.000
+Welcome back. How did that go for you?
+欢迎回来。你的工作进展如何？
+
+00:00:02.000 --> 00:00:05.000
+Hopefully that was interesting enough for you to do.
+希望这对你来说是足够有趣的事情。
+
+00:00:05.000 --> 00:00:07.000
+Now let's look at how I would do it.
+现在让我们来看看我会怎么做。
+
+00:00:07.000 --> 00:00:10.000
+So first I'm going to go back to my header file of Capstone Moving component.
+首先，我要回到我的Capstone Moving组件的头文件中。
+
+00:00:10.000 --> 00:00:14.000
+Then under this canStartClimbing, I'm going to add a new function.
+然后在canStartClimbing下，我将添加一个新的函数。
+
+00:00:14.000 --> 00:00:17.000
+So this function is going to return a bool as well.
+所以这个函数也将返回一个bool。
+
+00:00:17.000 --> 00:00:20.000
+I'm going to call it canClimbDownLedge.
+我将把它称为canClimbDownLedge。
+
+00:00:20.000 --> 00:00:23.000
+And I'm going to create a function definition.
+然后我将创建一个函数定义。
+
+00:00:23.000 --> 00:00:27.000
+Place the function under canStartClimbing.
+把这个函数放在canStartClimbing下面。
+
+00:00:27.000 --> 00:00:30.000
+So place it in here.
+所以把它放在这里。
+
+00:00:30.000 --> 00:00:35.000
+And same as above, if we are falling, I'm going to return false.
+和上面一样，如果我们正在下降，我将返回false。
+
+00:00:35.000 --> 00:00:41.000
+Once we get past this if check, I'm going to set up the things we need for doing multiple line traces.
+一旦我们通过了这个if检查，我将设置我们需要的东西来进行多线追踪。
+
+00:00:41.000 --> 00:00:45.000
+So I'm going to first create a const FVector.
+所以我将首先创建一个const FVector。
+
+00:00:45.000 --> 00:00:48.000
+I'm going to call this one component location.
+我将把这个称为一个组件的位置。
+
+00:00:48.000 --> 00:00:53.000
+So it's going to equal to this updated component getComponentLocation.
+所以它将等于这个更新的组件getComponentLocation。
+
+00:00:53.000 --> 00:00:58.000
+Then create another one and I'm going to call this one component forward.
+然后再创建一个，我将调用这一个组件的前进。
+
+00:00:58.000 --> 00:01:01.000
+And I'm going to get hold of the forward vector in here.
+我将在这里获得向前的矢量。
+
+00:01:01.000 --> 00:01:10.000
+Third one, I'm going to get hold of the down vector.
+第三个，我将得到向下的向量。
+
+00:01:10.000 --> 00:01:18.000
+So it's going to equal to this updated component getUpVector.
+所以它将等于这个更新的组件getUpVector。
+
+00:01:18.000 --> 00:01:22.000
+And I'm going to inverse this.
+然后我将反转这个。
+
+00:01:22.000 --> 00:01:26.000
+Alright, for this condition check, I like to do it through two line traces.
+好了，对于这个条件检查，我喜欢通过两条线追踪来做。
+
+00:01:26.000 --> 00:01:31.000
+So the first line trace, I'm going to create a new const FVector.
+所以第一条线迹，我将创建一个新的常量FVector。
+
+00:01:31.000 --> 00:01:36.000
+I'm going to call this one walkable surface trace start.
+我打算把这个叫做可行走的表面追踪开始。
+
+00:01:36.000 --> 00:01:40.000
+So this trace is for tracing when down and up we are on a walkable surface.
+所以这条轨迹是用来追踪我们在可行走表面上向下和向上的时间。
+
+00:01:40.000 --> 00:01:49.000
+And it's going to equal to this component location plus this component forward multiplied with some trace offset.
+它将等于这个组件的位置加上这个组件的前向乘以一些轨迹偏移。
+
+00:01:49.000 --> 00:01:53.000
+And I like to create another member variable for that.
+我喜欢为它创建另一个成员变量。
+
+00:01:53.000 --> 00:01:56.000
+So this is something we can adjust later inside the footprint.
+因此，我们可以在以后的脚印中调整这个变量。
+
+00:01:56.000 --> 00:02:01.000
+So I'm going to go back to my header file and scroll down to this BP variable.
+所以我将回到我的头文件，向下滚动到这个BP变量。
+
+00:02:01.000 --> 00:02:06.000
+And I'm going to copy this new property along with the float pasted in here.
+我要把这个新的属性和粘贴在这里的float一起复制过来。
+
+00:02:06.000 --> 00:02:12.000
+I'm going to change its name to climb down walkable surface trace offset.
+我将把它的名字改为 "爬下的可行走表面追踪偏移"。
+
+00:02:12.000 --> 00:02:16.000
+And I'm going to give it a hot code value of 200 units.
+而我要给它一个200单位的热码值。
+
+00:02:16.000 --> 00:02:24.000
+We'll need to tweak this later. And I'm going to copy this float and paste it in here.
+我们稍后将需要调整这个。我将复制这个浮动值并将其粘贴在这里。
+
+00:02:24.000 --> 00:02:28.000
+Alright, this is our trace start and we'll need a trace end.
+好了，这是我们的追踪起点，我们需要一个追踪终点。
+
+00:02:28.000 --> 00:02:36.000
+So copy this const FVector and I'm going to call this one walkable surface trace end.
+所以复制这个常量FVector，我打算把这个叫做可行走表面的追踪终点。
+
+00:02:36.000 --> 00:02:47.000
+It's going to equal to this trace start plus this down vector multiplied with 100 units.
+它将等于这个追踪起点加上这个向下的矢量，再乘以100个单位。
+
+00:02:47.000 --> 00:02:50.000
+Alright, I have the start, the end.
+好了，我有了起点和终点。
+
+00:02:50.000 --> 00:03:03.000
+I'm going to call the function do line trace single by object and pass in this start, the end.
+我将调用函数do line trace single by object并传入这个开始和结束。
+
+00:03:03.000 --> 00:03:08.000
+And pass in true for now. I do want to see the debug shape.
+现在传入true。我确实想看一下调试形状。
+
+00:03:08.000 --> 00:03:12.000
+And store the return result of this inside of a local variable.
+并将返回的结果存储在一个局部变量中。
+
+00:03:12.000 --> 00:03:18.000
+So it's going to be an F head result. I'm going to call this walkable surface hit.
+所以它将会是一个F头的结果。我将把这个称为可行走的表面撞击。
+
+00:03:18.000 --> 00:03:24.000
+Alright, that's my first line trace and I like to do the second line trace.
+好了，这是我的第一行跟踪，我喜欢做第二行跟踪。
+
+00:03:24.000 --> 00:03:28.000
+So it's going to be another const FVector. Duplicate this.
+所以它将是另一个常量FVector。复制这个。
+
+00:03:28.000 --> 00:03:30.000
+And this line trace is for detecting the ledge.
+这条线迹是用来检测壁架的。
+
+00:03:30.000 --> 00:03:41.000
+So I'm going to call this one ledge trace start and it's going to equal to this walkable surface hit dot trace start.
+所以我打算把这个叫做壁架追踪开始，它将等于这个可行走的表面打点追踪开始。
+
+00:03:41.000 --> 00:03:47.000
+And plus this component forward multiplied with the trace offset.
+再加上这个组件向前乘以跟踪偏移量。
+
+00:03:47.000 --> 00:03:50.000
+And for that I like to create another member variable.
+为此，我喜欢创建另一个成员变量。
+
+00:03:50.000 --> 00:03:56.000
+So go back to my header file. I'm going to copy this U property and paste it in here.
+所以请回到我的头文件中。我要复制这个U属性并把它粘贴到这里。
+
+00:03:56.000 --> 00:04:00.000
+And I'm going to call this one climb down ledge trace offset.
+我将把这个称为 "爬下台阶的偏移量"。
+
+00:04:00.000 --> 00:04:03.000
+And I'm going to give it a heart code value of 50 units.
+我将给它一个50单位的心脏代码值。
+
+00:04:03.000 --> 00:04:08.000
+And for this one I think I'm going to lower it down to 100 units.
+对于这个，我想我要把它降到100单位。
+
+00:04:08.000 --> 00:04:13.000
+Alright, and I'm going to copy the name of it, paste it to my CPP file.
+好的，我将复制它的名字，把它粘贴到我的CPP文件中。
+
+00:04:13.000 --> 00:04:17.000
+So this is my new line trace start and I'll need a new end.
+所以这是我的新线迹开始，我需要一个新的结束。
+
+00:04:17.000 --> 00:04:20.000
+So I'm going to call this one ledge trace end.
+所以我将把这个称为壁架追踪的终点。
+
+00:04:20.000 --> 00:04:30.000
+And it's going to equal to this ledge trace start plus this down vector multiplied with a heart code value of 300 units.
+它将等于这个台阶跟踪的起点加上这个向下的矢量，再乘以300单位的心码值。
+
+00:04:30.000 --> 00:04:33.000
+You'll know what I'm doing once you see the debug shape.
+一旦你看到调试的形状，你就会知道我在做什么。
+
+00:04:33.000 --> 00:04:35.000
+And I'm going to call the function again.
+我将再次调用这个函数。
+
+00:04:35.000 --> 00:04:45.000
+So copy this, paste it in here, pass in this trace start, the end.
+所以复制这个，把它粘贴到这里，传入这个跟踪的开始和结束。
+
+00:04:45.000 --> 00:04:49.000
+And I'm going to store the return result of this inside of an overhead result.
+我将把这个返回的结果存储在一个开销结果里面。
+
+00:04:49.000 --> 00:04:54.000
+So copy this, paste it in here. I'm going to call this ledge trace hit.
+所以复制这个，把它粘贴到这里。我将把这个称为 "壁架追踪命中"。
+
+00:04:54.000 --> 00:04:58.000
+Alright, next thing I'm going to do an if check.
+好的，接下来我将做一个if检查。
+
+00:04:58.000 --> 00:05:07.000
+So if the first hit result, the B blocking hit is true and the second hit result, the B blocking hit is false.
+所以，如果第一次命中的结果，B挡的命中为真，第二次命中的结果，B挡的命中为假。
+
+00:05:07.000 --> 00:05:13.000
+So this means we are indeed on a walkable surface and we do have a ledge in front of us.
+所以这意味着我们确实在一个可行走的表面上，而且我们前面确实有一个壁架。
+
+00:05:13.000 --> 00:05:18.000
+If both of these conditions are true, I'm going to return true in this function.
+如果这两个条件都是真的，我将在这个函数中返回真。
+
+00:05:18.000 --> 00:05:22.000
+And at the end of this function, I'm going to return false.
+而在这个函数的结尾，我将返回false。
+
+00:05:22.000 --> 00:05:24.000
+And that's pretty much it.
+这就差不多了。
+
+00:05:24.000 --> 00:05:26.000
+Now I'm going to call this function.
+现在我将调用这个函数。
+
+00:05:26.000 --> 00:05:31.000
+So copy this can climb down ledge and scroll up to this toggle climbing.
+因此，复制这个可以爬下的窗台，并向上滚动到这个切换攀登的功能。
+
+00:05:31.000 --> 00:05:34.000
+So if this can start climbing is false.
+因此，如果这个可以开始攀爬是假的。
+
+00:05:34.000 --> 00:05:41.000
+So in the else case, I'm going to check else if this can climb down ledge is true.
+所以在else情况下，我将检查else是否这个可以爬下壁架是真的。
+
+00:05:41.000 --> 00:05:47.000
+If it is, I'm going to print a message to the screen that says can climb down and change its color.
+如果是的话，我要在屏幕上打印一条信息，说可以往下爬，并改变其颜色。
+
+00:05:47.000 --> 00:05:49.000
+To cyan.
+为青色。
+
+00:05:49.000 --> 00:05:52.000
+This in key give it a value of one.
+这个键给它的值是1。
+
+00:05:52.000 --> 00:06:03.000
+And if this condition is false, I'm going to print another message that says cannot climb down, change the color to red.
+如果这个条件是假的，我将打印另一条信息，说不能爬下去，把颜色改成红色。
+
+00:06:03.000 --> 00:06:06.000
+And there's one more thing that I want to do.
+还有一件事我想做。
+
+00:06:06.000 --> 00:06:10.000
+So this function will only be called once the climb action key is pressed.
+所以这个函数只有在按下爬升动作键时才会被调用。
+
+00:06:10.000 --> 00:06:17.000
+But since I want to see the debug shape in here, I'm first going to call the function inside of this component for now.
+但是因为我想在这里看到调试的形状，所以我首先要在这个组件中调用这个函数。
+
+00:06:17.000 --> 00:06:20.000
+So copy it and paste it in here.
+所以复制它并粘贴到这里。
+
+00:06:20.000 --> 00:06:23.000
+All right. I'm going to try to compile.
+好的。我将尝试编译。
+
+00:06:23.000 --> 00:06:28.000
+I have a successful compile. I'm going to launch my editor back.
+我有一个成功的编译。我将启动我的编辑器回来。
+
+00:06:28.000 --> 00:06:31.000
+All right. Go back to my editor. I'm going to press play.
+好的。回到我的编辑器。我将按下播放键。
+
+00:06:31.000 --> 00:06:34.000
+And you can see I have two line traces in front of the character.
+你可以看到我在角色前面有两条线的痕迹。
+
+00:06:34.000 --> 00:06:38.000
+Now, if I press F, it says cannot climb down.
+现在，如果我按F，它说不能往下爬。
+
+00:06:38.000 --> 00:06:47.000
+And if I try to climb up in here and move up and I'm going to go to here and press F.
+如果我试着在这里爬上去，然后向上爬，我就去这里按F。
+
+00:06:47.000 --> 00:06:49.000
+So here it says cannot climb down.
+所以这里说不能往下爬。
+
+00:06:49.000 --> 00:06:53.000
+Right now, I think the first line trace is too far away from the character.
+现在，我认为第一行的痕迹离人物太远了。
+
+00:06:53.000 --> 00:06:54.000
+I'm going to fix that.
+我要去解决这个问题。
+
+00:06:54.000 --> 00:07:01.000
+So go back to this climb system, open this character blueprint and collect this custom moving component.
+所以回到这个攀爬系统，打开这个角色蓝图，收集这个自定义移动组件。
+
+00:07:01.000 --> 00:07:05.000
+I'm going to adjust this climbed out walkable surface trace offset.
+我要调整这个攀爬出来的可行走表面的轨迹偏移。
+
+00:07:05.000 --> 00:07:10.000
+So change it from 100 to 50. And I'm going to see what this looks like.
+所以把它从100改为50。我要看看这看起来像什么。
+
+00:07:10.000 --> 00:07:12.000
+So press play again.
+所以再按一次播放。
+
+00:07:12.000 --> 00:07:15.000
+All right. I think this looks more reasonable.
+好的。我认为这看起来更合理。
+
+00:07:15.000 --> 00:07:23.000
+So in situations like this, if I press F, it says cannot climb down because we have two valid hit results.
+所以在这样的情况下，如果我按F，它说不能爬下去，因为我们有两个有效的命中结果。
+
+00:07:23.000 --> 00:07:29.000
+And if I go to here and I press F, it says cannot climb down.
+而如果我走到这里，按F，它说不能爬下去。
+
+00:07:29.000 --> 00:07:35.000
+So if you want to rule out this situation, right now, my second line trace has a length of 300 units.
+所以，如果你想排除这种情况，现在，我的第二条线迹的长度是300单位。
+
+00:07:35.000 --> 00:07:39.000
+If I want to climb down in surface like this, I just need to lower its height.
+如果我想在这样的表面爬下来，我只需要降低它的高度。
+
+00:07:39.000 --> 00:07:42.000
+All right. I'm going to test another situation.
+好了。我现在要测试另一种情况。
+
+00:07:42.000 --> 00:07:47.000
+So climb up, go to a surface like this and press F.
+所以爬上去，到这样的表面，按F。
+
+00:07:47.000 --> 00:07:49.000
+It says can climb down.
+它说可以爬下来。
+
+00:07:49.000 --> 00:07:55.000
+So we have valid hit for the first line trace and we don't have a hit for the second line trace.
+所以我们对第一条线的跟踪是有效的，而对第二条线的跟踪则是无效的。
+
+00:07:55.000 --> 00:07:56.000
+Great.
+很好。
+
+00:07:56.000 --> 00:08:02.000
+This is working and I'm going to go to a higher surface in here.
+这是在工作，我要去这里的一个更高的表面。
+
+00:08:02.000 --> 00:08:04.000
+Then press F.
+然后按F。
+
+00:08:04.000 --> 00:08:07.000
+Here it says can climb down.
+这里说可以爬下去。
+
+00:08:07.000 --> 00:08:09.000
+And now it says cannot climb down.
+而现在它说不能爬下去。
+
+00:08:09.000 --> 00:08:18.000
+The reason why I want to do two line traces is so in some edge cases, we can move our character to be very close to the edge.
+我之所以要做两条线的追踪是为了在一些边缘情况下，我们可以把我们的角色移动到非常接近边缘的地方。
+
+00:08:18.000 --> 00:08:19.000
+So something like this.
+所以像这样的东西。
+
+00:08:19.000 --> 00:08:22.000
+And now if I press F, we shouldn't be able to climb down.
+现在如果我按下F，我们应该不能爬下去了。
+
+00:08:22.000 --> 00:08:25.000
+So that's what the first line trace is here for.
+所以这就是第一行追踪的作用。
+
+00:08:25.000 --> 00:08:27.000
+What was your solution like?
+你的解决方案是什么样子的？
+
+00:08:27.000 --> 00:08:31.000
+Was yours similar to mine or did you come up with a much better one?
+你的方案和我的相似吗？还是你想出了一个更好的方案？
+
+00:08:31.000 --> 00:08:35.000
+Do share your solution in the description channel and I'll see you in the next lecture.
+请在描述频道中分享你的解决方案，我们将在下一次讲座中见。
+
+00:08:35.000 --> 00:08:37.000
+Thank you.
+谢谢你。

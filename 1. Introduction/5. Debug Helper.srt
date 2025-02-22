@@ -1,0 +1,229 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:09.960
+Welcome! In the last lecture, we created this project for us to work with using third-person
+欢迎大家 在上次讲座中，我们创建了这个项目，让我们使用第三人称的
+
+00:00:09.960 --> 00:00:13.840
+template. And before we move on, there's one more thing that I'd like to set up inside
+模板。在我们继续之前，我还想在C++中设置一个东西，以使我们的生活更容易。
+
+00:00:13.840 --> 00:00:18.960
+of C++ in order to make our lives much easier. So first, I'm going to close my project and
+以使我们的生活更轻松。所以，首先，我要关闭我的项目，回到我的Visual Studio。
+
+00:00:18.960 --> 00:00:22.720
+go back to my Visual Studio, giving you all the things that we want to do later, all the
+回到我的Visual Studio，给你所有我们以后要做的事情，所有我们需要的
+
+00:00:22.720 --> 00:00:27.640
+math operations that we need. It'll be much easier for us to accomplish them if we have
+我们需要的数学运算。如果我们有一个调试助手，我们就能更容易地完成这些操作。
+
+00:00:27.640 --> 00:00:31.880
+a debug helper. Quite frequently, we'll need to print something either to the screen or
+一个调试助手。很多时候，我们需要打印一些东西到屏幕上或
+
+00:00:31.880 --> 00:00:37.240
+to the log, so having a handy debug function can really speed up this process. So first,
+到日志中，所以有一个方便的调试函数可以真正加快这个过程。所以，首先、
+
+00:00:37.240 --> 00:00:41.040
+I'm going to go to this Climbing System folder, right mouse button click, and I'm going to
+我将进入这个 "攀登系统 "文件夹，点击鼠标右键，然后我将会
+
+00:00:41.040 --> 00:00:46.160
+click Add and select New Item. So I like to put the debug functionality inside of a single
+点击添加并选择新项目。所以我喜欢把调试功能放在一个单一的
+
+00:00:46.160 --> 00:00:50.880
+header file. So I'm going to select this header file and I'm going to rename this file to
+头文件中。所以我将选择这个头文件，并将这个文件重命名为
+
+00:00:50.880 --> 00:00:55.920
+Debug Helper. Then inside of this location, we'll need to manually change it to our source
+Debug Helper。然后在这个位置，我们需要手动把它改成我们的源代码
+
+00:00:55.920 --> 00:01:01.240
+folder. So I'm going to click this Browse, go back to this Climbing System folder, and
+文件夹。所以我将点击这个浏览，回到这个攀登系统文件夹，然后
+
+00:01:01.240 --> 00:01:06.280
+go to Source, double click to open this Climbing System and click Select Folder. And later,
+转到源文件，双击打开这个攀登系统，然后点击选择文件夹。而后、
+
+00:01:06.280 --> 00:01:09.480
+we should be able to save this file under our source folder. All right, I'm going to
+我们应该能够把这个文件保存在我们的源文件夹下。好的，我将会
+
+00:01:09.480 --> 00:01:15.520
+click Add. And first thing, I'm going to first include this file inside of my Character class.
+点击添加。首先，我要把这个文件包含在我的角色类中。
+
+00:01:15.520 --> 00:01:19.720
+By doing this, we should be able to have the auto completion back inside of that file.
+通过这样做，我们应该能够在该文件中重新获得自动完成功能。
+
+00:01:19.720 --> 00:01:25.880
+So inside of this Character.h, I'm going to press Ctrl+K and Ctrl+O to go to its Cpp
+所以在Character.h里面，我将按Ctrl+K和Ctrl+O转到其Cpp
+
+00:01:25.880 --> 00:01:30.560
+file. Then I'm going to type in pal include and the file that I want to include is this
+文件。然后我将输入pal include，我想包含的文件是这个
+
+00:01:30.560 --> 00:01:38.520
+Debug Helper.h. All right, after that, I'm going to press Ctrl+B to compile. All right,
+Debug Helper.h。好的，在这之后，我将按Ctrl+B进行编译。好的、
+
+00:01:38.520 --> 00:01:43.280
+I have a successful compile and I'm going to go back to this Debug Helper.h. So first,
+我有一个成功的编译，我将回到这个Debug Helper.h。那么首先、
+
+00:01:43.280 --> 00:01:49.080
+I'm going to type in namespace and I'm going to call this namespace Debug. This is just
+我将键入命名空间，我将把这个命名空间称为Debug。这只是
+
+00:01:49.080 --> 00:01:54.200
+to prevent any possible naming conflicts that we might have in the future. All right, then
+以防止我们将来可能出现的任何命名冲突。好的，然后
+
+00:01:54.200 --> 00:01:59.440
+follow by open braces. The function that I'm going to create, you'll be a static function
+后面是大括号。我要创建的这个函数，将是一个静态函数
+
+00:01:59.440 --> 00:02:05.440
+and you'll be void. I'm going to call it print. It's going to have a few input parameters.
+并且是无效的。我将把它称为打印。它将会有几个输入参数。
+
+00:02:05.440 --> 00:02:11.240
+So the first one, you'll be a const f string reference. I'm going to call this message.
+所以第一个，你将是一个const f字符串的引用。我将把这个称为消息。
+
+00:02:11.240 --> 00:02:15.360
+So this will be the message that we'll see on the screen later. And next, you'll be a
+所以这将是我们以后在屏幕上看到的信息。接下来，你将得到一个
+
+00:02:15.360 --> 00:02:20.240
+const f color, also going to be a reference. I'm going to call this color and I'm going
+const f颜色，也是一个引用。我将调用这个颜色，并且我将给它一个默认值。
+
+00:02:20.240 --> 00:02:25.800
+to give it a default value. So you'll be f color, double colon. I'm going to type in make
+给它一个默认值。所以你将是f color，双冒号。我将输入使
+
+00:02:25.800 --> 00:02:32.520
+random color. Later, if we need to print our message every frame, we do need to specify
+随机颜色。以后，如果我们需要每一帧都打印我们的信息，我们确实需要在这里手动指定
+
+00:02:32.520 --> 00:02:37.280
+the color manually in here. Otherwise, this make random color will just work. And the
+在这里手动指定颜色。否则，这个make random color就可以工作了。而
+
+00:02:37.280 --> 00:02:43.840
+last input, you'll be an int 32. I'm going to call this int key. So this will be the key
+最后一个输入，你将是一个int 32。我将把这个称为int key。所以这将是我们显示信息的关键
+
+00:02:43.840 --> 00:02:48.040
+for us to display the message. I'm going to give it a default value of negative one. A
+用于显示信息。我将给它一个默认值，即负1。A
+
+00:02:48.040 --> 00:02:52.960
+value of negative one will make sure when we're printing multiple messages, the newer message
+负一的值将确保我们在打印多条信息时，较新的信息
+
+00:02:52.960 --> 00:02:57.560
+will be on top. And later, if we want to print something every frame, we might also want
+将被放在上面。以后，如果我们想每一帧都打印一些东西，我们可能还想
+
+00:02:57.560 --> 00:03:02.600
+to specify the value for this parameter as well so that our screen won't have thousands
+指定这个参数的值，这样我们的屏幕就不会有成千上万的
+
+00:03:02.600 --> 00:03:09.360
+of messages. All right. Instead of this function, I'm first going to type if g engine, then
+的信息。好的。我不使用这个函数，而是先输入if g引擎，然后
+
+00:03:09.360 --> 00:03:17.160
+I'm going to use the function at on screen debug message. The first parameter that we
+我将在屏幕上的调试信息处使用这个函数。我们的第一个参数
+
+00:03:17.160 --> 00:03:22.320
+need to fill in is this key. Well, you'll be our inky and the time to display. I'm going
+需要填写的第一个参数是这个键。好吧，你将是我们的墨迹和显示的时间。我打算
+
+00:03:22.320 --> 00:03:28.400
+to give it a value of six seconds. And the display color is going to be our color and
+给它一个6秒的值。显示的颜色将是我们的颜色，信息将是我们的信息。
+
+00:03:28.400 --> 00:03:35.000
+the message is going to be our message. As simple as that. And after that, I'm also going
+信息将是我们的信息。就这么简单。在这之后，我还将
+
+00:03:35.000 --> 00:03:42.440
+to print this message to the log. So I'm going to use ue log and you'll be locked temp. I'm
+来打印这个信息到日志中。所以我将使用ue log，你将被锁定temp。我将
+
+00:03:42.440 --> 00:03:48.240
+going to type in warning and the message is going to be our input parameter. So I'm going
+输入警告，信息将成为我们的输入参数。所以我将
+
+00:03:48.240 --> 00:03:54.960
+to type in present as then followed by an asterisk and you'll be our message. All right. Just
+输入 "目前"，后面加个星号，你就是我们的信息。好的。就这样
+
+00:03:54.960 --> 00:04:00.560
+like that. Now let's test this. So go back to my character system dot cpp. I'm going
+像这样。现在我们来测试一下。所以回到我的字符系统点cpp。我将会
+
+00:04:00.560 --> 00:04:07.040
+to go down to this begin play under this line for add input mapping context. I'm going to
+在这行下边开始播放添加输入映射的上下文。我将会
+
+00:04:07.040 --> 00:04:13.080
+type in debug. So this is our namespace double column and we can access the function print
+键入debug。所以这是我们的命名空间双列，我们可以访问函数print
+
+00:04:13.080 --> 00:04:18.000
+since we already mark this function a static function. We can include this file in different
+因为我们已经把这个函数标记为静态函数。我们可以把这个文件包含在不同的
+
+00:04:18.000 --> 00:04:23.520
+places without any linking errors. So the message that I'm going to print would be debug
+我们可以在不同的地方包含这个文件，而不会出现任何链接错误。所以我要打印的信息将是debug
+
+00:04:23.520 --> 00:04:30.800
+working and I'm going to press control plus at five to launch my editor. All right. Go
+工作，我将在5点按下控制键，启动我的编辑器。好的。回到
+
+00:04:30.800 --> 00:04:35.220
+back to my editor. I'm going to click play and you can see we already have the message
+回到我的编辑器。我将点击播放，你可以看到我们已经把信息
+
+00:04:35.220 --> 00:04:40.720
+printing to the screen. And if I go to my output log we can already see a message in
+打印到了屏幕上。如果我去看我的输出日志，我们已经可以在这里看到一条消息。
+
+00:04:40.720 --> 00:04:45.200
+here and this is going to save us so much time later and it's time for you to do the
+这将为我们以后节省很多时间，现在是时候让你也这样做了。
+
+00:04:45.200 --> 00:04:49.640
+same. So the challenge is same as I did. I like you to create a header file for debugging.
+是时候让你做同样的事情了。所以挑战和我一样。我希望你能创建一个头文件用于调试。
+
+00:04:49.640 --> 00:04:54.560
+After that try printing something to screen to prove your debug helper is working. Feel
+之后，试着在屏幕上打印一些东西，以证明你的调试助手在工作。感觉
+
+00:04:54.560 --> 00:04:59.080
+free to refer back to the video if you need any help. All right. Pause the video now and
+如果你需要任何帮助，可以参考视频。好了。现在暂停视频并
+
+00:04:59.080 --> 00:05:11.880
+keep this a go and I'll see you in the next lecture.
+保持这个状态，我们在下一节课见。
+
+00:05:11.880 --> 00:05:12.880
+[Music]
+[音乐]

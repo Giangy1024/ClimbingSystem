@@ -1,0 +1,717 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.720
+Welcome.
+欢迎。
+
+00:00:05.720 --> 00:00:10.020
+Starting from this section, we're going to use some climb animation to swap out this
+从这一节开始，我们将使用一些爬升动画来替换这个
+
+00:00:10.020 --> 00:00:13.320
+default movement animation when we're climbing.
+当我们在攀登时，默认的运动动画。
+
+00:00:13.320 --> 00:00:18.820
+And to handle that, instead of directly modifying the existing animation blueprint, I like to
+为了解决这个问题，我不是直接修改现有的动画蓝图，而是
+
+00:00:18.820 --> 00:00:21.680
+do it from scratch using C++.
+使用C++从头开始。
+
+00:00:21.680 --> 00:00:25.920
+I think they'll be much clearer for us to know and understand what's going on under
+我认为他们会让我们更清楚地知道和理解下面发生的事情
+
+00:00:25.920 --> 00:00:26.960
+the hood.
+引擎盖。
+
+00:00:26.960 --> 00:00:32.280
+So I'm going to go inside of this C++ classes folder and inside of it, inside of public,
+所以我将进入这个C++类文件夹，在它的内部，在公共的内部，
+
+00:00:32.280 --> 00:00:35.520
+I'm going to create a new C++ class.
+我将创建一个新的C++类。
+
+00:00:35.520 --> 00:00:41.280
+And I'm going to select all classes and type in nminstance and select this nminstance.
+然后我将选择所有类，然后输入nminstance，然后选择这个nminstance。
+
+00:00:41.280 --> 00:00:42.280
+Click next.
+单击下一步。
+
+00:00:42.280 --> 00:00:51.600
+I'm going to rename this to character nminstance and place it under the folder named nminstance
+我要将其重命名为Character nminstance，并将其放在名为nminstance的文件夹下
+
+00:00:51.600 --> 00:00:54.960
+and click create class.
+并单击创建类。
+
+00:00:54.960 --> 00:00:59.920
+Alright, live coding succeeded, I'm going to close my project and click this reload
+好了，实时编码成功，我要关闭我的项目并单击此重新加载
+
+00:00:59.920 --> 00:01:01.480
+all.
+全。
+
+00:01:01.480 --> 00:01:04.400
+Then I'm going to go to the header file of my nminstance.
+然后我将转到我的实例的头文件。
+
+00:01:04.400 --> 00:01:07.680
+And you can see the parent class of it is this new nminstance.
+您可以看到它的父类就是这个新实例。
+
+00:01:07.680 --> 00:01:11.760
+I'm going to select it and press F12 to go inside of it.
+我要选择它，然后按F12进入它的内部。
+
+00:01:11.760 --> 00:01:15.740
+In order for everything to work properly, there are two functions that we need to override.
+为了让一切正常工作，我们需要重写两个函数。
+
+00:01:15.740 --> 00:01:17.880
+So I'm going to search for them.
+所以我要去找他们。
+
+00:01:17.880 --> 00:01:21.240
+The first one is this native initialize animation.
+第一个是本机初始化动画。
+
+00:01:21.240 --> 00:01:24.680
+So this is like the begin play for our animation blueprint.
+这就像是我们动画蓝图的开始。
+
+00:01:24.680 --> 00:01:28.520
+So I'm going to override this function, copy it and go back to my header file.
+所以我要覆盖这个函数，复制它，然后返回到我的头文件。
+
+00:01:28.520 --> 00:01:35.200
+I'm going to create a public section and place the function in here, mark it as override.
+我将创建一个公共部分，并将该函数放在此处，将其标记为覆盖。
+
+00:01:35.200 --> 00:01:40.080
+And the second function that we need to override is this native update animation.
+我们需要覆盖的第二个功能是本机更新动画。
+
+00:01:40.080 --> 00:01:41.960
+So I'm going to copy this.
+所以我要复制这个。
+
+00:01:41.960 --> 00:01:44.960
+This is like the take of our animation blueprint.
+这就像我们的动画蓝图一样。
+
+00:01:44.960 --> 00:01:50.760
+So I'm going to go back to my header file, paste it in here and mark this function as
+因此，我将返回到我的头文件，将其粘贴到此处，并将此函数标记为
+
+00:01:50.760 --> 00:01:51.760
+override.
+超驰。
+
+00:01:51.760 --> 00:01:58.240
+All right, I'm going to create two function definitions and create one for this update
+好的，我将创建两个函数定义，并为此更新创建一个
+
+00:01:58.240 --> 00:01:59.420
+animation.
+动画。
+
+00:01:59.420 --> 00:02:03.280
+So first thing I'm going to call super inside of these two functions.
+所以我首先要在这两个函数中调用。
+
+00:02:03.280 --> 00:02:10.880
+So first one is for this native initialize animation and the second one is for this update
+第一个是本机初始化动画，第二个是这个更新
+
+00:02:10.880 --> 00:02:11.880
+animation.
+动画。
+
+00:02:11.880 --> 00:02:18.360
+So copy this line, paste it in here, copy this one, paste it in here, delete this float.
+复制这行，粘贴到这里，复制这行，粘贴到这里，删除这个浮动。
+
+00:02:18.360 --> 00:02:21.280
+All right, this is the basic setup that we need to do.
+好了，这是我们需要做的基本设置。
+
+00:02:21.280 --> 00:02:27.920
+If you'd like to catch up with me, you can pause the video now and give this a go.
+如果你想跟上我，你现在可以暂停视频，然后试一试。
+
+00:02:27.920 --> 00:02:28.920
+Welcome back.
+欢迎回来。
+
+00:02:28.920 --> 00:02:33.000
+The next thing that we need to do in here, we need to create all of those variables needed
+我们在这里需要做的下一件事是，我们需要创建所有需要的变量
+
+00:02:33.000 --> 00:02:34.500
+for our animation.
+为了我们的动画。
+
+00:02:34.500 --> 00:02:35.840
+So go back to my header file.
+因此，返回到我的头文件。
+
+00:02:35.840 --> 00:02:38.340
+I'm going to create a private section.
+我要创建一个私人区域。
+
+00:02:38.340 --> 00:02:41.920
+So the first one is going to have an empty U property.
+所以第一个函数将有一个空的U属性。
+
+00:02:41.920 --> 00:02:44.640
+So this is going to be our character reference.
+因此，这将是我们的角色参考。
+
+00:02:44.640 --> 00:02:48.720
+So I'm going to go back to the header file and I'm going to copy this type.
+所以我要回到头文件，我要复制这种类型。
+
+00:02:48.720 --> 00:02:51.000
+So it's called a climbing system character.
+所以它被称为攀登系统角色。
+
+00:02:51.000 --> 00:02:55.720
+I'm going to copy this and paste it in here.
+我要把这个复制并粘贴到这里。
+
+00:02:55.720 --> 00:02:59.880
+And I'm going to name this pointer climbing system character.
+我将给这个指针爬升系统角色命名。
+
+00:02:59.880 --> 00:03:02.320
+And we do need to forward declare the type in here.
+我们确实需要在这里转发声明类型。
+
+00:03:02.320 --> 00:03:05.440
+So copy this one, create a forward declare.
+所以复制这个，创建一个Forward声明。
+
+00:03:05.440 --> 00:03:09.900
+All right, the second variable is going to have the same empty U property.
+好的，第二个变量将具有相同的空U属性。
+
+00:03:09.900 --> 00:03:13.960
+So this is going to be a reference of our custom movement component.
+因此，这将是我们的自定义移动组件的参考。
+
+00:03:13.960 --> 00:03:15.360
+So go back to the header file.
+因此，回到头文件。
+
+00:03:15.360 --> 00:03:18.760
+I'm going to copy this type.
+我要复印这一种。
+
+00:03:18.760 --> 00:03:19.760
+Go back to my header file.
+返回到我的头文件。
+
+00:03:19.760 --> 00:03:22.520
+I'm going to first forward declare it.
+我要先把它宣布出来。
+
+00:03:22.520 --> 00:03:25.480
+So place it in here.
+所以把它放在这里。
+
+00:03:25.480 --> 00:03:28.000
+Then scroll down, place this one in here.
+然后向下滚动，把这个放在这里。
+
+00:03:28.000 --> 00:03:31.760
+I'm going to call this variable custom movement component.
+我将把这个变量称为自定义移动组件。
+
+00:03:31.760 --> 00:03:36.600
+All right, first thing we need to assign these pointers some valid values.
+好的，首先我们需要为这些指针分配一些有效的值。
+
+00:03:36.600 --> 00:03:38.160
+So go back to my cpp file.
+所以回到我的CPP文件。
+
+00:03:38.160 --> 00:03:44.160
+Instead of this native initialize animation, I'm going to type climbing system character
+我将不输入本机初始化动画，而是输入攀登系统角色
+
+00:03:44.160 --> 00:03:46.920
+is going to equal to the result of a cast.
+将等于一次铸型的结果。
+
+00:03:46.920 --> 00:03:52.320
+So the type is going to be a climbing system character.
+因此，类型将是一个攀登系统的角色。
+
+00:03:52.320 --> 00:03:56.480
+And we're going to cast from this try get pong owner.
+我们将从这次试镜中挑选出乒乓球老板。
+
+00:03:56.480 --> 00:04:00.560
+And we do need to include the header file of our character and we can get that from
+我们确实需要包括我们角色的头文件，我们可以从
+
+00:04:00.560 --> 00:04:02.200
+our custom movement component.
+我们的定制移动组件。
+
+00:04:02.200 --> 00:04:03.680
+So go back to its cpp file.
+因此，请返回到其CPP文件。
+
+00:04:03.680 --> 00:04:07.720
+I'm going to copy this line and I'm going to paste it in here.
+我要复制这行，然后粘贴到这里。
+
+00:04:07.720 --> 00:04:13.280
+So after this line, I'm going to check if this pointer is valid.
+在这一行之后，我要检查这个指针是否有效。
+
+00:04:13.280 --> 00:04:16.980
+And I'm going to get hold of the custom movement component.
+我将获得定制移动组件。
+
+00:04:16.980 --> 00:04:23.000
+So access the getter that we created is called get custom movement component.
+因此，访问我们创建的getter称为Get Custom Move Component。
+
+00:04:23.000 --> 00:04:26.480
+And I'm going to store this in the variable that we created.
+我将把它存储在我们创建的变量中。
+
+00:04:26.480 --> 00:04:31.000
+So it's called custom movement component.
+所以它被称为自定义移动组件。
+
+00:04:31.000 --> 00:04:36.480
+In case I forget, I'm going to include the header file of our movement component as well.
+如果我忘记了，我还将包括我们的移动组件的头文件。
+
+00:04:36.480 --> 00:04:38.200
+So go back to its cpp file.
+因此，请返回到其CPP文件。
+
+00:04:38.200 --> 00:04:42.800
+I'm going to copy this and paste it in here.
+我要把这个复制并粘贴到这里。
+
+00:04:42.800 --> 00:04:47.480
+Alright I'm going to compile first to see if there are any errors.
+好的，我要先编译一下，看看有没有错误。
+
+00:04:47.480 --> 00:04:49.280
+I have a successful compile.
+我有一个成功的汇编。
+
+00:04:49.280 --> 00:04:53.840
+Once we get hold of the references we need inside of this native update animation, I'm
+一旦我们掌握了这个本机更新动画中所需的引用，我就
+
+00:04:53.840 --> 00:04:59.080
+going to first check if this climbing system character is valid.
+我要先检查一下这个攀爬系统的角色是否有效。
+
+00:04:59.080 --> 00:05:07.160
+So if it's not valid or this custom movement component is not valid, either way I'm going
+因此，如果它无效或此自定义移动组件无效，无论哪种方式，我都会选择
+
+00:05:07.160 --> 00:05:09.360
+to return out of this function.
+从这个函数中返回。
+
+00:05:09.360 --> 00:05:13.000
+Once we get past this if check, we should have a valid climbing system character and
+一旦我们通过了这个IF检查，我们应该有一个有效的爬升系统特征和
+
+00:05:13.000 --> 00:05:15.260
+a valid custom movement component.
+有效的自定义移动组件。
+
+00:05:15.260 --> 00:05:18.800
+And in here we should get all the variables we need for our animation.
+在这里，我们应该得到动画所需的所有变量。
+
+00:05:18.800 --> 00:05:20.480
+So go back to my header file.
+因此，返回到我的头文件。
+
+00:05:20.480 --> 00:05:23.160
+I'm going to start to create some variables.
+我将开始创建一些变量。
+
+00:05:23.160 --> 00:05:26.560
+So the first one is going to be a U property.
+所以第一个将是U属性。
+
+00:05:26.560 --> 00:05:30.800
+Since the content here is the same, I'm going to copy some of the U properties from our
+因为这里的内容是相同的，所以我将从我们的
+
+00:05:30.800 --> 00:05:32.480
+custom movement component.
+自定义移动组件。
+
+00:05:32.480 --> 00:05:35.400
+So scroll down to this BP variables.
+所以向下滚动到这个BP变量。
+
+00:05:35.400 --> 00:05:40.320
+I'm going to copy this one and go back to this nm instance, paste it in here.
+我要复制这个，然后返回到这个nm实例，粘贴到这里。
+
+00:05:40.320 --> 00:05:42.800
+I'm going to modify some of the content.
+我要修改一些内容。
+
+00:05:42.800 --> 00:05:48.120
+So instead of add the defaults only, I'm going to change this to visible anywhere.
+因此，我将不再只添加默认设置，而是将其更改为在任何地方都可见。
+
+00:05:48.120 --> 00:05:52.160
+And the category I'm going to change it to reference.
+以及我要将其更改为引用的类别。
+
+00:05:52.160 --> 00:05:54.480
+And this variable is going to be a float.
+这个变量将是一个浮点数。
+
+00:05:54.480 --> 00:05:56.640
+I'm going to call it ground speed.
+我把它叫做地面速度。
+
+00:05:56.640 --> 00:06:00.700
+And right below this variable I'm going to create a function to get.
+在这个变量的正下方，我将创建一个要获取的函数。
+
+00:06:00.700 --> 00:06:03.560
+So I'm going to call this one get ground speed.
+所以我把这个叫做GET GROUND SPEED。
+
+00:06:03.560 --> 00:06:06.560
+And I'm going to copy this U property.
+我要复制这个U的财产。
+
+00:06:06.560 --> 00:06:08.960
+We only need a few more of this.
+我们只需要再来几个。
+
+00:06:08.960 --> 00:06:13.960
+So the second variable I'm going to call this one is going to be a float.
+所以我要叫它的第二个变量，会是一个浮点数。
+
+00:06:13.960 --> 00:06:16.000
+And I'm going to call it air speed.
+我把它叫做空速。
+
+00:06:16.000 --> 00:06:17.360
+And I'm going to create a function for it.
+我要为它创建一个函数。
+
+00:06:17.360 --> 00:06:19.720
+I'm going to call it get air speed.
+我要把它叫做“获得空速”。
+
+00:06:19.720 --> 00:06:21.480
+And there are two more that we need.
+我们还需要另外两个。
+
+00:06:21.480 --> 00:06:24.420
+So copy this one again.
+所以把这个再复制一遍。
+
+00:06:24.420 --> 00:06:26.480
+So the next one is going to be a Boolean.
+所以下一个将是一个布尔值。
+
+00:06:26.480 --> 00:06:30.560
+I'm going to call this be shoot move and create a function for it.
+我将把它命名为BE Shoot Move，并为它创建一个函数。
+
+00:06:30.560 --> 00:06:31.560
+It's going to be void.
+这将是无效的。
+
+00:06:31.560 --> 00:06:34.440
+I'm going to call it get shoot move.
+我要把它叫做Get Shoot Move。
+
+00:06:34.440 --> 00:06:39.400
+And the last one create another U property.
+而最后一个创建了另一个U属性。
+
+00:06:39.400 --> 00:06:41.520
+So this one is going to be another Boolean.
+所以这将是另一个布尔值。
+
+00:06:41.520 --> 00:06:45.560
+I'm going to call this be is falling and create a function to get.
+我将把它命名为Be is Fall，并创建一个要获取的函数。
+
+00:06:45.560 --> 00:06:48.560
+So I'm going to call it get is falling.
+所以我要把它命名为GET正在下降。
+
+00:06:48.560 --> 00:06:56.640
+Alright I'm going to create a bunch of function definitions.
+好的，我将创建一组函数定义。
+
+00:06:56.640 --> 00:07:00.600
+Alright first thing I'm going to call these functions that I just created inside of this
+好的，首先我要调用我刚刚在这个内部创建的这些函数
+
+00:07:00.600 --> 00:07:02.840
+update animation.
+更新动画。
+
+00:07:02.840 --> 00:07:07.880
+So copy them and paste them inside of this function.
+因此，将它们复制并粘贴到此函数中。
+
+00:07:07.880 --> 00:07:10.520
+And I'm going to start to implement these functions.
+我将开始实现这些功能。
+
+00:07:10.520 --> 00:07:12.280
+So the first one ground speed.
+所以第一个是地面速度。
+
+00:07:12.280 --> 00:07:15.520
+That's something we can get from this climbing system character.
+这就是我们可以从这个攀登系统角色中得到的东西。
+
+00:07:15.520 --> 00:07:20.280
+So I'm going to access the function get velocity.
+所以我要访问函数，获取速度。
+
+00:07:20.280 --> 00:07:24.800
+And since we're only interested in the ground speed, we'll need to use a function from Kitsma
+因为我们只对地面速度感兴趣，所以我们需要使用Kitsma的函数
+
+00:07:24.800 --> 00:07:26.800
+math library.
+数学库。
+
+00:07:26.800 --> 00:07:29.160
+So I'm going to directly search for it in here.
+所以我会直接在这里搜索它。
+
+00:07:29.160 --> 00:07:33.520
+So it's called Kitsma math library.
+所以它被称为Kitsma数学库。
+
+00:07:33.520 --> 00:07:35.200
+And you can see this is its header file.
+你可以看到这是它的头文件。
+
+00:07:35.200 --> 00:07:42.600
+I'm going to go to its CPP file, copy the first line, close it and paste it in here.
+我将转到它的cpp文件，复制第一行，关闭它，然后粘贴到这里。
+
+00:07:42.600 --> 00:07:47.240
+So we'll need to access the function U Kitsma math library.
+所以我们需要访问函数U Kitsma数学库。
+
+00:07:47.240 --> 00:07:50.640
+And the function we need is called vsize xy.
+我们需要的函数叫做vsizexy。
+
+00:07:50.640 --> 00:07:55.040
+And I'm going to copy this one and paste it in here.
+我要复制这个，然后把它粘贴到这里。
+
+00:07:55.040 --> 00:08:00.480
+And delete this one, so this is our ground speed and I'm going to assign the value of
+删除这个，这是我们的地面速度，我将赋值为
+
+00:08:00.480 --> 00:08:02.920
+it to this ground speed.
+它达到了这个地面速度。
+
+00:08:02.920 --> 00:08:06.280
+Alright, for this error speed, same thing.
+好的，对于这个错误速度，情况是一样的。
+
+00:08:06.280 --> 00:08:11.880
+We are going to access this get velocity, but this time we're only interested in the
+我们将访问此获取速度，但这一次我们只对
+
+00:08:11.880 --> 00:08:13.260
+z component.
+Z分量。
+
+00:08:13.260 --> 00:08:14.920
+So this is our error speed.
+这就是我们的错误速度。
+
+00:08:14.920 --> 00:08:19.400
+I'm going to assign the value to the variable error speed.
+我要把这个值赋给变量错误速度。
+
+00:08:19.400 --> 00:08:23.540
+And for this function getShoeMove, there are a few if checks.
+对于这个函数getShoeMove，有几个if检查。
+
+00:08:23.540 --> 00:08:27.800
+So first thing I'm going to check, this custom movement component, I'm going to get hold
+所以我要做的第一件事是检查这个定制的移动组件，我要拿到
+
+00:08:27.800 --> 00:08:31.960
+of the function getCurrentAcceleration.
+函数getCurrentAcceleration。
+
+00:08:31.960 --> 00:08:41.480
+So if our acceleration.size is greater than zero and our ground speed is greater than
+所以如果我们的加速度大于零，我们的地面速度大于
+
+00:08:41.480 --> 00:08:48.760
+5.f and v is falling is false.
+5.f和v正在下降是假的。
+
+00:08:48.760 --> 00:08:51.940
+So if these three conditions are true, then we should move.
+因此，如果这三个条件成立，那么我们应该采取行动。
+
+00:08:51.940 --> 00:08:58.600
+So I'm going to assign their values to this beShoeMove.
+所以我要把它们的值赋给这个beShoeMove。
+
+00:08:58.600 --> 00:09:00.360
+And add the semicolon at the end.
+并在末尾加上分号。
+
+00:09:00.360 --> 00:09:05.800
+Alright, the last function getIsFalling, we can get that from our custom moving component
+好的，最后一个函数getIsFling，我们可以从我们的定制移动组件中获得它
+
+00:09:05.800 --> 00:09:09.920
+and access the function isFalling.
+并访问正在倒下的功能。
+
+00:09:09.920 --> 00:09:15.560
+And assign the value to this beIsFalling.
+并将该值赋给此beIsFling。
+
+00:09:15.560 --> 00:09:17.040
+Alright that's pretty much it.
+好了，差不多就是这样了。
+
+00:09:17.040 --> 00:09:21.040
+These are all the variables that we need to recreate the animation blueprint.
+这些都是我们重建动画蓝图所需的变量。
+
+00:09:21.040 --> 00:09:22.720
+Alright I'm going to compile first.
+好的，我要先编译一下。
+
+00:09:22.720 --> 00:09:23.720
+I have a successful compile.
+我有一个成功的汇编。
+
+00:09:23.720 --> 00:09:26.200
+I'm going to launch my editor back.
+我要让我的编辑回来。
+
+00:09:26.200 --> 00:09:30.480
+So going inside of my editor, I'm going to go to this ClimbSystem and right mouse button
+因此，在我的编辑器中，我将转到这个气候系统，然后用鼠标右键
+
+00:09:30.480 --> 00:09:31.480
+click.
+单击。
+
+00:09:31.480 --> 00:09:35.080
+Go to animation and create an animation blueprint.
+转到动画并创建动画蓝图。
+
+00:09:35.080 --> 00:09:39.400
+And the skeleton here, I'm going to select this SKMannequin and the pairing class.
+这里的框架，我将选择这个SKMannequin和配对类。
+
+00:09:39.400 --> 00:09:43.320
+I'm going to use this C++ class that we just created.
+我将使用我们刚刚创建的这个C++类。
+
+00:09:43.320 --> 00:09:46.800
+So you'll pick this character and instance and click create.
+因此，您将拾取此角色和实例，然后单击创建。
+
+00:09:46.800 --> 00:09:52.800
+I'm going to rename this animation blueprint to abp_climbsys_character and double click
+我要将此动画蓝图重命名为ABP_appbsys_Character，然后双击
+
+00:09:52.800 --> 00:09:54.000
+to open it.
+才能打开它。
+
+00:09:54.000 --> 00:09:59.720
+And if you go to this icon here, click it and show this inherited variables.
+如果你在这里找到这个图标，点击它并显示这个继承的变量。
+
+00:09:59.720 --> 00:10:03.760
+You can see these are the variables that we created inside of C++.
+您可以看到这些是我们在C++中创建的变量。
+
+00:10:03.760 --> 00:10:05.680
+Alright that's all we need to do for now.
+好了，我们现在要做的就是这些。
+
+00:10:05.680 --> 00:10:11.000
+So I'm going to go back to my content browser, open this ClimbingSystem character and I'm
+所以我要回到我的内容浏览器，打开这个气候系统角色，我
+
+00:10:11.000 --> 00:10:13.200
+going to swap out this animation blueprint.
+换出这张动画蓝图。
+
+00:10:13.200 --> 00:10:18.600
+So I'm going to change this to this abp_climbsys_character and click compile.
+因此，我将把它更改为这个ABP_CONTIABSYS_CHARACTER，然后单击编译。
+
+00:10:18.600 --> 00:10:24.800
+Now if I click play again, you can see we no longer have the animation and we are back
+现在，如果我再次点击播放，你可以看到我们不再有动画，我们又回来了
+
+00:10:24.800 --> 00:10:26.640
+to this default A pose.
+设置为此默认的A姿势。
+
+00:10:26.640 --> 00:10:30.960
+And in next lecture, we are going to use all the variables that we created to rebuild this
+在下一节课中，我们将使用我们创建的所有变量来重建这个
+
+00:10:30.960 --> 00:10:32.600
+animation blueprint.
+动画蓝图。
+
+00:10:32.600 --> 00:10:38.080
+So this is the key function inside of our C++ class and these are the first four variables
+这是我们的C++类中的关键函数，这是前四个变量
+
+00:10:38.080 --> 00:10:39.080
+that we need.
+这是我们需要的。
+
+00:10:39.080 --> 00:10:41.840
+Feel free to refer back to the video if you need help.
+如果您需要帮助，请随时回顾视频。
+
+00:10:41.840 --> 00:10:45.040
+Alright it's time for you to do the same and I'll see you in the next lecture.
+好了，你们也该这么做了，我们下一节课再见。
+
+00:10:45.040 --> 00:10:55.440
+Bye.
+再见。

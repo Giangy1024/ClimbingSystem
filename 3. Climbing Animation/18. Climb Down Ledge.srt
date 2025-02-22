@@ -1,0 +1,349 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.480
+Welcome. In the last lecture, we finished adjusting this climb down ledge animation using Control
+欢迎。在上一讲中，我们完成了对这个爬下窗台动画的调整，使用了Control
+
+00:00:10.480 --> 00:00:15.080
+Brick. And in this lecture, let's look at how we can actually use it. So first, I'm
+砖块。在这一讲中，让我们看看我们如何实际使用它。所以首先，我将
+
+00:00:15.080 --> 00:00:19.080
+going to close my project. Then I'm going to go back to my header file. So I'm going
+将关闭我的项目。然后我将回到我的头文件。所以我打算
+
+00:00:19.080 --> 00:00:25.320
+to create a new anim montage. Copy this one, paste it in here. I'm going to call this one
+创建一个新的动画蒙太奇。复制这个，把它粘贴到这里。我将把这个叫做
+
+00:00:25.320 --> 00:00:31.360
+climb down ledge montage. Then I'm going to go back to my CPP file. So if this condition
+爬下窗台的蒙太奇。然后我将回到我的CPP文件中。所以如果这个条件
+
+00:00:31.360 --> 00:00:37.720
+returns true, I'm going to delete these two debug functions, delete this else case. So
+返回真，我将删除这两个调试函数，删除这个else case。所以
+
+00:00:37.720 --> 00:00:43.120
+if it returns true, I'm going to call the function play climb montage and pass in the
+如果它返回真，我将调用函数play climb montage并传入我刚刚创建的
+
+00:00:43.120 --> 00:00:48.600
+variable that I just created. So it's called climb down ledge montage. And this should
+我刚刚创建的变量。所以它被称为爬下窗台蒙太奇。而这应该
+
+00:00:48.600 --> 00:00:54.720
+do for now. I'm going to compile first. I have a successful compile. I'm going to test
+现在就可以了。我先来编译一下。我有一个成功的编译。我打算测试一下
+
+00:00:54.720 --> 00:01:01.680
+this to see if it actually works. So I'm going to launch my editor back. Go back to my editor
+看看它是否真的能工作。所以我准备启动我的编辑器回来。回到我的编辑器中去
+
+00:01:01.680 --> 00:01:07.680
+before I create a montage based on this animation. I'm first going to double click to open it.
+在我创建一个基于这个动画的蒙太奇之前。我首先要双击来打开它。
+
+00:01:07.680 --> 00:01:12.880
+I think this animation is too long. I'm first going to disable this root motion so we can
+我觉得这个动画太长了。我首先要禁用这个根部动作，这样我们可以
+
+00:01:12.880 --> 00:01:19.080
+better preview it. So for this animation, I don't want these swinging movement, even though
+更好地预览它。所以对于这个动画，我不想要这些摆动的动作，尽管它们看起来不错。
+
+00:01:19.080 --> 00:01:24.280
+they do look good. When we're climbing down, our character will clip through the surface
+它们确实看起来不错。当我们往下爬的时候，我们的角色将通过表面的剪辑
+
+00:01:24.280 --> 00:01:29.200
+and to adjust the length of it. Since this is control relinked, I'm going to do it inside
+并调整它的长度。因为这是一个控制连接，所以我将在控制装置内进行调整。
+
+00:01:29.200 --> 00:01:35.440
+of the control rig. So I'm going to go back to my CRM map, click save, select it, then
+控制设备中进行。所以我将回到我的CRM地图，点击保存，选择它，然后
+
+00:01:35.440 --> 00:01:42.040
+go inside of client system, animation, raw, drop to free hang, double click to open this
+进入客户端系统，动画，原始，下降到自由悬挂，双击打开这个
+
+00:01:42.040 --> 00:01:48.120
+sequencer and I'm going to select this root control and I'm going to scroll forward a
+序列器，我将选择这个根控件，我将向前滚动几格
+
+00:01:48.120 --> 00:01:53.860
+few frames to somewhere near here and we can train animation directly inside of this
+几帧，我们可以在这个序列编辑器中直接训练动画。
+
+00:01:53.860 --> 00:02:00.800
+sequence editor. So I'm going to move this red line to somewhere near here and for this
+序列编辑器中训练动画。所以我要把这条红线移到这里附近的某个地方，对于这个
+
+00:02:00.800 --> 00:02:07.800
+root control, I'm going to move it down a little bit further. So this animation will
+根控制，我打算把它再往下移一点。所以这个动画将
+
+00:02:07.800 --> 00:02:14.240
+push our character down a little bit more to somewhere near here. Alright, something
+把我们的角色再往下推一点，到这里附近的地方。好的，一些
+
+00:02:14.240 --> 00:02:20.800
+like that. Then I'm going to click this button to sync the changes, then go back to my content
+像这样。然后我将点击这个按钮来同步这些变化，然后回到我的内容
+
+00:02:20.800 --> 00:02:26.880
+browser, double click to open this adjusted, open this climb down ledge and you can see
+浏览器，双击打开这个调整后的内容，打开这个爬下台阶，你可以看到
+
+00:02:26.880 --> 00:02:34.400
+we have a shorter animation and that's great. Now I'm going to take this enable root motion,
+我们有一个更短的动画，这很好。现在我要把这个启用根部动作、
+
+00:02:34.400 --> 00:02:43.440
+then I'm going to create a montage based on this. I'm going to rename this to am_climbdownledge
+然后我将在此基础上创建一个蒙太奇。我将把这个重命名为am_climbdownledge
+
+00:02:43.440 --> 00:02:47.920
+and I'm going to go back to my third person map. So go inside of third person maps, double
+然后我将回到我的第三人称地图。所以进入第三人称地图，双击
+
+00:02:47.920 --> 00:02:52.800
+click to open this map, click save selected and before I click play, I'm going to go back
+点击打开这张地图，点击保存选择，在我点击播放之前，我要回到
+
+00:02:52.800 --> 00:02:58.000
+to this climb system, open this character blueprint and I'm going to assign the montage
+在我点击播放之前，我要回到这个攀爬系统，打开这个角色蓝图，我要把蒙太奇分配给这个角色。
+
+00:02:58.000 --> 00:03:04.160
+to the character. So it will be this climb down ledge and click compile and I'm going
+给这个角色。所以它将是这个爬下壁架，然后点击编译，我将会
+
+00:03:04.160 --> 00:03:11.500
+to test this. So I'm going to move to a surface like this and press play. Alright, at a distance
+来测试这个。所以我将移动到一个像这样的表面并按下播放。好的，在这样的距离
+
+00:03:11.500 --> 00:03:17.440
+like this, the condition should return true, I'm going to press F and you can see this
+我将按下F键，你可以看到以下情况
+
+00:03:17.440 --> 00:03:23.360
+is what happened. I'm going to try again. This time I'm going to move a bit closer to
+这是发生了什么。我再试一次。这一次，我将移动到更靠近
+
+00:03:23.360 --> 00:03:30.680
+the ledge and try again. So same issue and that's because the offset distance of these
+然后再试一次。所以同样的问题，这是因为这两条线的偏移距离
+
+00:03:30.680 --> 00:03:35.400
+two line traces, right now they are too far away from the character and the velocity inside
+的偏移距离，现在它们离角色太远了，而且根部运动里面的速度
+
+00:03:35.400 --> 00:03:40.880
+of the root motion is not enough to move our character to the surface in here. So I'm going
+的速度不足以让我们的角色移动到这里的表面。所以我打算
+
+00:03:40.880 --> 00:03:46.920
+to adjust the offset distance, go back to this custom moving component. Now instead
+调整偏移距离，回到这个自定义移动组件。现在
+
+00:03:46.920 --> 00:03:52.840
+of 50, I'm going to lower it down to 20. So this is the offset for the first line trace
+而不是50，我要把它降到20。所以这就是第一条线迹的偏移量
+
+00:03:52.840 --> 00:03:57.960
+and for the second one, the ledge trace, I'm going to lower it down to 30 and click compile
+第二条线的偏移量，也就是壁架的偏移量，我要把它降低到30，然后点击编译。
+
+00:03:57.960 --> 00:04:07.000
+again and go to the surface, press play. And now the condition should return true in here,
+再一次点击编译，进入表面，按播放。现在这里的条件应该返回真、
+
+00:04:07.000 --> 00:04:13.800
+I'm going to press F and you can see it works. I'm going to go to the surface again, but
+我要按F键，你可以看到它是有效的。我再去看一下表面，但是
+
+00:04:13.800 --> 00:04:20.360
+we have another issue. So when we're downplaying the montage, we are now inside of the climb
+我们有另一个问题。所以当我们淡化蒙太奇的时候，我们现在是在爬升的
+
+00:04:20.360 --> 00:04:27.800
+state. We are going to the for loop state directly and to fix that, we need to go back to our
+状态。我们直接进入了for loop状态，为了解决这个问题，我们需要回到我们的
+
+00:04:27.800 --> 00:04:33.400
+code. So instead of the CPP file, I'm going to scroll to the bottom. So on this climb
+代码。因此，我不在CPP文件中，而是滚动到底部。所以在这个攀登
+
+00:04:33.400 --> 00:04:40.760
+montage ended, I'm going to add another or in here. So if this montage is equal to climb
+蒙太奇结束后，我将在这里添加另一个或。所以如果这个蒙太奇等于爬
+
+00:04:40.760 --> 00:04:45.880
+down ledge montage, then I want to call the function start climbing. And for this else
+下壁架的蒙太奇，那么我就想调用开始攀登的函数。而对于这个其他
+
+00:04:45.880 --> 00:04:52.000
+case, I want a more specific condition in here. So I'm going to check if this montage
+情况下，我想在这里添加一个更具体的条件。所以我将检查这个蒙太奇是否等于
+
+00:04:52.000 --> 00:05:01.360
+is equal to climb to top montage. Then I want to set the movement mode to walking. All right.
+是否等于爬到顶部的蒙太奇。然后我想把运动模式设置为步行。好的。
+
+00:05:01.360 --> 00:05:07.920
+I'm going to quickly save all and trigger live coding. Live coding succeeded. I'm going
+我将快速保存所有的内容，并触发实时编码。实时编码成功了。我将
+
+00:05:07.920 --> 00:05:17.800
+to test it again. So go to the surface, press play and go to the ledge, press F. And this
+再一次测试它。所以去到表面，按播放，然后去到窗台，按F。
+
+00:05:17.800 --> 00:05:24.440
+time it works, but we have another issue. So I'm going to go to the surface again, then
+这次成功了，但我们有另一个问题。所以，我将再次去到表面，然后
+
+00:05:24.440 --> 00:05:34.080
+press play and try again. So we are indeed inside of the climbing state when the montage
+按播放键，再试一次。所以当蒙太奇结束时，我们确实在攀爬状态中
+
+00:05:34.080 --> 00:05:40.680
+has ended, but we are also climbing down automatically. And that's because the velocity coming from
+的时候，我们确实在爬升状态，但是我们也在自动爬升。这是因为速度来自于
+
+00:05:40.680 --> 00:05:45.280
+our root motion montage. So to disable that, there's one simple fix. I'm going to go back
+我们的根动作蒙太奇的速度。所以要禁用这个，有一个简单的修复方法。我将会回到
+
+00:05:45.280 --> 00:05:50.120
+to the code again. And instead of this own climb montage ended, other than this start
+回到代码中。而不是自己的爬升蒙太奇结束，除了这个开始之外
+
+00:05:50.120 --> 00:05:57.160
+climbing, I'm also going to call the function start movement immediately. And this should
+攀爬，我还将立即调用函数start movement。而这应该
+
+00:05:57.160 --> 00:06:02.560
+fix the issue. So we'll be zeroing out of the velocity coming from this montage. All
+解决了这个问题。所以我们将把来自这个蒙太奇的速度清零。所有的
+
+00:06:02.560 --> 00:06:09.040
+right. Quickly save all again, trigger live coding. Live coding succeeded. I'm going to
+好的。再次快速保存，触发实时编码。实时编码成功了。我将会
+
+00:06:09.040 --> 00:06:17.160
+try again. So go to the surface, press play, then press F to climb down. And just like
+再试一次。所以去到表面，按播放，然后按F爬下去。而就像
+
+00:06:17.160 --> 00:06:29.000
+that, it's working as expected. So try again. And I can climb down, I can climb up. So I
+就这样，它按预期工作了。所以再试一次。而且我可以爬下来，我可以爬上去。所以我
+
+00:06:29.000 --> 00:06:36.240
+found out that the value of our Z component for our root motion velocity is not high enough.
+发现我们的根部运动速度的Z分量的值不够高。
+
+00:06:36.240 --> 00:06:43.400
+So we'll have an issue like this. I'm going to go to here, press F. And now you can see
+所以我们会有这样的一个问题。我要去到这里，按F。
+
+00:06:43.400 --> 00:06:48.920
+my hands are still above the ledge. So our root motion should move our character a bit
+我的手仍然在壁架上面。所以我们的根部运动应该把我们的角色移动到
+
+00:06:48.920 --> 00:06:53.960
+further down. And there are two ways we can use to fix this. So we can keep decreasing
+再往下移。我们可以用两种方法来解决这个问题。所以我们可以不断地减少
+
+00:06:53.960 --> 00:06:59.040
+the offset distance of these two line traces. If I'm a bit closer to the surface and press
+这两条线迹的偏移距离。如果我再靠近表面一点，然后按
+
+00:06:59.040 --> 00:07:06.840
+F and now it's enough. Or we can go back to the control rig and keep adjusting the root
+F，现在就够了。或者我们可以回到控制平台上，继续调整根部的
+
+00:07:06.840 --> 00:07:12.280
+control. Here I'm going to show you the hard way. So I'm going to adjust the root control
+控制。在这里，我将向你展示困难的方法。所以我将调整根部控制
+
+00:07:12.280 --> 00:07:17.600
+inside of the sequencer. So I'm going to go back to the content folder, open with CRM
+在音序器中。所以我将回到内容文件夹，用CRM打开
+
+00:07:17.600 --> 00:07:26.440
+map and open this drop to frame hang sequencer. Then move to the last frame and select this
+地图，并打开这个下降到帧挂的序列器。然后移动到最后一帧，选择这个
+
+00:07:26.440 --> 00:07:32.760
+root control. So I want to lower this root control a lot more to something like this.
+根控制。所以我想把这个根控制降低很多，变成这样的东西。
+
+00:07:32.760 --> 00:07:39.840
+Then click add key, then sync the changes. Go to file, click save all. Then go back to
+然后点击添加键，然后同步修改。转到文件，点击全部保存。然后返回到
+
+00:07:39.840 --> 00:07:43.880
+my third person map. Double click to open it. All right, go back to my third person
+我的第三人称地图。双击来打开它。好了，回到我的第三人称
+
+00:07:43.880 --> 00:07:48.800
+map. I'm also going to decrease the offset distance for the trace as well. So open this
+地图。我也要减少跟踪的偏移距离。所以打开这个
+
+00:07:48.800 --> 00:07:55.180
+character blueprint and instead of 20, I'm going to lower it down to 15. Lower this one
+角色蓝图，我将把它从20降低到15。把这个
+
+00:07:55.180 --> 00:08:05.840
+down to 25. Click compile. Then go to the surface and press play. And now I'm going
+降到25。点击编译。然后转到表面，按播放。现在我将按下F。
+
+00:08:05.840 --> 00:08:15.840
+to press F. Yeah, I think this time it works a little bit better. And that's pretty much
+是的，我想这次效果会好一点。这就差不多了
+
+00:08:15.840 --> 00:08:25.240
+it. Now we can climb up to the ledge and we can climb down and we can keep moving down.
+了。现在我们可以爬到壁架上，我们可以爬下来，我们可以继续向下移动。
+
+00:08:25.240 --> 00:08:32.760
+If we have reached the floor, we can exit the climb state and we can climb up. Great,
+如果我们已经到了地面，我们可以退出攀爬状态，我们可以爬上去。很好、
+
+00:08:32.760 --> 00:08:41.920
+everything is working really well. Later when you are doing this yourself, you'll need to
+一切都运作得非常好。以后当你自己做这个的时候，你将需要
+
+00:08:41.920 --> 00:08:46.920
+first play this climb down montage in order for this to work apparently. And don't forget
+先播放这个爬下的蒙太奇，这样才能明显地发挥作用。而且别忘了
+
+00:08:46.920 --> 00:08:52.000
+to set your movement mode to climbing when this montage has ended. And you can use the
+来设置你的运动模式，当这个蒙太奇结束后，你的运动模式就会攀升。而且你可以使用
+
+00:08:52.000 --> 00:08:57.720
+functions stop movement immediately to zero out the velocity coming from this root motion.
+功能立即停止运动，将来自这个根部运动的速度清零。
+
+00:08:57.720 --> 00:09:01.560
+If the animation is too long and you want to trim it, you can use the control rig to
+如果这个动画太长了，你想修剪它，你可以用控制装置来做
+
+00:09:01.560 --> 00:09:06.660
+do it there. And same thing goes for this root control. If you need more or less offset,
+做到这一点。这个根部控制也是如此。如果你需要更多或更少的偏移、
+
+00:09:06.660 --> 00:09:11.080
+you know how to control all of that now. Just be patient with it and try not to rush it.
+你现在知道如何控制所有这些了。对它要有耐心，尽量不要着急。
+
+00:09:11.080 --> 00:09:14.000
+Alright, time for you to do it the same and I'll see you in the next lecture.
+好了，现在是时候让你做同样的事情了，我们在下一个讲座中见。
+
+00:09:14.000 --> 00:09:24.400
+[Music]
+[音乐]

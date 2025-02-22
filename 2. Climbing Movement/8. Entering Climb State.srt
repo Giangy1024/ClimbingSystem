@@ -1,0 +1,393 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.120
+Welcome. In the last lecture, we successfully set up a function to help us to check if we
+欢迎。在上一节课中，我们成功地建立了一个函数来帮助我们检查我们是否
+
+00:00:10.120 --> 00:00:15.720
+can start climbing. If the condition returns true, then we should enter the climb state
+能否开始爬升。如果条件返回为真，那么我们应该进入攀爬状态
+
+00:00:15.720 --> 00:00:21.600
+and if the condition is false. For example, when we are near a surface like this, we cannot
+而如果条件为假。例如，当我们在像这样的表面附近时，我们不能
+
+00:00:21.600 --> 00:00:26.260
+start climbing. And in this lecture, let's look at what entering climb state actually
+开始攀爬。在本讲座中，让我们来看看进入爬升状态到底是什么意思
+
+00:00:26.260 --> 00:00:30.960
+means. So inside of this character climb state, there are actually many things that we need
+意义。所以在这个字符爬升状态中，实际上有许多事情我们需要
+
+00:00:30.960 --> 00:00:37.400
+to handle. So first, we'll need to set our movement state. If you recall, in previous
+来处理的。所以首先，我们需要设置我们的运动状态。如果你还记得，在以前的
+
+00:00:37.400 --> 00:00:42.620
+lectures, we created a function called is climbing and that function is directly checking
+讲座中，我们创建了一个叫做 "正在爬升 "的函数，该函数直接检查
+
+00:00:42.620 --> 00:00:47.840
+if we are inside of the climb state. So that's the first thing that we need to do. After
+该函数直接检查我们是否处于爬升状态。所以这是我们需要做的第一件事。在
+
+00:00:47.840 --> 00:00:53.000
+checking, we should change our movement state to climb state. And after that, the first
+检查之后，我们应该把我们的运动状态改为爬升状态。在这之后，第一件
+
+00:00:53.000 --> 00:00:58.240
+thing that we need to handle is we need to handle the character's rotation and its capsule
+我们需要处理的第一件事是我们需要处理角色的旋转和胶囊的高度。
+
+00:00:58.240 --> 00:01:04.800
+height. So here I am inside of the character.cpp and you can see inside of the constructor,
+高度。所以在这里我在character.cpp里面，你可以看到构造函数里面、
+
+00:01:04.800 --> 00:01:09.680
+the first line here, it directly sets the capsule size. So the first value here, this
+这里的第一行，它直接设置了胶囊的大小。所以这里的第一个值，这是
+
+00:01:09.680 --> 00:01:15.240
+is the capsule radius and the second value, this is the capsule half height. When we start
+是胶囊的半径，第二个值是胶囊的一半高度。当我们开始
+
+00:01:15.240 --> 00:01:19.640
+climbing, because of the animation that we're going to use later, we'll need to decrease
+攀爬时，由于我们稍后要使用的动画，我们将需要降低
+
+00:01:19.640 --> 00:01:24.040
+the capsule height in order for it to fit with the animation. So that's the first thing that
+为了与动画相适应，我们需要降低胶囊的高度。所以这就是我们需要处理的第一件事
+
+00:01:24.040 --> 00:01:29.400
+we need to handle. And if you scroll down, you can see in here, it gets the character
+我们需要处理。如果你往下看，你可以看到在这里，它得到了角色的运动组件，然后设置了这个面向B的组件。
+
+00:01:29.400 --> 00:01:34.680
+movement component, then set this B-oriented rotation to movement to be true. So what this
+运动组件，然后将这个面向B的旋转运动设置为真。所以这
+
+00:01:34.680 --> 00:01:40.000
+does is this could allow character moves in the direction of input. When we start climbing,
+是允许角色在输入方向上移动。当我们开始爬升时、
+
+00:01:40.000 --> 00:01:44.960
+we want to disable this. After setting the rotation and the capsule height, the next
+我们要禁用这个。在设置了旋转和胶囊高度之后，下一步是
+
+00:01:44.960 --> 00:01:51.040
+thing, which is the key part, we need to handle the climb physics and its movement. So once
+是关键的部分，我们需要处理攀爬物理学和它的运动。所以一旦
+
+00:01:51.040 --> 00:01:55.800
+we are inside of our custom movement state, we'll need to handle all the movement physics
+在我们的自定义运动状态中，我们将需要处理所有的运动物理学
+
+00:01:55.800 --> 00:02:01.200
+inside of it in order to successfully move our character. So these are the physics functions
+以便成功地移动我们的角色。所以这些是物理学函数
+
+00:02:01.200 --> 00:02:05.640
+that handle the movement physics inside the character movement component. You can see
+来处理角色运动组件中的运动物理学。你可以看到
+
+00:02:05.640 --> 00:02:10.320
+for the walking mode, we have a physics walking function, we have a physics flying function
+对于行走模式，我们有一个物理学行走函数，我们有一个物理学飞行函数
+
+00:02:10.320 --> 00:02:16.080
+and a physics swimming function. After we set the movement to be custom, we'll need to
+和一个物理游泳功能。在我们将运动设置为自定义后，我们将需要
+
+00:02:16.080 --> 00:02:20.760
+manually override this function and fill in all the climb physics inside of it. We'll
+手动覆盖这个函数，并在其中填入所有的攀爬物理学。我们将
+
+00:02:20.760 --> 00:02:25.800
+look at how we can do that later. Once we successfully implemented climb physics, and
+我们将在后面看一下我们如何做到这一点。一旦我们成功实现了爬升物理学，并且
+
+00:02:25.800 --> 00:02:30.680
+the last thing that we need to handle is we need to handle exit climb state. So during
+我们需要处理的最后一件事是我们需要处理退出爬升状态。所以在
+
+00:02:30.680 --> 00:02:35.080
+climbing, there will be many cases that we should stop climbing. For instance, when the
+攀爬过程中，会有很多情况下我们应该停止攀爬。例如，当
+
+00:02:35.080 --> 00:02:41.080
+character has reached the ledge or the floor, or the player wants to leave the climb state
+角色已经到达壁架或地板，或者玩家想通过输入离开攀爬状态
+
+00:02:41.080 --> 00:02:45.720
+through input, we'll need to handle all of those cases as well. So in this lecture, we're
+的时候，我们也需要处理所有这些情况。所以在本讲座中，我们将
+
+00:02:45.720 --> 00:02:49.440
+going to take care of the first two steps. Go back to my project, I'm going to close
+将处理前两个步骤。回到我的项目，我将关闭
+
+00:02:49.440 --> 00:02:55.080
+my project. Then I'm going to go to the header file of my custom movement component, and I'm
+我的项目。然后我将进入我的自定义运动组件的头文件，然后我将
+
+00:02:55.080 --> 00:03:00.520
+going to scroll down. Inside of this climb core, I'm going to create a function. It's
+向下滚动。在这个攀登核心里面，我将创建一个函数。它是
+
+00:03:00.520 --> 00:03:05.600
+going to be void. I'm going to call this one start climbing. And we have start climbing,
+将是无效的。我将把这个函数称为 "开始攀登"。我们有开始攀登、
+
+00:03:05.600 --> 00:03:10.840
+we should have stop climbing. So I'm going to create another function for it. And it's
+我们应该有停止攀登。所以我将为它创建另一个函数。它是
+
+00:03:10.840 --> 00:03:15.960
+going to be stop climbing. All right, I'm going to create two function definitions and
+将会是停止攀登。好的，我将创建两个函数定义，并且
+
+00:03:15.960 --> 00:03:22.840
+I'm going to place this function under can start climbing. So place it in here, and I'm
+我将把这个函数放在 "开始攀登 "下面。所以把它放在这里，而我将
+
+00:03:22.840 --> 00:03:30.760
+going to place this stop climbing in here. So what I want to do inside of this start
+把这个停止攀登放在这里。因此，我想在这个开始爬升中做什么？
+
+00:03:30.760 --> 00:03:37.080
+climbing, I want to set the movement mode directly in here. So I'm going to set this
+攀爬，我想直接在这里设置运动模式。所以我将设置这个
+
+00:03:37.080 --> 00:03:42.640
+movement mode to move custom. Then for this new custom mode, this will be the enum that
+运动模式移动自定义。然后对于这个新的自定义模式，这将是我们创建的枚举。
+
+00:03:42.640 --> 00:03:48.920
+we created. So it will be E custom movement mode and double column, I'm going to fill
+我们创建的枚举。所以它将是E自定义运动模式和双栏，我将填写
+
+00:03:48.920 --> 00:03:55.040
+in this move climb. And for the stop climbing in here, I'm going to change the movement
+在这个移动爬升中。对于这里的停止爬升，我将再次改变移动模式。
+
+00:03:55.040 --> 00:04:02.600
+mode again, but this time I'm going to set the movement mode to move falling. So this
+模式，但这次我要把运动模式设置为移动下降。所以这
+
+00:04:02.600 --> 00:04:08.000
+should take care of exiting climb state. All right, I'm going to copy this function and
+应该能处理好退出爬升状态的问题。好的，我将复制这个函数并
+
+00:04:08.000 --> 00:04:14.800
+I'm going to paste it in here. So if can start climbing is true, I'm going to call the function
+我要把它粘贴到这里。所以，如果可以开始爬升是真的，我将调用这个函数
+
+00:04:14.800 --> 00:04:20.680
+start climbing. And if this be enabled climb is false, I'm going to call the function stop
+start climbing。如果启用爬升是假的，我将调用函数停止
+
+00:04:20.680 --> 00:04:29.200
+climbing. So this takes care of set movement state. And next one, we need to handle the
+攀登。所以这就解决了设置运动状态的问题。接下来，我们需要处理
+
+00:04:29.200 --> 00:04:33.880
+rotation during climbing and the capsule height. And to do that, there's one handy function
+在爬升过程中的旋转和胶囊的高度。要做到这一点，有一个方便的函数
+
+00:04:33.880 --> 00:04:38.920
+from parent class that we can use. So I'm going to go to my header file and I'm going
+我们可以使用来自父类的一个方便的函数。所以我将进入我的头文件，然后我将
+
+00:04:38.920 --> 00:04:45.280
+to go to this U character movement component. Inside of it, press control plus F to search.
+转到这个U字符运动组件。在它里面，按control加F来搜索。
+
+00:04:45.280 --> 00:04:49.600
+And the function that I'm searching for is called own movement mode change. So you can
+我正在搜索的函数被称为自己的运动模式变化。所以你可以
+
+00:04:49.600 --> 00:04:54.320
+see this is the function that we can override and this function here will be called after
+你可以看到这是我们可以覆盖的函数，这个函数将在运动模式改变后被调用。
+
+00:04:54.320 --> 00:04:59.800
+the movement mode has changed. So I'm going to directly override this function. So copy
+运动模式改变后调用。所以我将直接覆盖这个函数。所以，复制
+
+00:04:59.800 --> 00:05:06.280
+this and go back to my header file. I'm going to change this public section to protected
+并回到我的头文件中。我将把这个公共部分改为受保护的
+
+00:05:06.280 --> 00:05:13.800
+section and I'm going to paste the function in here and mark it as override. Then I'm
+部分，然后把这个函数粘贴到这里，并把它标记为重写。然后我
+
+00:05:13.800 --> 00:05:17.920
+going to create a function definition and I'm going to place the function under this
+我将创建一个函数定义，并将该函数放在这个
+
+00:05:17.920 --> 00:05:23.480
+tick component. I'm going to hide this climb traces region. So right after we changed the
+滴答组件下。我将隐藏这个攀登痕迹区域。所以在我们改变了
+
+00:05:23.480 --> 00:05:30.400
+movement mode, I'm going to check if is climbing is true. So that means we are inside of the
+运动模式后，我将检查爬升是否为真。所以这意味着我们处于
+
+00:05:30.400 --> 00:05:36.200
+climb state. And if that's the case, I'm going to set the Orion rotation to movement to be
+爬升状态。如果是这样的话，我将把猎户座的旋转运动设置为
+
+00:05:36.200 --> 00:05:43.240
+false. And I'm going to use the character owner to set the capsule half height. So I'm going
+假的。我将使用字符所有者来设置胶囊的一半高度。所以我将
+
+00:05:43.240 --> 00:05:48.320
+to use the function get capsule component. And in here we need to include the header
+使用函数get capsule component。在这里，我们需要包括这个胶囊组件的头文件
+
+00:05:48.320 --> 00:05:53.520
+file for this capsule component. So I'm going to directly search for it in here and type
+文件。所以我将直接在这里搜索它，然后输入
+
+00:05:53.520 --> 00:05:59.040
+in capsule component. And you can see this is the header file that we need to include.
+capsule component。你可以看到这就是我们需要包含的头文件。
+
+00:05:59.040 --> 00:06:05.560
+I'm going to go to the CPP file and I'm going to copy the first line and I'm going to paste
+我将进入CPP文件，复制第一行并将其粘贴到
+
+00:06:05.560 --> 00:06:11.000
+it in here. So I'm going to use the function inside of it. It's called set capsule half
+它在这里。所以我将使用里面的函数。它的名字是set capsule half
+
+00:06:11.000 --> 00:06:16.640
+height and the value here that I'm going to use. So it's going to be the half of the original
+高度，我将在这里使用这个值。所以它将是原来的一半的
+
+00:06:16.640 --> 00:06:22.920
+capsule half height. I'm going to go back to the character dot CPP and you can see the
+胶囊的一半高度。我将回到字符点CPP，你可以看到
+
+00:06:22.920 --> 00:06:31.440
+original half height is 96. F. So the half of it would be 48. F. So this takes care of
+原来的半高是96。所以它的一半将是48。所以这就解决了
+
+00:06:31.440 --> 00:06:35.920
+the rotation settings and the capsule half height when we're climbing and we also need
+旋转设置和胶囊的半高，当我们爬升时，我们还需要
+
+00:06:35.920 --> 00:06:41.320
+to reset them back after we exit the climb mode. We can do that through these two function
+我们还需要在退出爬升模式后将它们重新设置回来。我们可以通过这两个函数
+
+00:06:41.320 --> 00:06:46.480
+inputs. So you can see they're called previous movement mode and previous custom mode. So
+输入。所以你可以看到它们被称为前一个运动模式和前一个自定义模式。所以
+
+00:06:46.480 --> 00:06:53.720
+I'm going to do another if check in here. So if this previous movement mode is equal
+我将在这里做另一个if检查。所以如果之前的运动模式等于
+
+00:06:53.720 --> 00:07:04.480
+to move underscore custom and this previous custom mode is equal to the custom mode that
+等于移动下划线自定义模式，并且这个先前的自定义模式等于我们创建的自定义模式。
+
+00:07:04.480 --> 00:07:12.720
+we created. So it'll be E custom movement mode move climb. If this is true, then that
+我们创建的自定义模式。所以它将是E自定义运动模式移动爬升。如果这是真的，那么这
+
+00:07:12.720 --> 00:07:17.720
+means we have just exited the climb mode. In that case, I'm going to set this variable
+意味着我们刚刚退出了爬升模式。在这种情况下，我将设置这个变量
+
+00:07:17.720 --> 00:07:26.840
+back to true and I'm going to reset this capsule half height back to 96. F. Then I'm going
+为真，并将这个胶囊的半身高度重置为96。F. 然后我将
+
+00:07:26.840 --> 00:07:33.840
+to call the function stop movement immediately. So this should help us to clear any velocity
+调用函数立即停止运动。所以这应该能帮助我们清除任何速度
+
+00:07:33.840 --> 00:07:39.440
+that's from this climb mode. All right, one last thing. Since this is a virtual function
+攀升模式的速度。好了，最后一件事。由于这是一个虚拟函数
+
+00:07:39.440 --> 00:07:44.280
+and we are overriding it, don't forget to call super at the end. So I'm going to call
+而且我们正在覆盖它，不要忘记在最后调用超级函数。所以我将会调用
+
+00:07:44.280 --> 00:07:51.880
+super on movement mode changed and copy this function, copy this function inputs as well
+超级运动模式改变，并复制这个函数，也复制这个函数输入
+
+00:07:51.880 --> 00:08:02.400
+and paste them in here. Delete these two types. And that's pretty much it. I'm going to try
+并把它们粘贴在这里。删除这两种类型。而这就差不多了。我将会尝试
+
+00:08:02.400 --> 00:08:08.880
+to compile to see if there are any errors. I have a successful compile. I'm going to
+编译，看看是否有任何错误。我有一个成功的编译。我将会
+
+00:08:08.880 --> 00:08:15.720
+launch my editor back. You know, this is to find out if this is actually working. I'm
+启动我的编辑器。你知道，这是为了找出这是否真的在工作。我将
+
+00:08:15.720 --> 00:08:21.840
+going to go inside of this climb system folder and double click to open this BP climb system
+我将进入这个攀登系统文件夹，双击打开这个BP攀登系统的
+
+00:08:21.840 --> 00:08:28.120
+character. So I'm going to select this capsule component and in here for this hidden in game,
+角色。所以我将选择这个胶囊组件，并在这里为这个隐藏在游戏中的组件、
+
+00:08:28.120 --> 00:08:32.880
+I'm going to untick it. So now we should be able to see the capsule when we click play
+我将取消它。所以现在我们应该能够看到胶囊，当我们点击播放时
+
+00:08:32.880 --> 00:08:37.760
+and judging by its half height, we can know if what we've done is actually working. So
+从它的一半高度来看，我们可以知道我们所做的事情是否真的有效。所以
+
+00:08:37.760 --> 00:08:43.640
+I'm going to click compile in here, then click play. Now you can see this is the original
+我将在这里点击编译，然后点击播放。现在你可以看到这是原来的
+
+00:08:43.640 --> 00:08:49.520
+capsule height. Now I'm going to press F and this is the climbing capsule height. All right,
+胶囊的高度。现在我按下F键，这就是爬升的胶囊高度。好了、
+
+00:08:49.520 --> 00:08:53.760
+this is working and I'm sure you can notice that right now I cannot move this character
+我相信你可以注意到，现在我不能再移动这个角色了。
+
+00:08:53.760 --> 00:08:59.800
+anymore and that's because we'll need to handle the climb physics. Otherwise our input can
+这是因为我们需要处理爬升的物理过程。否则我们的输入就不能
+
+00:08:59.800 --> 00:09:06.000
+no longer move the character. So I'm going to press F again to exit the climb mode and
+不能再移动这个角色了。所以我将再次按F键来退出爬升模式。
+
+00:09:06.000 --> 00:09:13.920
+you can see this is the original capsule half height. Great. This is working. So this is
+你可以看到这是原来胶囊的一半高度。很好。这是在工作。所以这就是
+
+00:09:13.920 --> 00:09:18.480
+the roadmap that we'll follow later in the section. Feel free to refer back to the video
+这就是我们在本节后面要遵循的路线图。如果你需要帮助，可以随时参考视频中的内容
+
+00:09:18.480 --> 00:09:22.320
+if you need help. All right, it's time for you to do the same and I'll see you in the
+如果你需要帮助。好了，现在是时候让你做同样的事情了，我们在下一节课上见。
+
+00:09:22.320 --> 00:09:22.960
+next lecture.
+下一讲见。
+
+00:09:22.960 --> 00:09:32.960
+[Music]
+[音乐]

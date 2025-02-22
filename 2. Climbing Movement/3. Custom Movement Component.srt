@@ -1,0 +1,377 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.920
+Welcome. In the last lecture, we successfully set up an input through the new enhanced input
+欢迎。在上一讲中，我们成功地通过新的增强型输入法设置了一个输入。
+
+00:00:10.920 --> 00:00:15.760
+system. And in this lecture, let's look at how we can actually implement the climbing
+系统。在这一讲中，让我们来看看我们如何才能真正实现我们想要的爬坡
+
+00:00:15.760 --> 00:00:21.320
+system we want. By default, our character class already has many different movement
+系统。在默认情况下，我们的角色类已经有许多不同的运动
+
+00:00:21.320 --> 00:00:26.520
+modes. So we have a mode for walking, we have a mode for falling, for swimming. I like to
+模式。所以我们有一个行走的模式，我们有一个跌倒的模式，有一个游泳的模式。我喜欢
+
+00:00:26.520 --> 00:00:31.000
+have one of these when we're climbing. And in order to do this, we'll need to extend
+我喜欢在攀爬的时候有一个这样的模式。为了做到这一点，我们将需要扩展
+
+00:00:31.000 --> 00:00:35.720
+this custom movement mode. And we'll need to do it through our custom character movement
+这个自定义运动模式。我们将需要通过我们的自定义角色运动
+
+00:00:35.720 --> 00:00:40.360
+component. Go back to my project. If you go inside of this third person folder and inside
+组件。回到我的项目中去。如果你进入这个第三人称文件夹，在蓝图里面
+
+00:00:40.360 --> 00:00:48.560
+the blueprints, double click to open this BP_ThirdPersonCharacter. Open for Blueprint Editor. You can see by default,
+蓝图，双击来打开BP_ThirdPersonCharacter。为蓝图编辑器打开。你可以看到，在默认情况下、
+
+00:00:48.560 --> 00:00:52.800
+our character class already has a character movement component. And we'll need to override
+我们的角色类已经有一个角色运动组件。而我们需要在代码中覆盖
+
+00:00:52.800 --> 00:00:57.500
+this from code so that our character class can use the movement component that we are
+以便我们的角色类可以使用我们将要创建的运动组件。
+
+00:00:57.500 --> 00:01:01.800
+about to create. So I'm going to close this window and I'm going to go inside of this
+即将创建的运动组件。所以我将关闭这个窗口，并进入这个
+
+00:01:01.800 --> 00:01:07.840
+C++ classes folder. Inside of climbing system, Ramos button click to create a new class and
+C++类文件夹。在攀登系统中，点击Ramos按钮，创建一个新的类，并选择所有的类。
+
+00:01:07.840 --> 00:01:14.000
+select all classes. I'm going to type in character movement. So we're going to use this as the
+选择所有的类。我将输入角色运动。所以我们将使用这个作为
+
+00:01:14.000 --> 00:01:18.360
+parent class. Alright, after selecting it, I'm going to click next. Then I'm going to
+父类。好的，选择之后，我将点击下一步。然后我将
+
+00:01:18.360 --> 00:01:24.080
+rename this one to custom movement component. Then I'm going to click this public. I'm going
+把这个重命名为自定义运动组件。然后我将点击这个公共的。我将
+
+00:01:24.080 --> 00:01:28.600
+to use the public pervert for this structure in here. And I'm going to put it inside of
+在这里为这个结构使用公共变态。我将把它放在
+
+00:01:28.600 --> 00:01:33.840
+its own folder. I'm going to name this folder to components. Then I'm going to click create
+它自己的文件夹。我将把这个文件夹命名为组件。然后我将点击创建
+
+00:01:33.840 --> 00:01:39.360
+class. Alright, live coding succeeded. I'm going to compile from Visual Studio. I'm going
+类。好了，现场编码成功了。我将从Visual Studio编译。我将
+
+00:01:39.360 --> 00:01:46.320
+to close my project and click this reload all. Later, this custom movement component class
+关闭我的项目，然后点击这个重新加载所有。以后，这个自定义运动组件类
+
+00:01:46.320 --> 00:01:50.040
+is going to handle all the heavy lifting for our climbing. We're going to come back to
+将为我们的攀登处理所有的重活。我们将返回到
+
+00:01:50.040 --> 00:01:54.920
+it very soon. For now, we need to set up a way for our character to use this movement
+它很快就会出现。现在，我们需要为我们的角色设置一种方法来使用这个运动
+
+00:01:54.920 --> 00:01:59.440
+component class. And there's something that we need to do inside of the constructor of
+组件类。我们需要在角色类的构造函数中做一些事情。
+
+00:01:59.440 --> 00:02:04.440
+the character class. So I'm going to go to its header file. And for the constructor here,
+角色类的构造函数中做一些事情。所以我将进入它的头文件。对于这里的构造函数、
+
+00:02:04.440 --> 00:02:11.320
+I'm going to fill in a parameter. So it's going to be a const F object initializer. It's going
+我将填入一个参数。所以它将是一个 const F 对象的初始化器。它将会是
+
+00:02:11.320 --> 00:02:16.160
+to be a reference. I'm just going to call it object initializer. I'm going to fill out
+是一个引用。我只是打算把它叫做对象初始化器。我将填写
+
+00:02:16.160 --> 00:02:22.360
+this parameter to the CPP file. And to override the default movement component, we'll first
+这个参数到CPP文件中。为了覆盖默认的运动组件，我们首先要
+
+00:02:22.360 --> 00:02:27.560
+need to include the header file of our custom movement component. So go back to its CPP
+需要包括我们自定义运动组件的头文件。所以请回到它的CPP
+
+00:02:27.560 --> 00:02:33.000
+file. I'm going to copy this line and go back to my character class. You can see in here
+文件。我将复制这一行，然后回到我的角色类。你可以看到在这里
+
+00:02:33.000 --> 00:02:37.700
+by default, we already included this character movement component. Since we have a custom
+默认情况下，我们已经包含了这个角色运动组件。由于我们有一个自定义的
+
+00:02:37.700 --> 00:02:42.880
+one now, we don't need this anymore. So I'm going to paste that line in here. Then inside
+我们就不再需要这个了。所以我要把这一行粘贴到这里。然后在
+
+00:02:42.880 --> 00:02:49.760
+of this constructor, I'm going to start a new line. It's going to be super and followed
+的构造函数中，我将开始一个新的行。它将会是super，后面是
+
+00:02:49.760 --> 00:02:55.240
+by a parentheses. So it'll be object initializer. And this function inside of it that we can
+后面加一个括号。所以它将是对象初始化器。它里面的这个函数，我们可以
+
+00:02:55.240 --> 00:03:01.000
+use is called set default sub object class. So this is a template function. We'll need
+被称为设置默认子对象类。所以这是一个模板函数。我们需要
+
+00:03:01.000 --> 00:03:06.840
+to first fill in the class type, then you'll be the sub object name. So the class type,
+首先填入类的类型，然后是子对象的名称。所以类的类型、
+
+00:03:06.840 --> 00:03:12.200
+it will be our custom movement component. So I'm going to copy this and paste it in here.
+它将是我们的自定义运动组件。所以我要复制这个并把它粘贴到这里。
+
+00:03:12.200 --> 00:03:17.600
+Don't forget to add you in front of it. And the name here, in order for this to work,
+不要忘记在前面加上 "你"。而这里的名字，为了让它发挥作用、
+
+00:03:17.600 --> 00:03:22.960
+we'll need to use a static variable from the character class. So it's going to be a character
+我们需要使用一个来自角色类的静态变量。所以它将是一个字符
+
+00:03:22.960 --> 00:03:29.160
+double colon. And the variable is called character movement component name. You can see here
+双冒号。而这个变量被称为字符运动组件名称。你可以看到这里
+
+00:03:29.160 --> 00:03:34.120
+it says use this name if you want to use a different class for this character movement
+它说如果你想为这个角色运动组件使用一个不同的类，就使用这个名字。
+
+00:03:34.120 --> 00:03:39.000
+component. So this is the one that I'm going to use. All right, that's pretty much it.
+组件。所以这就是我要使用的那个。好了，差不多就这些了。
+
+00:03:39.000 --> 00:03:47.760
+I'm going to press control plus B to compile. All right, I have a successful compile and
+我将按控制键加B来编译。好的，我已经成功地编译了，并且
+
+00:03:47.760 --> 00:03:52.720
+same as other components, I like to hold the reference of this custom movement component
+和其他组件一样，我想把这个自定义运动组件的引用放在
+
+00:03:52.720 --> 00:03:56.960
+inside of our character class. So I'm going to go back to the header file. First thing,
+在我们的角色类中。所以我要回到头文件中去。第一件事、
+
+00:03:56.960 --> 00:04:01.840
+I'm going to forward declare the type. So I'm going to copy this custom movement component
+我要向前声明这个类型。所以我将复制这个自定义运动组件
+
+00:04:01.840 --> 00:04:07.880
+and I'm going to put it in here. Then I'm going to declare a variable under this follow
+并把它放在这里。然后我将在这个下面声明一个变量
+
+00:04:07.880 --> 00:04:16.400
+camera. So I'm going to copy its you property and paste it in here. So the class type will
+相机。所以我要复制它的你属性并把它粘贴到这里。所以类的类型将
+
+00:04:16.400 --> 00:04:25.240
+be this. And the name, I'm going to name it custom movement component. And I'm going to
+是这个。而名字，我将把它命名为自定义运动组件。而且我将
+
+00:04:25.240 --> 00:04:32.260
+change its category to movement. And now we need to find a way to actually assign values
+把它的类别改为运动。现在我们需要找到一种方法来实际分配数值
+
+00:04:32.260 --> 00:04:36.840
+to this pointer. And there's something we can do inside of the constructor. So go back
+给这个指针赋值。我们可以在构造函数中做一些事情。所以请回到
+
+00:04:36.840 --> 00:04:41.880
+to my CPP file. Right above we access this character movement. I'm going to assign a
+到我的CPP文件。就在我们访问这个字符运动的上面。我将给我们刚刚创建的指针分配一个
+
+00:04:41.880 --> 00:04:47.720
+valid value to the pointer that we just created. So it'll be custom movement component. And
+有效的值给我们刚刚创建的指针。所以它将是自定义运动组件。而
+
+00:04:47.720 --> 00:04:55.680
+here we need to do a cast. So the type is going to be you custom movement component. And I'm
+这里我们需要做一个转换。所以类型将是你的自定义运动组件。而我要
+
+00:04:55.680 --> 00:05:03.920
+going to cast from this character movement. So you can see this function, it returns a
+我将从这个角色的运动中投出。所以你可以看到这个函数，它返回一个
+
+00:05:03.920 --> 00:05:08.920
+pointer of type you character movement component. And this is how we can get hold of our custom
+指针的类型是你的角色运动组件。这就是我们如何能够掌握我们的自定义
+
+00:05:08.920 --> 00:05:14.200
+movement component. And there's one more thing that we need to do. So this variable here,
+运动组件。还有一件事我们需要做。所以这个变量在这里、
+
+00:05:14.200 --> 00:05:19.120
+this is a private variable. And later we'll need to access this variable inside of our
+这是一个私有变量。以后我们将需要在我们的
+
+00:05:19.120 --> 00:05:24.840
+nm instance class. So same as other components, I like to create a public getter for it. So
+nm实例类中访问这个变量。所以和其他组件一样，我喜欢为它创建一个公共的getter。所以
+
+00:05:24.840 --> 00:05:30.440
+I'm going to copy this type and I'm going to scroll down to this public section. And
+我将复制这个类型，并向下滚动到这个公共部分。而且
+
+00:05:30.440 --> 00:05:38.800
+same as these two public getters, it's going to be another force inline. And the type is
+和这两个公共获取器一样，它将成为另一个内联的力量。这个类型是
+
+00:05:38.800 --> 00:05:44.000
+going to be our custom movement component. I'm going to call this get custom movement
+将是我们的自定义运动组件。我将把这个称为 "自定义运动"。
+
+00:05:44.000 --> 00:05:52.560
+component. It's going to be a const and I'm going to return this custom movement component.
+组件。它将是一个常量，我将返回这个自定义运动组件。
+
+00:05:52.560 --> 00:05:56.760
+All right, that should be everything that we need to do from code. I'm going to press
+好了，这应该是我们在代码中需要做的一切。我将按
+
+00:05:56.760 --> 00:06:03.800
+control plus F5 to launch my editor. All right, go back to my project. Since we just changed
+control加F5来启动我的编辑器。好了，回到我的项目中去。由于我们刚刚改变了
+
+00:06:03.800 --> 00:06:08.380
+the default movement component for the character class, I like to create a new blueprint class
+角色类的默认运动组件，我想为我们的角色创建一个新的蓝图类
+
+00:06:08.380 --> 00:06:13.080
+for our character. So go back to my content folder, I'm going to create a new folder.
+为我们的角色创建一个新的蓝图类。所以回到我的内容文件夹，我将创建一个新的文件夹。
+
+00:06:13.080 --> 00:06:18.080
+I'm going to call this one ClimbSystem and go back to my C++ classes. Right mouse button
+我将把这个文件夹称为ClimbSystem，然后回到我的C++类。鼠标右键
+
+00:06:18.080 --> 00:06:23.360
+click this character class and select create blueprint class based on it. I'm going to
+点击这个角色类，选择在其基础上创建蓝图类。我将
+
+00:06:23.360 --> 00:06:29.880
+change this name to BP_climbingSystemCharacter and I'm going to place it under this folder
+把这个名字改为BP_climbingSystemCharacter，并把它放在我们刚刚创建的这个文件夹下。
+
+00:06:29.880 --> 00:06:36.840
+that we just created and click create blueprint class. And now you can see in here it's indeed
+我们刚刚创建的这个文件夹下，然后点击创建蓝图类。现在你可以在这里看到，它确实是
+
+00:06:36.840 --> 00:06:42.100
+using our custom movement component and this is our component class. Great, everything
+使用我们的自定义运动组件，这就是我们的组件类。很好，一切
+
+00:06:42.100 --> 00:06:47.000
+is working and now we just need to reassign the mesh. So I'm going to select this one
+现在我们只需要重新分配网格。所以我将选择这个
+
+00:06:47.000 --> 00:06:54.600
+and for this skeletal mesh, I'm going to change this to SKM_ManySimple and I'm going to move
+对于这个骨架网格，我要把它改成SKM_ManySimple，然后我把它移到
+
+00:06:54.600 --> 00:07:02.800
+it down a little bit to something like this and rotate it 90 degrees. And for this animation
+我将把它往下移一点，就像这样，并将它旋转90度。而对于这个动画
+
+00:07:02.800 --> 00:07:08.840
+mode, I'm going to change this anim class from none to ABPE_Many. We'll create our own
+模式，我将把这个动画类别从无改为ABPE_Many。我们稍后将创建我们自己的
+
+00:07:08.840 --> 00:07:13.840
+animation blueprint later. For now, the default animation blueprint comes with the project.
+动画蓝图。现在，默认的动画蓝图是随项目提供的。
+
+00:07:13.840 --> 00:07:18.160
+It's great for testing. And there's one more thing that we need to do. So if you click
+它对测试很有帮助。还有一件事我们需要做。因此，如果你点击
+
+00:07:18.160 --> 00:07:23.280
+this BP_climbingSystemCharacter, since we've just created a new character blueprint, we'll
+这个BP_climbingSystemCharacter，由于我们刚刚创建了一个新的角色蓝图，我们需要重新分配所有这些输入。
+
+00:07:23.280 --> 00:07:27.760
+need to reassign all those input actions and mapping context in order to have the input
+我们需要重新分配所有这些输入动作和映射上下文，以便将输入的内容
+
+00:07:27.760 --> 00:07:32.800
+back. So instead of the search bar, I'm going to search input and for this default mapping
+回来。因此，我不使用搜索栏，而是使用搜索输入，并为这个默认的映射
+
+00:07:32.800 --> 00:07:40.640
+context, I'm going to assign this IMC default. Jump action will be this jump action and move
+上下文，我将分配这个IMC默认值。跳跃动作将是这个跳跃动作和移动
+
+00:07:40.640 --> 00:07:49.520
+will be this IAMove and assign this look action also our climb action and click compile. And
+将是这个IAMove，并指定这个外观动作和我们的爬升动作，然后点击编译。然后
+
+00:07:49.520 --> 00:07:54.120
+in order to use our newly created character class, we'll need to create a new game mode.
+为了使用我们新创建的角色类，我们需要创建一个新的游戏模式。
+
+00:07:54.120 --> 00:07:58.400
+So right mouse button click and select blueprint class. I'm going to select this game mode
+所以鼠标右键点击，选择蓝图类。我将选择这个游戏模式
+
+00:07:58.400 --> 00:08:05.480
+base. I'm going to call this one BP_testGameMode and go inside of this word settings, change
+基础。我将把这个游戏模式称为BP_testGameMode，并在这个词的内部进行设置，将游戏模式改为
+
+00:08:05.480 --> 00:08:11.280
+the game mode to this BP_testGameMode and this default Pwn class, I'm going to change
+将游戏模式改为BP_testGameMode，将这个默认的Pwn类改为
+
+00:08:11.280 --> 00:08:16.920
+it to BP_climbingSystemCharacter. Alright, I'm going to click play and you can see we
+改为BP_climbingSystemCharacter。好的，我将点击播放，你可以看到我们
+
+00:08:16.920 --> 00:08:22.840
+are using this SKM_ManySimple and all the movement code is working as usual. That's
+你可以看到我们正在使用这个SKM_ManySimple，所有的运动代码都在照常工作。这真是
+
+00:08:22.840 --> 00:08:27.920
+great. Later, when you implement this by yourself, in order to override the default movement
+很好。以后，当你自己实现这个时，为了覆盖默认的运动
+
+00:08:27.920 --> 00:08:32.480
+component, there's something that we need to do through this object initializer and
+组件，我们需要通过这个对象的初始化器来做一些事情。
+
+00:08:32.480 --> 00:08:37.800
+after doing that, don't forget to create a new BP_character class. Otherwise, our custom
+之后，别忘了创建一个新的BP_character类。否则，我们的自定义
+
+00:08:37.800 --> 00:08:42.160
+movement component might not work properly and also don't forget to reassign all those
+否则，我们的自定义运动组件可能无法正常工作，也别忘了重新分配所有这些
+
+00:08:42.160 --> 00:08:46.720
+input actions. Alright, time for you to create your own custom movement component and I'll
+输入动作。好了，是时候让你创建你自己的自定义运动组件了。
+
+00:08:46.720 --> 00:08:47.920
+see you in the next lecture.
+在下一个讲座中见。
+
+00:08:48.320 --> 00:08:58.320
+[music]
+[音乐]

@@ -1,0 +1,497 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.720
+Welcome. In the last lecture, we successfully set up iHiveTrace to help us to decide whether
+欢迎。在上一节课中，我们成功地设置了iHiveTrace来帮助我们决定是否
+
+00:00:10.720 --> 00:00:15.280
+or not we can start climbing. And in this lecture, we'll look at how we can use this
+是否可以开始爬坡。在这一讲中，我们将看看如何使用这一
+
+00:00:15.280 --> 00:00:20.840
+piece of information to help us enable climbing. So the things that I want to do in here is
+信息来帮助我们实现攀登。所以我想在这里做的事情是
+
+00:00:20.840 --> 00:00:26.560
+by pressing the climb action key, I want to be able to either enable or disable climbing.
+通过按下攀爬动作键，我希望能够启用或禁用攀爬。
+
+00:00:26.560 --> 00:00:31.360
+When we want to enable climbing, after checking the condition can climb, we'll be entering
+当我们想启用攀爬时，在检查了可以攀爬的条件后，我们将进入
+
+00:00:31.360 --> 00:00:35.720
+character climb state. So let's look at how we can set this up from code. I'm going to
+字符爬升状态。因此，让我们看看我们如何从代码中设置这个。我将会
+
+00:00:35.720 --> 00:00:41.200
+first close my project. Then inside of this custom moving component, h, I'm going to create
+首先关闭我的项目。然后在这个自定义的移动组件h中，我将在底部创建
+
+00:00:41.200 --> 00:00:47.040
+a public section at the bottom. The first function I'm going to create is going to return void.
+在底部创建一个公共部分。我将创建的第一个函数将返回无效。
+
+00:00:47.040 --> 00:00:51.880
+I'm going to call it toggle climbing, and it's going to have one input parameter. It's
+我将把它称为toggle climbing，它将有一个输入参数。它是
+
+00:00:51.880 --> 00:00:59.560
+going to be a bull. I'm going to call this be enable climb. So this is the function that
+它将是一只公牛。我将把它称为 "启用攀登"。所以这就是我们的角色类要访问的函数
+
+00:00:59.560 --> 00:01:03.920
+our character class will be accessing. And I'm going to create another function. This
+我们的角色类将被访问。我还将创建另一个函数。这个
+
+00:01:03.920 --> 00:01:08.880
+function is going to be returning a bull. I'm going to call this is climbing. Inside of
+函数将返回一个公牛。我将把它称为 "攀登"。在
+
+00:01:08.880 --> 00:01:13.600
+the character movement component class, there are many handy functions like is flying, is
+角色运动组件类中，有许多方便的函数，如正在飞行、正在
+
+00:01:13.600 --> 00:01:18.920
+walking, is falling for us to query if we are inside of certain state. And I like to
+行走，下降，以便我们查询我们是否处于某种状态中。而我喜欢
+
+00:01:18.920 --> 00:01:23.760
+do the same thing to our climb. So this function is going to be a const function. I'm going
+对我们的爬升做同样的事情。所以这个函数将是一个常量函数。我将会
+
+00:01:23.760 --> 00:01:32.240
+to create two function definitions. I'm going to place the toggle climbing above climb core
+创建两个函数定义。我将把toggle climbing放在climb core之上
+
+00:01:32.240 --> 00:01:39.000
+and place is climbing to be below toggle climbing. And I'm going to cut this region and place
+并将爬升置于toggle爬升的下方。我将剪切这个区域并把它放在
+
+00:01:39.000 --> 00:01:44.880
+it in here. And the next thing I'm going to go back to my character class and scroll down
+它在这里。接下来，我将回到我的角色类，向下滚动
+
+00:01:44.880 --> 00:01:51.480
+to this own climb action started. I'm going to delete this debug line. And in here, I'm
+到这个自己的攀爬动作开始。我将删除这个调试行。而在这里，我将
+
+00:01:51.480 --> 00:01:58.640
+first going to check if custom movement component is not valid. Then I'm going to return out
+首先要检查自定义运动组件是否无效。然后我将返回出
+
+00:01:58.640 --> 00:02:05.360
+of this function. Once we get past this, if check, I'm going to check if custom movement
+的这个函数。一旦我们过了这关，如果检查，我将检查是否自定义运动
+
+00:02:05.360 --> 00:02:13.400
+component and I'm going to access the function is climbing. So when we press this key, if
+组件，我就会访问这个函数是否在攀升。因此，当我们按下这个键时，如果我们没有爬升，我将启用爬升功能。
+
+00:02:13.400 --> 00:02:19.560
+we are not climbing, I'm going to enable the climbing in here. So I'm going to access the
+我们没有爬升，我将在这里启用爬升。所以我将访问
+
+00:02:19.560 --> 00:02:29.000
+function toggle climbing and passing through. And in the else case, if we are in declining,
+功能来切换爬升和通过。而在其他情况下，如果我们是在下降、
+
+00:02:29.000 --> 00:02:35.160
+I want to disable the climbing in here. So in here, I'm going to pass in false. All right,
+我想在这里禁用攀升。所以在这里，我将传入false。好的、
+
+00:02:35.160 --> 00:02:39.320
+that's all we need to do inside of the character class and go back to this movement component
+这就是我们需要在角色类中做的所有事情，然后回到这个运动组件中去
+
+00:02:39.320 --> 00:02:49.320
+that's a BPM. So if this be enabled climb is true, that means we want to start climbing.
+那是一个BPM。所以，如果这个被启用的爬升是真的，这意味着我们要开始爬升。
+
+00:02:49.320 --> 00:02:53.920
+If that's the case in here, we need to check whether or not we can start climbing. And
+如果是这种情况，我们需要检查我们是否可以开始攀爬。而
+
+00:02:53.920 --> 00:02:59.240
+for that, I'm going to create another function for it. So go back to my header file under
+为此，我将为它创建另一个函数。所以请回到我的头文件，在
+
+00:02:59.240 --> 00:03:03.640
+this climb core. I'm going to create another function is going to be bull. I'm going to
+攀登核心。我将创建另一个函数，它将是公牛。我将
+
+00:03:03.640 --> 00:03:10.280
+call it can start climbing and I'm going to place this function to be below toggle climbing.
+我将把它称为 "可以开始攀登"，并将这个函数放在 "攀登 "的下面。
+
+00:03:10.280 --> 00:03:19.600
+So if we want to climb and this can start climbing is true, then in here we should enter
+所以，如果我们想攀爬，并且这个 "可以开始攀爬 "为真，那么在这里我们应该进入
+
+00:03:19.600 --> 00:03:26.400
+the climb state. And if it is be enabled climb is false, then in that case in here, we should
+攀爬状态。如果启用攀爬是假的，那么在这种情况下，我们应该在这里
+
+00:03:26.400 --> 00:03:32.760
+stop climbing. All right, this is the main structure that we are used. First thing I'm
+停止爬升。好了，这就是我们使用的主要结构。我将完成的第一件事
+
+00:03:32.760 --> 00:03:37.840
+going to finish implementing this is climbing function. So inside of this function, we need
+要完成的是爬升函数。所以在这个函数中，我们需要
+
+00:03:37.840 --> 00:03:48.160
+to first check this movement mode. So if this movement mode is equal to move custom, and
+首先要检查这个运动模式。所以，如果这个运动模式等于移动定制，并且
+
+00:03:48.160 --> 00:03:54.800
+there's another variable inside of our parent class is called custom movement mode. So if
+在我们的父类中还有一个变量叫做自定义运动模式。因此，如果
+
+00:03:54.800 --> 00:04:00.520
+this custom movement mode is equal to our client mode, then in here we can return true.
+这个自定义运动模式等于我们的客户端模式，那么在这里我们可以返回true。
+
+00:04:00.520 --> 00:04:05.200
+And for that we need to create a custom enum for it. So I'm going to go back to my header
+为此，我们需要为它创建一个自定义枚举。所以我要回到我的标题
+
+00:04:05.200 --> 00:04:11.640
+file, scroll up, and in here I'm going to declare a new enum. There are different ways to declare
+文件，向上滚动，在这里我将声明一个新的枚举。有不同的方法来声明
+
+00:04:11.640 --> 00:04:16.820
+an enum. Since we are extending the custom movement mode in here, I'm going to use the
+一个枚举。由于我们在这里扩展了自定义的运动模式，我将使用
+
+00:04:16.820 --> 00:04:24.240
+old traditional way. So it's going to be a Uenum. It's going to be blueprint type. I'm
+旧的传统方式。所以它将是一个Uenum。它将是蓝图类型。我将
+
+00:04:24.240 --> 00:04:29.440
+going to type in namespace. So this will be the name of this enum. I'm going to call it
+将在命名空间中输入。所以这将是这个枚举的名字。我将把它称为
+
+00:04:29.440 --> 00:04:37.920
+e custom movement mode, then followed by a pair of curly brackets. Then inside of it,
+e自定义运动模式，然后在后面加上一对大括号。然后在它的里面、
+
+00:04:37.920 --> 00:04:43.880
+it's going to be enum type and followed by another pair of curly brackets. And inside
+它将是枚举类型，后面是另一对大括号。而在它里面
+
+00:04:43.880 --> 00:04:50.400
+of it, this will be our actual enum. I'm going to call it move underscore climb, just to
+内，这将是我们实际的枚举。我打算把它叫做移动下划线攀升，只是为了
+
+00:04:50.400 --> 00:04:56.180
+be consistent with the naming convention from the source code. Then I'm going to use a U
+与源代码中的命名惯例一致。然后我将使用一个U
+
+00:04:56.180 --> 00:05:05.040
+meta macro to name this enum. So it's going to be display name equals to climb mode. And
+元宏来命名这个枚举。所以它的显示名称将等同于爬升模式。而且
+
+00:05:05.040 --> 00:05:09.400
+if there are other custom movement modes they want to add, this is where you can put them.
+如果他们想添加其他的自定义运动模式，你可以把它们放在这里。
+
+00:05:09.400 --> 00:05:13.720
+All right, I'm going to copy this name and I'm going to go back to this custom movement
+好的，我将复制这个名称，然后回到这个自定义运动
+
+00:05:13.720 --> 00:05:19.320
+mode. So if this custom movement mode is equal to the one that we just created, then we can
+模式。所以，如果这个自定义运动模式等于我们刚刚创建的那个，那么我们就可以
+
+00:05:19.320 --> 00:05:25.680
+return true in here. So inside of this function, we can simply return the result of these two
+在这里返回true。所以在这个函数中，我们可以简单地返回这两个
+
+00:05:25.680 --> 00:05:31.020
+if checks. All right, that's the function model of this is climbing. Next thing for this can
+如果检查。好了，这就是这个函数模型的爬升。接下来这个东西可以
+
+00:05:31.020 --> 00:05:38.040
+start climbing. So the first thing that I'm going to check if the is falling is true,
+开始爬升。所以我首先要检查的是，如果正在下降是真的、
+
+00:05:38.040 --> 00:05:42.400
+then I'm going to return false. So if our character is falling, I don't want to start
+那么我就会返回false。所以如果我们的角色正在下降，我不想开始
+
+00:05:42.400 --> 00:05:48.880
+climbing. And the next thing I like to check the hit results from our capsule trace. And
+攀爬。接下来，我想从我们的胶囊追踪中检查撞击结果。而
+
+00:05:48.880 --> 00:05:53.080
+for that we need another member variable. So I'm going to go back to my header file
+为此我们需要另一个成员变量。所以我将回到我的头文件中
+
+00:05:53.080 --> 00:05:58.880
+and I'm going to create a new region just below this climb core. So this region, I'm
+我将在这个爬升核心的下面创建一个新的区域。所以这个区域，我将
+
+00:05:58.880 --> 00:06:04.640
+going to name it climb core variables. So these are the variables that will not be exposed
+我将把它命名为爬升核心变量。所以这些变量不会被暴露在
+
+00:06:04.640 --> 00:06:10.960
+to blueprints. And I'm going to name this region to climb BP variables. So instead of
+暴露给蓝图。我将把这个区域命名为爬升BP变量。所以，不要用
+
+00:06:10.960 --> 00:06:17.160
+this region, I'm going to first hide this one, I'm going to create a t array and it's
+这个区域，我将首先隐藏这个区域，我将创建一个t数组，它是
+
+00:06:17.160 --> 00:06:23.520
+going to be of type F hit results. I'm going to name this variable climbable surfaces traced
+它将是F类型的撞击结果。我将把这个变量命名为 "可攀登表面追踪"。
+
+00:06:23.520 --> 00:06:29.400
+results. Then I'm going to copy this name and go back to my CBP file. I'm going to place
+结果。然后我将复制这个名字，回到我的CBP文件中。我将把它放在
+
+00:06:29.400 --> 00:06:35.160
+it in here. So every time we do the capsule trace inside of this function, we'll be assigning
+它在这里。因此，每次我们在这个函数中做胶囊追踪时，我们都会将数值分配给
+
+00:06:35.160 --> 00:06:40.960
+values to this array. And inside of this can start climbing, we can just run this function
+值到这个数组。在这里面可以开始爬升，我们可以只运行这个函数
+
+00:06:40.960 --> 00:06:46.680
+once and check if this array is empty. If it's empty, then that means we are not near
+一次，检查这个数组是否为空。如果它是空的，那就意味着我们不在靠近
+
+00:06:46.680 --> 00:06:52.040
+a climbable surface. We shouldn't start climbing. For that, I'm going to change the return value
+一个可攀爬的表面。我们不应该开始攀爬。为此，我将改变这个函数的返回值
+
+00:06:52.040 --> 00:06:56.120
+of this function. So go back to my header file. I'm going to change it from void to
+这个函数的返回值。所以请回到我的头文件中。我将把它从void改成
+
+00:06:56.120 --> 00:07:03.520
+bo, and do the same thing to the CBP file. Then in here we can simply return whether
+bo，并对CBP文件做同样的事情。然后在这里我们可以简单地返回
+
+00:07:03.520 --> 00:07:10.440
+or not this array is empty. So I'm going to use the handy function inside of it is empty.
+这个数组是否为空。所以我将使用它里面的方便的函数is empty。
+
+00:07:10.440 --> 00:07:16.320
+And for this function, if this array is empty, I want to return false. And if it's not empty,
+对于这个函数，如果这个数组是空的，我想返回false。而如果它不是空的、
+
+00:07:16.320 --> 00:07:21.600
+I want to return true. So in here I want to return the opposite of this. And I'm going
+我想返回真。所以在这里我想返回与此相反的结果。而我要
+
+00:07:21.600 --> 00:07:30.000
+to add a line of common. So it's going to be trace for climbable surfaces return true
+添加一行普通代码。因此，对于可攀登的表面，它将被追踪，如果确实有有效的表面，则返回真
+
+00:07:30.000 --> 00:07:38.000
+if there are indeed valid surfaces false otherwise. And inside of this can start climbing, I'm
+如果确实有有效的表面，否则为假。在这里面可以开始爬行，我将会
+
+00:07:38.000 --> 00:07:46.640
+going to run the function. If trace climbable surfaces is false, then I'm going to return
+运行这个函数。如果追踪可攀登的表面是假的，那么我将会返回
+
+00:07:46.640 --> 00:07:51.400
+false. All right, this is the second check that we need to get through. And the third
+false。好的，这是我们需要通过的第二个检查。而第三个
+
+00:07:51.400 --> 00:07:56.600
+check, we should also check if our IH trace has a valid hit. To do that, we'll need to
+检查，我们还应该检查我们的IH跟踪是否有一个有效的命中。要做到这一点，我们需要
+
+00:07:56.600 --> 00:08:01.520
+change the return value of it as well. So go back to my header file. Now instead of
+改变它的返回值。所以请回到我的头文件中。现在，这个函数的返回值不是
+
+00:08:01.520 --> 00:08:08.560
+void, this function is going to return an F hit result and go back to my CPP file. I'm
+void，这个函数将返回一个F的命中结果，然后回到我的CPP文件。我将
+
+00:08:08.560 --> 00:08:13.560
+going to change this as well. And in here we can simply return the return result of
+我也要改变这个。在这里，我们可以简单地返回以下的返回结果
+
+00:08:13.560 --> 00:08:19.760
+this do line trace single by object. And now I'm going to scroll up to here. So if the
+这是按对象做的线追踪单。现在我将滚动到这里。所以如果
+
+00:08:19.760 --> 00:08:25.960
+trace from I height, I'm going to fill in the trace distance. So it'll be 100 units.
+从我的高度开始追踪，我就会填上追踪距离。所以它将是100个单位。
+
+00:08:25.960 --> 00:08:32.640
+So if the hit result does not have a blocking hit, then I'm going to return false in here.
+所以，如果撞击结果没有阻挡撞击，那么我将在这里返回false。
+
+00:08:32.640 --> 00:08:40.100
+Once we get past these three if checks, then we can return true. So this will be the three
+一旦我们通过了这三个if检查，我们就可以返回true。因此，这将是我们需要在
+
+00:08:40.100 --> 00:08:45.640
+basic checks that we need to do in here. Depending on the geometries in your level, you might
+基本的检查，我们需要在这里做。根据你的关卡中的几何形状，你可能会
+
+00:08:45.640 --> 00:08:50.040
+need to perform other checks in order for this to work. All right, next thing that I
+你可能需要进行其他的检查，以便使其发挥作用。好了，下一件事是我
+
+00:08:50.040 --> 00:08:55.280
+want to do. Now we don't need to call these two functions inside of our tick. So I'm going
+想做的下一件事。现在我们不需要在我们的tick中调用这两个函数。所以我打算
+
+00:08:55.280 --> 00:08:59.760
+to go to my tick and I'm going to comment these two lines out, but I still want to see the
+我打算把这两行注释掉，但我仍然想看到
+
+00:08:59.760 --> 00:09:04.240
+debug shapes. And since this time we're only calling these functions once, we'll need to
+debug形状。因为这次我们只调用了这些函数一次，所以我们需要
+
+00:09:04.240 --> 00:09:08.520
+change how we are drawing the debug shapes. So go back to my header file for these two
+改变我们绘制调试图形的方式。所以回到我的头文件中，为这两个
+
+00:09:08.520 --> 00:09:16.720
+traces I'm going to add in two more bools. So next boolean is going to be B draw persistent
+痕迹，我将再添加两个布尔值。所以下一个布尔值将是B绘制持久的
+
+00:09:16.720 --> 00:09:22.720
+shapes and I'm going to give it a default value of false and paste this new parameter
+形状，我将给它一个默认值false，然后把这个新参数
+
+00:09:22.720 --> 00:09:30.360
+in here. And we also need to modify our CPP file. So copy this and go back to CPP file,
+在这里。我们还需要修改我们的CPP文件。所以复制这个并回到CPP文件中去、
+
+00:09:30.360 --> 00:09:39.680
+add it at the end of this function and copy this, go to the next trace and paste it in
+把它加到这个函数的末尾，然后复制这个，到下一个跟踪，把它粘贴到
+
+00:09:39.680 --> 00:09:46.000
+here. And now we need to change how we fill in this input parameter. So I'm going to copy
+这里。现在我们需要改变我们填写这个输入参数的方式。所以我将复制
+
+00:09:46.000 --> 00:09:55.720
+this E draw debug trace and I'm going to paste it in here. And I'm going to use the type
+这个E绘制的调试跟踪，并把它粘贴到这里。我将使用的类型是
+
+00:09:55.720 --> 00:10:04.680
+and I'm going to name it debug trace type. And I'm going to give it a default value of
+并将其命名为调试跟踪类型。我将给它一个默认值为
+
+00:10:04.680 --> 00:10:15.100
+E draw debug trace none. So if this show debug shape is true, then I'm going to change its
+E draw debug trace none. 所以，如果这个显示调试形状是真的，那么我将改变它的
+
+00:10:15.100 --> 00:10:29.040
+value to one frame. So copy this and paste it in here. And if the B draw persistent shapes
+值改为一帧。所以复制这个并把它粘贴到这里。如果B绘制持久性形状
+
+00:10:29.040 --> 00:10:35.920
+is true, then I'm going to change this one again to persistent. All right, and I'm going
+为真，那么我将再次把这个改变为持久化。好的，我将会
+
+00:10:35.920 --> 00:10:43.400
+to fill in this debug type to here. And for our capsule trace, we'll need to do the same
+把这个调试类型填到这里。对于我们的胶囊追踪，我们需要做同样的事情
+
+00:10:43.400 --> 00:10:52.440
+thing. So copy these lines and paste them in here. Then fill in this draw debug trace type.
+的事情。所以复制这些线并把它们粘贴到这里。然后填入这个绘制调试跟踪的类型。
+
+00:10:52.440 --> 00:10:57.720
+Now we should be able to draw persistent lines by simply filling in another Boolean. So I'm
+现在，我们应该能够通过简单地填写另一个布尔值来绘制持续的线条。所以我
+
+00:10:57.720 --> 00:11:07.600
+going to scroll down. For this trace climbable services, I'm going to pass in another true.
+将会向下滚动。对于这个跟踪可攀登服务，我将传入另一个true。
+
+00:11:07.600 --> 00:11:12.800
+And same thing for this do line trace single by object, passing another true. All right,
+同样的，对于这个按对象做线追踪，再传入一个true。好的、
+
+00:11:12.800 --> 00:11:17.680
+one last thing that I want to do. So if we can start climbing, I want to print something
+最后一件事，我想做的。所以如果我们可以开始爬升，我想打印一些东西
+
+00:11:17.680 --> 00:11:23.520
+to the screen. And if we can't, I want to print another debug message as well. So for
+到屏幕上。如果我们不能，我也想打印另一个调试信息。所以为了
+
+00:11:23.520 --> 00:11:29.040
+that, I'm going to go back to the CPP file of our character. And I'm going to copy this
+我将回到我们角色的CPP文件中。然后我将复制这个
+
+00:11:29.040 --> 00:11:36.360
+debug helper. And I'm going to paste it inside of this movement component.cpp. And don't forget
+debug helper。我将把它粘贴到这个运动组件.cpp中。不要忘了
+
+00:11:36.360 --> 00:11:41.600
+to add this folder name in here. All right, now I'm going to first hide this climb traces
+在这里加上这个文件夹的名字。好的，现在我将首先隐藏这个攀爬痕迹
+
+00:11:41.600 --> 00:11:51.160
+region. And inside of this climb core, here I'm going to print a message that says can
+区域。在这个爬升核心里面，我将打印一个信息，说可以
+
+00:11:51.160 --> 00:11:57.960
+start climbing. And inside of the else case, I'm going to print another message that says
+开始爬升。而在其他情况下，我将打印另一条信息，写着
+
+00:11:57.960 --> 00:12:03.040
+cannot start climbing. All right, that's pretty much it. I'm going to press control plus B
+不能开始攀登。好了，差不多就是这样了。我将按控制键加B
+
+00:12:03.040 --> 00:12:08.160
+to compile. All right, I have a successful compile. I'm going to press control plus F5
+来进行编译。好的，我有一个成功的编译。我将按下控制键加F5
+
+00:12:08.160 --> 00:12:12.600
+to launch the editor back. All right, go back to my project. I'm going to press play in
+来启动编辑器。好了，回到我的项目中去。我将在这里按播放键，然后按F键。
+
+00:12:12.600 --> 00:12:19.480
+here and I'm going to press F. And here the message says cannot start climbing. And if
+这里的信息说不能开始爬升。而如果
+
+00:12:19.480 --> 00:12:26.360
+I press F again, here it says can start climbing and press F again, cannot start climbing.
+我再按下F，这里说可以开始爬升，再按下F，不能开始爬升。
+
+00:12:26.360 --> 00:12:32.160
+Great, everything is working. And I'm going to do another if check. So I'm going to go
+很好，一切都在运作。我要再做一次如果检查。所以我准备去
+
+00:12:32.160 --> 00:12:40.160
+to this edge here and press F. So here it says cannot start climbing. Great, everything
+所以这里显示不能开始攀登。很好，一切
+
+00:12:40.160 --> 00:12:47.400
+is working as expected. So this is the roadmap that I followed. And in this lecture, I actually
+都在按预期工作。所以这就是我所遵循的路线图。而在这个讲座中，我实际上
+
+00:12:47.400 --> 00:12:52.480
+add in quite a few lines of code. So feel free to use the code from Git as references
+在相当多的几行代码中添加。所以，如果你需要的话，可以随意使用Git上的代码作为参考。
+
+00:12:52.480 --> 00:12:56.320
+if you need. All right, it's time for you to do the same and I'll see you in the next
+如果你需要的话。好了，现在是时候让你做同样的事情了，我们在下一节课上见。
+
+00:12:56.320 --> 00:13:03.320
+lecture.
+讲座。
+
+00:13:03.320 --> 00:13:07.120
+[music]
+[音乐]

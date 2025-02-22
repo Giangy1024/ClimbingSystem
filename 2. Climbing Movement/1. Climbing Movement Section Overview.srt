@@ -1,0 +1,57 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.800
+In this section, we're going to set up the basic movement logic for our climbing.
+在这一节中，我们将为我们的攀岩设置基本的运动逻辑。
+
+00:00:04.800 --> 00:00:13.700
+We'll start with creating an enhanced input action and a custom movement component for
+我们将首先创建一个增强的输入动作和一个自定义的运动组件来处理所有必要的攀爬逻辑。
+
+00:00:13.700 --> 00:00:17.720
+us to handle all the necessary climb logic.
+来处理所有必要的攀爬逻辑。
+
+00:00:17.720 --> 00:00:22.140
+Then we'll set up basic traits like capsule traits and line traits to obtain the climbable
+然后，我们将设置基本的特征，如胶囊特征和线状特征，以获得我们所需要的可攀登的
+
+00:00:22.140 --> 00:00:27.740
+surface info that we need.
+表面信息。
+
+00:00:27.740 --> 00:00:32.200
+Then we're going to look into the climb logic and handle all the physics code needed in
+然后，我们将研究爬升逻辑，并处理所有需要的物理代码。
+
+00:00:32.200 --> 00:00:37.520
+order for us to move our character in the custom movement state.
+以使我们的角色能够在自定义的运动状态下移动。
+
+00:00:37.520 --> 00:00:42.000
+Once we have a working physics, we're going to process all the climbable surfaces info
+一旦我们有了一个有效的物理学，我们将处理所有的可攀爬表面信息
+
+00:00:42.000 --> 00:00:49.200
+that we have, then calculate the rotation and velocity for our climbing.
+的信息，然后计算出我们攀爬的旋转和速度。
+
+00:00:49.200 --> 00:00:54.060
+We're also going to use cross product to help us determine the climb direction and use dot
+我们还将使用交叉积来帮助我们确定攀爬方向，并使用点
+
+00:00:54.060 --> 00:00:59.840
+product to decide when we should stop climbing.
+积来决定我们何时应该停止攀爬。
+
+00:00:59.840 --> 00:01:02.400
+There's tons of cool stuff in this section.
+这一部分有很多很酷的东西。
+
+00:01:02.400 --> 00:01:03.400
+Let's dive straight in.
+让我们直接进入。
+
+00:01:03.400 --> 00:01:13.400
+[BLANK_AUDIO]
+[BLANK_AUDIO]

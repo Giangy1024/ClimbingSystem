@@ -1,0 +1,341 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:11.300
+Welcome. After last lecture, now we can officially enter our climb state by pressing our climb
+欢迎。在上次讲座之后，现在我们可以正式进入爬升状态，只要按下爬升
+
+00:00:11.300 --> 00:00:16.720
+action key and we can exit the climb state by pressing it again. And right now, we cannot
+动作键就可以正式进入爬升状态，再按一次就可以退出爬升状态。而现在，我们不能
+
+00:00:16.720 --> 00:00:21.400
+move our character. That's because we need to handle the climb physics once we are inside
+移动我们的角色。这是因为我们需要在进入爬升状态后处理爬升物理学问题
+
+00:00:21.400 --> 00:00:25.960
+of the climb state. And starting from this lecture, we'll look at how we can do that.
+攀爬状态。从这个讲座开始，我们将看看我们如何做到这一点。
+
+00:00:25.960 --> 00:00:30.560
+So you already know that we need to handle the physics and the movement, but what exactly
+所以你已经知道我们需要处理物理学和运动，但是我们在这里到底需要做什么？
+
+00:00:30.560 --> 00:00:36.200
+do we need to do in here? So inside of our custom climb physics function, there are several
+我们需要在这里做什么？所以在我们的自定义攀爬物理函数中，有几个
+
+00:00:36.200 --> 00:00:41.360
+things that we need to handle. So first, we need to process the climbable surfaces. We
+我们需要处理的事情。因此，首先，我们需要处理可攀爬的表面。我们
+
+00:00:41.360 --> 00:00:46.920
+use a capsule trace to capture the climbable surfaces in front of us. And during the climbing,
+我们使用一个胶囊追踪器来捕捉我们面前的可攀爬表面。而在爬升过程中
+
+00:00:46.920 --> 00:00:52.400
+we'll need to decide what to do with all those hit results. And same as walking or flying,
+我们需要决定如何处理所有这些撞击结果。和行走或飞行一样、
+
+00:00:52.400 --> 00:00:57.840
+we'll need to handle its velocity. So that includes the moving direction and its moving
+我们需要处理它的速度。所以这包括移动的方向和它的移动
+
+00:00:57.840 --> 00:01:03.000
+speed. Also, we'll need to handle the climb rotation. So for climbing, we'll need to move
+速度。此外，我们还需要处理爬升的旋转。所以对于爬升，我们需要沿着表面移动
+
+00:01:03.000 --> 00:01:08.240
+along the surfaces and the rotation is no longer the same when we are walking. We'll
+沿着表面移动，旋转不再是我们行走时的样子。我们将
+
+00:01:08.240 --> 00:01:13.280
+look at how we can handle this later. And last one, we'll need to snap our movement
+我们稍后会看一下我们如何处理这个问题。最后一个，我们需要将我们的运动
+
+00:01:13.280 --> 00:01:18.480
+to surface. If we don't do this, very likely we'll fall off from the surface when we're
+到表面。如果我们不这样做，我们很可能在攀登时从地面上掉下来。
+
+00:01:18.480 --> 00:01:22.800
+climbing. So this is something that we should handle as well. So let's look at how we can
+攀爬时掉下来。所以这也是我们应该处理的事情。所以让我们看看我们如何能够
+
+00:01:22.800 --> 00:01:27.640
+set this up. I'm going to close my project in here, then go back to the header file of
+设置这个。我要在这里关闭我的项目，然后回到我的自定义移动组件的头文件中。
+
+00:01:27.640 --> 00:01:33.000
+my custom moving component. So first, there's one function that we need to override. I'm
+我的自定义移动组件的头文件。首先，有一个函数是我们需要覆盖的。我将
+
+00:01:33.000 --> 00:01:38.920
+going to go back to this U character moving component. And in here, I'm going to search
+回到这个U字形移动组件。在这里，我将搜索
+
+00:01:38.920 --> 00:01:44.320
+for the function physics custom. So this is the function that we need to override in order
+找出函数physics custom。所以这就是我们需要覆盖的函数，以便
+
+00:01:44.320 --> 00:01:48.720
+to implement the climb physics. I'm going to copy this and I'm going to paste it inside
+来实现爬升物理学。我将复制这个，并将其粘贴到里面去
+
+00:01:48.720 --> 00:01:56.520
+of the header file. And mark this one as override as well. And while I'm at it, I'm also going
+的头文件。把这个也标记为重写。当我在做这个的时候，我也要
+
+00:01:56.520 --> 00:02:01.840
+to give it a region, same as these functions below. So above it, I'm going to type pound
+给它一个区域，和下面这些函数一样。所以，在它上面，我将键入pound
+
+00:02:01.840 --> 00:02:06.800
+region. And for this region, I'm going to call it overridden functions. And I'm going
+区域。对于这个区域，我将把它称为重写函数。而我要
+
+00:02:06.800 --> 00:02:14.440
+to place all these three functions inside. Then I'm going to create a function body under
+将所有这三个函数放在里面。然后我将在下面创建一个函数体
+
+00:02:14.440 --> 00:02:21.960
+this own movement mode changed. So place it in here. So inside of this function, first
+这个自己的运动模式改变了。所以把它放在这里。所以在这个函数中，首先
+
+00:02:21.960 --> 00:02:27.120
+thing I'm going to check, so if is climbing is true. So that means we are indeed inside
+我要检查的是，如果爬升是真的。所以这意味着我们确实在
+
+00:02:27.120 --> 00:02:31.680
+of our climbing state. Then we'll need to handle the physics in here. And outside of
+我们的爬升状态。然后，我们需要在这里处理物理学问题。而在
+
+00:02:31.680 --> 00:02:37.800
+this if check, I'm going to call the super version of this function. So copy these and
+这个if检查之外，我将调用这个函数的超级版本。所以复制这些并
+
+00:02:37.800 --> 00:02:44.120
+paste it in here. Then delete these two types. And for handling the physics, I like to create
+把它粘贴到这里。然后删除这两种类型。对于处理物理问题，我喜欢创建一个
+
+00:02:44.120 --> 00:02:48.640
+a separate function for it. So go back to my header file. I'm going to place that function
+一个单独的函数。所以回到我的头文件中。我将把这个函数放在
+
+00:02:48.640 --> 00:02:53.760
+inside of this climb core. So this function is going to return void. I'm going to call
+放在这个攀登核心里面。所以这个函数将返回无效。我将把它称为
+
+00:02:53.760 --> 00:03:01.520
+it physics climb. And it's going to have the same input parameters as this physics custom.
+它是物理学攀登。它的输入参数将与这个物理学的自定义参数相同。
+
+00:03:01.520 --> 00:03:08.240
+So copy these two and paste them in here. Then I'm going to create a function body, place
+所以复制这两个并把它们粘贴到这里。然后我将创建一个函数体，把这个函数放在
+
+00:03:08.240 --> 00:03:15.600
+this function under stop climbing. So place it in here. And first thing I'm going to call
+这个函数放在停止爬升下面。所以把它放在这里。首先我将会调用
+
+00:03:15.600 --> 00:03:21.520
+this function. So move back to this physics custom. I'm going to call the function physics
+这个函数。所以移回这个物理学定制。我将调用这个函数物理学
+
+00:03:21.520 --> 00:03:29.600
+climb. And pass in these two input parameters. All right, that's the basics app. And go back
+攀登。并传入这两个输入参数。好了，这就是基本的应用程序。然后回到
+
+00:03:29.600 --> 00:03:35.320
+to this physics climb. So what exactly do we need to do in here? If we were to write
+到这个物理学爬升。那么，我们到底需要在这里做什么呢？如果我们要完全从头开始写
+
+00:03:35.320 --> 00:03:40.160
+all of those physics code completely from scratch, there will be something very complicated
+所有这些物理代码完全从头开始，将会有一些非常复杂的事情
+
+00:03:40.160 --> 00:03:45.240
+to do. And luckily for us, inside of that pairing class, there are some co-examples
+要做的事情。而幸运的是，在这个配对类里面，有一些共同的例子
+
+00:03:45.240 --> 00:03:50.160
+that we can use. So I'm going to go back to the header file. And I'm going to go back
+我们可以使用。所以我要回到头文件中去。我将回到
+
+00:03:50.160 --> 00:03:56.880
+to this UCharacterMoving component. And in here I'm going to search physics flying. So
+到这个UCharacterMoving组件。在这里我将搜索物理飞行。所以
+
+00:03:56.880 --> 00:04:00.760
+I'm going to borrow some of the code from this function. So I'm going to select this
+我将借用这个函数的一些代码。所以我将选择这个
+
+00:04:00.760 --> 00:04:06.320
+function and press F12 to go to its function body. And I'm going to copy all of the lines
+函数，然后按F12进入其函数主体。我将复制这个函数中的所有行
+
+00:04:06.320 --> 00:04:13.560
+inside of this function. So in here, then I'm going to copy them. And I'm going to paste
+这个函数里面的所有行。所以在这里，我将复制它们。然后我要把它粘贴到
+
+00:04:13.560 --> 00:04:19.800
+it to our physics climb function. And I'm going to scroll up. And don't worry if this
+粘贴到我们的物理学爬升函数中。然后我将向上滚动。不要担心，如果这
+
+00:04:19.800 --> 00:04:24.320
+looks intimidating. All we need to do now is we just need to remove some of the lines
+看起来很吓人。我们现在需要做的是，我们只需要删除一些我们不需要的线条
+
+00:04:24.320 --> 00:04:29.480
+that we don't need. So after some testing and a few iterations, I found out there are
+我们不需要的线条。因此，经过一些测试和几次迭代，我发现有
+
+00:04:29.480 --> 00:04:34.240
+only a few lines that we need to keep in order to have a working physics. So first we need
+只有几行是我们需要保留的，以便有一个工作的物理学。所以首先我们需要
+
+00:04:34.240 --> 00:04:40.680
+to keep this if check, then keep this function. So this one restores the additive group motion.
+保留这个if检查，然后保留这个函数。所以这个函数恢复了加法组的运动。
+
+00:04:40.680 --> 00:04:45.880
+And inside of this if check, so these lines are for the flying. We don't need them. I'm
+而在这个if检查里面，这些线是为飞行准备的。我们不需要它们。我将
+
+00:04:45.880 --> 00:04:50.640
+going to delete them. And for this calc velocity, there are two things that we need to change.
+我要删除它们。对于这个计算速度，有两件事我们需要改变。
+
+00:04:50.640 --> 00:04:57.600
+So you can see the second input parameter is the friction and I'm going to pass in 0.F.
+所以你可以看到第二个输入参数是摩擦力，我将传入0.F。
+
+00:04:57.600 --> 00:05:02.340
+So during climbing, I don't want any friction. And this function here, this is another one
+所以在爬升过程中，我不希望有任何摩擦。而这个函数，这是另一个
+
+00:05:02.340 --> 00:05:07.240
+that we need to change. So this is the speed for breaking the set of vibration. And for
+我们需要改变。所以这是打破一组振动的速度。而对于
+
+00:05:07.240 --> 00:05:11.840
+that I'm going to create another variable that we can adjust inside of blueprint. So
+我将创建另一个变量，我们可以在蓝图中调整。所以
+
+00:05:11.840 --> 00:05:19.000
+go back to the header file and scroll down. I'm going to first hide this climb core and
+回到头文件并向下滚动。我将首先隐藏这个爬升核心和
+
+00:05:19.000 --> 00:05:27.640
+expand this climb BP variables. So I'm going to copy this U property and I'm going to paste
+展开这个爬升BP变量。所以我将复制这个U属性，并将其粘贴到
+
+00:05:27.640 --> 00:05:36.000
+it in here. So it's going to be another float. I'm going to call it max break climb deceleration
+它在这里。所以它将是另一个浮动值。我将把它称为最大断裂爬升减速度
+
+00:05:36.000 --> 00:05:43.840
+and give it a default value 400.F. Then I'm going to fill in this variable in there. So
+并给它一个默认值400.F。然后我要把这个变量填进去。所以
+
+00:05:43.840 --> 00:05:51.200
+paste it in here. I have a typo here. I'm going to fix that. All right, next line, we do need
+把它粘贴到这里。我这里有一个打字错误。我要去修正它。好了，下一行，我们确实需要
+
+00:05:51.200 --> 00:05:56.680
+to keep this apply group motion to velocity. Later we'll need to rely on group motion to
+来保持这个应用于速度的群组运动。以后我们将需要依靠群体运动来
+
+00:05:56.680 --> 00:06:01.080
+achieve a lot of things. And we don't need these two variables. So I'm going to delete
+来实现很多事情。而我们不需要这两个变量。所以我要删除
+
+00:06:01.080 --> 00:06:07.640
+them and we do need to keep these three lines and we do need to keep this function. So this
+而我们确实需要保留这三行，我们确实需要保留这个函数。所以这个
+
+00:06:07.640 --> 00:06:13.360
+is the function that actually moves our character and scroll down. So these lines here, they
+是实际移动我们的字符和向下滚动的函数。所以这里的这几行，它们
+
+00:06:13.360 --> 00:06:18.000
+are for the flying mode. I'm going to delete them and I'm going to move these two lines
+是用于飞行模式的。我将删除它们，并将这两行移出
+
+00:06:18.000 --> 00:06:28.360
+out and paste them inside of this if check. And format them a little bit. Then delete
+并把它们粘贴到这个if check里面。并把它们的格式化一下。然后删除
+
+00:06:28.360 --> 00:06:34.160
+this if check and we no longer have this variable. So I'm going to delete this one and that's
+我们就不再有这个变量了。所以我将删除这个变量，这就是
+
+00:06:34.160 --> 00:06:38.680
+pretty much it. This is all the boilerplate physics code that we need and I'm going to
+基本上就是这样。这就是我们需要的所有模板物理代码，我要开始写一些注释。
+
+00:06:38.680 --> 00:06:46.640
+start writing some comments. So right below this if check in here, we need to process
+开始写一些注释。所以在这个if check下面，我们需要处理
+
+00:06:46.640 --> 00:06:52.520
+all the climbable surfaces info. So that includes getting all of those information we need and
+所有可攀爬表面的信息。所以这包括获取所有我们需要的信息和
+
+00:06:52.520 --> 00:06:57.480
+perform some calculations. And the next thing that we need to do in here, we need to check
+进行一些计算。接下来我们需要做的事情是，我们需要检查
+
+00:06:57.480 --> 00:07:03.600
+if we should stop climbing. So there's no point in doing all of these things below if
+我们是否应该停止爬升。所以，如果我们不需要攀登，那么做下面这些事情就没有意义了。
+
+00:07:03.600 --> 00:07:08.600
+we don't need to climb. So this is the second thing that we need to do. And instead of this
+我们不需要攀登。所以这是我们需要做的第二件事。而不是这个
+
+00:07:08.600 --> 00:07:16.520
+calc velocity in here, we need to define the max climb speed and acceleration. We'll look
+计算速度，我们需要定义最大爬升速度和加速度。我们将看看
+
+00:07:16.520 --> 00:07:21.880
+at how we can do this later and scroll down to this safe move updated component. So in
+我们稍后再看如何做到这一点，然后向下滚动到这个安全移动更新组件。所以在
+
+00:07:21.880 --> 00:07:26.720
+here we need to handle the climb rotation. You can see the second parameter here we are
+这里我们需要处理爬升的旋转。你可以看到这里的第二个参数我们是
+
+00:07:26.720 --> 00:07:31.840
+filling in the updated components criterion. So this is where we should handle the climb
+填补了更新组件的标准。所以这就是我们应该处理爬升的地方
+
+00:07:31.840 --> 00:07:37.520
+rotation and I'm going to scroll down at the bottom of this function. So in here we need
+我将在这个函数的底部向下滚动。所以在这里我们需要
+
+00:07:37.520 --> 00:07:44.240
+to snap movement to climbable surfaces. And that's pretty much it. I'm going to compile
+捕捉运动到可爬升的表面。这就差不多了。我将会编译
+
+00:07:44.240 --> 00:07:49.360
+to see if there are any errors. Alright, I have a successful compile and in the next
+看看是否有任何错误。好的，我的编译成功了，在接下来的
+
+00:07:49.360 --> 00:07:54.000
+lecture we'll keep finishing this physics climb function. So these are the key elements
+讲座中，我们将继续完成这个物理学爬升功能。所以这些是我们需要处理的关键因素
+
+00:07:54.000 --> 00:07:58.760
+that we need to handle instead of the physics climb and feel free to use the code changes
+我们需要处理的关键元素，而不是物理学爬升，请随意使用本讲座中的代码变化
+
+00:07:58.760 --> 00:08:03.680
+in this lecture to help you with the boilerplate code for the physics. Alright, time for you
+来帮助你处理物理学的模板代码。好了，现在是时候让你
+
+00:08:03.680 --> 00:08:06.080
+to do the same and I'll see you in the next lecture.
+做同样的事情，我们在下一讲再见。
+
+00:08:06.320 --> 00:08:16.320
+[music]
+[音乐]

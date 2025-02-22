@@ -1,0 +1,85 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.320
+Hey, welcome back. This just will be a short video to solve some issues that I noticed during testing.
+嘿，欢迎回来。这只是一个简短的视频来解决我在测试过程中注意到的一些问题。
+
+00:00:06.320 --> 00:00:12.720
+So you can see right now I have debug lines enabled for my voting. And I noticed that in some edge cases,
+所以你可以看到，我现在已经为我的投票启用了调试行。我注意到在一些边缘情况下，
+
+00:00:12.720 --> 00:00:18.960
+our character can start voting instead of start climbing. So if I try to move closer to this
+我们的角色可以开始投票，而不是开始攀登。所以如果我试着靠近这一点
+
+00:00:18.960 --> 00:00:28.000
+match in here, then press F. You can see that's the issue. I'm going to try again to see if I can reproduce it.
+在这里匹配，然后按F。你可以看到这就是问题所在。我要再试一次，看看我是否能重现它。
+
+00:00:28.000 --> 00:00:39.280
+So move closer to this match, press F. So it's not close enough. A bit more, press F. And just like that.
+移到离这场比赛更近的地方，按F键，这样就不够近了。再多一点，按F键，然后就这样。
+
+00:00:39.280 --> 00:00:46.800
+It's pretty cool that our character can do this, but for a surface like this, we should start climbing instead of start voting.
+我们的角色可以做到这一点是相当酷的，但对于这样的曲面，我们应该开始攀登，而不是开始投票。
+
+00:00:46.800 --> 00:00:57.760
+And the reason for that is the first line trace is too far away from our character, and the distance between our character and the match is not enough for us to start climbing.
+而原因是第一线痕迹离我们的角色太远了，我们的角色和对手之间的距离不足以让我们开始攀登。
+
+00:00:57.760 --> 00:01:08.560
+That's why this happens. And to fix that, I'm going to go back to my code. So instead of this can start voting for this distance here, I'm going to lower it down to 90.F.
+这就是为什么会发生这种情况。为了解决这个问题，我将回到我的代码。所以我要把它降到90华氏度，而不是从这里开始投票。
+
+00:01:08.560 --> 00:01:16.400
+And this should be enough to fix the issue. Another way for you to approach this is instead of drawing multiple line traces inside of a for loop,
+这应该足以解决这个问题。处理此问题的另一种方法是在for循环中绘制多行跟踪，
+
+00:01:16.400 --> 00:01:25.600
+you can use two line traces, one for the starting point, another one for the target point, and create different member variables to control the length of the line trace
+您可以使用两条线轨迹，一条用于起点，另一条用于目标点，并创建不同的成员变量来控制线轨迹的长度
+
+00:01:25.600 --> 00:01:31.520
+and the distance for how far you want to move the character. You can go with that if that's something you want.
+以及要将角色移动到多远的距离。如果这是你想要的东西，你可以选择它。
+
+00:01:31.520 --> 00:01:36.480
+All right, I'm going to quickly save all and trigger live coding.
+好了，我要快速保存所有内容并触发实时编码。
+
+00:01:36.480 --> 00:01:44.480
+All right, live coding succeeded. I'm going to try again to see if the issue persists. So I'll try to move closer to the match, press F.
+好了，现场编码成功。我将再次尝试查看此问题是否仍然存在。所以我会试着靠近比赛，按F键。
+
+00:01:44.480 --> 00:01:53.920
+So same issue, I'm going to lower it down to maybe 80. And quickly save all, trigger live coding.
+所以同样的问题，我会把它降到80。并快速保存所有内容，触发实时编码。
+
+00:01:53.920 --> 00:02:07.600
+All right, let's test this again. So move closer to the match, press F. And this time I think we don't have the issue.
+好了，让我们再测试一次。所以，靠近比赛，按F键，这一次我认为我们没有问题。
+
+00:02:07.600 --> 00:02:17.360
+Great, we don't have the same issue anymore. And the next thing that I want to solve is while I'm climbing, the interpreting speed for placing the hands is too high.
+太好了，我们不再有同样的问题了。我想解决的下一件事是，当我在攀岩时，放置双手的翻译速度太快了。
+
+00:02:17.360 --> 00:02:23.200
+I'm going to lower it down a bit. So go back to my control rig and I'm going to go inside of this interpolation.
+我要把它放低一点。所以回到我的控制装置，我要进入这个插值法。
+
+00:02:23.200 --> 00:02:29.840
+So currently the multiplier is 30 units. I think that's way too high. I'm going to lower it down to 15.
+因此，目前的乘数是30个单位。我觉得这个价格太高了。我要把它降到15。
+
+00:02:29.840 --> 00:02:41.120
+And click compile and I'm going to test this. So try to climb up.
+然后单击编译，我将对此进行测试。所以试着往上爬。
+
+00:02:41.120 --> 00:02:53.520
+I think now the speed is much smoother.
+我认为现在的速度要平稳得多。
+
+00:02:53.520 --> 00:03:03.200
+Yeah, something like that. Just some little adjustments for our climbing system.
+是啊，差不多吧。只是对我们的攀登系统做了一些小小的调整。

@@ -1,0 +1,937 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.000
+Welcome, in the last lecture, we added in this climb idle animation and this climb drop
+欢迎，在上一次讲座中，我们加入了这个爬升空闲动画和这个爬升下降的
+
+00:00:10.000 --> 00:00:11.000
+animation.
+动画。
+
+00:00:11.000 --> 00:00:16.300
+Now, our character can transition into the climb state with the correct idle animation
+现在，我们的角色可以通过正确的空闲动画过渡到爬升状态
+
+00:00:16.300 --> 00:00:20.320
+and we can exit the climb state with the correct exiting animation.
+我们可以用正确的退出动画退出爬升状态。
+
+00:00:20.320 --> 00:00:25.560
+And all's left there to do is to add in the locomotion for climbing when we are moving.
+剩下要做的就是在我们移动的时候为爬升添加运动。
+
+00:00:25.560 --> 00:00:28.640
+And same as always, I like to take care of the coding part first.
+和往常一样，我喜欢先处理好编码的部分。
+
+00:00:28.640 --> 00:00:32.840
+So close my project and go to my custom moving component.
+所以关闭我的项目，进入我的自定义移动组件。
+
+00:00:32.840 --> 00:00:37.520
+So same as our ground locomotion, we will get hold of the climb speed in order to play
+和我们的地面运动一样，我们将掌握爬升速度，以便播放
+
+00:00:37.520 --> 00:00:39.280
+the correct animation.
+正确的动画。
+
+00:00:39.280 --> 00:00:43.000
+And for that, I'm going to create a getter directly inside of this class.
+为此，我将在这个类中直接创建一个getter。
+
+00:00:43.000 --> 00:00:46.000
+So scroll down inside of this public section.
+所以向下滚动这个公共部分。
+
+00:00:46.000 --> 00:00:48.320
+So this function is going to return an F vector.
+所以这个函数将返回一个F向量。
+
+00:00:48.320 --> 00:00:53.120
+I'm going to call this get unrotated climb velocity.
+我将调用这个获取未旋转的爬升速度。
+
+00:00:53.120 --> 00:00:54.800
+And it's going to be const.
+它将是一个常数。
+
+00:00:54.800 --> 00:00:59.760
+So the climbing velocity has already been rotated, in order to have the correct one,
+所以爬升速度已经被旋转过了，为了得到正确的爬升速度、
+
+00:00:59.760 --> 00:01:01.480
+we will need to rotate it back.
+我们将需要把它旋转回来。
+
+00:01:01.480 --> 00:01:05.280
+So I'm going to create a function definition and go to the CPP file.
+所以我将创建一个函数定义并进入CPP文件。
+
+00:01:05.280 --> 00:01:09.840
+I'm going to place the function below this on climb montage ended.
+我将把这个函数放在攀登蒙太奇的下面，结束。
+
+00:01:09.840 --> 00:01:16.000
+And to unrotate a vector, we will need to access a function inside of Kitsima math library.
+为了解除矢量的旋转，我们需要访问Kitsima数学库中的一个函数。
+
+00:01:16.000 --> 00:01:20.200
+And I'm going to steal the include from the CPP file of nminstance.
+我将从nminstance的CPP文件中偷取这个函数。
+
+00:01:20.200 --> 00:01:28.480
+So copy this line and paste it back to this custom moving component that CPP and copy
+所以复制这一行并把它粘贴到CPP的自定义移动组件中，然后复制
+
+00:01:28.480 --> 00:01:31.360
+the name of it, go back to the function.
+它的名字，回到这个函数。
+
+00:01:31.360 --> 00:01:34.960
+So it's going to be you kids math math library.
+所以这将是你孩子的数学数学库。
+
+00:01:34.960 --> 00:01:40.880
+And the function we need is called quad underscore unrotate vector.
+而我们需要的这个函数叫做四分法下划线解旋矢量。
+
+00:01:40.880 --> 00:01:45.880
+So we need to fill in a quarter neon and the vector that we want to unrotate.
+所以我们需要填入一个四分之一的霓虹灯和我们要解旋的向量。
+
+00:01:45.880 --> 00:01:53.200
+So the quarter neon will be our updated component get component quad.
+所以，四分之一个氖灯将是我们更新的分量，得到四分量。
+
+00:01:53.200 --> 00:01:55.360
+And the vector will be our velocity.
+而矢量将是我们的速度。
+
+00:01:55.360 --> 00:01:58.080
+So there's a variable for just there.
+所以这里有一个变量。
+
+00:01:58.080 --> 00:02:00.920
+It's called velocity.
+它被称为速度。
+
+00:02:00.920 --> 00:02:05.420
+And this function here simply needs to return the return result of this function.
+这个函数在这里只需要返回这个函数的返回结果。
+
+00:02:05.420 --> 00:02:08.520
+So I'm going to add a return in front of it.
+所以我要在它前面加一个回车。
+
+00:02:08.520 --> 00:02:10.320
+All right, that's the getter down.
+好了，这就是getter了。
+
+00:02:10.320 --> 00:02:13.280
+Then go back to this nminstance.
+然后再回到这个nminstance。
+
+00:02:13.280 --> 00:02:16.240
+I'm going to create a new variable.
+我将创建一个新的变量。
+
+00:02:16.240 --> 00:02:20.160
+So copy this u property.
+所以复制这个u属性。
+
+00:02:20.160 --> 00:02:21.640
+Paste it in here.
+把它粘贴到这里。
+
+00:02:21.640 --> 00:02:23.040
+It's going to be an F vector.
+它将会是一个F向量。
+
+00:02:23.040 --> 00:02:29.320
+I'm going to call this one climb velocity and create a function for it called get climb
+我将把这个称为爬升速度，并为它创建一个函数，叫做get climb
+
+00:02:29.320 --> 00:02:32.960
+velocity and create a function definition.
+速度，并创建一个函数定义。
+
+00:02:32.960 --> 00:02:41.440
+Place the function at the bottom and call the function first.
+把这个函数放在底部，先调用这个函数。
+
+00:02:41.440 --> 00:02:46.360
+So paste it in here.
+所以把它粘贴在这里。
+
+00:02:46.360 --> 00:02:51.920
+Then go back to it, access the function inside the custom moving component.
+然后再回到它，在自定义移动组件里面访问这个函数。
+
+00:02:51.920 --> 00:02:58.680
+So it's called get unrotate climb velocity and store the result in the variables that
+所以它被称为获取解旋爬升速度，并将结果存储在我们刚刚创建的变量中。
+
+00:02:58.680 --> 00:03:00.040
+we just created.
+我们刚刚创建的变量。
+
+00:03:00.040 --> 00:03:01.600
+So it's called climb velocity.
+所以它被称为爬升速度。
+
+00:03:01.600 --> 00:03:03.800
+All right, that's it.
+好了，就这样了。
+
+00:03:03.800 --> 00:03:05.800
+I'm going to compile first.
+我先来编译一下。
+
+00:03:05.800 --> 00:03:08.800
+I have a successful compile.
+我有一个成功的编译。
+
+00:03:08.800 --> 00:03:12.080
+I'm going to launch my editor.
+我将启动我的编辑器。
+
+00:03:12.080 --> 00:03:13.280
+So go back to my editor.
+所以回到我的编辑器。
+
+00:03:13.280 --> 00:03:16.160
+I think I'm first going to move these two meshes.
+我想我首先要移动这两个网格。
+
+00:03:16.160 --> 00:03:24.840
+So I'm going to delete this ramp and I'm going to move these two meshes to the center a little
+所以我将删除这个斜坡，并将这两个网格移到中心位置。
+
+00:03:24.840 --> 00:03:30.000
+bit and move this place start closer.
+然后把这个地方移近。
+
+00:03:30.000 --> 00:03:31.760
+All right, something like this.
+好的，像这样的东西。
+
+00:03:31.760 --> 00:03:34.680
+Maybe move them to the side.
+也许把它们移到旁边去。
+
+00:03:34.680 --> 00:03:36.840
+All right.
+好的。
+
+00:03:36.840 --> 00:03:38.960
+Then go to this climb system.
+然后转到这个爬升系统。
+
+00:03:38.960 --> 00:03:39.960
+Right mouse button click.
+鼠标右键点击。
+
+00:03:39.960 --> 00:03:42.320
+I'm going to create a blend space.
+我将创建一个混合空间。
+
+00:03:42.320 --> 00:03:48.640
+So instead of animation, go to this blend space and select escape mannequin.
+因此，代替动画，进入这个混合空间，选择逃跑的人体模型。
+
+00:03:48.640 --> 00:03:55.760
+I'm going to call this one BS underscore climbed locomotion and double click to open it.
+我将把这个称为BS下划线爬行运动，然后双击打开它。
+
+00:03:55.760 --> 00:03:59.640
+And inside of it, I'm going to click this asset details.
+在它里面，我将点击这个资产细节。
+
+00:03:59.640 --> 00:04:04.240
+So for this horizontal and vertical axis, we'll need to give them the corresponding
+所以对于这个水平轴和垂直轴，我们需要给它们相应的
+
+00:04:04.240 --> 00:04:05.320
+names.
+名称。
+
+00:04:05.320 --> 00:04:09.300
+So the horizontal one, I'm going to name it horizontal climb speed.
+因此，在水平轴上，我将命名为水平爬升速度。
+
+00:04:09.300 --> 00:04:13.840
+And for this minimum asset value, I'm going to change it to negative 100.
+对于这个最小资产值，我将把它改为负100。
+
+00:04:13.840 --> 00:04:16.840
+So if it's positive 100, we are moving to the right.
+因此，如果它是正100，我们就向右移动。
+
+00:04:16.840 --> 00:04:19.860
+If it's negative, we are moving to the left.
+如果它是负的，我们就向左移动。
+
+00:04:19.860 --> 00:04:24.080
+And for this vertical axis, I'm going to call it vertical climb speed.
+对于这个垂直轴，我将把它称为垂直爬升速度。
+
+00:04:24.080 --> 00:04:27.660
+And for this minimum value, change it to negative 100.
+对于这个最小值，把它改为负100。
+
+00:04:27.660 --> 00:04:31.780
+So this value here should be the same as your max climb speed.
+所以这里的数值应该与你的最大爬升速度相同。
+
+00:04:31.780 --> 00:04:35.160
+If you set yours differently, make sure you catered that in here.
+如果你的设置不同，请确保你在这里满足这个要求。
+
+00:04:35.160 --> 00:04:38.160
+All right, first thing I'm going to drag in the idle animation.
+好的，首先我要拖入空闲动画。
+
+00:04:38.160 --> 00:04:43.660
+So in here, I'm going to search climb idle and drag in this climb idle underscore adjusted.
+所以在这里，我将搜索爬升空闲，并拖入这个爬升空闲的下划线调整。
+
+00:04:43.660 --> 00:04:47.680
+So I'm going to hold down shift on my keyboard and drag it inside.
+所以我要按住键盘上的shift键，把它拖进去。
+
+00:04:47.680 --> 00:04:51.320
+So this can help us to snap the animation to the grid.
+所以这可以帮助我们将动画固定在网格上。
+
+00:04:51.320 --> 00:04:53.020
+So place it in here.
+所以把它放在这里。
+
+00:04:53.020 --> 00:04:58.120
+And next thing we'll need the animation for moving up, down, left and right.
+而接下来我们需要的是上下左右移动的动画。
+
+00:04:58.120 --> 00:04:59.820
+So go back to my content browser.
+所以回到我的内容浏览器。
+
+00:04:59.820 --> 00:05:06.200
+Set of animation raw, I'm going to start with this climbing up, so duplicate it, change
+一组动画原件，我将从这个爬升开始，所以复制它，把它的名字改为
+
+00:05:06.200 --> 00:05:12.920
+its name to climbing up underscore adjusted and move it to the adjusted folder.
+它的名字改为爬升下划线调整，并把它移到调整后的文件夹。
+
+00:05:12.920 --> 00:05:15.160
+Select move here and go to this folder.
+在这里选择移动，然后进入这个文件夹。
+
+00:05:15.160 --> 00:05:19.720
+So same as our idle animation, we'll need to adjust the position of it.
+所以和我们的空闲动画一样，我们需要调整它的位置。
+
+00:05:19.720 --> 00:05:21.680
+So I'm going to double click to open it.
+所以我要双击来打开它。
+
+00:05:21.680 --> 00:05:29.360
+Then hold down shift on my keyboard, double click to open this climb idle and click pause.
+然后按住键盘上的shift，双击打开这个攀登空闲，点击暂停。
+
+00:05:29.360 --> 00:05:31.960
+Move to the first frame.
+移动到第一帧。
+
+00:05:31.960 --> 00:05:35.000
+So this is our initial starting position.
+所以这是我们最初的起始位置。
+
+00:05:35.000 --> 00:05:38.520
+And for this climbing up, I'm going to click pause as well.
+而对于这个爬升，我也要点击暂停。
+
+00:05:38.520 --> 00:05:43.960
+Move to the first frame.
+移动到第一帧。
+
+00:05:43.960 --> 00:05:45.780
+And this is its initial position.
+这是它的初始位置。
+
+00:05:45.780 --> 00:05:50.520
+So I think this one is pretty close without climb idle.
+所以我认为这个没有爬升空闲的时候是很接近的。
+
+00:05:50.520 --> 00:05:54.400
+I'm going to test it first to see if we need to make any adjustments.
+我打算先测试一下，看看我们是否需要做任何调整。
+
+00:05:54.400 --> 00:06:01.240
+So I'm going to go back to my blend space and I'm going to add in that climbing up adjusted.
+所以我将回到我的混合空间，我将加入调整后的爬升。
+
+00:06:01.240 --> 00:06:04.720
+So drag it, hold down shift, place it in here.
+所以拖动它，按住shift，把它放在这里。
+
+00:06:04.720 --> 00:06:09.120
+And I'm going to hold down control on my keyboard to preview the animation.
+我将按住键盘上的控制键来预览动画。
+
+00:06:09.120 --> 00:06:12.280
+Press play in here.
+在这里按播放键。
+
+00:06:12.280 --> 00:06:18.920
+Yeah, I think this looks good enough.
+是的，我认为这看起来足够好。
+
+00:06:18.920 --> 00:06:21.280
+All right, I'm going to hit save.
+好的，我将点击保存。
+
+00:06:21.280 --> 00:06:24.440
+And next thing I'm going to go back to my animation blueprint.
+接下来我要回到我的动画蓝图中去。
+
+00:06:24.440 --> 00:06:30.240
+Now instead of climb idle, I'm going to change its name to climbed locomotion and double
+现在，我将把它的名字改为爬升运动，而不是爬升空闲，然后双击打开。
+
+00:06:30.240 --> 00:06:33.360
+click to open it, delete this idle animation.
+点击打开它，删除这个空闲动画。
+
+00:06:33.360 --> 00:06:36.400
+And I'm going to drag in the blend space that we just created.
+我将拖入我们刚刚创建的混合空间。
+
+00:06:36.400 --> 00:06:39.480
+So it'll be this BS underscore climb locomotion.
+因此，它将是这个BS下划线攀升运动。
+
+00:06:39.480 --> 00:06:40.480
+Drag it to here.
+把它拖到这里。
+
+00:06:40.480 --> 00:06:41.800
+Connect it to the result.
+把它连接到结果上。
+
+00:06:41.800 --> 00:06:46.160
+And for this horizontal and vertical climb speed, we can use the variable that we just
+对于这个水平和垂直爬升速度，我们可以使用我们刚刚创建的变量
+
+00:06:46.160 --> 00:06:47.160
+created.
+创建的变量。
+
+00:06:47.160 --> 00:06:51.040
+So I'm going to hold down control, then drag out this climb velocity.
+所以我要按住控制键，然后拖出这个爬升速度。
+
+00:06:51.040 --> 00:06:53.680
+I must button click to split stroke pan.
+我必须点击按钮来分割行程平移。
+
+00:06:53.680 --> 00:06:57.320
+So for this horizontal speed, this will be the velocity y.
+所以对于这个水平速度，这将是速度y。
+
+00:06:57.320 --> 00:07:01.560
+Vertical speed will be this velocity z.
+垂直速度将是这个速度z。
+
+00:07:01.560 --> 00:07:02.560
+And that's pretty much it.
+而这就差不多了。
+
+00:07:02.560 --> 00:07:05.360
+I'm going to press compile, then I'm going to test it.
+我将按编译，然后我将测试它。
+
+00:07:05.360 --> 00:07:13.320
+So press play, go to the surface, press F and try to move up.
+所以按播放键，到表面，按F键并尝试向上移动。
+
+00:07:13.320 --> 00:07:18.760
+So I think I might need to lower this animation a little bit.
+所以我想我可能需要把这个动画降低一点。
+
+00:07:18.760 --> 00:07:23.360
+And now I think it's a bit higher than this idle animation.
+而现在我认为它比这个空闲的动画要高一点。
+
+00:07:23.360 --> 00:07:25.160
+So I'm going to press play again.
+所以我准备再按一次播放。
+
+00:07:25.160 --> 00:07:36.160
+And this time I'm going to go to this surface here so that we'll have more areas to climb.
+这次我要去这个表面，这样我们就有更多的地方可以爬了。
+
+00:07:36.160 --> 00:07:40.680
+I'm going to try lowering down this climb up animation a little bit.
+我将尝试把这个爬升动画降低一点。
+
+00:07:40.680 --> 00:07:45.880
+So go to this animation folder, open adjust it for this climbing up, click pause, move
+因此，进入这个动画文件夹，打开调整它的爬升动画，点击暂停，移动到第一帧，选择根手机。
+
+00:07:45.880 --> 00:07:53.200
+to the first frame, select root phone, and I'm going to drag it down a little bit, something
+到第一帧，选择根手机，我要把它往下拖一点，像这样，然后点击添加键。
+
+00:07:53.200 --> 00:07:56.240
+like this, and click add key.
+像这样，然后点击添加键。
+
+00:07:56.240 --> 00:07:58.680
+Then go inside of my plan space.
+然后进入我的计划空间里面。
+
+00:07:58.680 --> 00:08:03.120
+So go back to my content browser, climb system, open this plan space.
+所以回到我的内容浏览器，爬上系统，打开这个计划空间。
+
+00:08:03.120 --> 00:08:08.440
+Inside of this asset details, for the smoothing time, horizontal axis and vertical axis, I'm
+在这个资产细节中，对于平滑时间，水平轴和垂直轴，我将给它们一个值。
+
+00:08:08.440 --> 00:08:12.560
+going to give both of them a value of 0.1.
+我打算给他们两个的值是0.1。
+
+00:08:12.560 --> 00:08:14.600
+So we'll have a little bit of planning happening.
+因此，我们将有一个小的计划发生。
+
+00:08:14.600 --> 00:08:16.840
+Alright, I'm going to test this again.
+好了，我要再次测试这个。
+
+00:08:16.840 --> 00:08:23.600
+So press play, go to this surface, press F, then try climbing up.
+所以按播放，到这个表面，按F，然后试着爬上去。
+
+00:08:23.600 --> 00:08:26.800
+Alright, something like that.
+好吧，类似这样的东西。
+
+00:08:26.800 --> 00:08:28.760
+I think this already looks good enough.
+我想这看起来已经很不错了。
+
+00:08:28.760 --> 00:08:34.000
+Exit the climb mode, try again.
+退出爬升模式，再试一次。
+
+00:08:34.000 --> 00:08:38.280
+I think I corrected the current result.
+我想我纠正了当前的结果。
+
+00:08:38.280 --> 00:08:42.760
+Alright, now we have climbing up.
+好了，现在我们有了向上的爬升。
+
+00:08:42.760 --> 00:08:44.780
+I like to add in climbing down.
+我喜欢加入向下爬升的部分。
+
+00:08:44.780 --> 00:08:49.720
+So go back to this animation, inside of raw, select this climbing down, press control plus
+所以回到这个动画，在raw里面，选择这个向下爬升，按control plus
+
+00:08:49.720 --> 00:08:57.800
+D to duplicate it, change its name to climbing down underscore adjust it, and move the animation
+D来复制它，把它的名字改成爬行下划线调整，然后把这个动画
+
+00:08:57.800 --> 00:08:59.160
+to the folder.
+到文件夹中。
+
+00:08:59.160 --> 00:09:02.600
+Then I'm going to first double click to open this climb idle, adjust it.
+然后我先双击打开这个爬升空闲，调整一下。
+
+00:09:02.600 --> 00:09:07.300
+Then I'm going to hold down shift on my keyboard, then double click to open this climbing down,
+然后我按住键盘上的shift键，然后双击打开这个爬下的动画、
+
+00:09:07.300 --> 00:09:12.380
+adjust it, and click pause.
+调整它，然后点击暂停。
+
+00:09:12.380 --> 00:09:21.000
+So this is original offset, and this is the original position of our idle.
+所以这是原始的偏移量，这是我们空转的原始位置。
+
+00:09:21.000 --> 00:09:23.120
+So there's quite some offset in between.
+所以这中间有相当多的偏移。
+
+00:09:23.120 --> 00:09:25.520
+We'll need to adjust this one.
+我们需要调整这个。
+
+00:09:25.520 --> 00:09:37.420
+So select its root bone, drag it down, and I'm going to compare with this idle animation.
+所以选择它的根骨，把它拖下来，我要和这个空闲动画进行比较。
+
+00:09:37.420 --> 00:09:40.000
+I think this is still a bit higher.
+我觉得这个还是有点高。
+
+00:09:40.000 --> 00:09:44.440
+Maybe move it down a little bit more to somewhere near here.
+也许把它再往下移一点，移到靠近这里的地方。
+
+00:09:44.440 --> 00:09:47.440
+Then press this L key, yeah, something like that.
+然后按这个L键，是的，类似这样的东西。
+
+00:09:47.440 --> 00:09:49.440
+We can always come back to readjust it.
+我们可以随时回来重新调整它。
+
+00:09:49.440 --> 00:09:53.660
+And go back to this blame space, hold down shift on my keyboard, drag in this climbing
+回到这个怪异的空间，按住键盘上的shift键，把这个爬升的东西拖进去
+
+00:09:53.660 --> 00:09:56.560
+down, place it in here.
+下，把它放在这里。
+
+00:09:56.560 --> 00:10:08.800
+Hold down control on my keyboard to preview them, press play in here.
+按住我键盘上的控制键，预览它们，在这里按下播放。
+
+00:10:08.800 --> 00:10:10.400
+I think this should work.
+我想这应该可以了。
+
+00:10:10.400 --> 00:10:12.920
+Alright, I'm going to test it.
+好了，我要去测试一下。
+
+00:10:12.920 --> 00:10:22.920
+So go back to my level, press play, and press F, try climbing up, try climbing down.
+所以回到我的水平，按播放，然后按F，试着爬上去，试着爬下来。
+
+00:10:22.920 --> 00:10:25.040
+Yeah, something like that.
+是的，类似这样。
+
+00:10:25.040 --> 00:10:28.820
+I think this works really well.
+我认为这个效果非常好。
+
+00:10:28.820 --> 00:10:31.880
+Try climbing down in here.
+试试在这里爬下去。
+
+00:10:31.880 --> 00:10:36.920
+Yeah, looking pretty cool.
+是的，看起来非常酷。
+
+00:10:36.920 --> 00:10:42.440
+Now that we have climbing down and climbing up ready, next thing would be climbing to
+现在我们已经准备好爬下和爬上，下一件事是爬到
+
+00:10:42.440 --> 00:10:44.880
+the left and right.
+左边和右边。
+
+00:10:44.880 --> 00:10:47.080
+And there'll be our challenge today.
+这将是我们今天的挑战。
+
+00:10:47.080 --> 00:10:52.240
+So our challenge is, same as I did, I'd like you to get the unrotated climb velocity in
+所以我们的挑战是，和我一样，我想让你得到未经旋转的爬升速度，在
+
+00:10:52.240 --> 00:10:53.520
+mn instance.
+mn实例。
+
+00:10:53.520 --> 00:10:57.840
+So for that, you might want to set up a getter inside of our custom movement component.
+所以为此，你可能想在我们的自定义运动组件中设置一个获取器。
+
+00:10:57.840 --> 00:11:02.200
+Then try adding in climbing up and down to your animation blueprint.
+然后试着在你的动画蓝图中加入向上和向下的爬升。
+
+00:11:02.200 --> 00:11:07.960
+Once you succeed, try adding in climbing left and right to your animation blueprint.
+一旦你成功了，试着在你的动画蓝图中加入向左和向右的爬行。
+
+00:11:07.960 --> 00:11:09.560
+The process should be the same.
+这个过程应该是一样的。
+
+00:11:09.560 --> 00:11:19.360
+Alright, pause the video now and give this a go or come back if you need help.
+好了，现在暂停视频，试试这个，如果你需要帮助再来。
+
+00:11:19.360 --> 00:11:20.360
+Welcome back.
+欢迎回来。
+
+00:11:20.360 --> 00:11:21.360
+How did that go for you?
+你做得怎么样了？
+
+00:11:21.360 --> 00:11:24.140
+Hopefully that wasn't too hard for you to do.
+希望这对你来说不是太难。
+
+00:11:24.140 --> 00:11:26.080
+Don't worry if you ran into any issues.
+如果你遇到了任何问题，不要担心。
+
+00:11:26.080 --> 00:11:27.720
+Let's look at how it can be done.
+让我们看看如何做到这一点。
+
+00:11:27.720 --> 00:11:30.520
+So I'm going to go back to this raw folder.
+所以我将回到这个原始文件夹。
+
+00:11:30.520 --> 00:11:37.200
+And first I'm going to select this climb right, duplicate it, add the suffix adjusted to it,
+首先，我将选择这个攀登的权利，复制它，添加后缀调整它、
+
+00:11:37.200 --> 00:11:40.160
+and move it to the adjusted folder.
+然后把它移到调整后的文件夹中。
+
+00:11:40.160 --> 00:11:47.000
+Select move here, then double click to open this idle animation, close this climbing down,
+选择移动这里，然后双击打开这个空闲的动画，关闭这个爬升、
+
+00:11:47.000 --> 00:11:51.460
+and hold down shift on my keyboard, double click to open this climb right, and click
+按住键盘上的shift键，双击打开这个攀爬的权利，然后点击
+
+00:11:51.460 --> 00:11:52.680
+pause in here.
+暂停在这里。
+
+00:11:52.680 --> 00:12:00.360
+So this is the original position of this animation, and this is our original position for idle.
+所以这是这个动画的原始位置，这也是我们空闲的原始位置。
+
+00:12:00.360 --> 00:12:05.840
+So this is much higher than the idle one, so I'm going to lower it down a little bit.
+所以这个比空闲的要高很多，所以我要把它降低一点。
+
+00:12:05.840 --> 00:12:14.280
+Select this root bone, drag it down to somewhere near here.
+选择这个根骨，把它拖到靠近这里的地方。
+
+00:12:14.280 --> 00:12:18.600
+I'm going to compare this with this idle.
+我要把这个和这个空闲的进行比较。
+
+00:12:18.600 --> 00:12:26.320
+Alright, I think they are close enough.
+好的，我想它们已经足够接近了。
+
+00:12:26.320 --> 00:12:29.160
+I'm going to try adding in this to our blame space.
+我将尝试把这个加入到我们的责备空间。
+
+00:12:29.160 --> 00:12:36.240
+So select blame space, and I'm going to search for climb right.
+因此，选择责备空间，我将搜索爬升的权利。
+
+00:12:36.240 --> 00:12:41.080
+Hold down shift, then drag this climb right to here.
+按住shift键，然后把这个爬升的权利拖到这里。
+
+00:12:41.080 --> 00:12:45.480
+Hold down control to preview it.
+按住控制键来预览它。
+
+00:12:45.480 --> 00:12:50.840
+So I think this is still too high, and that's because I forgot to add in the key for this
+所以我认为这还是太高了，这是因为我忘了添加这个关键的
+
+00:12:50.840 --> 00:12:51.840
+climb right.
+爬升的键。
+
+00:12:51.840 --> 00:12:56.880
+So select this add key, hit save, go back to blame space, preview it again.
+所以选择这个添加键，点击保存，回到责备空间，再次预览它。
+
+00:12:56.880 --> 00:13:03.840
+Alright, this looks good enough, and I'm going to add in climb left.
+好了，这看起来够好了，我要添加到左边的爬升。
+
+00:13:03.840 --> 00:13:10.560
+So go back to this raw folder, duplicate this climb left, add adjust it to it.
+所以回到这个原始文件夹，复制这个攀登左侧，添加调整到它。
+
+00:13:10.560 --> 00:13:16.400
+Move it to the corresponding folder, hold down shift, double click to open it, close
+把它移到相应的文件夹，按住shift，双击打开它，关闭
+
+00:13:16.400 --> 00:13:22.340
+this climb right, click pause in here, go to the back of it.
+这个攀登的右边，点击这里的暂停，转到它的后面。
+
+00:13:22.340 --> 00:13:25.000
+So we'll need to lower down its position as well.
+所以我们也需要降低它的位置。
+
+00:13:25.000 --> 00:13:31.040
+So select this root bone, move it down to somewhere near here.
+所以选择这个根骨，把它移到这里附近的某个地方。
+
+00:13:31.040 --> 00:13:38.000
+Then click this add key, go inside of blame space, I'm going to search for climbed left.
+然后点击这个添加键，到责备空间里面去，我将搜索攀登的左边。
+
+00:13:38.000 --> 00:13:41.120
+Hold down shift, drag it to the grid.
+按住shift键，把它拖到网格上。
+
+00:13:41.120 --> 00:13:47.040
+Hold down control to preview it.
+按住控制键来预览它。
+
+00:13:47.040 --> 00:13:53.000
+Yeah, something like that.
+是的，类似这样的东西。
+
+00:13:53.000 --> 00:13:57.400
+Alright, hit save, and I'm going to test them.
+好了，点击保存，我要去测试它们。
+
+00:13:57.400 --> 00:14:02.880
+So press play, then go inside of climb state.
+所以按下播放键，然后进入攀登状态内部。
+
+00:14:02.880 --> 00:14:15.560
+I can move up, I can move left, move to the right.
+我可以向上移动，可以向左移动，向右移动。
+
+00:14:15.560 --> 00:14:19.680
+I think the position for climbing left and right is still too high.
+我认为向左和向右攀爬的位置还是太高了。
+
+00:14:19.680 --> 00:14:22.200
+I'm going to lower them down a little bit more.
+我要把它们再放低一点。
+
+00:14:22.200 --> 00:14:26.600
+So go back to this adjust it folder, go back to this climb left, adjust it.
+所以回到这个调整它的文件夹，回到这个向左爬，调整它。
+
+00:14:26.600 --> 00:14:31.240
+I'm going to lower it down a little bit to somewhere near here.
+我要把它降低一点，到接近这里的地方。
+
+00:14:31.240 --> 00:14:35.220
+And click add key, and I'm going to do the same thing to this climb right.
+然后点击 "添加 "键，我将对这个攀岩的右边做同样的事情。
+
+00:14:35.220 --> 00:14:41.400
+So hold down shift, double click to open it, click pause, select the root bone, lower it
+所以按住shift键，双击打开它，点击暂停，选择根部的骨头，降低它，点击添加键。
+
+00:14:41.400 --> 00:14:45.800
+down, click add key.
+下来，点击添加键。
+
+00:14:45.800 --> 00:14:48.460
+Alright, I'm going to test them again.
+好了，我要再次测试它们。
+
+00:14:48.460 --> 00:14:56.560
+So press play, and try climbing up, climbing to the left, climbing to the right.
+所以按播放，并尝试向上爬，向左爬，向右爬。
+
+00:14:56.560 --> 00:15:00.780
+Yeah, I think this time they are close enough.
+是的，我想这次它们足够接近了。
+
+00:15:00.780 --> 00:15:05.800
+But the blending between the idle and the horizontal animations is still too long.
+但是空闲和水平动画之间的融合还是太长了。
+
+00:15:05.800 --> 00:15:07.880
+So I'm going to go back to my blend space.
+所以我准备回到我的混合空间。
+
+00:15:07.880 --> 00:15:12.120
+For this horizontal axis, I'm going to lower it down to zero.
+对于这个水平轴，我将把它降低到零。
+
+00:15:12.120 --> 00:15:14.120
+And I'm going to see what this feels like.
+我想看看这是什么感觉。
+
+00:15:14.120 --> 00:15:16.720
+So press play again.
+所以再次按下播放键。
+
+00:15:16.720 --> 00:15:25.440
+And climbing up, move to the left, move to the right.
+向上爬，向左移动，向右移动。
+
+00:15:25.440 --> 00:15:26.440
+And just like so.
+就像这样。
+
+00:15:26.440 --> 00:15:30.200
+I think this will do for now.
+我想现在这样就可以了。
+
+00:15:30.200 --> 00:15:33.160
+We can always come back to adjust it later if we need.
+如果我们需要，我们可以随时回来调整。
+
+00:15:33.160 --> 00:15:40.640
+And just like that, we have our climb locomotion.
+就这样，我们有了我们的爬升运动。
+
+00:15:40.640 --> 00:15:42.760
+How cool is that?
+这多酷啊？
+
+00:15:42.760 --> 00:15:45.400
+And don't worry about the hand and feet placement.
+不要担心手和脚的位置问题。
+
+00:15:45.400 --> 00:15:50.760
+We are going to fix that later using control rig.
+我们将在以后使用控制装置来解决这个问题。
+
+00:15:50.760 --> 00:15:54.880
+In this lecture, we successfully set up the climb locomotion for our character.
+在这节课中，我们成功地为我们的角色设置了爬升运动。
+
+00:15:54.880 --> 00:15:59.160
+And starting from next lecture, we will look into how we can add in more features to it.
+从下一节课开始，我们将研究如何在其中加入更多的功能。
+
+00:15:59.160 --> 00:16:00.160
+Well done.
+做得好。
+
+00:16:00.160 --> 00:16:00.960
+I will see you in the next lecture.
+我们将在下一讲中再见。
+
+00:16:00.960 --> 00:16:10.960
+[MUSIC]
+[音乐]
+
+00:16:10.960 --> 00:16:20.960
+[BLANK_AUDIO]
+[BLANK_AUDIO]

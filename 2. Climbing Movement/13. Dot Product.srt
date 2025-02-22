@@ -1,0 +1,597 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.440
+Welcome!
+欢迎！欢迎
+
+00:00:06.440 --> 00:00:11.800
+After last lecture, now that we can successfully move our character through our input, we can
+经过上次的讲座，现在我们可以通过输入成功地移动我们的角色，我们可以
+
+00:00:11.800 --> 00:00:17.920
+move up or down, and left or right, and we can even exit our climb state by pressing
+向上或向下，向左或向右移动，我们甚至可以通过按
+
+00:00:17.920 --> 00:00:20.120
+the climb action key.
+攀爬动作键来退出攀爬状态。
+
+00:00:20.120 --> 00:00:23.840
+Before we move on, there's one issue that I'd like to solve first.
+在我们继续前进之前，有一个问题我想先解决一下。
+
+00:00:23.840 --> 00:00:28.720
+So I'm gonna first lower the height of this mesh down, so that it'll be easier for me
+所以我首先要降低这个网格的高度，这样我就可以更容易的
+
+00:00:28.720 --> 00:00:30.240
+to get to the top.
+到顶部。
+
+00:00:30.240 --> 00:00:33.240
+So I'm gonna lower it down to 5.
+所以我要把它降低到5。
+
+00:00:33.240 --> 00:00:35.500
+And I'm gonna press play again.
+然后我再按一次播放键。
+
+00:00:35.500 --> 00:00:40.760
+So the scenario that I want to rule out is, when we reach a flat surface like this, I
+所以我想排除的情况是，当我们到达一个像这样的平坦的表面时，我想立即停止攀登。
+
+00:00:40.760 --> 00:00:43.240
+want to stop climbing right away.
+我想马上停止攀爬。
+
+00:00:43.240 --> 00:00:47.680
+It is quite weird that our character can move like this.
+我们的角色可以这样移动，这是很奇怪的。
+
+00:00:47.680 --> 00:00:50.880
+So in this lecture, we'll look at how we can do this.
+所以在这个讲座中，我们将看看我们如何能做到这一点。
+
+00:00:50.880 --> 00:00:54.240
+To achieve what we want, we need to make use of what we have.
+为了达到我们的目的，我们需要利用我们所拥有的东西。
+
+00:00:54.240 --> 00:00:59.200
+So the valuable information that we have is the current climbable surface normal.
+因此，我们所拥有的有价值的信息是当前的可攀爬表面法线。
+
+00:00:59.200 --> 00:01:03.160
+So I'm gonna use a simple vector to represent the normal.
+所以我将用一个简单的向量来表示法线。
+
+00:01:03.160 --> 00:01:07.960
+And another thing that we know is, we know we want to get rid of climbing when we reach
+我们知道的另一件事是，我们知道当我们到达一个平坦的表面时，我们想摆脱攀爬。
+
+00:01:07.960 --> 00:01:09.140
+a flat surface.
+一个平坦的表面。
+
+00:01:09.140 --> 00:01:12.120
+So the normal of this surface will be pointing up.
+所以这个表面的法线将指向上方。
+
+00:01:12.120 --> 00:01:14.860
+And this is also something called an up vector.
+这也是一种叫做向上的矢量的东西。
+
+00:01:14.860 --> 00:01:20.640
+So all we need to do is, we need to compare the surface normal and this up vector.
+所以我们需要做的是，我们需要比较表面法线和这个向上的向量。
+
+00:01:20.640 --> 00:01:25.920
+More specifically, we'll need to know the angle between these two vectors.
+更确切地说，我们需要知道这两个向量之间的角度。
+
+00:01:25.920 --> 00:01:30.960
+And if this angle here is smaller than certain amount, we should stop climbing.
+如果这个角度小于一定的数量，我们就应该停止爬升。
+
+00:01:30.960 --> 00:01:33.640
+So in here, I'm gonna name this angle theta.
+所以在这里，我将把这个角度命名为theta。
+
+00:01:33.640 --> 00:01:35.960
+This is just a common way to name an angle.
+这只是一种命名角度的常用方法。
+
+00:01:35.960 --> 00:01:39.420
+For doing calculation like this, you can name it however you like.
+对于像这样的计算，你可以随心所欲地命名它。
+
+00:01:39.420 --> 00:01:42.820
+And the math operation we need is something called dot product.
+我们需要的数学运算是一个叫做点积的东西。
+
+00:01:42.820 --> 00:01:47.240
+So same as cross product, this is another math operation that we can perform on two
+因此，与交叉积一样，这是另一个数学运算，我们可以对两个
+
+00:01:47.240 --> 00:01:48.240
+vectors.
+向量。
+
+00:01:48.240 --> 00:01:50.000
+And the return result of it.
+而它的返回结果。
+
+00:01:50.000 --> 00:01:55.840
+So if these two vectors, they are parallel with each other, the result will be 1.
+所以，如果这两个向量是相互平行的，其结果将是1。
+
+00:01:55.840 --> 00:01:59.640
+And if they are perpendicular, the result will be 0.
+而如果它们是垂直的，结果将是0。
+
+00:01:59.640 --> 00:02:03.920
+And if they are the exact opposite, the result will be -1.
+而如果它们完全相反，结果将是-1。
+
+00:02:03.920 --> 00:02:05.540
+But this is still not what we want.
+但这仍然不是我们想要的。
+
+00:02:05.540 --> 00:02:10.880
+We want to know the exact degree differences between these two vectors.
+我们想知道这两个向量之间的确切度差。
+
+00:02:10.880 --> 00:02:15.700
+And to get hold of that number, we'll need to understand how dot product is calculated.
+为了得到这个数字，我们需要了解点积是如何计算的。
+
+00:02:15.700 --> 00:02:18.760
+So in here, I have two vectors.
+所以在这里，我有两个向量。
+
+00:02:18.760 --> 00:02:21.360
+One is called vector A, one is called vector B.
+一个叫做向量A，一个叫做向量B。
+
+00:02:21.360 --> 00:02:26.400
+And how dot product is calculated is through something like this.
+点积的计算方法是这样的。
+
+00:02:26.400 --> 00:02:32.080
+So A dot B is equal to the length of this vector A multiplied with the length of vector
+所以A点B等于这个向量A的长度与向量B的长度相乘。
+
+00:02:32.080 --> 00:02:35.380
+B multiplied with cosine theta.
+B乘以余弦θ。
+
+00:02:35.380 --> 00:02:38.960
+So instead of this math equation, we are interested in theta.
+因此，我们对theta感兴趣，而不是这个数学方程。
+
+00:02:38.960 --> 00:02:41.040
+And let's look at how we can get hold of it.
+让我们来看看我们如何掌握它。
+
+00:02:41.040 --> 00:02:46.320
+So normally, when performing these kind of operations, we'll be using two unit vectors.
+所以通常情况下，在进行这类操作时，我们会使用两个单位向量。
+
+00:02:46.320 --> 00:02:49.100
+So they both have a length of 1.
+所以它们的长度都是1。
+
+00:02:49.100 --> 00:02:53.520
+And multiplying with two 1s really doesn't do anything to the final result.
+而用两个1相乘，对最终结果没有任何影响。
+
+00:02:53.520 --> 00:02:55.520
+So we can get rid of them.
+所以我们可以把它们去掉。
+
+00:02:55.520 --> 00:02:57.460
+And now this is our new equation.
+现在这就是我们的新方程。
+
+00:02:57.460 --> 00:03:00.840
+So all that's left there to do is to get rid of this cosine.
+所以剩下的事情就是去掉这个余弦。
+
+00:03:00.840 --> 00:03:05.520
+And we can do that by running our cosine functions on both sides.
+我们可以通过在两边运行我们的余弦函数来做到这一点。
+
+00:03:05.520 --> 00:03:07.140
+And this is our new result.
+这就是我们的新结果。
+
+00:03:07.140 --> 00:03:09.600
+And this is how we can get hold of the angle theta.
+这就是我们如何获得theta角的方法。
+
+00:03:09.600 --> 00:03:11.620
+Alright, that's the theory part.
+好了，这就是理论部分。
+
+00:03:11.620 --> 00:03:12.620
+Let's start coding.
+让我们开始编码吧。
+
+00:03:12.620 --> 00:03:14.960
+First, I'm going to close my project.
+首先，我将关闭我的项目。
+
+00:03:14.960 --> 00:03:20.120
+Then inside of the Visual Studio, I'm going to first go to the header file and scroll
+然后在Visual Studio中，我将首先进入头文件，然后滚动到
+
+00:03:20.120 --> 00:03:24.920
+up above this get climb rotation, I'm going to create a new function.
+在这个爬升旋转上面，我将创建一个新的函数。
+
+00:03:24.920 --> 00:03:27.360
+So it's going to return a pull.
+所以它将会返回一个拉动。
+
+00:03:27.360 --> 00:03:31.160
+I'm going to call it check should stop climbing.
+我要把它叫做检查应该停止爬升。
+
+00:03:31.160 --> 00:03:34.080
+Then I'm going to create a function definition.
+然后我将创建一个函数定义。
+
+00:03:34.080 --> 00:03:37.640
+And I'm going to place the function above this get climb rotation.
+我将把这个函数放在这个获得攀登旋转的上面。
+
+00:03:37.640 --> 00:03:39.440
+So place it in here.
+所以把它放在这里。
+
+00:03:39.440 --> 00:03:44.300
+And the first thing, I'm going to call the function inside of this physics climb.
+首先，我将在这个物理学爬升中调用这个函数。
+
+00:03:44.300 --> 00:03:47.560
+So I'm going to run an if check in here.
+所以我将在这里运行一个if检查。
+
+00:03:47.560 --> 00:03:52.840
+So if this check should stop climbing is true, we should stop climbing in here.
+所以如果这个检查应该停止攀爬为真，我们就应该在这里停止攀爬。
+
+00:03:52.840 --> 00:03:53.840
+We're going to do that later.
+我们稍后要做的就是这个。
+
+00:03:53.840 --> 00:03:56.640
+But now I'm going to finish implementing this function.
+但现在我将完成这个功能的实现。
+
+00:03:56.640 --> 00:03:58.260
+So scroll down.
+所以向下滚动。
+
+00:03:58.260 --> 00:04:04.520
+So the first if check, I'm going to check if climbable surfaces trace the results.
+所以第一个if检查，我将检查是否可攀登的表面追踪结果。
+
+00:04:04.520 --> 00:04:11.360
+So if this array is empty, then that means for some reason, during climbing, we're no
+所以如果这个数组是空的，那就意味着由于某种原因，在爬升过程中，我们不再靠近
+
+00:04:11.360 --> 00:04:13.640
+longer near a climbable surface.
+不再靠近可攀登的表面。
+
+00:04:13.640 --> 00:04:15.080
+Now likely that will happen.
+现在很可能会发生这种情况。
+
+00:04:15.080 --> 00:04:17.760
+If that happens, I'm going to return true.
+如果发生这种情况，我将返回true。
+
+00:04:17.760 --> 00:04:20.040
+So we should stop climbing.
+所以我们应该停止爬行。
+
+00:04:20.040 --> 00:04:25.040
+Once we get past this if check, then I'm going to create a const float.
+一旦我们通过了这个if检查，那么我将创建一个常量浮点。
+
+00:04:25.040 --> 00:04:30.400
+I'm going to call this dot result and it's going to equal to F vector dot product.
+我将把这个点结果称为F向量点积，它将等于F向量点积。
+
+00:04:30.400 --> 00:04:36.040
+So the two vectors that we are going to compare, the first one will be current climbable surface
+所以我们要比较的两个向量，第一个将是当前可爬升表面的
+
+00:04:36.040 --> 00:04:37.040
+normal.
+法线。
+
+00:04:37.040 --> 00:04:42.560
+The second one will be F vector, R vector.
+第二个将是F向量，R向量。
+
+00:04:42.560 --> 00:04:45.720
+So this is the return result of this dot product.
+所以这是这个点积的返回结果。
+
+00:04:45.720 --> 00:04:51.880
+And in order to get the degree difference, so I'm going to create another const float.
+为了得到度差，我将创建另一个常量浮点。
+
+00:04:51.880 --> 00:05:00.280
+I'm going to call this degree diff and it's going to equal to F math equals.
+我将调用这个度差，它将等于F数学的等值。
+
+00:05:00.280 --> 00:05:05.540
+So this is the r cross line function and passing this dot result.
+所以这就是r交叉线函数，并传递这个点的结果。
+
+00:05:05.540 --> 00:05:09.280
+And just like that, we can get hold of the angle of theta.
+就这样，我们就可以掌握theta的角度了。
+
+00:05:09.280 --> 00:05:13.360
+And the return result of this is still in radians and not degrees.
+而这个返回的结果仍然是弧度而不是度数。
+
+00:05:13.360 --> 00:05:18.740
+To convert this into degrees, we can run it through another function inside of F math.
+为了将其转换为度数，我们可以通过F数学中的另一个函数运行它。
+
+00:05:18.740 --> 00:05:26.400
+So it's called radian to degrees and add a parenthesis in here.
+所以它被称为弧度转换为度数，并在这里添加一个括号。
+
+00:05:26.400 --> 00:05:29.520
+And just like that, this is our degree difference.
+就这样，这就是我们的度差。
+
+00:05:29.520 --> 00:05:32.960
+All right, I'm going to print this out to prove this is working.
+好了，我要把这个打印出来，以证明它是有效的。
+
+00:05:32.960 --> 00:05:38.840
+So use the function debug print and the message is going to be degree diff.
+所以使用函数debug print，信息将是度差。
+
+00:05:38.840 --> 00:05:41.440
+And I'm going to append a string in here.
+我将在这里添加一个字符串。
+
+00:05:41.440 --> 00:05:47.480
+And there's one handy function inside of F string to help us convert a float into string.
+在F字符串中，有一个很方便的函数可以帮助我们把浮点数转换成字符串。
+
+00:05:47.480 --> 00:05:49.680
+So it's called sanitize float.
+所以它叫做sanitize float。
+
+00:05:49.680 --> 00:05:54.180
+And I'm going to pass in this degree diff.
+我将传入这个程度差。
+
+00:05:54.180 --> 00:05:58.600
+And since we're running this function every frame, I'm going to specify a color in here.
+由于我们每一帧都要运行这个函数，我将在这里指定一个颜色。
+
+00:05:58.600 --> 00:06:03.120
+So it's going to be a color cyan and the in key, I'm going to give it a value of one.
+所以它将是一个青色的颜色，在键中，我将给它一个1的值。
+
+00:06:03.120 --> 00:06:05.640
+All right, I'm going to compile first.
+好吧，我先来编译一下。
+
+00:06:05.640 --> 00:06:09.920
+And I don't have a successful compile and that's because I forget to return a value
+我没有编译成功，这是因为我忘了在这个函数里面返回一个值
+
+00:06:09.920 --> 00:06:11.280
+inside of this function.
+在这个函数中。
+
+00:06:11.280 --> 00:06:15.280
+So at the end of this function, I'm going to return false.
+所以在这个函数的结尾，我将返回false。
+
+00:06:15.280 --> 00:06:16.280
+Then I'm going to compile again.
+然后我将再次进行编译。
+
+00:06:16.280 --> 00:06:19.400
+All right, I'm going to launch my editor back.
+好的，我将启动我的编辑器回来。
+
+00:06:19.400 --> 00:06:23.680
+Go back to my editor, I'm going to press play in here.
+回到我的编辑器，我将在这里按下播放键。
+
+00:06:23.680 --> 00:06:28.680
+Then I'm going to go to a clamber surface, press F. And you can see now the degree difference
+然后我要去一个攀爬表面，按F。你可以看到现在的度差
+
+00:06:28.680 --> 00:06:30.320
+is 90 degrees.
+是90度。
+
+00:06:30.320 --> 00:06:37.200
+Now if I move up to somewhere around here and you can see if I move up a little bit
+现在，如果我移到这里的某个地方，你可以看到如果我再往上移一点点
+
+00:06:37.200 --> 00:06:39.920
+more and we're approaching 60 degrees.
+我们就接近60度了。
+
+00:06:39.920 --> 00:06:44.680
+Now if I move to a surface like this, the degree difference is zero.
+现在，如果我移动到像这样的表面，度差是零。
+
+00:06:44.680 --> 00:06:49.920
+And now with this piece of information, we can decide when we want to stop climbing.
+现在有了这一信息，我们就可以决定何时停止攀登。
+
+00:06:49.920 --> 00:06:54.180
+So I'm going to go back to Visual Studio and in here I'm going to do an if check.
+所以我将回到Visual Studio，在这里我要做一个if检查。
+
+00:06:54.180 --> 00:07:01.640
+So if this degree difference is less than or equal to 60.f.
+所以如果这个度差小于或等于60.f。
+
+00:07:01.640 --> 00:07:04.500
+If that's the case, I'm going to return true.
+如果是这样的话，我将返回true。
+
+00:07:04.500 --> 00:07:06.220
+So we should stop climbing.
+所以我们应该停止爬行。
+
+00:07:06.220 --> 00:07:10.800
+You can promote this to another member variable if you want, depending on the geometry in
+如果你想的话，你可以把它提升到另一个成员变量，这取决于你的关卡中的几何图形。
+
+00:07:10.800 --> 00:07:11.800
+your level.
+你的水平。
+
+00:07:11.800 --> 00:07:15.160
+All right, and one last thing, I'm going to go back to this fixx climb.
+好的，最后一件事，我将回到这个fixx攀登。
+
+00:07:15.160 --> 00:07:18.960
+So if this function returns true, I'm going to call the function stop climbing.
+所以，如果这个函数返回真，我将调用函数停止攀登。
+
+00:07:18.960 --> 00:07:22.780
+All right, I'm going to use live coding in here.
+好的，我将在这里使用实时编码。
+
+00:07:22.780 --> 00:07:27.160
+So first I'm going to press control plus shift plus s to save all.
+所以我首先要按control加shift加s来保存所有。
+
+00:07:27.160 --> 00:07:32.400
+Then I'm going to press control plus alt plus f11 to trigger live coding.
+然后，我将按control加alt加f11来触发实时编码。
+
+00:07:32.400 --> 00:07:35.440
+All right, live coding succeeded.
+好的，实时编码成功了。
+
+00:07:35.440 --> 00:07:37.560
+I'm going to press play again.
+我将再次按下播放键。
+
+00:07:37.560 --> 00:07:41.080
+And this time I'm going to climb up.
+这一次我要爬上去。
+
+00:07:41.080 --> 00:07:46.240
+And when I'm about to reach the flat surface, you can see I can exit the climb mode.
+当我即将到达平坦的表面时，你可以看到我可以退出爬升模式。
+
+00:07:46.240 --> 00:07:48.220
+I'm going to try again.
+我打算再试一次。
+
+00:07:48.220 --> 00:07:54.680
+So this time I'm going to move up through here.
+所以这一次我要通过这里向上移动。
+
+00:07:54.680 --> 00:07:55.680
+And it works.
+这就成功了。
+
+00:07:55.680 --> 00:08:00.720
+And with this kind of setup, this even works if we rotate this mesh a little bit.
+在这样的设置下，如果我们把这个网格旋转一下，它甚至可以工作。
+
+00:08:00.720 --> 00:08:05.160
+So let's say the mesh has an angle like this.
+所以我们说这个网格有一个像这样的角度。
+
+00:08:05.160 --> 00:08:08.400
+Now I'm going to press play.
+现在我将按下播放键。
+
+00:08:08.400 --> 00:08:12.360
+And I'm going to climb up.
+而我要爬上去。
+
+00:08:12.360 --> 00:08:15.620
+And just above, we are about to reach the top of it.
+而就在上面，我们即将到达它的顶部。
+
+00:08:15.620 --> 00:08:17.360
+We exit the climb mode.
+我们退出攀登模式。
+
+00:08:17.360 --> 00:08:24.320
+But everything is working as expected.
+但一切都在如期进行。
+
+00:08:24.320 --> 00:08:25.640
+I'm going to test it again.
+我准备再测试一次。
+
+00:08:25.640 --> 00:08:29.280
+So this time I'm going to rotate the mesh in this way.
+所以这一次我要以这种方式旋转网格。
+
+00:08:29.280 --> 00:08:34.080
+Then press play again and press f.
+然后再按play，按f。
+
+00:08:34.080 --> 00:08:37.440
+So we can climb up, no problem.
+所以我们可以爬上去了，没有问题。
+
+00:08:37.440 --> 00:08:40.880
+And we can exit the climb mode.
+而且我们可以退出爬升模式。
+
+00:08:40.880 --> 00:08:42.280
+And that's great.
+这很好。
+
+00:08:42.280 --> 00:08:44.240
+Everything is working as expected.
+一切都在按预期进行。
+
+00:08:44.240 --> 00:08:52.680
+So this is the math that I used to decide when to stop climbing.
+所以这就是我用来决定何时停止攀爬的数学方法。
+
+00:08:52.680 --> 00:08:55.960
+Once you figure this out, everything else should be pretty straightforward.
+一旦你搞清楚了这一点，其他的事情就应该很简单了。
+
+00:08:55.960 --> 00:08:59.320
+Feel free to refer back to the video if you need help.
+如果你需要帮助，可以随时回看视频。
+
+00:08:59.320 --> 00:09:00.840
+And it's time for you to do the same.
+现在是时候让你做同样的事情了。
+
+00:09:00.840 --> 00:09:02.160
+And I'll see you in the next lecture.
+我们在下一个讲座中见。
+
+00:09:02.160 --> 00:09:05.520
+[MUSIC PLAYING]
+[音乐响起]
+
+00:09:05.520 --> 00:09:08.880
+[MUSIC PLAYING]
+[音乐播放] [音乐播放]
+
+00:09:08.880 --> 00:09:12.240
+[MUSIC PLAYING]
+[音乐播放] [音乐播放]

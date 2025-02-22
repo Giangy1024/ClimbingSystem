@@ -1,0 +1,285 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:09.960
+Welcome. In the last lecture, we successfully set up the capsule trace to trace the surfaces
+欢迎。在上一节课中，我们成功地设置了胶囊追踪器来追踪我们的角色前面的表面
+
+00:00:09.960 --> 00:00:15.640
+in front of our character. And in this lecture, we'll take care of tracing from eye height.
+在我们的角色面前。在本课中，我们将从眼睛的高度进行追踪。
+
+00:00:15.640 --> 00:00:20.800
+Now that we already have a way to obtain the surface info in front of us, we'll also need
+现在我们已经有了一种方法来获得我们面前的表面信息，我们还需要
+
+00:00:20.800 --> 00:00:26.040
+to take care of the scenario too. So this only needs to be a line trace, and it needs
+也需要处理一下这个场景。所以这只是一个线条追踪，而且需要
+
+00:00:26.040 --> 00:00:30.720
+to start from our eye height. This is the same kind of trace that we'll use later to
+从我们的眼睛高度开始。这也是我们稍后要用的一种跟踪方式，用来
+
+00:00:30.720 --> 00:00:35.160
+determine whether or not the character has reached the ledge during climbing. Let's look
+来确定角色在攀爬过程中是否到达了壁架。让我们来看看
+
+00:00:35.160 --> 00:00:40.080
+at how we can set this up. Go back to my project. I'm going to close my project and go to Visual
+看看我们如何设置这个。回到我的项目中去。我将关闭我的项目并转到Visual
+
+00:00:40.080 --> 00:00:45.240
+Studio. The line trace we use will be very similar as this capsule trace. So I'm going
+Studio。我们使用的行跟踪将与这个胶囊跟踪非常相似。所以我将
+
+00:00:45.240 --> 00:00:51.080
+to create another function inside of this region. It's going to return an F hit result. I'm
+在这个区域内创建另一个函数。它将会返回一个F的命中结果。我将
+
+00:00:51.080 --> 00:00:56.720
+going to call this function to line trace single by object. And its input parameters
+我将调用这个函数来逐条追踪对象。它的输入参数
+
+00:00:56.720 --> 00:01:03.800
+are going to be the same as above. So we'll need to fill in the star, the end, and whether
+将与上面一样。所以我们需要填入星星、结尾，以及是否要显示调试形状。
+
+00:01:03.800 --> 00:01:10.040
+or not we want to show the debug shape. And I'm going to create a function definition,
+我们是否要显示调试形状。然后我将创建一个函数定义、
+
+00:01:10.040 --> 00:01:16.400
+put it below this capsule trace. So the function that we need to use is also inside of this
+把它放在这个胶囊跟踪的下面。所以我们需要使用的函数也在这个
+
+00:01:16.400 --> 00:01:23.200
+UCSMA system library. And it's called line trace single for objects. And the input parameters
+UCSMA系统库中。它被称为对象的行跟踪单。而我们需要填写的输入参数
+
+00:01:23.200 --> 00:01:27.800
+that we need to fill in are very similar as these ones above. So I'm going to copy all
+我们需要填入的参数与上面这些参数非常相似。所以我将复制所有
+
+00:01:27.800 --> 00:01:34.760
+of them and I'm going to paste them in here. So for this one, we need to fill in the star
+并把它们粘贴到这里。所以，对于这个，我们需要填上星号
+
+00:01:34.760 --> 00:01:39.480
+and the end. And the third parameter will be the object types. So we don't need this
+和结尾。而第三个参数将是对象的类型。所以我们不需要这个
+
+00:01:39.480 --> 00:01:44.840
+radius and half height. I'm going to delete both of them. And unlike the capsule trace,
+半径和半高。我要把它们都删除。而且与胶囊追踪不同的是、
+
+00:01:44.840 --> 00:01:50.380
+in here we only need to fill in a single out hit result. So let's create one. So it's going
+在这里，我们只需要填入一个单一的出击结果。所以让我们来创建一个。所以它将会是
+
+00:01:50.380 --> 00:01:59.480
+to be an F hit result. I'm going to call it out hit, then fill in this out hit. And this
+它将是一个F的命中结果。我将把它称为 "出击"，然后填入这个出击。而这
+
+00:01:59.480 --> 00:02:06.280
+function simply needs to return this out hit. And I'm going to add a semicolon in here.
+函数只需要返回这个打出。我将在这里添加一个分号。
+
+00:02:06.280 --> 00:02:10.800
+All right. This is the trace function that we can use multiple times. And I'm going to
+好的。这就是我们可以多次使用的跟踪函数。而我将会
+
+00:02:10.800 --> 00:02:16.320
+create another function to trace from high height. So under this trace climbable surfaces,
+创建另一个函数，从高处追踪。所以在这个追踪可攀登的表面下、
+
+00:02:16.320 --> 00:02:21.440
+I'm going to create another new function. I'm going to call it trace from high height.
+我将创建另一个新的函数。我将把它称为从高处追踪。
+
+00:02:21.440 --> 00:02:26.000
+And it's going to have two input parameters. The first one is going to be a float. I'm
+它将会有两个输入参数。第一个将是一个浮点。我将
+
+00:02:26.000 --> 00:02:30.200
+going to call it trace distance. The second one is going to be another float. I'm going
+我把它叫做跟踪距离。第二个参数是另一个浮点数。我将会
+
+00:02:30.200 --> 00:02:36.960
+to call it trace start offset. And I'm going to give it a default value of zero point F.
+称之为跟踪开始偏移。我将给它一个零点F的默认值。
+
+00:02:36.960 --> 00:02:44.640
+All right, I'm going to create a function definition below this function. And first thing I'm going
+好的，我将在这个函数下面创建一个函数定义。首先，我将
+
+00:02:44.640 --> 00:02:50.840
+to create a local variable is going to be a const F vector. I'm going to call this one
+创建一个局部变量，它将是一个常量F向量。我将把这个称为一个
+
+00:02:50.840 --> 00:02:59.280
+component location. It's going to equal to updated component get component location.
+分量的位置。它将等于更新的分量获得分量位置。
+
+00:02:59.280 --> 00:03:03.800
+So this is the component location. And in order to trace from our eye height, we'll
+所以这就是分量位置。为了从我们的眼睛高度进行追踪，我们将需要知道我们到底需要多少。
+
+00:03:03.800 --> 00:03:09.520
+need to know exactly how much we need to offset the trace start. So I'm going to create another
+我们需要确切地知道我们需要将追踪的起点偏移多少。所以我将创建另一个
+
+00:03:09.520 --> 00:03:15.720
+const F vector. I'm going to call this one eye height offset. So this will be the updated
+常量F向量。我将把这个称为眼高偏移。所以这将是更新的
+
+00:03:15.720 --> 00:03:22.600
+component get a vector. Now we have a vector that's pointing up. I'm going to multiply
+分量得到一个向量。现在我们有一个朝上的向量。我将把这个向量与眼高相乘
+
+00:03:22.600 --> 00:03:28.520
+this vector with the eye height. There's another variable from the parent class that we can
+这个向量与眼睛的高度相乘。还有一个来自父类的变量，我们可以使用它。
+
+00:03:28.520 --> 00:03:35.640
+use and it's called character owner. So this is the character owner of this character movement
+它被称为角色所有者。所以这就是这个角色运动组件的角色所有者。
+
+00:03:35.640 --> 00:03:41.240
+component and we can use this to access the base eye height. And you can see here it says
+部件的所有者，我们可以用它来访问基本眼高。你可以在这里看到它说
+
+00:03:41.240 --> 00:03:47.280
+pointer to incomplete class type is not allowed. So we'll need to include the character class.
+不允许使用指向不完整类类型的指针。所以我们需要包括角色类。
+
+00:03:47.280 --> 00:03:51.960
+And for that I'm going to directly include our climbing system character.h. So I'm going
+为此我将直接包括我们的攀登系统character.h。所以我将
+
+00:03:51.960 --> 00:04:00.200
+to go to its cpp file, copy this include and paste it to this cpp file. And here you can
+转到它的cpp文件，复制这个include并粘贴到这个cpp文件。在这里你可以
+
+00:04:00.200 --> 00:04:05.040
+see I have some red squiggles. So that means we'll need to include the folder name of this
+看到我有一些红色的斜线。所以这意味着我们需要包括这个头文件的文件夹名称
+
+00:04:05.040 --> 00:04:09.880
+header file. And you can see this file is under the folder climbing system. So let's
+头文件的文件夹名称。而且你可以看到这个文件是在文件夹爬行系统下。所以让我们
+
+00:04:09.880 --> 00:04:15.360
+add that. I'm going to copy this climbing system, put it in front of this name and add a slash.
+添加它。我要复制这个攀登系统，把它放在这个名字的前面，然后加一个斜线。
+
+00:04:15.360 --> 00:04:19.680
+And now we should be able to access the base eye height. So I'm going to type in base eye
+现在我们应该可以访问基础眼高了。所以我将输入基础眼高
+
+00:04:19.680 --> 00:04:27.440
+height and I'm going to add the trace start offset to this value. So later when we're
+高度，并在这个值上加上轨迹开始的偏移。所以以后当我们在
+
+00:04:27.440 --> 00:04:32.440
+climbing we'll need to use this function to detect the ledge. I'm going to add the semicolon
+攀登时，我们需要使用这个函数来检测壁架。我要把分号加在
+
+00:04:32.440 --> 00:04:37.760
+after it. By default this variable has a value of zero. Keep that in mind. Now that we have
+在它后面。默认情况下，这个变量的值为零。牢牢记住这一点。现在，我们有了
+
+00:04:37.760 --> 00:04:44.160
+the eye offset we have our line trace start. So I'm going to create another const f vector.
+眼睛的偏移量，我们就有了我们的线迹开始。所以我将创建另一个常量f向量。
+
+00:04:44.160 --> 00:04:51.560
+I'm going to call it start and the start is going to be component location plus eye height
+我将把它称为起始点，起始点将是组件的位置加上眼睛的高度
+
+00:04:51.560 --> 00:04:59.760
+offset. And for our line trace end it's going to be another const f vector and this start
+偏移。对于我们的线迹终点，它将是另一个常量f向量，这个开始
+
+00:04:59.760 --> 00:05:08.200
+is going to be our start plus this updated component. I'm going to get hold of this forward
+将是我们的起点加上这个更新的分量。我将掌握这个向前的
+
+00:05:08.200 --> 00:05:17.720
+vector multiply this vector with our trace distance. So this is our line trace end. All
+向量与我们的跟踪距离相乘。所以这就是我们的线迹终点。所有的
+
+00:05:17.720 --> 00:05:21.280
+right. I'm going to call the function that we just created. So you'll be able to do line
+好的。我将调用我们刚刚创建的函数。所以你将能够做线
+
+00:05:21.280 --> 00:05:28.880
+trace single by object. I'm going to fill in the start, the end and fill in true for
+单个对象的跟踪。我将填入起点和终点，并将 "true "填入
+
+00:05:28.880 --> 00:05:33.160
+draw debug shape. And same as our capsule trace I'm going to call this function inside
+绘制调试形状。和我们的胶囊追踪一样，我现在要调用这个函数在
+
+00:05:33.160 --> 00:05:39.520
+of the tick for now. So copy this one and paste it in here. And we'll need to manually fill
+的函数。所以，复制这个函数并把它粘贴到这里。我们将需要手动填写
+
+00:05:39.520 --> 00:05:44.800
+in the trace distance. Here I'm going to give it a hard code value of 100 units. You can
+追踪距离。在这里，我将给它一个硬编码值100单位。你可以
+
+00:05:44.800 --> 00:05:48.720
+create another member variable for this if you like. All right. I'm going to press control
+如果你愿意，可以为它创建另一个成员变量。好的。我将按控制键
+
+00:05:48.720 --> 00:05:56.160
+plus B to compile. I have a successful compile. I'm going to launch my editor back. Go back
+加B来编译。我有一个成功的编译。我将启动我的编辑器回来。回到
+
+00:05:56.160 --> 00:06:00.760
+to my project. I'm going to press play and you can see we have another line shooting
+到我的项目。我将按下播放键，你可以看到我们有另一个行的拍摄
+
+00:06:00.760 --> 00:06:05.400
+straight from our character's eye height. And now if I move to this surface we are getting
+直接从我们的角色的眼睛高度。现在如果我移动到这个表面，我们会得到
+
+00:06:05.400 --> 00:06:10.520
+two hit results. One is from the eye height trace. One is from the capsule trace. And
+两种结果。一个是来自眼睛高度的追踪。一个是来自太空舱的追踪。而且
+
+00:06:10.520 --> 00:06:16.000
+that's great. Now we should have all the information, all the tools we need to check whether or not
+这很好。现在我们应该有所有的信息，所有的工具，我们需要检查是否
+
+00:06:16.000 --> 00:06:21.000
+we can start climbing. And we'll look at how we can do that in the next lecture. Later
+我们可以开始爬升。我们将在下一讲中研究如何做到这一点。稍后
+
+00:06:21.000 --> 00:06:26.480
+when you implement this by yourself, this is the math that I use for our eye height trace.
+当你自己实现这一点时，这是我为我们的眼睛高度追踪所使用的数学方法。
+
+00:06:26.480 --> 00:06:30.960
+The trace start offset here, later when we try to detect the ledge, simply tracing from
+追踪开始的偏移量在这里，以后当我们试图检测壁架时，简单地从我们的眼睛高度来追踪
+
+00:06:30.960 --> 00:06:35.280
+our eye height will be not high enough. So this is what this trace start offset is here
+我们的眼睛高度将不够高。所以这就是这个追踪起始偏移量的作用
+
+00:06:35.280 --> 00:06:39.360
+for. Other than that, everything should be pretty straightforward. Feel free to refer
+的作用。除此以外，一切都应该是非常直接的。如果你需要帮助，可以随时参考
+
+00:06:39.360 --> 00:06:42.640
+back to the video if you need help. And I'll see you in the next lecture.
+如果你需要帮助的话，可以回到视频中。我们在下一节课再见。
+
+00:06:42.640 --> 00:06:52.640
+[music]
+[音乐]
+
+00:06:52.640 --> 00:06:54.640
+[music]
+[音乐]

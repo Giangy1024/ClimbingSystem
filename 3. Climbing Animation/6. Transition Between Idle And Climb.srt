@@ -1,0 +1,365 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.200
+Welcome. In the last lecture, we set up an idle to climb montage and now by pressing
+欢迎。在上一节课中，我们设置了一个从空闲到爬升的蒙太奇，现在通过按下
+
+00:00:10.200 --> 00:00:15.960
+the climb action key, we'll be playing that montage and a callback function will be fired
+攀登动作键，我们就会播放这个蒙太奇，一旦蒙太奇结束，一个回调函数就会启动
+
+00:00:15.960 --> 00:00:20.840
+once a montage has ended. And starting from this lecture, we'll look at how we can play
+一旦蒙太奇结束，一个回调函数将被触发。从这个讲座开始，我们将研究如何在我们的游戏中播放
+
+00:00:20.840 --> 00:00:25.920
+the correct animation when we are inside of the climb state. And I like to take care of
+当我们处于爬升状态时如何播放正确的动画。而我喜欢先处理好
+
+00:00:25.920 --> 00:00:30.800
+the coding part first. So I'm going to close my project and instead of this custom moving
+编码的部分。所以我将关闭我的项目，而不是这个自定义的移动
+
+00:00:30.800 --> 00:00:36.280
+component, I'm going to scroll down to this own climb montage ended. So when this function
+组件，我将向下滚动到这个自己的爬升蒙太奇结束。所以当这个函数
+
+00:00:36.280 --> 00:00:41.080
+is fired, I'm going to first delete this debug line. We'll know what's the montage that's
+被触发时，我将首先删除这个调试行。我们将知道什么是蒙太奇的
+
+00:00:41.080 --> 00:00:48.080
+currently ending. And for that, we can do an if check in here. So if this montage is
+目前正在结束。为此，我们可以在这里做一个if检查。所以如果这个蒙太奇是
+
+00:00:48.080 --> 00:00:55.880
+equal to idle to climb montage, then that means we want to enter the climb state. So
+等于idle to climb montage，那么这意味着我们要进入爬升状态。所以
+
+00:00:55.880 --> 00:01:00.120
+in here, I'm going to call the function start climbing. All right, this should take care
+在这里，我将会调用函数start climbing。好的，这应该能处理好
+
+00:01:00.120 --> 00:01:05.800
+of transitioning us from idle to climb. And next thing I'm going to go back to this character
+将我们从空闲状态过渡到爬升状态。接下来，我要回到这个角色的
+
+00:01:05.800 --> 00:01:11.440
+in an instance. Inside of it, we'll need another variable. So I'm going to copy this
+在一个实例中。在它的内部，我们需要另一个变量。所以我将复制这个
+
+00:01:11.440 --> 00:01:19.320
+U property, paste it in here. And I'm going to create a new variable. So this variable
+U属性，把它粘贴到这里。然后我将创建一个新的变量。所以这个变量
+
+00:01:19.320 --> 00:01:26.800
+I'm going to call it b is climbing. And same as above, create a function definition is
+我将把它叫做b，是攀升的。和上面一样，创建一个函数定义是
+
+00:01:26.800 --> 00:01:32.360
+going to be void. I'm going to call get is climbing. And I'm going to create a function
+将会是无效的。我将调用get is climbing。然后我将创建一个函数
+
+00:01:32.360 --> 00:01:39.480
+definition, place the function at the bottom of this CPP file. So paste it in here. First
+定义，把这个函数放在这个CPP文件的底部。所以把它粘贴在这里。首先
+
+00:01:39.480 --> 00:01:44.520
+thing in case I forget, I'm going to call the function inside of this update animation.
+以防我忘记，我将在这个更新动画中调用这个函数。
+
+00:01:44.520 --> 00:01:51.600
+I'll paste it in here. And for this function, we simply need to query our custom movement
+我把它粘贴在这里。对于这个函数，我们只需要查询我们的自定义运动
+
+00:01:51.600 --> 00:02:02.840
+component and access the function is climbing and assign the value of it to this b is climbing.
+组件，然后访问 "正在爬升 "这个函数，并把它的值赋给 "正在爬升"。
+
+00:02:02.840 --> 00:02:11.160
+All right, that's all we need to do inside of code. I'm going to compile first. I have
+好了，这就是我们在代码里面需要做的所有事情。我先来编译一下。我有
+
+00:02:11.160 --> 00:02:16.600
+a successful compile. I'm going to launch my editor back. Go back to my editor. I'm
+成功的编译。我将启动我的编辑器回来。回到我的编辑器。我将
+
+00:02:16.600 --> 00:02:22.480
+going to go inside of this raw folder. Then I'm going to duplicate this hanging idle.
+去这个原始文件夹里面。然后我将复制这个悬挂的闲置。
+
+00:02:22.480 --> 00:02:29.320
+And I'm going to call this one climbed idle underscore adjusted and place this animation
+我将把这个攀升的空闲称为调整后的空闲，并把这个动画放在调整后的文件夹里。
+
+00:02:29.320 --> 00:02:34.480
+inside of this adjusted folder, select move here. Then I'm going to go back to this climb
+在这个调整后的文件夹中，选择移动这里。然后我将回到这个爬升
+
+00:02:34.480 --> 00:02:40.880
+system, open the ABP. And inside of it, I'm going to double click to open this full body.
+系统，打开ABP。在它里面，我要双击来打开这个全身。
+
+00:02:40.880 --> 00:02:46.780
+So once we finish playing the montage, we'll need to transition to the climb idle state.
+因此，一旦我们完成了蒙太奇的播放，我们将需要过渡到爬升的空闲状态。
+
+00:02:46.780 --> 00:02:53.240
+And for that, I'm going to search for it. So it's called climbed idle and drag out this
+为此，我将搜索它。所以它被称为爬升空闲，拖出这个
+
+00:02:53.240 --> 00:02:59.320
+animation, place it in here and delete this adjusted. And I'm going to drag out a pin
+动画，把它放在这里，然后删除这个调整后的动画。然后我将拖出一个引脚
+
+00:02:59.320 --> 00:03:04.200
+connected to here. And for this transition rule, double click to open it. I'm going to
+连接到这里。对于这个过渡规则，双击来打开它。我将会
+
+00:03:04.200 --> 00:03:09.400
+access the variable that we just created. So hold down control, drag it out, connect
+访问我们刚刚创建的变量。所以按住控制键，把它拖出来，连接到
+
+00:03:09.400 --> 00:03:15.960
+it to here. So if it's climbing is true, we'll enter this state. All right, this should work
+它连接到这里。所以，如果它的爬升为真，我们将进入这个状态。好了，这应该可以
+
+00:03:15.960 --> 00:03:21.360
+for now. Let's test it out. So come back to my level. I'm going to click play, then go
+现在。让我们测试一下。所以回到我的水平。我将点击播放，然后进入
+
+00:03:21.360 --> 00:03:27.560
+to the surface, press F and you can see we are inside of the climb idle state. And I'm
+到表面，按F，你可以看到我们是在爬升空闲状态下的。而且我相信你能注意到
+
+00:03:27.560 --> 00:03:33.200
+sure you can notice that the position of this animation does not align with our capsule.
+你肯定能注意到这个动画的位置与我们的太空舱不一致。
+
+00:03:33.200 --> 00:03:37.280
+So that means we'll need to manually adjust this idle animation. So I'm going to make
+所以这意味着我们需要手动调整这个空闲动画。所以我将会对它进行
+
+00:03:37.280 --> 00:03:42.400
+some adjustments on it. Go back to this animation, go inside of adjusted, double click to open
+对它进行一些调整。回到这个动画，进入调整后的动画内部，双击来打开
+
+00:03:42.400 --> 00:03:48.880
+this climb idle. And I'm going to click pause, move to the first frame and go to the back
+这个爬升空闲。我将点击暂停，移动到第一帧，然后转到后面的
+
+00:03:48.880 --> 00:03:54.640
+of it. So this is the current offset of this animation. And in order to move the body of
+它的后面。所以这就是这个动画的当前偏移。为了移动这个角色的身体
+
+00:03:54.640 --> 00:03:59.840
+this character, there are two in editor solutions that we can use. So first we can directly
+为了移动这个角色的身体，我们可以在编辑器中使用两种解决方案。所以首先我们可以直接
+
+00:03:59.840 --> 00:04:05.100
+adjust the root bone or we can adjust the pelvis. But since later we'll need to use
+调整根骨或调整骨盆。但由于后来我们需要使用
+
+00:04:05.100 --> 00:04:10.840
+control rig to help us to place our hands and the feet on the surface, adjusting pelvis
+控制设备来帮助我们将手和脚放在表面上，调整骨盆
+
+00:04:10.840 --> 00:04:16.260
+here will mess up with the bone data. So instead I'm going to directly adjust the root bone.
+这里会弄乱骨头数据。所以我打算直接调整根骨。
+
+00:04:16.260 --> 00:04:21.000
+Since we're not using the root motion here, this solution should work just fine. All right.
+由于我们在这里没有使用根部运动，这个解决方案应该可以正常工作。好的。
+
+00:04:21.000 --> 00:04:25.040
+After having the root bone selected, I'm going to press W. I'm going to drag it down a little
+选定根部骨骼后，我将按W键。
+
+00:04:25.040 --> 00:04:31.880
+bit to somewhere near here and click this add key and click save. All right, go back
+到这里附近的某个地方，然后点击这个添加键并点击保存。好了，回到
+
+00:04:31.880 --> 00:04:37.680
+to my level. I'm going to press play again, go to the surface, press F. The height of
+回到我的水平。我将再次按播放键，到表面，按F。
+
+00:04:37.680 --> 00:04:42.800
+it is kind of too low. I'll need to lift this up a little bit. So go back to it and move
+它的高度有点太低了。我需要把它抬高一点。所以回到这里，把
+
+00:04:42.800 --> 00:04:49.760
+this root bone up to somewhere near here and press add key again. All right, then press
+这根骨头移到靠近这里的地方，然后再按添加键。好的，然后按
+
+00:04:49.760 --> 00:05:00.120
+play, press F. Yeah, something like that. And now this idle animation aligns with our
+播放，按F。 对，就这样。现在这个空闲的动画与我们的
+
+00:05:00.120 --> 00:05:06.920
+capsule perfectly. And next thing I'd like to take care of. So if I press F now, we are
+胶囊完美对齐。接下来我想处理的事情是。所以如果我现在按F，我们就
+
+00:05:06.920 --> 00:05:12.520
+no longer inside of the climb state, but we are still in this climb idle animation. I
+不再处于爬升状态，但我们仍然处于爬升的空闲动画中。I
+
+00:05:12.520 --> 00:05:17.200
+don't want that. So go back to this climb system folder, double click to open this ABP
+我不希望这样。所以回到这个爬升系统文件夹，双击打开这个ABP
+
+00:05:17.200 --> 00:05:22.720
+again. So this climb idle should be able to transition to a new state. I'm going to call
+再次打开。所以这个爬升空闲应该能够过渡到一个新的状态。我打算把它叫做
+
+00:05:22.720 --> 00:05:31.920
+this one climb drop. And the transition rule here should be when this is climbing is false.
+这一个爬升下降。而这里的过渡规则应该是当这个爬升是假的。
+
+00:05:31.920 --> 00:05:41.240
+So use the not Boolean connected to here and go back to full body. Now we'll need to fill
+所以使用连接到这里的not Boolean，然后回到全身。现在我们需要在这里填充
+
+00:05:41.240 --> 00:05:47.080
+in some animation in here. So go back to my content browser. Inside the raw folder, I'm
+在这里的一些动画。所以回到我的内容浏览器。在原始文件夹中，我将
+
+00:05:47.080 --> 00:05:54.520
+going to duplicate this brace hang drop and I'm going to call this one climb drop adjusted
+我将复制这个支架悬垂，我将把这个攀登悬垂称为调整的
+
+00:05:54.520 --> 00:06:03.360
+and move it to the adjusted folder and double click to open it. Click play. So this is its
+并把它移到调整后的文件夹中，双击打开它。点击播放。所以这是它的
+
+00:06:03.360 --> 00:06:09.280
+animation. And I think right now it's too long. I don't need it to be this long. I'm
+动画。我认为现在它太长了。我不需要它这么长。我准备
+
+00:06:09.280 --> 00:06:15.600
+going to trim a few frames from it. So I think right after our character released the hands
+我打算从它身上剪掉几帧。所以我想在我们的角色松开手之后
+
+00:06:15.600 --> 00:06:22.960
+somewhere near here, about 17 frames. Right. I'm going to right mouse button click and select
+在这里附近的某个地方，大约17帧。对。我将鼠标右键点击并选择
+
+00:06:22.960 --> 00:06:29.000
+this remove from frame 18 to 51 and same as our idle animation, we'll need to adjust the
+从第18帧到第51帧删除，和我们的空闲动画一样，我们需要调整一下
+
+00:06:29.000 --> 00:06:34.320
+position of it just to have a comparison in here. I'm going to select this climb idle,
+我们需要调整它的位置，以便在这里做个比较。我将选择这个爬升空闲、
+
+00:06:34.320 --> 00:06:38.680
+hold down shift on my keyboard, double click to open it. So this could allow us to open
+按住键盘上的shift键，双击来打开它。所以这可以让我们打开
+
+00:06:38.680 --> 00:06:43.400
+two animation windows by default. If we don't hold down the shift key, we'll be only able
+两个默认的动画窗口。如果我们不按住shift键，我们就只能
+
+00:06:43.400 --> 00:06:49.520
+to open one animation window. So I'm going to click pause in here, go to the first frame.
+打开一个动画窗口。所以我要在这里点击暂停，转到第一帧。
+
+00:06:49.520 --> 00:06:56.000
+So this is the initial height of this idle animation and go to this climb drop. Having
+所以这是这个空闲动画的初始高度，然后转到这个爬升下降。在选择了
+
+00:06:56.000 --> 00:07:07.920
+the root bone selected, I'm going to drag it down to somewhere near here. Yeah, I think
+选择了根部的骨头，我要把它拖到靠近这里的地方。是的，我认为
+
+00:07:07.920 --> 00:07:13.360
+they're close enough. Maybe a bit lower. They don't need to be perfectly aligned. Just try
+它们已经足够接近了。也许再低一点。它们不需要完全对齐。只是尽量
+
+00:07:13.360 --> 00:07:17.640
+to be as close as possible. And I'm going to click this add key. All right. Go back to
+尽可能的接近。然后我将点击这个添加键。好的。返回到
+
+00:07:17.640 --> 00:07:23.280
+my animation blueprint and go inside of this climb drop, search for the animation climb
+我的动画蓝图，并进入这个攀登下降的内部，寻找攀登下降的动画
+
+00:07:23.280 --> 00:07:31.400
+drop and put it in here and go back to full body. So our climb drop should be able to
+并把它放在这里，然后回到全身。因此，我们的爬升下降应该能够
+
+00:07:31.400 --> 00:07:39.520
+transition to this for loop and our for loop can transition us back to this ground locomotion.
+过渡到这个for循环，而我们的for循环可以过渡到这个地面运动。
+
+00:07:39.520 --> 00:07:45.080
+And for that, I like to create another state alias. So right mouse button click to add
+为此，我喜欢创建另一个状态别名。所以，鼠标右键点击来添加
+
+00:07:45.080 --> 00:07:51.240
+state alias. I'm going to call this one alias underscore for loop and take this for loop
+状态别名。我将把这个别名称为下划线for loop，并把这个for loop
+
+00:07:51.240 --> 00:07:56.120
+in here, connect this pin to here. And for this transition rule, I'm going to change
+在这里，把这个引脚连接到这里。对于这个过渡规则，我将把它改为
+
+00:07:56.120 --> 00:08:02.240
+this to automatic rule and change this mode to cubic. And let's test this out. I'm going
+将其改为自动规则，并将其模式改为立方。让我们测试一下这个。我将
+
+00:08:02.240 --> 00:08:08.440
+to press compile and go back to my level, press play, go to the surface, press F. So
+按编译，回到我的关卡，按播放，到表面，按F。
+
+00:08:08.440 --> 00:08:15.920
+we are inside of the climb state, press F again and we can transition back to this ground
+所以我们现在处于爬升状态，再按一次F，我们就可以过渡到地面运动。
+
+00:08:15.920 --> 00:08:22.400
+locomotion. So I'm going to press F again and this time I'm going to go to somewhere
+运动。所以我将再次按F，这次我将去某个地方
+
+00:08:22.400 --> 00:08:36.480
+near here and press F. Try again. So I think the height of this climb drop is lower than
+在这里附近，按F键，再试一次。所以我认为这个爬升下降的高度要比
+
+00:08:36.480 --> 00:08:44.120
+this idle animation. So we'll have some sort of sliding happening. I'm going to fix that.
+这个空闲动画。所以我们会有一些滑动的情况发生。我要去解决这个问题。
+
+00:08:44.120 --> 00:08:50.640
+So go to this climb drop. I'm going to move it up a little bit to somewhere near here.
+所以去看这个爬升下降。我要把它往上移一点，移到这里附近。
+
+00:08:50.640 --> 00:09:02.200
+Click this add key and try again. Now move it to here, press F. All right. This looks
+点击这个添加键，再试一次。现在把它移到这里，按F，好了。这看起来
+
+00:09:02.200 --> 00:09:18.040
+natural enough. Yeah, looking pretty cool. So these are the new states that I add in in
+够自然。是的，看起来非常酷。所以这些是我在动画蓝图中加入的新状态
+
+00:09:18.040 --> 00:09:22.580
+my animation blueprint. There's nothing too complicated for the logic part, but just be
+我的动画蓝图。在逻辑部分没有什么太复杂的东西，但只要耐心等待动画的调整。
+
+00:09:22.580 --> 00:09:28.000
+patient with the adjustments for the animations. After you have the transitioning animation
+对动画的调整要有耐心。在你准备好过渡动画后
+
+00:09:28.000 --> 00:09:32.240
+ready, next thing that we need to take care of will be adding the climb locomotion to
+准备好后，我们需要处理的下一件事是将爬升运动添加到
+
+00:09:32.240 --> 00:09:36.840
+our animation blueprint and we'll look at how we can do that in the next lecture. So
+我们将在下一节课看看如何做到这一点。所以
+
+00:09:36.840 --> 00:09:41.360
+feel free to refer back to the video if you need help and I'll see you in the next lecture.
+如果你需要帮助，请随时参考视频，我们在下一讲再见。
+
+00:09:41.360 --> 00:09:51.600
+[music]
+[音乐]

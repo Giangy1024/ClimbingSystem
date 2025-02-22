@@ -1,0 +1,429 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.640
+Welcome. In the last lecture, we created this handy function for us to do the climbIkTrace.
+欢迎。在上一讲中，我们为我们创建了这个方便的函数来做climbIkTrace。
+
+00:00:10.640 --> 00:00:14.720
+We are going to look at how we can use the information it provides to place our left
+我们将看看我们如何利用它所提供的信息来正确放置我们的左脚
+
+00:00:14.720 --> 00:00:19.120
+foot correctly. So I'm going to double click to open this function. And the first thing
+脚的正确位置。所以我要双击来打开这个函数。而第一件事
+
+00:00:19.120 --> 00:00:24.580
+that I want to do, so I'm going to promote this head into another local variable as well.
+我想做的第一件事，是把这个头也提升到另一个局部变量中。
+
+00:00:24.580 --> 00:00:29.100
+So I'm going to increase the size of this comma box a bit, then drag these three nodes
+所以我要把这个逗号框的大小增加一点，然后把这三个节点拖到这里，并把这个钉子拖出来。
+
+00:00:29.100 --> 00:00:35.080
+to here and drag out this pin, promote it to another local variable. Click compile,
+到这里，然后拖出这个针，把它提升到另一个局部变量。点击编译、
+
+00:00:35.080 --> 00:00:39.480
+click this drop down to show all the local variables. And I'm going to rename this one
+点击这个下拉菜单，显示所有的局部变量。我将把这个重命名为
+
+00:00:39.480 --> 00:00:46.920
+to heads valid surface head and organize my graph, connect this pin to here, connect this
+为有效的表面头，并组织我的图形，将这个针脚连接到这里，将这个
+
+00:00:46.920 --> 00:00:52.680
+one to here. And I'm going to drag out this heads valid surface head get connected to
+连接到这里。我将拖出这个头的有效表面头，连接到
+
+00:00:52.680 --> 00:00:59.080
+here. All right, click compile. Then the third thing that I want to do instead of this function,
+这里。好的，点击编译。然后，我想做的第三件事，而不是这个函数、
+
+00:00:59.080 --> 00:01:05.880
+so I'm going to drag out this severe trace head location, get it. And I'm going to use
+所以我将拖出这个严重的跟踪头的位置，得到它。然后我将使用
+
+00:01:05.880 --> 00:01:12.200
+a subtract node and I'm going to drag out this input IK bone translation, plug it into socket
+一个减法节点，我将拖出这个输入的IK骨骼翻译，把它插入插座
+
+00:01:12.200 --> 00:01:18.760
+B and the value returning from this pin. So this is how much we should move our bone.
+B和从这个针脚返回的值。所以这就是我们应该移动我们的骨头的程度。
+
+00:01:18.760 --> 00:01:25.280
+But before I connect this to the return node in here, I'm going to use an if node and drag
+但是在我把它连接到返回节点之前，我要使用一个if节点，并拖出这个头部有效的表面头部。
+
+00:01:25.280 --> 00:01:31.760
+out this heads valid surface head. So if we have a valid surface head, drag down these
+拖出这个头部的有效曲面头。所以如果我们有一个有效的表面头，拖下这
+
+00:01:31.760 --> 00:01:37.880
+three nodes, this value here will go through to the final output. And if we don't, a zero
+三个节点，这个值就会进入到最终的输出。如果我们没有，一个零
+
+00:01:37.880 --> 00:01:44.800
+vector will go through to the final output. So connect this to here, place a new node.
+矢量将进入最终输出。所以把这个连接到这里，放置一个新的节点。
+
+00:01:44.800 --> 00:01:51.120
+And I'm going to change the name of it to target bone offset and click compile. And
+我将把它的名字改为目标骨骼偏移，然后点击编译。然后
+
+00:01:51.120 --> 00:01:55.800
+I'm going to go back to this forward solve. So we only want to do this climb trace when
+我将回到这个正向求解。所以我们只想在爬升时做这个爬升追踪。
+
+00:01:55.800 --> 00:02:01.080
+we are climbing. And for that we will need to create another variable to control it.
+我们正在爬升。为此，我们将需要创建另一个变量来控制它。
+
+00:02:01.080 --> 00:02:07.160
+So click this button here to add a new variable. I'm going to call this one should do climb
+所以点击这里的按钮来添加一个新的变量。我打算把这个叫做应该做攀登
+
+00:02:07.160 --> 00:02:13.080
+IK trace and drag it out first, get it and hold down B to bring out the branch node.
+IK跟踪，先把它拖出来，得到它，然后按住B键，把分支节点带出来。
+
+00:02:13.080 --> 00:02:18.800
+So if this condition is true, then I want to do the things in here, which is doing the
+所以，如果这个条件是真的，那么我想在这里做的事情，就是进行
+
+00:02:18.800 --> 00:02:24.080
+trace and fixing the positions of the bone. And same as what we did inside of this function,
+追踪和固定骨头的位置。和我们在这个函数中所做的一样、
+
+00:02:24.080 --> 00:02:29.960
+I'm going to use a sequence node in here as well. So that we'll have a cleaner graph.
+我也要在这里使用一个序列节点。这样我们就会有一个干净的图形。
+
+00:02:29.960 --> 00:02:36.000
+And I'm going to promote the return value of this function into another variable. And
+我将会把这个函数的返回值提升到另一个变量中。而且
+
+00:02:36.000 --> 00:02:43.280
+I'm going to change this name to foot underscore L underscore target offset and move these
+我将把这个名字改为下划线L下划线目标偏移，并将这两个节点移到这里。
+
+00:02:43.280 --> 00:02:49.440
+two nodes up to here. Then I'm going to hold down B to bring out another branch node, connect
+两个节点移到这里。然后，我将按住B，带出另一个分支节点，将这个引脚连接到
+
+00:02:49.440 --> 00:02:54.880
+this pin to here. And for the condition, I'm going to duplicate this get should do climb
+这个引脚到这里。对于条件，我将复制这个应做的攀登
+
+00:02:54.880 --> 00:03:02.000
+IK trace, connect it to here. So if this condition is true, I want to use the return value to
+IK跟踪，把它连接到这里。所以如果这个条件是真的，我想用返回值来
+
+00:03:02.000 --> 00:03:06.760
+set the target offset. And if the condition is false, I'm going to duplicate this node.
+设置目标偏移。如果条件为假，我将复制这个节点。
+
+00:03:06.760 --> 00:03:11.480
+I want to reset this target offset back to a zero vector. All right. That's the first
+我想把这个目标偏移量重置为零矢量。好的。这是第一个
+
+00:03:11.480 --> 00:03:16.000
+thing that I want to do inside of this main control rate graph. And the second thing I'm
+我想在这个主控制率图中做的第一件事。第二件事我要
+
+00:03:16.000 --> 00:03:21.000
+going to run most button click and type in interpolate. So for the value B here, I'm
+第二件事，我将运行大多数按钮，并输入内插法。因此，对于这里的值B，我将
+
+00:03:21.000 --> 00:03:27.160
+going to drag out this target offset get connected to socket B. And for the socket A, I'm going
+我将拖出这个目标偏移量，连接到插座B。
+
+00:03:27.160 --> 00:03:33.480
+to create a new variable. So click this button, change its type to a vector. I'm going to name
+创建一个新的变量。所以点击这个按钮，把它的类型改成一个矢量。我将把这个变量命名为
+
+00:03:33.480 --> 00:03:40.440
+this variable to foot underscore L underscore current offset and drag out this variable get
+下划线L下划线目前的偏移量，然后拖出这个变量
+
+00:03:40.440 --> 00:03:46.920
+connected to socket A and move these three nodes down. So I want to interpolate our current
+连接到插座A，并将这三个节点向下移动。所以我想把我们当前的
+
+00:03:46.920 --> 00:03:51.920
+offset to this target offset. So that will have a smooth transition later for placing
+到这个目标的偏移量。因此，这将在以后放置骨骼时有一个平滑的过渡。
+
+00:03:51.920 --> 00:03:56.640
+our bone. And for the socket T here, I'm going to run most button click and type in delta
+我们的骨头。对于这里的插座T，我将运行大多数按钮，并输入delta
+
+00:03:56.640 --> 00:04:01.840
+time. And I'm going to multiply this delta time with a value. I'm going to change the
+时间。我将把这个delta时间与一个值相乘。我将改变
+
+00:04:01.840 --> 00:04:08.440
+value for socket B here to 30. So this will be our interpreting speed and connect this
+这里的插座B的值为30。所以这将是我们的解释速度，并将其连接到
+
+00:04:08.440 --> 00:04:14.620
+to this socket. And for its return value, I'm going to use it to set this fuel current offset.
+到这个插座。对于它的返回值，我要用它来设置这个燃料电流偏移。
+
+00:04:14.620 --> 00:04:19.060
+So connect this one to here, connect this pain to here. All right. This is the second
+所以把这个连接到这里，把这个痛苦连接到这里。好的。这是第二个
+
+00:04:19.060 --> 00:04:24.720
+thing that I want to do to have a smooth interpreting value. I'm going to move these nodes out a
+我想做的第二件事是要有一个平滑的解释值。我将把这些节点移出一些
+
+00:04:24.720 --> 00:04:31.400
+bit then connect this pin. So the third thing that I want to do in this graph, I want to
+然后连接这个引脚。所以我想在这个图中做的第三件事，我想
+
+00:04:31.400 --> 00:04:38.800
+modify the position of our IK bone. So I'm going to drag out this pin and type in modify
+修改我们的IK骨骼的位置。所以我将拖出这个针脚，然后输入修改
+
+00:04:38.800 --> 00:04:44.720
+transforms. And for this item to modify, this is an array that we can fill in elements to.
+transforms。对于这个要修改的项目，这是一个数组，我们可以填入元素。
+
+00:04:44.720 --> 00:04:50.320
+So I'm going to click this app element and the type is bone. The name is going to be
+所以我将点击这个应用元素，类型是骨骼。名称将是
+
+00:04:50.320 --> 00:04:56.680
+IK underscore foot L and the transform here. I'm going to drag out this foot underscore
+IK下划线脚L和这里的转换。我将拖出这个脚下的下划线
+
+00:04:56.680 --> 00:05:02.840
+L current offset, select get it connected to this translation. And one thing to look out
+L的当前偏移量，选择将其连接到这个转换。有一件事要注意
+
+00:05:02.840 --> 00:05:07.640
+for here is, so this value here is how much we should offset our bone. So we'll need to
+这里要注意的是，这个值是我们应该偏移我们的骨头多少。所以我们需要
+
+00:05:07.640 --> 00:05:13.720
+change its mode from additive local to additive global. So we are adding this value to the
+把它的模式从局部加法改为全局加法。所以我们要把这个值加到
+
+00:05:13.720 --> 00:05:18.120
+original position of our bone. All right. That's the third thing that I want to do,
+我们的骨骼的原始位置。好的。这是我要做的第三件事、
+
+00:05:18.120 --> 00:05:23.520
+modifying the transform of the IK bone. And I'm going to move these nodes to here, then
+修改IK骨骼的变换。我将把这些节点移到这里，然后
+
+00:05:23.520 --> 00:05:30.720
+move these three nodes out. And the last thing that I want to do, I'm going to click this
+将这三个节点移出。最后，我想做的是，我将点击这个
+
+00:05:30.720 --> 00:05:36.560
+app pin. So I'm going to use the IK bone to modify the actual foot bone. So I'm going
+应用针。所以我将使用IK骨来修改实际的脚部骨骼。所以我将
+
+00:05:36.560 --> 00:05:43.120
+to drag out this pin and I'm going to type in full body IK. Since we want to modify the
+拖出这个针，然后输入全身的IK。由于我们要修改
+
+00:05:43.120 --> 00:05:48.400
+position of our bone, it won't be as simple as changing the position value of it. We also
+由于我们要修改骨头的位置，这就不是改变它的位置值那么简单了。我们还
+
+00:05:48.400 --> 00:05:54.080
+need to move other bones to compensate for this change. And this is where full body IK comes in.
+我们还需要移动其他骨骼来补偿这一变化。这就是全身IK的用处。
+
+00:05:54.080 --> 00:06:00.000
+So for the root here, I'm going to change this to pelvis. And for the effectors here,
+因此，对于这里的根，我将把它改为骨盆。对于这里的效应器、
+
+00:06:00.000 --> 00:06:04.560
+this is another array and we need to fill in the actual bone that we want to modify.
+这是另一个数组，我们需要填入我们想要修改的实际骨骼。
+
+00:06:04.560 --> 00:06:11.040
+So click this button to add array element. And in the dropdown here, I'm going to select foot
+所以点击这个按钮来添加阵列元素。在这里的下拉菜单中，我将选择足部
+
+00:06:11.040 --> 00:06:17.920
+underscore L and right mouse button click. I'm going to use the node get transform and the
+下划线L和鼠标右键点击。我将使用节点获取转换，我感兴趣的骨头是
+
+00:06:17.920 --> 00:06:24.480
+bone that I'm interested in is the IK underscore foot L. And I'm going to click this pin to here,
+我感兴趣的骨头是IK下划线脚L，我要点击这个针脚到这里、
+
+00:06:24.480 --> 00:06:30.640
+then click compile. All right, let's test this. So I'm going to click this eye icon. So this
+然后点击编译。好的，让我们测试一下。所以我将点击这个眼睛图标。所以这个
+
+00:06:30.640 --> 00:06:36.640
+variable here can be exposed to our animation blueprint and click compile. Go back to this
+变量可以被暴露在我们的动画蓝图中，然后点击编译。返回到这个
+
+00:06:36.640 --> 00:06:42.160
+app. And inside of the input here, you can see this is the variable that we just exposed. I'm
+应用程序。在这里的输入里面，你可以看到这是我们刚刚暴露的变量。我将
+
+00:06:42.160 --> 00:06:47.440
+going to take this huge pin, click this reference here. I'm going to hold down control and drag out
+我要把这个巨大的针，点击这里的参考。我将按住控制键并拖出
+
+00:06:47.440 --> 00:06:53.680
+this is climbing. So I only want to do this climb IK trace if this is climbing is true.
+这就是爬升。所以我只想在 "爬升 "为真时做这个爬升IK追踪。
+
+00:06:53.680 --> 00:07:01.840
+All right, click compile, then go back to my level, click play. And I'm going to try to clamp.
+好了，点击编译，然后回到我的水平，点击播放。我将尝试夹紧。
+
+00:07:01.840 --> 00:07:08.880
+So we can see the debug shape. That means our control rig is working, but it's kind of in the
+所以我们可以看到调试的形状。这意味着我们的控制装置在工作，但它是一种在
+
+00:07:08.880 --> 00:07:15.040
+way that we can see if the placement is correct. So I'm going to disable that, go back to this
+我们可以看到位置是否正确。所以我将禁用它，回到这个
+
+00:07:15.040 --> 00:07:22.160
+control rig. I'm going to scroll up to this function, untick this show debug shape. And I
+控制装置。我将滚动到这个功能，取消对显示调试形状的勾选。而我
+
+00:07:22.160 --> 00:07:26.320
+found out that I forgot to connect this pin to here. Make sure you double check your graph to
+我发现我忘了把这个引脚连接到这里。请确保你仔细检查你的图形，以
+
+00:07:26.320 --> 00:07:31.360
+prevent errors like this. All right, I'm going to click compile, then go back to my level and
+防止这样的错误。好的，我将点击编译，然后回到我的关卡，再按下播放键。
+
+00:07:31.360 --> 00:07:36.000
+press play again, try to climb up and you can see it's working.
+再按下播放键，试着往上爬，你可以看到它在工作。
+
+00:07:36.000 --> 00:07:43.680
+When we're climbing, I'm going to go to this surface here. Our left foot is clipping through
+当我们在爬的时候，我要到这个表面去。我们的左脚正穿过
+
+00:07:43.680 --> 00:07:49.680
+the surface. So our trace is working. And now we need to provide this some offset since what we
+表面。所以我们的跟踪是有效的。现在我们需要提供一些偏移，因为我们的
+
+00:07:49.680 --> 00:07:56.400
+want here is we want to snap the tip of our foot to the surface and not the entire foot. All right,
+这里要的是我们要把脚尖扣在表面，而不是整个脚。好的、
+
+00:07:56.400 --> 00:08:02.000
+go back to my control rig graph. I'm going to double click to open this function. And I'm going
+回到我的控制平台图。我将双击来打开这个功能。然后我将
+
+00:08:02.000 --> 00:08:08.160
+to give it a new function input. So click this button to add a new element changes type to a
+给它一个新的函数输入。所以，点击这个按钮，添加一个新的元素变化类型为
+
+00:08:08.160 --> 00:08:15.120
+float. And I'm going to change its name to target location offset. And I'm going to adjust its order.
+浮子。我将把它的名字改为目标位置偏移。我还要调整它的顺序。
+
+00:08:15.120 --> 00:08:21.520
+So connect this pin in here to move this parameter up and click compile. And I'm going to move to
+所以连接这里的针脚，将这个参数向上移动，然后点击编译。然后我将移动到
+
+00:08:21.520 --> 00:08:27.040
+this subtract node in here. So for the final location, before we output it, I'm going to drag
+这里的减法节点。因此，在我们输出之前，对于最后的位置，我要把它拖出来并使用另一个减法节点。
+
+00:08:27.040 --> 00:08:33.200
+it out and use another subtract node and connect this drop down and right mouse button click to get
+并使用另一个减法节点，连接这个下拉菜单，然后点击鼠标右键来获得
+
+00:08:34.000 --> 00:08:40.160
+the function input that we just created. So get target location offset and connect it to this Y
+我们刚刚创建的函数输入。所以得到目标位置的偏移，并将其连接到这个Y
+
+00:08:40.160 --> 00:08:45.840
+and connect this pin to the true socket. Now we should have the ability to offset the foot
+并把这个引脚连接到真正的插座上。现在我们应该有偏移脚的能力了
+
+00:08:45.840 --> 00:08:53.040
+and click compile. Go back to this forward self. So I'm first going to try a value of 20 units
+并点击编译。回到这个向前的自我。所以我首先要尝试一个20单位的值
+
+00:08:53.040 --> 00:08:59.520
+and see what this feels like. All right, go back to our level. I'm going to try again, try to climb up.
+看看这是什么感觉。好了，回到我们的水平。我准备再试一次，试着往上爬。
+
+00:09:01.120 --> 00:09:04.560
+And you can see this time it works much better.
+你可以看到这次的效果要好得多。
+
+00:09:04.560 --> 00:09:10.560
+Maybe 20 units is a bit much.
+也许20个单位有点多。
+
+00:09:10.560 --> 00:09:18.240
+I'm going to decrease it to 15 for our left foot and compile. Try again.
+我要把我们的左脚减少到15，然后编译。再试一次。
+
+00:09:18.240 --> 00:09:28.320
+So I think 15 is not quite enough, maybe 18.
+所以我认为15是不太够的，也许是18。
+
+00:09:29.040 --> 00:09:32.400
+And try again.
+再试一次。
+
+00:09:32.400 --> 00:09:43.840
+I think 18 works better for the left foot. I'm going to try to move to the right
+我认为18对左脚来说效果更好。我将尝试向右移动
+
+00:09:43.840 --> 00:09:49.520
+and move down, move up.
+并向下移动，向上移动。
+
+00:09:49.520 --> 00:09:55.920
+Great. I think it's working really well.
+很好。我认为它的效果非常好。
+
+00:09:56.240 --> 00:10:01.920
+So just a quick summary. In order to achieve what we want, we need to get hold of the target offset
+因此，只是一个简单的总结。为了达到我们的目的，我们需要掌握目标的偏移量。
+
+00:10:01.920 --> 00:10:07.680
+and with our head location and the bone location, we can get just that. After this step, don't forget
+而有了我们的头部位置和骨骼位置，我们就可以得到这个。在这一步之后，别忘了
+
+00:10:07.680 --> 00:10:12.720
+to interpolate the value so that we'll have a smooth transition. Then all we need to do is
+插值，这样我们就会有一个平滑的过渡。然后我们需要做的就是
+
+00:10:12.720 --> 00:10:18.800
+modifying the IK bone and use the IK bone to modify the actual foot bone. And very likely,
+修改IK骨，并使用IK骨来修改实际的脚骨。而且很有可能、
+
+00:10:18.800 --> 00:10:23.840
+same as what you just saw, your foot will clip through the surface and that's where the foot
+和你刚才看到的一样，你的脚会穿过表面，这就是脚的位置
+
+00:10:23.840 --> 00:10:28.400
+clip through the surface and that's where the horizontal offset comes in. This value here can
+这就是脚穿过表面的地方，这就是水平偏移的地方。这个值可以
+
+00:10:28.400 --> 00:10:33.920
+help us to manually adjust the position for our foot. So feel free to refer back to the video if
+帮助我们手动调整我们的脚的位置。所以，如果你需要帮助，可以随时参考视频。
+
+00:10:33.920 --> 00:10:38.400
+you need help. And it's time for you to do the same. And I'll see you in the next lecture.
+你需要帮助。现在是时候让你做同样的事情了。我们在下一个讲座中再见吧。
+
+00:10:38.400 --> 00:10:49.400
+[Music]
+[音乐]

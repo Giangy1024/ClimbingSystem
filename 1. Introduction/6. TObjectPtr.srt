@@ -1,0 +1,117 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.480
+Hey, welcome back. Before we move on and start to actually write some game code, there's
+嘿，欢迎回来。在我们继续并开始实际编写一些游戏代码之前，有一件事我想提一下。
+
+00:00:05.480 --> 00:00:09.920
+one thing that I'd like to mention, and that is the object pointer. Later when we dive
+我想提到一件事，那就是对象指针。以后当我们深入到
+
+00:00:09.920 --> 00:00:14.840
+into the engine's source code, instead of the traditional way of using a pointer as
+的源码时，不是用指针作为成员变量的传统方式。
+
+00:00:14.840 --> 00:00:19.000
+a member variable, this is something that we'll see inside of the header file. And
+一个成员变量，而是在头文件中看到的东西。而
+
+00:00:19.000 --> 00:00:24.100
+that is the t-object pointer. It is created in Unreal Engine 5. It's meant to replace
+这就是t-object指针。它是在虚幻引擎5中创建的。它的目的是为了取代
+
+00:00:24.100 --> 00:00:29.960
+the traditional way of creating a pointer as member variable. Comparing to a raw pointer,
+传统的将指针创建为成员变量的方式。与一个原始的指针相比、
+
+00:00:29.960 --> 00:00:35.520
+it has more features. So it supports access tracking and lazy loading. So what access
+它有更多的功能。所以它支持访问跟踪和懒惰加载。因此，访问
+
+00:00:35.520 --> 00:00:41.000
+tracking means is it can allow us to track when exactly an object has been accessed.
+跟踪的意思是它可以让我们跟踪一个对象到底是什么时候被访问的。
+
+00:00:41.000 --> 00:00:45.840
+And this can be quite useful for debugging purposes since it can help us to quickly identify
+这对于调试来说是非常有用的，因为它可以帮助我们快速确定
+
+00:00:45.840 --> 00:00:50.920
+when and where an object is being accessed in the code. And as for lazy loading, it could
+在代码中何时何地访问一个对象。而对于懒惰加载，它可以
+
+00:00:50.920 --> 00:00:56.480
+allow us to load an object into memory only when it's needed. So potentially this could
+允许我们只在需要的时候将一个对象加载到内存中。因此，这可能会
+
+00:00:56.480 --> 00:01:01.400
+help us to reduce the amount of time of loading access inside of our editor. But one thing
+帮助我们减少在编辑器中加载访问的时间。但是有一件事
+
+00:01:01.400 --> 00:01:06.920
+to look out for is using the object pointer as member variable has no impact on performance.
+要注意的是，使用对象指针作为成员变量，对性能没有影响。
+
+00:01:06.920 --> 00:01:12.040
+So it won't magically make our game run faster as it just contains more features than raw
+所以它不会神奇地使我们的游戏运行得更快，因为它只是包含了比原始指针更多的功能。
+
+00:01:12.040 --> 00:01:17.480
+pointers. Another thing to mention is the object pointer is only designed to use as
+指针。另一件要提到的事情是，对象指针只被设计为作为
+
+00:01:17.480 --> 00:01:23.200
+a member variable. So if you use it for a local variable inside of our function or an
+一个成员变量。因此，如果你在我们的函数中使用它作为一个局部变量或者一个
+
+00:01:23.200 --> 00:01:28.440
+input parameter, they will be converted into a raw pointer automatically. And same thing
+输入参数，它们将被自动转换为原始指针。而同样的事情
+
+00:01:28.440 --> 00:01:33.600
+goes for a shipping build. So this is only something that we can use inside of our editor
+也是如此。所以这只是我们可以在编辑器中使用的东西
+
+00:01:33.600 --> 00:01:39.400
+and it could potentially offer us better developing experience. Whether or not to use it is completely
+而且它有可能为我们提供更好的开发体验。是否使用它完全是
+
+00:01:39.400 --> 00:01:44.960
+optional in 5.1. As of now, there are still plenty of raw pointers inside of Unreal's
+在5.1中是可选的。到目前为止，在虚幻的5.1版本中仍然有很多原始的指针。
+
+00:01:44.960 --> 00:01:49.400
+source code. And since we have no need of the features it provides and the code template
+源代码。因为我们不需要它所提供的功能，而且我们使用的代码模板仍然使用原始指针作为成员变量。
+
+00:01:49.400 --> 00:01:55.240
+we use still uses the raw pointer as member variable, I'm gonna stick with the old traditional
+我们使用的代码模板仍然使用原始指针作为成员变量，我将坚持使用传统的
+
+00:01:55.240 --> 00:02:00.840
+way of declaring pointers as member variable. And later when we see syntax like this in
+的方式将指针声明为成员变量。而以后当我们看到在
+
+00:02:00.840 --> 00:02:05.320
+Unreal's source code, you just need to know this is just a pointer. Alright, with this
+虚幻的源代码时，你只需要知道这只是一个指针。好了，有了这个
+
+00:02:05.320 --> 00:02:09.800
+out of the way, starting from next lecture, we can actually write the game code we need.
+了，从下一节课开始，我们可以真正地编写我们需要的游戏代码了。
+
+00:02:09.800 --> 00:02:11.360
+I'll see you in the next lecture.
+我们将在下一讲中再见。
+
+00:02:11.360 --> 00:02:12.360
+[Music]
+[音乐]
+
+00:02:14.360 --> 00:02:15.360
+[Music]
+[音乐]
+
+00:02:15.360 --> 00:02:20.360
+[Music]
+[音乐]

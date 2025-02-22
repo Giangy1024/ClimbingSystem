@@ -1,0 +1,457 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.880
+Welcome.
+欢迎。
+
+00:00:05.880 --> 00:00:10.520
+In the last lecture, we successfully implemented this hopping up for our character.
+在上一节课中，我们成功地为我们的角色实现了这种跳跃。
+
+00:00:10.520 --> 00:00:15.020
+And before we move on, I'd like to increase the hopping distance for this animation.
+在我们继续之前，我想增加这个动画的跳跃距离。
+
+00:00:15.020 --> 00:00:18.740
+And to do that, I'm gonna first go back to my code and scroll down.
+要做到这一点，我将首先返回到我的代码并向下滚动。
+
+00:00:18.740 --> 00:00:25.080
+So for this hopup hit, I'm gonna change this value from -30 to -20.
+因此，对于这个HopUp命中，我将把这个值从-30更改为-20。
+
+00:00:25.080 --> 00:00:27.520
+I think the height of our chest is not high enough.
+我觉得我们的胸围不够高。
+
+00:00:27.520 --> 00:00:31.120
+I'm gonna click Save All, then use Live Coding.
+我将单击全部保存，然后使用实时编码。
+
+00:00:31.120 --> 00:00:32.120
+Alright Live Coding succeeded.
+好的，实时编码成功。
+
+00:00:32.120 --> 00:00:33.440
+I'm gonna try again.
+我要再试一次。
+
+00:00:33.440 --> 00:00:34.440
+So click Play.
+因此，请点击播放。
+
+00:00:34.440 --> 00:00:44.840
+Then, yeah, I think this time it looks much better.
+那么，是的，我认为这一次看起来好多了。
+
+00:00:44.840 --> 00:00:48.400
+I'm gonna try again on this side.
+我要在这边再试一次。
+
+00:00:48.400 --> 00:00:53.920
+Yeah, looking pretty cool.
+是啊，看起来很酷。
+
+00:00:53.920 --> 00:00:58.360
+And now with this hopping up ready, we just need to use the same process to add in hopping
+现在跳跃准备好了，我们只需要使用相同的过程来添加跳跃
+
+00:00:58.360 --> 00:00:59.360
+down.
+放下。
+
+00:00:59.360 --> 00:01:02.400
+And I think you are more than prepared to take it from here.
+我认为你已经做好充分的准备来接手这件事。
+
+00:01:02.400 --> 00:01:07.000
+So our last section challenge is, I'd like you to set up condition check for hopping
+所以我们的最后一节挑战是，我想让你们为跳跃设置条件检查
+
+00:01:07.000 --> 00:01:08.000
+down.
+放下。
+
+00:01:08.000 --> 00:01:11.960
+You can use the same function for checking hopping up, but only this time we'll need
+您可以使用相同的函数来检查跳跃，但只有这一次我们需要
+
+00:01:11.960 --> 00:01:15.420
+to get hold of the target position below our character.
+以获得低于我们角色的目标位置。
+
+00:01:15.420 --> 00:01:19.620
+And once you have a working condition check, same as hopping up, I'd like you to use motion
+一旦你有了工作状态检查，就像跳起来一样，我希望你使用运动
+
+00:01:19.620 --> 00:01:22.000
+morphing to set the target location for it.
+变形以设置其目标位置。
+
+00:01:22.000 --> 00:01:31.160
+Alright, pause the video now and give this a go, or come back if you need help.
+好的，现在暂停视频，试一试，如果你需要帮助，可以回来。
+
+00:01:31.160 --> 00:01:32.160
+Welcome back.
+欢迎回来。
+
+00:01:32.160 --> 00:01:33.160
+How did that go for you?
+你觉得怎么样？
+
+00:01:33.160 --> 00:01:36.440
+Hopefully, at this point you have hopping down ready.
+希望在这一点上你已经准备好跳下去了。
+
+00:01:36.440 --> 00:01:38.600
+And don't worry if you ran into any issues.
+如果你遇到任何问题，也不用担心。
+
+00:01:38.600 --> 00:01:40.480
+Let's look at how it can be done.
+让我们来看看如何做到这一点。
+
+00:01:40.480 --> 00:01:43.120
+So I'm gonna first close my project.
+所以我要先结束我的项目。
+
+00:01:43.120 --> 00:01:46.600
+Then inside of Visual Studio, I'm gonna delete these two tools.
+然后在Visual Studio中，我将删除这两个工具。
+
+00:01:46.600 --> 00:01:50.520
+I don't need to see these debug lines anymore.
+我不需要再看到这些调试行了。
+
+00:01:50.520 --> 00:01:56.840
+And next thing I'm gonna go back to my header file, and I'm gonna create two similar functions.
+接下来，我将回到我的头文件，我将创建两个类似的函数。
+
+00:01:56.840 --> 00:01:57.960
+So it's gonna be void.
+所以这将是无效的。
+
+00:01:57.960 --> 00:02:01.800
+I'm gonna call it handle, hop down.
+我要把它叫做把手，跳下来。
+
+00:02:01.800 --> 00:02:04.720
+And same as above, I'm gonna create the second function.
+和上面一样，我将创建第二个函数。
+
+00:02:04.720 --> 00:02:05.720
+It's gonna be bull.
+这将会是一派胡言。
+
+00:02:05.720 --> 00:02:09.000
+I'm gonna call it check, can, hop down.
+我要把它叫做Check，Can，跳下来。
+
+00:02:09.000 --> 00:02:12.420
+And it's gonna have the same output parameter.
+它将有相同的输出参数。
+
+00:02:12.420 --> 00:02:17.320
+And I'm gonna call this one out, hop down, target, position.
+我要把这个叫出来，跳下来，目标，位置。
+
+00:02:17.320 --> 00:02:19.720
+And I'm gonna create two function definitions.
+我将创建两个函数定义。
+
+00:02:19.720 --> 00:02:29.520
+So I'll paste the function below this check, can, hop up, and paste this one as well.
+所以我会粘贴下面的函数，可以，跳起来，然后粘贴这个。
+
+00:02:29.520 --> 00:02:34.360
+First thing in case I forget, I'm gonna call the function handle, hop down.
+第一件事，如果我忘记了，我要调用函数句柄，跳下来。
+
+00:02:34.360 --> 00:02:36.600
+So I'm gonna paste the function in here.
+所以我要把这个函数粘贴到这里。
+
+00:02:36.600 --> 00:02:39.320
+And now I don't need to see these debug functions.
+现在我不需要看到这些调试函数。
+
+00:02:39.320 --> 00:02:42.320
+I'm gonna delete all of them.
+我要把它们全部删除。
+
+00:02:42.320 --> 00:02:45.440
+So delete this one.
+那就把这个删掉吧。
+
+00:02:45.440 --> 00:02:47.120
+And this one.
+还有这个。
+
+00:02:47.120 --> 00:02:49.360
+And delete this else case.
+并删除这个Else大小写。
+
+00:02:49.360 --> 00:02:52.120
+And scroll down to this handle, hop down.
+然后向下滚动到这个把手，向下跳。
+
+00:02:52.120 --> 00:02:53.600
+So it's gonna be the same.
+所以它会是一样的。
+
+00:02:53.600 --> 00:02:56.000
+I'm gonna create an effector.
+我要创建一个效应器。
+
+00:02:56.000 --> 00:03:00.320
+I'm gonna call it hop down, target, point.
+我把它叫做向下跳，目标，点。
+
+00:03:00.320 --> 00:03:09.600
+And I'm gonna check if this can check hop down is true and pass in these variables.
+我将检查这是否可以检查Hop Down是否为真，并传递这些变量。
+
+00:03:09.600 --> 00:03:12.960
+Then same as above, we can play the montage.
+然后和上面一样，我们可以玩蒙太奇了。
+
+00:03:12.960 --> 00:03:16.400
+And instead of this function, it's actually fairly simple.
+它实际上相当简单，而不是这个函数。
+
+00:03:16.400 --> 00:03:19.760
+I'm gonna use the same function trace from my height.
+我会用和我身高一样的函数轨迹。
+
+00:03:19.760 --> 00:03:23.360
+So the length is gonna be the same, 100 units.
+所以长度是一样的，100个单位。
+
+00:03:23.360 --> 00:03:25.280
+But the offset distance.
+而是偏移距离。
+
+00:03:25.280 --> 00:03:30.640
+So after some testing, I found out that a value of -300 works the best.
+因此，经过一些测试后，我发现-300的值效果最好。
+
+00:03:30.640 --> 00:03:35.160
+You can promote this to another member variable and test it inside the Blueprint.
+您可以将其提升为另一个成员变量，并在Blueprint中对其进行测试。
+
+00:03:35.160 --> 00:03:39.400
+And I'm gonna store the return result inside of nfhit result.
+并且我将把返回结果存储在nfHit结果中。
+
+00:03:39.400 --> 00:03:42.560
+I'm gonna call it hop down, hit.
+我要叫它跳下去，击球。
+
+00:03:42.560 --> 00:03:43.800
+Then I'm gonna check.
+那我去查一查。
+
+00:03:43.800 --> 00:03:52.240
+So if this hop down hit, the B blocking hit is true, then I'm gonna assign its impact
+因此，如果这一跳向下命中，B阻挡命中是真的，那么我将把它的影响
+
+00:03:52.240 --> 00:03:56.660
+point to this outproper meter.
+指着这个不合时宜的计价器。
+
+00:03:56.660 --> 00:04:01.800
+So access the variable impact point, then return true.
+因此，访问变量影响点，然后返回TRUE。
+
+00:04:01.800 --> 00:04:05.480
+At the end of this function, I'm gonna return false.
+在此函数的末尾，我将返回FALSE。
+
+00:04:05.480 --> 00:04:07.800
+And inside of this handle, hop down.
+在这个把手里面，跳下来。
+
+00:04:07.800 --> 00:04:11.840
+So first, I'm gonna call the function setMotionWarpTarget.
+因此，首先，我将调用函数setMotionWarpTarget。
+
+00:04:11.840 --> 00:04:16.480
+And the name is gonna be this hop down target point.
+名字将是这个跳跃下的目标点。
+
+00:04:16.480 --> 00:04:18.720
+So paste it in here.
+所以把它贴在这里。
+
+00:04:18.720 --> 00:04:23.320
+The value is gonna be the variable.
+值将是变量。
+
+00:04:23.320 --> 00:04:25.320
+Then I'm gonna play the montage.
+然后我要演奏蒙太奇。
+
+00:04:25.320 --> 00:04:29.400
+And for that, I'll need another variable inside the Blueprint.
+为此，我需要蓝图中的另一个变量。
+
+00:04:29.400 --> 00:04:32.400
+So copy this one, paste it in here.
+所以复制这个，粘贴到这里。
+
+00:04:32.400 --> 00:04:35.800
+I'm gonna call this one hop down montage.
+我要把这一次称为跳下蒙太奇。
+
+00:04:35.800 --> 00:04:41.320
+Then inside of my cpp file, I'm gonna call the function playClientMontage and pass in
+然后在我的cpp文件中，我将调用函数playClientMonage并传入
+
+00:04:41.320 --> 00:04:44.320
+this hop down montage.
+这一跳下蒙太奇。
+
+00:04:44.320 --> 00:04:45.800
+And that's the coding part done.
+这就是编码部分的完成。
+
+00:04:45.800 --> 00:04:50.600
+I'm gonna try to compile first.
+我要先试着汇编一下。
+
+00:04:50.600 --> 00:04:51.800
+I have a successful compile.
+我有一个成功的汇编。
+
+00:04:51.800 --> 00:04:56.120
+I'm gonna launch my editor back.
+我要把我的编辑调回来。
+
+00:04:56.120 --> 00:04:58.560
+And next thing, I'll need to create a new montage.
+接下来，我需要创建一个新的蒙太奇。
+
+00:04:58.560 --> 00:05:00.760
+So go back to this adjusted folder.
+所以回到这个调整过的文件夹。
+
+00:05:00.760 --> 00:05:04.720
+Right mouse button, click this hop down and create an annual montage.
+鼠标右键，点击此跳下并创建年度蒙太奇。
+
+00:05:04.720 --> 00:05:08.800
+I'm gonna call this one am_hopdown.
+我要把这个叫做Am_Hopdown。
+
+00:05:08.800 --> 00:05:12.080
+And move this montage to the montages folder.
+并将此蒙太奇移动到蒙太奇文件夹。
+
+00:05:12.080 --> 00:05:13.600
+Then double click to open it.
+然后双击将其打开。
+
+00:05:13.600 --> 00:05:21.240
+So first I'm gonna change the blend option to cubic for both blending in and out.
+因此，首先我要将混合选项更改为立方体，用于混合输入和输出。
+
+00:05:21.240 --> 00:05:25.300
+Then I'm gonna right mouse button click to add in motion morphing.
+然后我要用鼠标右键点击来添加运动变形。
+
+00:05:25.300 --> 00:05:38.800
+And this motion morphing should start at here I think.
+我认为，这种运动变形应该从这里开始。
+
+00:05:38.800 --> 00:05:41.520
+And I think it should end in here.
+我认为它应该在这里结束。
+
+00:05:41.520 --> 00:05:49.840
+Alright, for this warp target name, I'm gonna change this to hop down target point and untick
+好的，对于这个扭曲目标名称，我将更改为跳过目标点并取消勾选
+
+00:05:49.840 --> 00:05:52.200
+this ignore z axis.
+这会忽略z轴。
+
+00:05:52.200 --> 00:05:56.520
+Change the easing function to cubic and untick warp rotation.
+将缓动功能更改为立方体和取消勾选扭曲旋转。
+
+00:05:56.520 --> 00:05:58.880
+Alright hit save.
+好的，命中扑救。
+
+00:05:58.880 --> 00:06:03.040
+And I'm gonna go to this character blueprint.
+我要去看看这个角色蓝图。
+
+00:06:03.040 --> 00:06:05.880
+Assign the montage in here.
+在这里指定蒙太奇。
+
+00:06:05.880 --> 00:06:08.880
+So it'll be this am_hopdown.
+所以就是这个上午跳楼。
+
+00:06:08.880 --> 00:06:09.880
+Alright click compile.
+好的，点击编译。
+
+00:06:09.880 --> 00:06:12.040
+I'm gonna test this.
+我要测试一下这个。
+
+00:06:12.040 --> 00:06:14.840
+So start glimping.
+所以，开始瞥一眼吧。
+
+00:06:14.840 --> 00:06:16.400
+Hop up.
+跳起来。
+
+00:06:16.400 --> 00:06:18.840
+Then try to hop down.
+然后试着跳下来。
+
+00:06:18.840 --> 00:06:23.800
+And you can see it's working.
+你可以看到它在起作用。
+
+00:06:23.800 --> 00:06:28.280
+And for hopping down, we don't need to do any safety check because all of our code inside
+对于跳跃，我们不需要做任何安全检查，因为我们里面的所有代码
+
+00:06:28.280 --> 00:06:32.360
+of physics climb already takes care of that.
+物理攀登已经解决了这一问题。
+
+00:06:32.360 --> 00:06:40.440
+And just like that, we have hopping up and hopping down for our glimping system.
+就像这样，为了我们的闪光系统，我们有跳上跳下。
+
+00:06:40.440 --> 00:06:43.520
+And this looks pretty cool.
+这看起来很酷。
+
+00:06:43.520 --> 00:06:47.320
+In this lecture, we handled hopping down for our glimping system.
+在这堂课中，我们处理了闪光系统的跳跃。
+
+00:06:47.320 --> 00:06:51.400
+And now with this feature added, we have a really cool glimping system.
+现在添加了这一功能，我们有了一个非常酷的扫视系统。
+
+00:06:51.400 --> 00:06:52.400
+Great job.
+干得好。
+
+00:06:52.400 --> 00:06:53.280
+I'll see you in the next lecture.
+我将在下一节课上见到你。
+
+00:06:53.520 --> 00:07:03.520
+[music]
+[音乐]

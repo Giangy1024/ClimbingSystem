@@ -1,0 +1,449 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.240
+Welcome! After last lecture, now that we can move our character along the surface with
+欢迎大家 经过上一节课的学习，现在我们可以用我们设定的爬升速度和加速度沿着表面移动我们的角色了。
+
+00:00:10.240 --> 00:00:15.840
+the climb speed and acceleration that we set. At this moment, we can only move our character
+我们设定的爬升速度和加速度。在这个时候，我们只能在水平方向上移动我们的角色
+
+00:00:15.840 --> 00:00:20.960
+horizontally and not vertically, and in this lecture, we'll look at how we can handle
+水平移动，而不是垂直移动，在本课中，我们将研究如何处理
+
+00:00:20.960 --> 00:00:26.760
+this. So when we're climbing, there are only two types of movement. So it's either up or
+这一点。因此，当我们在攀爬时，只有两种类型的运动。所以它要么是向上或
+
+00:00:26.760 --> 00:00:33.120
+down or left or right. Moving the character forward is no longer the same as when we are
+下，或左或右。向前移动角色不再与我们在地面上时一样了
+
+00:00:33.120 --> 00:00:38.240
+on the ground. So we'll need to handle these two movement directions differently, and we'll
+在地面上的时候不一样。所以我们需要以不同的方式来处理这两种运动方向，并且我们需要通过交叉积来实现。
+
+00:00:38.240 --> 00:00:44.320
+need to do it through cross product. But what is cross product? Well, in simple terms, it's
+我们需要通过交叉积来实现。但什么是交叉乘积？嗯，简单地说，它是
+
+00:00:44.320 --> 00:00:50.840
+a binary operation on two vectors in 3D space, and it results in a vector that's perpendicular
+对三维空间中的两个向量进行二元运算，其结果是产生一个与两个向量垂直的向量。
+
+00:00:50.840 --> 00:00:56.280
+to both vectors. That's what cross product does. So by using cross product, we can get
+与两个向量垂直。这就是交叉积的作用。所以通过使用交叉积，我们可以得到
+
+00:00:56.280 --> 00:01:01.680
+a vector that's perpendicular to other two vectors that we specified. But how do we even
+一个与我们指定的其他两个矢量垂直的矢量。但我们如何才能
+
+00:01:01.680 --> 00:01:06.520
+specify that? And that's where the right hand rule comes in. So this is something that we
+指定呢？这就是右手规则的作用。因此，这就是我们
+
+00:01:06.520 --> 00:01:12.080
+can use our hand to help us. So the index finger here, this is our first vector. I'm
+可以用我们的手来帮助我们。所以食指在这里，这是我们的第一个矢量。我
+
+00:01:12.080 --> 00:01:16.880
+going to call it A, and our middle finger here, this is our second vector. I'm going
+而我们的中指在这里，这是我们的第二个矢量。我打算
+
+00:01:16.880 --> 00:01:22.760
+to call it B, and the result of A cross B is something that we can represent by using
+我把它叫做B，A与B交叉的结果是我们可以用拇指来表示的东西。
+
+00:01:22.760 --> 00:01:27.240
+our thumb. And now you're probably thinking, how is this going to help us to determine
+我们的拇指。现在你可能在想，这将如何帮助我们确定
+
+00:01:27.240 --> 00:01:32.200
+the climb direction? Well, if you think about it, since we want to move our character up
+爬升方向？好吧，如果你想一想，既然我们想让我们的角色向上或向下移动
+
+00:01:32.200 --> 00:01:37.920
+or down, so we only need to get hold of the inverse surface normal and the character's
+或向下，所以我们只需要掌握反表面法线和角色的
+
+00:01:37.920 --> 00:01:43.160
+left vector. And by using a cross product in here, we can get the forward direction,
+左边的矢量。通过使用这里的交叉积，我们可以得到前进的方向、
+
+00:01:43.160 --> 00:01:48.000
+which is our thumb. And this is all the math that we need to do. But before we start coding,
+也就是我们的拇指。这就是我们需要做的所有数学运算。但在我们开始编码之前、
+
+00:01:48.000 --> 00:01:53.320
+there's one more thing that you need to know. So in Unreal, instead of the right hand rule,
+还有一件事你需要知道。所以在虚幻中，不是用右手规则、
+
+00:01:53.320 --> 00:01:58.440
+we actually need to use the left hand rule. So this vector here stays the same. This is
+我们实际上需要使用左手规则。所以这里的这个矢量保持不变。这就是
+
+00:01:58.440 --> 00:02:04.040
+still the inverse surface normal. But this vector here, this can simply be our character's
+仍然是反表面法线。但这里的这个向量，可以简单地作为我们角色的
+
+00:02:04.040 --> 00:02:08.720
+right vector. And the reason why you need to use the left hand rule is in Unreal, the
+右边的向量。你需要使用左手规则的原因是在虚幻中，正Y在右边。
+
+00:02:08.720 --> 00:02:14.880
+positive Y is on the right hand side. In other programs, maybe it's the exact opposite. So
+正Y是在右手边。在其他程序中，也许正好相反。所以
+
+00:02:14.880 --> 00:02:19.200
+keep that in mind. All right, let's start coding. First, I'm going to close my project. I'm
+牢记这一点。好了，让我们开始编码吧。首先，我将关闭我的项目。我将
+
+00:02:19.200 --> 00:02:26.520
+going to go to the CPP file of our character, then scroll down. So this move function here,
+转到我们角色的CPP文件，然后向下滚动。所以这个移动函数在这里、
+
+00:02:26.520 --> 00:02:31.520
+this is where we're handling the input. And so far, all the code here is handling the
+这就是我们处理输入的地方。到目前为止，这里的所有代码都是处理
+
+00:02:31.520 --> 00:02:35.880
+movement input when we are on the ground. When we are climbing, we need to handle this
+当我们在地面上时，所有的代码都是在处理移动输入。当我们在爬升时，我们需要以不同的方式处理
+
+00:02:35.880 --> 00:02:40.760
+differently. And for that, I like to create two functions to handle it. So come back to
+不同的方式。为此，我喜欢创建两个函数来处理它。所以请回到
+
+00:02:40.760 --> 00:02:45.760
+my header file, scroll down under this move, I'm going to create two functions. So the
+我的头文件，向下滚动，在这个移动下面，我将创建两个函数。所以
+
+00:02:45.760 --> 00:02:52.400
+first one is going to be void. I'm going to call a handle ground movement input, and it's
+第一个将是无效的。我将调用一个处理地面运动输入的函数，它的输入参数与
+
+00:02:52.400 --> 00:02:57.720
+going to have the same input parameters as the one above. So copy this and paste it in
+它将拥有与上面那个相同的输入参数。所以复制这个并把它粘贴到
+
+00:02:57.720 --> 00:03:02.560
+here. And I'm going to create another function. So this function, I'm going to call a handle
+这里。然后我将创建另一个函数。所以这个函数，我将调用一个句柄
+
+00:03:02.560 --> 00:03:08.600
+climbed movement input, and it's going to have the same input parameters. So copy this,
+攀升的运动输入，它将有同样的输入参数。所以复制这个、
+
+00:03:08.600 --> 00:03:13.880
+paste it in here. I'm going to create two function definitions and place them under
+把它粘贴到这里。我将创建两个函数定义并把它们放在
+
+00:03:13.880 --> 00:03:22.560
+this move function. So place it in here and create another one. Place it under this handle
+这个移动函数。所以把它放在这里，再创建一个。把它放在这个手柄下
+
+00:03:22.560 --> 00:03:28.800
+ground movement input and go back to this move function. So I'm going to do an if check.
+地面移动输入，然后回到这个移动函数。所以我将做一个if检查。
+
+00:03:28.800 --> 00:03:35.080
+So if custom movement component is not valid, then I'm going to return, then I'm going
+所以，如果自定义运动组件无效，那么我将返回，然后我将
+
+00:03:35.080 --> 00:03:44.400
+to check if this custom movement component is climbing is true, then I'm going to call
+然后我将检查这个自定义运动组件是否是爬升的，然后我将调用
+
+00:03:44.400 --> 00:03:51.800
+the function handle climb movement input. So copy this and paste it in here. Delete
+函数处理攀登运动输入。所以复制这个并把它粘贴到这里。删除
+
+00:03:51.800 --> 00:03:57.320
+this type. And in the else case, I'm going to call the function handle ground movement
+这种类型。而在其他情况下，我将调用处理地面运动的函数
+
+00:03:57.320 --> 00:04:05.800
+input and pass in this parameter value. And next thing, I'm going to copy of this default
+输入并传入这个参数值。接下来，我将复制这个默认的
+
+00:04:05.800 --> 00:04:12.600
+movement code. So cut them and place them inside of this function. I do believe this
+运动代码。所以把它们剪下来，放在这个函数里面。我确实相信这个
+
+00:04:12.600 --> 00:04:18.480
+F vector 2D here needs to be const. So I'm going to add a const in front of it. All right,
+F向量2D在这里需要是常数。所以我要在它前面加一个const。好的、
+
+00:04:18.480 --> 00:04:23.120
+that's the default ground movement. And for this climb movement, so the starting point
+这就是默认的地面运动。而对于这个爬升运动，所以起始点
+
+00:04:23.120 --> 00:04:28.920
+is going to be the same. We need to get hold of this input and keep in mind that this input
+将会是一样的。我们需要掌握这个输入并记住这个输入
+
+00:04:28.920 --> 00:04:35.920
+is a vector 2D. So I'm going to copy these two lines and paste it in here. And same as
+是一个2D矢量。所以我要复制这两行，并把它粘贴到这里。与
+
+00:04:35.920 --> 00:04:41.000
+this function above, I want to get hold of the forward direction when we are climbing.
+和上面这个函数一样，我想在我们爬升的时候掌握前进的方向。
+
+00:04:41.000 --> 00:04:47.600
+So I'm going to create a const F vector. I'm going to call this one forward direction and
+所以我将创建一个常量F向量。我将调用这个前进方向，并且
+
+00:04:47.600 --> 00:04:53.240
+it's going to equal to F vector cross product. And here we need to fill in vector A and vector
+它将等于F向量的交叉积。这里我们需要填入矢量A和矢量
+
+00:04:53.240 --> 00:04:58.920
+B. So the vector A here, in case you forget, you can use your left hand to help you. So
+B. 所以这里的向量A，为了防止你忘记，你可以用你的左手来帮助你。所以
+
+00:04:58.920 --> 00:05:03.160
+the thumb is the direction that we want to move to. And the first vector that we need
+拇指是我们要移动的方向。我们需要填写的第一个向量
+
+00:05:03.160 --> 00:05:08.000
+to fill in is the inverse surface normal. And for that, I'm going to create a getter
+要填的第一个矢量是反表面法线。为此，我将创建一个getter
+
+00:05:08.000 --> 00:05:13.280
+for it. So go back to this header file of custom movement component, scroll down inside
+的获取器。所以回到这个自定义运动组件的头文件，向下滚动到
+
+00:05:13.280 --> 00:05:18.640
+of this public section, I'm going to create a function. So it's going to be false inline.
+这个公共部分，我将创建一个函数。所以它将是假的内联。
+
+00:05:18.640 --> 00:05:24.680
+It's going to return an F vector. I'm going to call it get climbable surface normal. It's
+它将会返回一个F向量。我将把它称为 "获取可攀爬表面法线"。它是
+
+00:05:24.680 --> 00:05:31.560
+going to be const and it will return the current climbable surface normal. All right, that's
+它将是常数，并将返回当前的可爬升表面法线。好了，这就是
+
+00:05:31.560 --> 00:05:38.120
+the getter done. Go back to this character.cpp. So I'm going to directly access the function.
+获取器完成了。回到这个character.cpp。所以我将直接访问这个函数。
+
+00:05:38.120 --> 00:05:45.000
+So it'll be custom movement component and get climbable surface normal. And we do need
+所以它将是自定义运动组件和获取可攀爬表面法线。而我们确实需要
+
+00:05:45.000 --> 00:05:50.160
+to inverse it in here. The second vector that we need to fill in is the right vector. And
+在这里对它进行反转。我们需要填入的第二个向量是右边的向量。还有
+
+00:05:50.160 --> 00:05:56.760
+we can simply get that by using the function get actor right vector. All right, that's
+我们可以通过使用函数get actor right vector简单地得到这个结果。好了，这就是
+
+00:05:56.760 --> 00:06:00.920
+the forward direction done. And in order to have a functional movement, we also need to
+前进方向完成了。为了有一个功能性的运动，我们还需要
+
+00:06:00.920 --> 00:06:05.800
+get hold of this right direction. Same as this function above. The thing is, how do
+掌握这个正确的方向。和上面这个函数一样。问题是，我们如何
+
+00:06:05.800 --> 00:06:10.400
+we calculate the right direction in here? And that's something that left hand rule can help
+我们如何在这里计算出正确的方向？而这一点，左手规则可以帮助我们
+
+00:06:10.400 --> 00:06:14.960
+us. So now that you already know, the thumb here is the direction that we want to move
+我们。所以现在你已经知道了，这里的大拇指是我们想要移动的方向
+
+00:06:14.960 --> 00:06:21.800
+to. All we need to do now is rotate our left hand 90 degrees. So now we need to use our
+的方向。我们现在需要做的就是把我们的左手旋转90度。所以现在我们需要用我们的
+
+00:06:21.800 --> 00:06:27.960
+thumb to point to the right. And now our middle finger will be pointing down and the index
+拇指指向右边。现在我们的中指将指向下方，食指则保持不变。
+
+00:06:27.960 --> 00:06:32.960
+finger stays the same. So in here, we need to get hold of the actors down vector. By
+指保持不变。所以在这里，我们需要掌握演员的向下矢量。通过这样做
+
+00:06:32.960 --> 00:06:36.980
+doing so, we should be able to get hold of the right direction. All right, under this
+这样做，我们应该能够掌握正确的方向。好的，在这个
+
+00:06:36.980 --> 00:06:42.080
+forward direction, and we're going to create another const F vector, I'm going to call
+前进方向，我们将创建另一个常量F矢量，我将称之为
+
+00:06:42.080 --> 00:06:48.040
+it right direction. And it's going to be F vector cross product. The first one that we
+它是正确的方向。它将会是F向量的交叉积。第一个我们
+
+00:06:48.040 --> 00:06:54.080
+need to fill in is the same. So the inverse surface normal. And the second one, this will
+需要填写的也是这个。所以是反表面法线。第二个，这将是
+
+00:06:54.080 --> 00:06:59.920
+be get actor up vector, then I'm going to inverse it. So that's how we can get hold
+得到演员向上的矢量，然后我将反转它。所以这就是我们如何获得
+
+00:06:59.920 --> 00:07:04.120
+of the down vector. All right, we have the forward and the right direction ready. And
+的下行向量。好了，我们已经准备好向前和向右的方向。而
+
+00:07:04.120 --> 00:07:08.600
+next one, same as above, we need to add this movement input and it's going to be the same
+下一个，和上面一样，我们需要添加这个运动输入，它将与
+
+00:07:08.600 --> 00:07:15.920
+as these two lines. So I'm going to copy these lines and paste them in here and format them
+和这两条线一样。所以我将复制这些线并把它们粘贴到这里，并把它们的格式化
+
+00:07:15.920 --> 00:07:22.440
+a little bit. And that's pretty much it. I'm going to try to compile to see if there are
+一点点。这就差不多了。我将尝试编译，看看是否有
+
+00:07:22.440 --> 00:07:28.000
+any errors. All right, I have a successful compile. I'm going to launch my editor back.
+任何错误。好的，我的编译成功了。我将启动我的编辑器回来。
+
+00:07:28.000 --> 00:07:32.200
+All right, go back to my editor. I'm going to press play and go to the surface press
+好的，回到我的编辑器中去。我将按下播放键，到表面按
+
+00:07:32.200 --> 00:07:39.920
+F and now I'm going to press the W key and you can see we can move our character up or
+F，现在我将按W键，你可以看到我们可以将我们的角色向上或向下移动。
+
+00:07:39.920 --> 00:07:49.040
+down or left or right. And with our current app, we can even move our character through
+下或左或右。而在我们目前的应用程序中，我们甚至可以将我们的角色通过
+
+00:07:49.040 --> 00:07:55.040
+this straight angle. I don't think we should be able to do this when we're climbing, but
+这个直角。我不认为我们在攀登时应该能够这样做，但是
+
+00:07:55.040 --> 00:08:06.400
+this does look interesting. And we can even go to the top of this mesh and we can even
+这看起来很有趣。我们甚至可以去到这个网格的顶部，我们甚至可以
+
+00:08:06.400 --> 00:08:11.760
+have movement like this. So if you are after some Spider-Man movement, this is how you
+有这样的运动。所以，如果你想要一些蜘蛛侠的动作，这就是你如何
+
+00:08:11.760 --> 00:08:17.120
+can do it. But since the surface normal is no longer the same, if this is something you
+可以做到这一点。但是，由于表面法线不再是相同的，如果这是你想要的东西
+
+00:08:17.120 --> 00:08:21.960
+want, you'll need to handle the forward and the right direction differently. And I think
+你需要以不同的方式来处理向前和向右的方向。而且我认为
+
+00:08:21.960 --> 00:08:25.600
+during climbing we shouldn't be able to do this. So this is something that we should
+在爬升过程中我们不应该这样做。所以这一点我们应该
+
+00:08:25.600 --> 00:08:30.240
+rule out later. And there's another issue that I need to solve. So now if I press F
+迟早要排除的。还有一个问题，我需要解决。所以现在如果我按下F
+
+00:08:30.240 --> 00:08:38.800
+to exit the climb mode, you can see the rotation of our character is completely wrong. And
+来退出攀爬模式，你可以看到我们的角色的旋转是完全错误的。而
+
+00:08:38.800 --> 00:08:44.440
+to fix this issue, I'm going to go back to my code. So instead of this capstan moving
+为了解决这个问题，我将回到我的代码中去。所以我不使用这个绞盘移动
+
+00:08:44.440 --> 00:08:51.120
+component cpp, I'm going to scroll up to this on movement mode changed. So once we have
+组件cpp，我将滚动到这个运动模式改变的地方。所以一旦我们有
+
+00:08:51.120 --> 00:08:56.040
+exited the climb mode, besides resetting the capsule height, I'd also like to reset the
+一旦我们退出了爬升模式，除了重设胶囊的高度，我还想重设
+
+00:08:56.040 --> 00:09:02.240
+character's rotation. I'm going to create a const F rotator. I'm going to call this
+角色的旋转。我将创建一个常量F旋转器。我将把这个称为
+
+00:09:02.240 --> 00:09:09.240
+rotator dirty rotation. And it's going to equal to our updated component get component
+Rotator dirty rotation。它将等同于我们更新的组件，得到组件的
+
+00:09:09.240 --> 00:09:15.480
+rotation. And I'm going to create another const F rotator. I'm going to call this one
+旋转。我将创建另一个常量F旋转器。我将把这个称为
+
+00:09:15.480 --> 00:09:23.040
+clean stand rotation. And it's going to equal to F rotator at zero point F for the pitch
+清洁的旋转。它将等于F旋转器在零点F的俯仰角度
+
+00:09:23.040 --> 00:09:32.080
+and the dirty rotation the yaw and a zero point F for the row. So we're resetting the
+脏旋转是偏航，行是零点的F。所以我们要重新设置
+
+00:09:32.080 --> 00:09:38.400
+pitch and row in here and only keeping the yaw. Then one last thing is the updated component
+俯仰和行，只保留偏航。然后，最后一件事是更新组件
+
+00:09:38.400 --> 00:09:48.160
+set relative rotation and pass in this clean stand rotation. All right, that's pretty much
+设置相对旋转，并传递给这个干净的立场旋转。好的，这就差不多了
+
+00:09:48.160 --> 00:09:54.760
+it. Now I'm going to go to file here to click save all. Then I'm going to use live coding.
+了。现在我要去文件这里，点击保存所有。然后我将使用实时编码。
+
+00:09:54.760 --> 00:10:02.440
+So press control plus old plus F 11 to trigger the live coding. All right, live coding succeeded.
+所以按control加old加F11来触发实时编码。好了，实时编码成功了。
+
+00:10:02.440 --> 00:10:11.680
+I'm going to test it again. So press play and try to climb up. Then press F again. And
+我准备再测试一次。所以按play，试着爬上去。然后再按F。然后
+
+00:10:11.680 --> 00:10:18.660
+we have clean rotation. All right, I'm going to go to the top of this mesh. And once we
+我们有干净的旋转。好了，我要去这个网格的顶部了。而一旦我们
+
+00:10:18.660 --> 00:10:24.840
+reach here, I'm going to press F and there you go. We have our clean rotation. That's
+到达这里，我将按下F，然后你就可以了。我们有了干净的旋转。这很好。
+
+00:10:24.840 --> 00:10:35.640
+great. And just like that, now that we have a working climbing movement. Later, when you
+很好。就这样，现在我们有了一个有效的爬升动作。以后，当你
+
+00:10:35.640 --> 00:10:40.160
+try to implement this by yourself, if you feel confused about the math for figuring
+如果你对计算前进和右转方向的数学问题感到困惑，左手规则将是你的朋友。
+
+00:10:40.160 --> 00:10:44.960
+out the forward and the right direction, the left hand rule is going to be your friend.
+如果你对计算向前和向右的方向感到困惑，左手规则将是你的朋友。
+
+00:10:44.960 --> 00:10:49.040
+Feel free to refer back to the video if you need help and I'll see you in the next lecture.
+如果你需要帮助，请随时参考视频，我们在下一次讲座中再见。
+
+00:10:49.040 --> 00:10:50.040
+[music]
+[音乐]
+
+00:10:52.040 --> 00:10:53.040
+[music]
+[音乐]
+
+00:10:53.040 --> 00:10:59.040
+[music]
+[音乐]
+
+00:10:59.040 --> 00:11:00.040
+[music]
+[音乐]

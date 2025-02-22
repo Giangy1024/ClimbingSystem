@@ -1,0 +1,177 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.680
+Welcome to Unreal Engine 5 C++ Climbing System.
+欢迎来到虚幻引擎5 C++攀爬系统。
+
+00:00:08.680 --> 00:00:14.840
+In this course, you'll learn how to build a robust climbing system completely from scratch.
+在本课程中，您将学习如何完全从头开始建立一个强大的攀爬系统。
+
+00:00:14.840 --> 00:00:25.160
+You'll understand how to handle the climb physics, create climb locomotion, climb up
+您将了解如何处理攀爬物理学，创建攀爬运动，爬上
+
+00:00:25.160 --> 00:00:39.600
+the ledge, climb down the ledge, hand and leg IK using Control Rig, bolting mechanics,
+壁架、爬下壁架、使用Control Rig的手和腿的IK、螺栓力学、
+
+00:00:39.600 --> 00:00:50.400
+hopping capabilities, and a range of other exciting features for a robust climbing experience.
+跳跃能力，以及一系列其他令人兴奋的功能，以获得强大的攀岩体验。
+
+00:00:50.400 --> 00:00:55.000
+In the first section, we'll look into how we can handle the movement for our climbing
+在第一部分，我们将研究如何处理我们的攀爬运动
+
+00:00:55.000 --> 00:00:59.800
+and start with the new enhanced input with the custom movement component to handle the
+并从新的增强型输入开始，用自定义运动组件来处理
+
+00:00:59.800 --> 00:01:01.920
+basic climbing logic.
+基本的攀爬逻辑。
+
+00:01:01.920 --> 00:01:06.440
+Then we'll go over how to use different traces to get hold of all the climbable surface info
+然后，我们将讨论如何使用不同的追踪器来获取所有我们需要的可攀爬表面信息
+
+00:01:06.440 --> 00:01:11.600
+we need and handle all the physics code needed in order for us to move our character in a
+并处理所有需要的物理代码，以使我们的角色在一个
+
+00:01:11.600 --> 00:01:16.320
+custom movement mode.
+自定义运动模式。
+
+00:01:16.320 --> 00:01:20.640
+Once we have a working physics, we're gonna process all the climbable surface info and
+一旦我们有了工作的物理学，我们就会处理所有的可攀爬表面信息，并且
+
+00:01:20.640 --> 00:01:24.840
+calculate the velocity and rotation for our climbing.
+计算我们攀爬的速度和旋转。
+
+00:01:24.840 --> 00:01:30.320
+Then we'll use math operations like Cross product to find out the climbing direction,
+然后，我们将使用数学运算，如交叉积来找出攀爬的方向、
+
+00:01:30.320 --> 00:01:37.060
+Dark product to decide when we should exit our climb state.
+暗积来决定我们何时应该退出爬升状态。
+
+00:01:37.060 --> 00:01:44.400
+In the second section, we're gonna take care of climbing up, climbing down, climbing to
+在第二部分，我们将处理向上爬升、向下爬升、向左爬升、向右爬升的问题。
+
+00:01:44.400 --> 00:01:55.480
+the left, climbing to the right, climbing up the ledge, climbing down the ledge, enter and
+向左爬，向右爬，爬上壁架，爬下壁架，进入和退出爬升状态。
+
+00:01:55.480 --> 00:01:59.160
+exit the climb state.
+退出攀爬状态。
+
+00:01:59.160 --> 00:02:05.080
+We'll begin with a CharacterNMInstance class in C++ and rebuilding our existing animation
+我们将从C++中的CharacterNMInstance类开始，重建我们现有的动画蓝图。
+
+00:02:05.080 --> 00:02:07.720
+blueprint.
+蓝图。
+
+00:02:07.720 --> 00:02:11.840
+Then we'll go through the maximal animation pipeline and look at how we can make use of
+然后，我们将通过最大的动画管道，看看我们如何利用
+
+00:02:11.840 --> 00:02:15.600
+MaximalConverter to retarget animation.
+MaximalConverter来重定位动画。
+
+00:02:15.600 --> 00:02:21.600
+Next, we'll handle the climb locomotion and create our own algorithms to check if we have
+接下来，我们将处理爬升运动，并创建我们自己的算法来检查我们是否已经
+
+00:02:21.600 --> 00:02:24.480
+reached the floor or the ledge.
+到达地面或壁架。
+
+00:02:24.480 --> 00:02:28.960
+Then you'll learn how to use ControlRig to adjust the animation that we downloaded and
+然后你将学习如何使用ControlRig来调整我们下载的动画，并在编辑器中修复缺失的根部运动。
+
+00:02:28.960 --> 00:02:33.420
+fix the missing root motion in the editor so that we'll have working animations for
+在编辑器中修复缺失的根部运动，这样我们就有了可以使用的动画。
+
+00:02:33.420 --> 00:02:38.800
+climbing up and down.
+爬上爬下。
+
+00:02:38.800 --> 00:02:43.720
+In the third section, we'll build a ControlRig for our hand and leg IK to fix the placement
+在第三部分中，我们将为我们的手和腿建立一个ControlRig IK，以解决我们在攀爬时的位置问题。
+
+00:02:43.720 --> 00:02:46.240
+issue when we're climbing.
+问题，以解决我们在攀爬时的位置问题。
+
+00:02:46.240 --> 00:02:50.880
+And we'll dive into motion warping and enhance the input system to implement features like
+我们还将深入研究运动扭曲，并加强输入系统，以实现以下功能
+
+00:02:50.880 --> 00:02:58.840
+vaulting and hopping.
+跃起和跳起等功能。
+
+00:02:58.840 --> 00:03:04.240
+We'll start with the handy ClimbIKTrace function in our ControlRig and use it to dynamically
+我们将从ControlRig中方便的ClimbIKTrace函数开始，用它来动态地
+
+00:03:04.240 --> 00:03:12.320
+adjust the position of our hands and feet based on the surface.
+根据表面动态调整我们的手和脚的位置。
+
+00:03:12.320 --> 00:03:16.800
+Then we'll go into motion warping and create more algorithms to check which surface is
+然后我们将进入运动扭曲并创建更多的算法来检查哪个表面是
+
+00:03:16.800 --> 00:03:25.480
+vaultable and dynamically set our target point during runtime.
+并在运行时动态地设置我们的目标点。
+
+00:03:25.480 --> 00:03:31.200
+After we have fully functional vaulting mechanics, we'll dive deep into EnhancedInputSystem
+在我们有了功能完备的跳马机制之后，我们将深入研究EnhancedInputSystem
+
+00:03:31.200 --> 00:03:36.680
+and use it to create a two-key input action that can only be triggered during climbing.
+并使用它来创建一个只能在攀爬时触发的双键输入动作。
+
+00:03:36.680 --> 00:03:41.360
+Then we'll go through the same process for surface checking and animation to add in hopping
+然后，我们将通过同样的表面检查和动画的过程，在我们的攀爬系统中加入跳跃
+
+00:03:41.360 --> 00:03:50.680
+up and down to our climbing system.
+上跳和下跳到我们的爬行系统中。
+
+00:03:50.680 --> 00:03:54.960
+This is going to be the most comprehensive climbing system course that you'll ever find
+这将是你能找到的最全面的攀爬系统课程
+
+00:03:54.960 --> 00:04:00.360
+online and the different apply tasks and coding challenges are going to guarantee you to understand
+不同的应用任务和编码挑战将保证你能理解
+
+00:04:00.360 --> 00:04:03.120
+everything along with reproducing it.
+所有的东西，并将其复制出来。
+
+00:04:03.120 --> 00:04:05.520
+While you're still waiting for, I'll see you in the course.
+当你还在等待的时候，我会在课程中看到你。
+
+00:04:05.520 --> 00:04:12.240
+[Birds chirping]
+[鸟叫声]

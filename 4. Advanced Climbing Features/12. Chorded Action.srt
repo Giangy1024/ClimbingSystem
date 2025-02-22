@@ -1,0 +1,185 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.600
+Welcome. In the last lecture, we created a new input mapping context for climbing. And
+欢迎。在上一节课中，我们为攀登创建了一个新的输入映射上下文。和
+
+00:00:10.600 --> 00:00:15.720
+now we can dynamically switch to a new mapping context in runtime. And in this lecture, we
+现在，我们可以在运行时动态切换到新的映射上下文。在这次演讲中，我们
+
+00:00:15.720 --> 00:00:20.560
+look at how we can use this to achieve a two key action. So first, I'm going to close my
+看看我们如何利用这一点来实现两个关键行动。所以首先，我要结束我的
+
+00:00:20.560 --> 00:00:25.800
+project, then go back to my code. Under this climb action, I'm going to copy this one and
+项目，然后返回到我的代码。在这个爬升动作下，我要复制这个
+
+00:00:25.800 --> 00:00:32.960
+paste it in here. I'm going to call this newly created action climbHub action, and it needs
+把它贴在这里。我将把这个新创建的操作命名为appbHub action，它需要
+
+00:00:32.960 --> 00:00:38.520
+a callback function. So under this own climb action started, I'm going to create a new
+回调函数。所以在这个自己开始的攀登行动下，我将创造一个新的
+
+00:00:38.520 --> 00:00:46.480
+one. I'm going to call it own climbedHub action started and copy this one, paste it in here.
+一。我将把它命名为OWN ENTERBEDHUB ACTIONAL STARTED，然后复制这个，粘贴到这里。
+
+00:00:46.480 --> 00:00:51.880
+All right, I'm going to create a function definition and I'm going to paste the function
+好的，我将创建一个函数定义并粘贴该函数
+
+00:00:51.880 --> 00:00:57.920
+at the bottom of the CPP file. Then next thing I'm going to take care of the function binding.
+在CPP文件的底部。接下来，我将处理函数绑定。
+
+00:00:57.920 --> 00:01:04.680
+So scroll down, I'm going to copy this line for climb action, then start a new line, paste
+所以向下滚动，我将复制这条线用于攀登动作，然后开始一条新的线，粘贴
+
+00:01:04.680 --> 00:01:12.160
+it in here. I'm going to change this to climbHub action and change the callback function to
+就在这里。我将把它更改为appbHub操作，并将回调函数更改为
+
+00:01:12.160 --> 00:01:20.280
+own climbHub action started. All right, that's the coding part done. Then I'm going to go
+自己的appbHub操作已开始。好了，编码部分完成了。然后我要走了
+
+00:01:20.280 --> 00:01:25.320
+back to the callback function. I'm going to delete these t-bar functions. We don't need
+返回到回调函数。我要删除这些t-bar函数。我们不需要
+
+00:01:25.320 --> 00:01:29.920
+to see them anymore. Then I'm going to cut this one and paste it in here. So when this
+再去看他们了。然后我要把这个剪下来，贴在这里。所以当这一切发生时
+
+00:01:29.920 --> 00:01:34.280
+function is called, I'm going to print a message to the screen. So the message is going to
+函数时，我将在屏幕上打印一条消息。因此，这条信息将传递给
+
+00:01:34.280 --> 00:01:41.320
+be hopping started. And that's pretty much it. I'm going to launch my editor back. Go
+开始跳跃吧。差不多就是这样。我要让我的编辑回来。去
+
+00:01:41.320 --> 00:01:45.840
+back to my project. I'm first going to go into this actions folder. Then I'm going to
+回到我的项目上来。我首先要进入这个Actions文件夹。然后我要去
+
+00:01:45.840 --> 00:01:54.920
+select this IA climb control plus D to duplicate it. I'm going to change its name to IA_climbHub.
+选择此IA爬坡控制加D复制它。我将把它的名称更改为IA_appbHub。
+
+00:01:54.920 --> 00:02:00.160
+Then I'm going to create a key binding. So go back to this input folder, open this IMC
+然后，我将创建一个密钥绑定。所以回到这个输入文件夹，打开这个IMC
+
+00:02:00.160 --> 00:02:05.760
+climb. And in the mappings here, I'm going to click this add button to add a new action
+爬上去。在这里的映射中，我将单击这个Add按钮来添加一个新操作
+
+00:02:05.760 --> 00:02:11.120
+mapping. And in here, I'm going to select this IA_climbHub. And for the key here, I'm
+映射。在这里，我将选择IA_appbHub。对于这里的关键，我是
+
+00:02:11.120 --> 00:02:15.880
+going to click this keyboard. Then I'm going to press the space bar. So this key binding
+我要点击这个键盘。然后我要按空格键。所以这个密钥绑定
+
+00:02:15.880 --> 00:02:20.760
+here is the same as jumping. And also for this triggers here, I'm going to click this
+这和跳跃是一样的。另外，对于这里的触发器，我将单击此按钮
+
+00:02:20.760 --> 00:02:26.080
+add button to add a new element. And in the drop down here, you can see we have many options
+“添加”按钮以添加新元素。在这里的下拉列表中，您可以看到我们有很多选项
+
+00:02:26.080 --> 00:02:30.800
+we can choose. For the things we want, I'm going to select this quality action. So what
+我们可以选择。对于我们想要的东西，我将选择这个质量行动。那又怎样
+
+00:02:30.800 --> 00:02:36.480
+this means, in order to trigger the function that's bound to this key, another input action
+这意味着，为了触发绑定到该键的功能，另一个输入操作
+
+00:02:36.480 --> 00:02:41.800
+needs to be triggered as well. And in the drop down here, we can select which core action
+也需要被触发。在此处的下拉列表中，我们可以选择哪个核心操作
+
+00:02:41.800 --> 00:02:49.680
+we want. So I'm going to select this IA_climbMove. And I'm going to change this threshold to
+我们想要。因此，我将选择这个IA_appbMove。我将把这个门槛改为
+
+00:02:49.680 --> 00:02:56.080
+0.1. So now the function should only be triggered when this climb move is triggered. And just
+0.1。所以现在只有当这个爬升动作被触发时，该功能才会被触发。就这样
+
+00:02:56.080 --> 00:03:00.760
+like that, we have our two key action. Now I'm going to click save. Then I'm going to
+这样，我们就有了两个关键的行动。现在我要点击保存。然后我要去
+
+00:03:00.760 --> 00:03:06.200
+go back to my climb system character, double click to open it. And instead of the input
+回到我的攀爬系统角色，双击打开它。而不是输入
+
+00:03:06.200 --> 00:03:14.080
+here, we need to assign it the new climb hop action. So it'll be this IA_climbHop. And
+在这里，我们需要为它指定新的爬升跳跃动作。所以它将是这个IA_appbHop。和
+
+00:03:14.080 --> 00:03:20.360
+click compile. All right, let's test this. So I'm going to click play. So my key binding
+单击编译。好了，让我们测试一下这个。所以我要点击播放。所以我的密钥绑定
+
+00:03:20.360 --> 00:03:25.240
+is spacebar. I'm going to press it now. So we are jumping when we're on the ground. This
+是空格键。我现在要按下它。所以当我们在地面上时，我们是在跳跃。这
+
+00:03:25.240 --> 00:03:32.480
+is working. And I'm going to start climbing. And I'm going to try to move, then press spacebar.
+正在起作用。我要开始攀登了。我要试着移动，然后按空格键。
+
+00:03:32.480 --> 00:03:38.920
+And you can see a debug message has been printed to the screen. I'm going to try again. So
+您可以看到屏幕上已经打印了一条调试消息。我要再试一次。所以
+
+00:03:38.920 --> 00:03:45.120
+climb down, press spacebar. So the message has been printed. And if I'm not moving and
+爬下来，按空格键。所以这条消息已经打印出来了。如果我不动的话
+
+00:03:45.120 --> 00:03:50.120
+trying to press the spacebar, I can see nothing gets printed to the screen. And I'm going
+尝试按空格键时，屏幕上没有打印任何内容。我要走了
+
+00:03:50.120 --> 00:03:59.360
+to try to move to the left, press the spacebar. So the function is called. And great. Everything
+要尝试向左移动，请按空格键。因此，该函数被调用。而且很棒。一切
+
+00:03:59.360 --> 00:04:05.800
+is working as expected. So just a quick summary. In order to make this two key action work,
+正在发挥预期的作用。所以，我只做一个简短的总结。为了使这两个关键行动发挥作用，
+
+00:04:05.800 --> 00:04:09.680
+we will first need to bind the function in code. Inside of our editor, we will need to
+我们首先需要在代码中绑定函数。在我们的编辑器内部，我们需要
+
+00:04:09.680 --> 00:04:15.480
+add this new input action to our climb mapping context. And inside the mapping context, we
+将这个新的输入操作添加到我们的攀登映射上下文中。在地图环境中，我们
+
+00:04:15.480 --> 00:04:20.360
+can add triggers to define what condition should be met before this action can be triggered.
+可以添加触发器以定义在触发此操作之前应满足哪些条件。
+
+00:04:20.360 --> 00:04:24.760
+And last step, don't forget to assign new input action inside of Blueprint. Feel free
+最后一步，不要忘记在Blueprint中分配新的输入操作。尽情享受吧
+
+00:04:24.760 --> 00:04:29.120
+to refer back to the video if you need help. And I'll see you in the next lecture.
+如果您需要帮助，请回看视频。我会在下一节课上见到你们。
+
+00:04:29.360 --> 00:04:39.360
+[Music]
+[音乐]

@@ -1,0 +1,437 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.800
+Welcome. In the last lecture, we adjusted two animations for hopping, and in this lecture,
+欢迎。在上一节课中，我们调整了两个跳跃的动画，在这节课中，
+
+00:00:10.800 --> 00:00:15.520
+we'll look at how we can achieve hopping up. So I'm going to close my project first.
+我们将看看如何实现跳跃。所以我要先结束我的项目。
+
+00:00:15.520 --> 00:00:19.880
+Go back to Visual Studio. I'm going to go back to the header file of this custom movement
+返回到Visual Studio。我将返回到这个定制移动的头文件
+
+00:00:19.880 --> 00:00:25.240
+component. Then inside of this Climb Core, I'm going to scroll down. Below, this is
+组件。然后在这个攀登核心里面，我要向下滚动。下面，这是
+
+00:00:25.240 --> 00:00:30.800
+setMotionWarpTarget. I'm going to create two new functions. So the first one is going to
+SetMotionWarpTarget。我将创建两个新函数。所以第一个将会是
+
+00:00:30.800 --> 00:00:37.040
+be void. I'm going to call it handleHopUp. And the second one is going to return a bool.
+是空虚的。我要把它叫做HandleHopUp。第二个函数将返回一个bool。
+
+00:00:37.040 --> 00:00:44.040
+I'm going to call it checkCanHopUp. Alright, I'm going to create two function definitions.
+我要将其称为CheckCanHopUp。好的，我将创建两个函数定义。
+
+00:00:44.040 --> 00:00:52.040
+So paste the function below this setMotionWarpTarget. Place it in here. Create a function definition
+因此，将该函数粘贴到此setMotionWarpTarget下面。把它放在这里。创建函数定义
+
+00:00:52.040 --> 00:00:57.560
+for this checkCanHopUp and place it in here. So first thing, I'm going to call the function
+对于这张支票，可以跳起来，把它放在这里。所以第一件事，我要调用函数
+
+00:00:57.560 --> 00:01:03.920
+handleHopUp inside of this if check. So if our dot result is greater than .9f, I'm going
+HANDLEHOP UP在这里面，如果选中。因此，如果我们的点结果大于0.9f，我将
+
+00:01:03.920 --> 00:01:11.720
+to call the function handleHopUp. Then scroll down inside of this function. So if this check
+调用函数handleHopUp。然后在此函数中向下滚动。所以如果这张支票
+
+00:01:11.720 --> 00:01:18.640
+canHopUp is true, then we should play the montage in here. And the key thing is how
+如果是真的，那么我们应该在这里玩蒙太奇。关键是如何
+
+00:01:18.640 --> 00:01:24.240
+should we implement this checking? Well, actually, we have all these key functions ready. And
+我们应该实施这项检查吗？嗯，实际上，我们已经准备好了所有这些关键功能。和
+
+00:01:24.240 --> 00:01:30.480
+for that, I'm going to use our existing function. So the function is called traceFromIheight.
+为此，我将使用我们现有的函数。因此，该函数被称为traceFromIHeight。
+
+00:01:30.480 --> 00:01:36.400
+And there are two input parameters, the traceDistance and traceStartOffset. And since I also want
+有两个输入参数，分别是traceDistance和traceStartOffset。既然我也想
+
+00:01:36.400 --> 00:01:41.480
+to see the debug shapes, I'm going to modify this function a little bit. So go back to
+要查看调试形状，我将对此函数稍作修改。因此，请回到
+
+00:01:41.480 --> 00:01:47.120
+the header file. I'm going to scroll up to this traceFromIheight. And I'm going to add
+头文件。我要滚动到这个高度的轨迹。我还要补充一句
+
+00:01:47.120 --> 00:01:53.080
+in two new input parameters. So I'm going to expand this ClimbTraces. And I'm going
+两个新的输入参数中。因此，我将扩展这一气候轨迹。我要走了
+
+00:01:53.080 --> 00:02:03.680
+to copy these two input parameters. And I'm going to paste them to this function. And
+复制这两个输入参数。我要把它们粘贴到这个函数中。和
+
+00:02:03.680 --> 00:02:09.240
+I also need to modify the CPP file. So it will be this traceFromIheight. I'm going
+我还需要修改CPP文件。所以它将是这个高度的痕迹。我要走了
+
+00:02:09.240 --> 00:02:16.840
+to paste those two input parameters in here. And add a bool in front of this. Delete this
+将这两个输入参数粘贴到这里。在这个前面加一个布尔。删除此内容
+
+00:02:16.840 --> 00:02:22.840
+false. We don't need this. Delete this one. And now with these two new variables, we can
+假的。我们不需要这个。删除这一条。现在有了这两个新的变量，我们可以
+
+00:02:22.840 --> 00:02:30.580
+enable debug shape per traceFromIheight. So paste the first one in here. Then I'm also
+启用每个跟踪的调试形状FromIHeight。因此，将第一个粘贴到这里。那我也是
+
+00:02:30.580 --> 00:02:38.200
+going to copy the second one. Paste it in here. All right, I'm going to go back to my
+我要复制第二个。把它贴在这里。好了，我要回到我的
+
+00:02:38.200 --> 00:02:42.480
+check and hop up. I'm going to comment on this function first. Then I'm going to try
+检查一下，然后跳上来。我将首先对此函数进行评论。那我要试一试
+
+00:02:42.480 --> 00:02:49.280
+to compile. And I don't have a successful compile, so I'm going to double click this
+去汇编。我没有成功的编译，所以我要双击这个
+
+00:02:49.280 --> 00:02:57.840
+error. So my bool was added to this parameter. I'm going to delete it. And this time it should
+错误。所以我的bool加到了这个参数中。我要把它删除。这一次，它应该
+
+00:02:57.840 --> 00:03:03.440
+work. I'm going to try to compile again. So now the error is gone. And here it says this
+工作。我要试着重新编译。所以现在这个错误已经消失了。这里是这样写的
+
+00:03:03.440 --> 00:03:12.040
+function must return a value. So I'm going to return false for now. And try to compile
+函数必须返回值。所以现在我将返回FALSE。并试着编译
+
+00:03:12.040 --> 00:03:18.920
+again. All right, this time I have a successful compile. And now I'm going to call the function
+再来一次。好了，这一次我有一个成功的编译。现在我要调用该函数
+
+00:03:18.920 --> 00:03:24.560
+traceFromIheight. So the trace distance, I'm going to give it a hard code value of 100
+从高度追踪。所以轨迹距离，我将给它一个硬编码值100
+
+00:03:24.560 --> 00:03:31.440
+units. And now the trace start offset, I'm going to give it a value of -30.f. So by default,
+单位。现在轨迹开始偏移量，我会给它一个-30.f的值。因此，默认情况下，
+
+00:03:31.440 --> 00:03:36.140
+the trace will start from the character's eye height. I'm going to offset it down to
+轨迹将从角色的眼睛高度开始。我要把它补偿到
+
+00:03:36.140 --> 00:03:42.200
+the height of our chest. And I'm also going to pass in true for showing debug shapes.
+我们胸口的高度。我还将传递True，以显示调试形状。
+
+00:03:42.200 --> 00:03:47.680
+All right, I'm going to store the return result of this function inside of an F head result.
+好的，我要把这个函数的返回结果存储在F头结果中。
+
+00:03:47.680 --> 00:03:54.400
+I'm going to call it hopUpHead. And later I'm going to use the impact point as the target
+我要把它叫做HopUpHead。稍后，我将使用撞击点作为目标
+
+00:03:54.400 --> 00:04:00.000
+point for our motion working. I'm also going to perform the second line trace in here.
+为我们的动议起作用的要点。我还将在这里执行第二行跟踪。
+
+00:04:00.000 --> 00:04:07.400
+And for the second one, I'm going to change this start offset to 150.f. And I'm going
+对于第二个，我将把这个起始偏移量更改为150.f。我要走了
+
+00:04:07.400 --> 00:04:15.500
+to call this F head result safetyLedgeHit. So the second line trace here is for us to
+将此F Head结果称为SafetyLedgeHit。所以这里的第二行轨迹是我们要做的
+
+00:04:15.500 --> 00:04:20.220
+detect the ledge. If our character is too close to the ledge, then we shouldn't be able
+找出悬崖的位置。如果我们的角色太接近悬崖，那么我们应该不能
+
+00:04:20.220 --> 00:04:26.640
+to hop up. All right, I'm going to run an if check. So if this hopUpHead.b blocking
+跳上来。好的，我要做个假设检查。所以如果这个HopUpHead.b阻塞
+
+00:04:26.640 --> 00:04:35.200
+head is true and this safetyLedgeHit.b blocking head is true, then I'm going to return true
+Head为True且此SafetyLedgeHit.b阻止Head为True，则我将返回True
+
+00:04:35.200 --> 00:04:40.280
+in this function. Otherwise, I'm just going to return false. All right, inside of this
+在这个函数中。否则，我只会返回FALSE。好的，在这里面
+
+00:04:40.280 --> 00:04:47.800
+handle hopUp, I'm going to print a debug message for now. And the message is going to be can
+处理HopUp，我现在要打印一条调试消息。我们要传达的信息是
+
+00:04:47.800 --> 00:04:55.960
+hop up. And if this condition is false, I'm going to say unable to hop up. All right,
+跳起来。如果这个条件是假的，我会说不能跳起来。好的,
+
+00:04:55.960 --> 00:05:00.840
+one last thing. I'm going to call this function inside of tick just to visualize those debug
+最后一件事。我将在Tick内部调用此函数，以可视化这些调试
+
+00:05:00.840 --> 00:05:09.120
+lines. And that's pretty much it. I'm going to compile. I have a successful compile. I'm
+台词。差不多就是这样。我要去汇编一下。我有一个成功的汇编。我
+
+00:05:09.120 --> 00:05:14.440
+going to launch my editor back. Go back to the editor. I'm going to test this. So click
+我要让我的编辑回来。回到编辑那里。我要测试一下这个。因此请点击
+
+00:05:14.440 --> 00:05:20.360
+play and go to the surface here. I'm going to press F. And you can see this is my first
+在这里打球，到地面上去。我要按下F键，你可以看到这是我第一次
+
+00:05:20.360 --> 00:05:26.480
+line trace. And I'm going to try to move up. And above our character, that's the second
+线迹。我要试着往上爬。在我们的角色之上，这是第二个
+
+00:05:26.480 --> 00:05:31.160
+line trace to detect the ledge. All right, I'm going to move down a bit, then try to
+用于检测壁架的线迹。好的，我要往下移一点，然后试着
+
+00:05:31.160 --> 00:05:37.640
+move up, then press spacebar. It says can hop up. And now I'm going to do it again.
+向上移动，然后按空格键。上面写着可以跳起来。现在我要再来一次。
+
+00:05:37.640 --> 00:05:45.520
+It says unable to hop up. I'm going to try again. Can hop up and unable to hop up. All
+上面写着不能跳起来。我要再试一次。可以跳起来，但不能跳起来。全
+
+00:05:45.520 --> 00:05:52.760
+right. All I have to do is to play the montage. So I'm going to exit the play mode. And I'm
+正确的。我所要做的就是播放蒙太奇。所以我要退出播放模式。而且我是
+
+00:05:52.760 --> 00:05:57.760
+going to select this hop up, CR linked, right mouse button clicked and create an animated
+要选择这一跳，点击CR链接，点击鼠标右键并创建动画
+
+00:05:57.760 --> 00:06:04.720
+montage. I'm going to name this to am_hopup and move it to the montages folder. Select
+蒙太奇。我打算将其命名为am_Hopup，并将其移动到montages文件夹。选择
+
+00:06:04.720 --> 00:06:09.760
+move here. Then double click to open it. And I'm going to add in motion morphing for this
+搬到这里来。然后双击将其打开。我将为这个添加运动变形
+
+00:06:09.760 --> 00:06:14.920
+animation. So right mouse button clicked. Add notify state, motion morphing. And I'm
+动画。所以点击了鼠标右键。添加通知状态、运动变形。而且我是
+
+00:06:14.920 --> 00:06:22.760
+going to scroll to when our character starts moving. So somewhere near here, I think. Move
+当我们的角色开始移动时滚动到。所以我想，在这附近的某个地方。移动
+
+00:06:22.760 --> 00:06:34.880
+it to here. Then increase the length of it. Then I'm going to go to. So somewhere near
+它到了这里。然后增加它的长度。然后我要去。所以在附近的某个地方
+
+00:06:34.880 --> 00:06:40.640
+here. And for this motion morphing setting, it's warp target name. I'm going to change
+这里。对于此运动变形设置，它是扭曲目标名称。我要换衣服了
+
+00:06:40.640 --> 00:06:48.440
+it to hop up target point. And I'm going to untick this ignore z axis and change this
+它要跳上目标点.我要取消勾选这个忽略z轴并更改它
+
+00:06:48.440 --> 00:06:53.960
+easing func to cubic. And also I'm going to increase this blend time for blend in and
+放松函数到立方。此外，我还将增加混合时间，以进行混合
+
+00:06:53.960 --> 00:07:00.920
+blend out. So increase them to 0.3. Change the blend option to cubic and do the same
+混在一起。因此，将它们增加到0.3。将混合选项更改为立方体，然后执行相同操作
+
+00:07:00.920 --> 00:07:07.040
+thing to blend out and change it to cubic as well. All right. Hit save. That's the
+混合出来的东西，并将其更改为立方体。好的。点击保存。这就是
+
+00:07:07.040 --> 00:07:11.720
+montage done. And the last thing we need to take care of the coding part. So close my
+蒙太奇完成了。我们需要做的最后一件事是编码部分。所以闭上我的
+
+00:07:11.720 --> 00:07:17.160
+project again. I'm going to go back to the header file of this movement component. Go
+再来一次。我将返回到这个移动组件的头文件。去
+
+00:07:17.160 --> 00:07:23.560
+inside of this BP variable. Now I'm going to copy this end of montage. Paste it in here.
+在此BP变量内部。现在我要复制蒙太奇的这一端。把它贴在这里。
+
+00:07:23.560 --> 00:07:30.040
+I'm going to call this one hopup montage. And next thing, same as our vaulting, I'm
+我要把这一幕叫做跳跃蒙太奇。接下来，和我们的跳马一样，我
+
+00:07:30.040 --> 00:07:36.800
+going to modify our check and hopup a little bit. So I'm going to give it an out parameter.
+我要修改一下我们的支票，稍微提高一下。所以我要给它一个out参数。
+
+00:07:36.800 --> 00:07:44.160
+And I'm going to call this parameter out hopup target position and modify the cpp file as
+我将把这个参数调出Hopup目标位置，并将cpp文件修改为
+
+00:07:44.160 --> 00:07:51.440
+well. So go to the bottom of my cpp file. Paste this out parameter in here. And if we
+井。所以请转到我的CPP文件的底部。将此输出参数粘贴到此处。如果我们
+
+00:07:51.440 --> 00:07:57.000
+are inside of this if check, I'm going to copy this parameter, paste it in here, and
+如果选中，我将复制这个参数，粘贴到这里，然后
+
+00:07:57.000 --> 00:08:06.640
+it's going to equal to this hopup hit dot impact point. And I'm going to pass in another true.
+它等于这个跳跃命中点的落点。我将传递另一个真实的信息。
+
+00:08:06.640 --> 00:08:12.200
+So we can see the persistent debug line and go back to take. I'm going to remove this
+因此，我们可以看到持久调试行，然后返回Take。我要把这个去掉
+
+00:08:12.200 --> 00:08:19.280
+function in here. Then go back to this handle hop. I'm going to create an F vector in here.
+在这里发挥作用。然后回到这个把手跳。我将在这里创建一个F向量。
+
+00:08:19.280 --> 00:08:26.400
+And I'm going to call it hopup target point and pass this variable into this function.
+我将它命名为Hopup Target Point，并将这个变量传递给这个函数。
+
+00:08:26.400 --> 00:08:31.120
+I'm going to delete this debug function, delete this else case. So if the condition returns
+我要删除这个调试函数，删除这个大小写。因此，如果条件再次出现
+
+00:08:31.120 --> 00:08:38.040
+true, I'm going to call the function set motion warp target. And the target name is going
+真的，我将把函数SET称为运动扭曲目标。目标名称将会是
+
+00:08:38.040 --> 00:08:44.640
+to be this hopup target point. So copy it, paste it in here. And the target location
+成为这个跳跃的靶点。所以把它复制，粘贴到这里。和目标位置
+
+00:08:44.640 --> 00:08:53.520
+is going to be this one. Then after that, I'm going to play client montage, then pass
+将会是这一个。然后，我要玩客户蒙太奇，然后通过
+
+00:08:53.520 --> 00:09:00.280
+in this hopup montage. And that's pretty much it. I'm going to try to compile first.
+在这个跳跃的蒙太奇中。差不多就是这样。我要先试着编译。
+
+00:09:00.280 --> 00:09:08.200
+I have a successful compile. I'm going to launch my editor back. Go back to the editor,
+我有一个成功的汇编。我要让我的编辑回来。回到编辑那里，
+
+00:09:08.200 --> 00:09:12.800
+go inside the client system, double click to open this client character and go to this
+进入客户端系统，双击打开此客户端角色，然后转到此
+
+00:09:12.800 --> 00:09:19.320
+custom moving component. I'm going to assign the montage in here. So it's this AM underscore
+自定义移动组件。我要把蒙太奇画在这里。所以是这个AM下划线
+
+00:09:19.320 --> 00:09:25.240
+hopup and click compile. All right, let's test this. I'm going to click play. Go to
+跳起来，然后单击编译。好了，让我们测试一下这个。我要点击播放。去
+
+00:09:25.240 --> 00:09:33.600
+the surface, move up, press spacebar. And you can see it's working. I'm going to try
+表面，向上移动，按空格键。你可以看到它在起作用。我要试一试
+
+00:09:33.600 --> 00:09:50.000
+again. And this looks great. I'm going to move down a bit, then try to hop up. So I
+再来一次。这个看起来很棒。我要往下走一点，然后试着跳上去。所以我
+
+00:09:50.000 --> 00:09:56.360
+think currently the transition between the locomotion and this hopup montage is not very
+我觉得现在移动和这个跳跃蒙太奇之间的过渡不是很好
+
+00:09:56.360 --> 00:10:02.840
+smooth. So to fix that, we can keep increasing the blend out time for this montage. Right
+很顺滑。因此，为了解决这个问题，我们可以继续增加蒙太奇的混合时间。正确的
+
+00:10:02.840 --> 00:10:12.080
+now it's 0.3. I'm going to try to increase it to 0.4 and try again. So click play and
+现在是0.3。我将尝试将其增加到0.4，然后再试一次。因此，请单击播放并
+
+00:10:12.080 --> 00:10:22.440
+climb up. Yeah, I think it gets a bit better. And we can also climb up to the top and we
+爬上去。是啊，我觉得会好一点的。我们也可以爬到山顶，我们
+
+00:10:22.440 --> 00:10:30.000
+can climb down. So move down a bit, then try again. And I also noticed that while I'm hopping
+可以往下爬。所以往下移一点，然后再试一次。我还注意到，当我在跳的时候
+
+00:10:30.000 --> 00:10:35.520
+up, there's some weird rotation happening. And that's because for my motion warping,
+向上，有一些奇怪的轮换发生。这是因为对于我的运动扭曲，
+
+00:10:35.520 --> 00:10:41.160
+I forgot to untake this warped rotation. So make sure you double check these settings
+我忘了取消这个扭曲的旋转。所以一定要仔细检查这些设置
+
+00:10:41.160 --> 00:10:50.440
+and hit save. Try again. So click play and climb up. And you can see this time it gets
+然后点击保存。再试试。因此，点击播放并向上攀登。你可以看到这一次它变得
+
+00:10:50.440 --> 00:11:04.720
+much better. All right, something like that. I think I quite like the current result. And
+好多了。好吧，差不多吧。我想我很喜欢目前的结果。和
+
+00:11:04.720 --> 00:11:09.000
+when we are near the ledge, you can see because the second line trace does not have a valid
+当我们靠近壁架时，您可以看到，因为第二行轨迹没有有效的
+
+00:11:09.000 --> 00:11:17.160
+hit, we cannot start hopping up. And that's exactly what we want. Great. I think everything
+击中，我们就不能开始跳起来了。这正是我们想要的。太棒了。我觉得每件事
+
+00:11:17.160 --> 00:11:29.920
+is working as expected. And it's time for a challenge. So our challenge is to set up
+正在发挥预期的作用。现在是挑战的时候了。因此，我们面临的挑战是建立
+
+00:11:29.920 --> 00:11:34.440
+the condition check for hopping up. So in here I used the function that we created trace
+跳跃的状态检查。在这里，我使用了我们创建的跟踪函数
+
+00:11:34.440 --> 00:11:39.200
+from iHeight to do that. If that's not what you want, you can set up new line trace functions
+从iHeight开始这样做。如果这不是您想要的，您可以设置新的行跟踪函数
+
+00:11:39.200 --> 00:11:44.080
+to help you to do that. Basically in here you need to rule out this situation when our
+来帮助你做到这一点。基本上在这里你需要排除这种情况，当我们的
+
+00:11:44.080 --> 00:11:48.600
+character is too close to the ledge. Once you have this condition check ready, all that's
+角色太接近悬崖了。一旦你准备好了这个条件检查，一切就完成了
+
+00:11:48.600 --> 00:11:54.160
+left there to do is to use motion warping to set the target location for hopping up.
+剩下要做的就是使用运动扭曲来设置跳跃的目标位置。
+
+00:11:54.160 --> 00:11:58.020
+Make sure you double check the settings for motion warping and feel free to refer back
+请确保仔细检查运动扭曲的设置，并随时参考
+
+00:11:58.020 --> 00:12:02.840
+to the video if you need help. All right, pause the video now and give this a go and
+如果你需要帮助的话。好了，现在暂停视频，试一试
+
+00:12:02.840 --> 00:12:04.200
+I'll see you in the next lecture.
+我将在下一节课上见到你。
+
+00:12:05.480 --> 00:12:15.480
+[music]
+[音乐]

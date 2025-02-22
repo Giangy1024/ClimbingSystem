@@ -1,0 +1,521 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.280
+Welcome. In the last lecture, we created a motion warping component for our character
+欢迎。在上一讲中，我们为我们的角色创建了一个运动扭曲组件
+
+00:00:10.280 --> 00:00:14.840
+and we also imported this vaulting animation. So first I'm going to move this animation
+而且我们还导入了这个跳楼动画。所以我首先要把这个动画
+
+00:00:14.840 --> 00:00:21.040
+to its own folder. So click this drop down for Climb System Animation. Since this animation
+到自己的文件夹中。所以点击这个下拉的攀登系统动画。由于这个动画
+
+00:00:21.040 --> 00:00:27.840
+is already adjusted, I'm going to move this to the adjusted folder, select move here.
+已经被调整了，我要把它移到调整后的文件夹里，选择移动这里。
+
+00:00:27.840 --> 00:00:32.720
+And next, let's be clear about what we want here. So we want our character to start vaulting
+接下来，让我们清楚地知道我们在这里想要什么。所以我们要让我们的角色开始跳动
+
+00:00:32.720 --> 00:00:37.760
+and this is another behavior that I like to trigger using the same Climb Action key. So
+这是另一个行为，我喜欢用同样的攀爬动作键来触发。所以
+
+00:00:37.760 --> 00:00:41.920
+that means we need to perform more checks in here. So when we press the Climb Action
+这意味着我们需要在这里进行更多的检查。因此，当我们在场景一中按下攀爬动作键时
+
+00:00:41.920 --> 00:00:49.000
+key in the scenario one, we should start climbing. But in scenario two, I want to start vaulting.
+键时，我们应该开始爬升。但在场景二中，我想开始跳楼。
+
+00:00:49.000 --> 00:00:53.560
+But there are also cases that we shouldn't be able to do neither. And that's scenario
+但也有一些情况，我们不应该两者都做。这就是情景
+
+00:00:53.560 --> 00:00:58.480
+three. So that's what we need from our new surface check. And in this lecture, we look
+三。因此，这就是我们需要从我们的新表面检查中得到的东西。在本讲座中，我们将探讨
+
+00:00:58.480 --> 00:01:03.480
+at how we can implement this. All right, let's start coding. I'm going to first close my
+看看我们如何实现这一点。好了，让我们开始编码吧。我将首先关闭我的
+
+00:01:03.480 --> 00:01:09.280
+project. Then I'm going to go back to my custom movement component and I'm going to scroll
+项目。然后我将回到我的自定义运动组件，我将卷起
+
+00:01:09.280 --> 00:01:15.920
+up to this Climb Core. Under this function, checked has reached the ledge. I'm going to
+到这个Climb Core。在这个功能下，检查了已经到达壁架。我将会
+
+00:01:15.920 --> 00:01:22.200
+create two new functions. So the first function, I'm going to call it try start vaulting. It
+创建两个新函数。因此，第一个函数，我将把它称为尝试开始跳高。它
+
+00:01:22.200 --> 00:01:27.880
+only needs to return void. And the second function is going to return a bool. I'm going to call
+它只需要返回无效。第二个函数将返回一个bool。我将调用
+
+00:01:27.880 --> 00:01:37.040
+it can start vaulting. And I'm going to create two function definitions. So create one for
+它可以开始跳伞。我将创建两个函数定义。所以为
+
+00:01:37.040 --> 00:01:42.200
+this try start vaulting. I'm going to go to this function, checked has reached the ledge
+这个尝试开始跳伞。我要去这个函数，检查已经到达窗台的情况
+
+00:01:42.200 --> 00:01:48.360
+and place the function in here. Then I'm also going to create a function definition for
+并把这个函数放在这里。然后，我也要为这个 "可以开始跳跃 "创建一个函数定义。
+
+00:01:48.360 --> 00:01:53.360
+this can start vaulting, place it in here. And first thing I'm going to call the function
+这个可以开始跳楼，把它放在这里。首先，我将调用这个函数
+
+00:01:53.360 --> 00:02:01.660
+try start vaulting. So copy this function and I'm going to scroll up to toggle climbing.
+尝试开始跳伞。因此，复制这个函数，然后我将向上滚动到切换攀登。
+
+00:02:01.660 --> 00:02:07.040
+So if this be enabled climb is true, I'm first going to check if we can start climbing. Then
+因此，如果这个被启用的爬升是真的，我首先要检查我们是否可以开始爬升。然后
+
+00:02:07.040 --> 00:02:13.060
+I'm going to check if we can climb down. If we can't do any of that in the else case here,
+我将检查我们是否能爬下来。如果我们在这里的其他情况下不能做任何事情、
+
+00:02:13.060 --> 00:02:18.120
+I'm going to call the function try start vaulting. And I'm going to change this else case here
+我就会调用函数try start vaulting。我将改变这里的其他情况
+
+00:02:18.120 --> 00:02:26.320
+to if be enabled climb is false. Just to improve its readability a bit. All right, I'm going
+改为如果启用爬升是假的。只是为了提高它的可读性。好的，我将会
+
+00:02:26.320 --> 00:02:33.040
+to go back to this try start vaulting. So inside of this function, I'm going to check
+回到这个 "尝试开始跳伞"。所以在这个函数中，我将会检查
+
+00:02:33.040 --> 00:02:42.960
+if this can start vaulting return true. Then I'm going to start vaulting in here. So how
+如果它能开始跳伞，则返回true。然后我将在这里开始跳伞。因此，如何
+
+00:02:42.960 --> 00:02:47.220
+to check the condition is the key in here. All right, inside of this function, I'm first
+检查条件是这里的关键。好的，在这个函数中，我首先
+
+00:02:47.220 --> 00:02:54.040
+going to check so if it's falling is true, then I'm going to return false. So we won't
+要检查，所以如果它的下降是真的，那么我将返回false。所以我们将不能
+
+00:02:54.040 --> 00:02:59.280
+be able to start vaulting while we're in the air. Once we get past this if check, same
+所以当我们在空中的时候就不能开始跳伞。一旦我们通过了这个if检查，和我们之前做的一样
+
+00:02:59.280 --> 00:03:04.200
+as what we've done, I'm going to create some local variables for doing line traces. So
+我们所做的一样，我将创建一些局部变量来做线条追踪。所以
+
+00:03:04.200 --> 00:03:09.320
+the first one is going to be a const if vector. I'm going to call it component location and
+第一个变量将是一个常量的if向量。我将把它称为组件位置，并且
+
+00:03:09.320 --> 00:03:14.400
+it's going to equal to update the component get component location. And next one is going
+它将等于更新组件获得组件位置。下一个是
+
+00:03:14.400 --> 00:03:20.240
+to be component forward and it's going to equal to this updated component get forward
+它将等于这个更新的分量得到的前向
+
+00:03:20.240 --> 00:03:26.400
+vector. And I'm also going to get hold of the down vector. So it's going to be down
+向量。我还将掌握向下的矢量。所以它将是向下的
+
+00:03:26.400 --> 00:03:35.360
+vector and it's going to equal to this updated component. Get up vector and inverse this
+向量，它将等于这个更新的分量。得到向上的矢量并反转这个
+
+00:03:35.360 --> 00:03:40.680
+and while I'm at I'm also going to get hold of the up vector. So copy this line pasted
+同时，我也要得到向上的向量。所以复制这一行
+
+00:03:40.680 --> 00:03:49.400
+in here, change its name to up vector and delete this negative one. All right, these
+把它的名字改成向上向量，然后删除这个负的。好了，这些
+
+00:03:49.400 --> 00:03:54.360
+are the basic variables that we need for doing this check. And next I'm going to draw the
+是我们做这个检查时需要的基本变量。接下来我将画出
+
+00:03:54.360 --> 00:03:58.920
+line traces. But this time, unlike what we've done so far, I'm going to draw it inside of
+线迹。但是这一次，与我们到目前为止所做的不同，我将在一个
+
+00:03:58.920 --> 00:04:07.280
+a for loop. So it's going to be in 32, i equals zero i less than I'm going to give it a hard
+一个for循环。所以它将在32中，i等于零，i小于，我将给它一个硬的
+
+00:04:07.280 --> 00:04:12.800
+code value of five. You can promote this to a member variable later if you want. And inside
+代码值为5。如果你想的话，你可以稍后将其提升为一个成员变量。而在
+
+00:04:12.800 --> 00:04:17.640
+of this loop, I'm going to create a const vector. I'm going to call it start and it's
+循环中，我将创建一个常量向量。我将把它称为start，它将等于这个组件的位置加上这个向上的向量。
+
+00:04:17.640 --> 00:04:28.200
+going to equal to this component location plus this up vector multiplied with 100 units.
+它将等于这个组件的位置加上这个向上的向量，再乘以100个单位。
+
+00:04:28.200 --> 00:04:34.280
+So now our trace start is at 100 units above our character. And I'm going to offset this
+所以现在我们的追踪起点在我们的角色上方100个单位。我将通过使用这个组件来抵消这个
+
+00:04:34.280 --> 00:04:41.080
+start by using this component forward. So copy this pasted in here and I'm going to multiply
+通过使用这个组件来抵消这个起点。所以，复制这个粘贴在这里，我将把这个向前的矢量乘以
+
+00:04:41.080 --> 00:04:48.880
+this forward vector with another code value of 100 units. So this is how much I want to
+这个向前的矢量与另一个100单位的代码值相乘。所以这就是我想要的
+
+00:04:48.880 --> 00:04:57.640
+offset this line trace start. And I'm going to multiply this offset with i plus one. So
+偏移这个线迹的起点。我将把这个偏移量乘以i加1。所以
+
+00:04:57.640 --> 00:05:02.720
+this means inside of this loop, I'm going to draw five line traces. And for each of
+这意味着在这个循环中，我将画出五条线迹。而对于每一个
+
+00:05:02.720 --> 00:05:08.600
+these traces, the gap is going to be 100 units. All right, this is my trace start already.
+的间隙都是100个单位。好了，这就是我的线迹开始了。
+
+00:05:08.600 --> 00:05:14.760
+And next thing I'm going to create the trace end. I'm going to start this on a new line.
+接下来，我将创建轨迹的终点。我将在一个新的线上开始。
+
+00:05:14.760 --> 00:05:21.440
+So create another const vector. It's going to be end and it's going to equal to this
+所以再创建一个常量矢量。它将会是结束，它将会等于这个
+
+00:05:21.440 --> 00:05:30.000
+start plus this down vector. So I'm going to trace down and multiply it with the same
+开始加上这个向下的矢量。所以我将向下追踪，并将其与上面的值相乘。
+
+00:05:30.000 --> 00:05:36.540
+value as above. So what this means is the length of each line trace is going to increase
+和上面的值相乘。所以这意味着每条线的长度会随着数字的增加而增加
+
+00:05:36.540 --> 00:05:41.400
+as the number increases. So the first line is going to be the shortest and the last line
+随着数字的增加。所以第一条线是最短的，最后一条线
+
+00:05:41.400 --> 00:05:45.480
+is going to be the longest. All right, with this start and end, I'm going to call the
+是最长的。好了，有了这个开始和结束，我将会调用
+
+00:05:45.480 --> 00:05:56.120
+function to line trace single by object and pass in this start the end. And since we'll
+函数来追踪单个对象的行，并传入这个开始和结束。因为我们将
+
+00:05:56.120 --> 00:06:01.280
+only be calling this function for one frame, I'm going to pass in two truths. So we should
+因为我们只为一帧调用这个函数，所以我将传入两个真相。所以我们应该
+
+00:06:01.280 --> 00:06:07.640
+be able to see the persistent lines. Now outside of this for loop, I'm going to return false
+能够看到持续的线条。现在在这个for循环之外，我将返回false
+
+00:06:07.640 --> 00:06:14.600
+for now and I'm going to try to compile. All right, I have a successful compile. I'm going
+现在我要尝试编译了。好的，我有一个成功的编译。我将会
+
+00:06:14.600 --> 00:06:19.600
+to launch my editor to visualize this. All right, go inside of the editor. I'm going
+启动我的编辑器来显示这个。好的，进入编辑器。我将会
+
+00:06:19.600 --> 00:06:24.640
+to go to here. I think this match here is perfect for vaulting. So I'm going to click
+要到这里来。我认为这里的比赛对跳马来说是完美的。所以我将点击
+
+00:06:24.640 --> 00:06:31.640
+play and first I'm going to press F and you can see these are the five line traces. So
+播放，首先我要按F，你可以看到这些是五条线的痕迹。所以
+
+00:06:31.640 --> 00:06:35.400
+for the first one, we don't have a hit and we have four hits for the other four line
+第一条，我们没有找到，其他四条线有四个找到了
+
+00:06:35.400 --> 00:06:39.960
+traces. All right, I'm going to go to this match and press F again. And this time we
+痕迹。好吧，我现在要去看这个匹配，再按一次F。这一次我们
+
+00:06:39.960 --> 00:06:46.640
+have five hits and I'm going to duplicate this match. So hold down alt, drag it out
+这次我们有了5个匹配，我将复制这个匹配。所以按住alt键，把它拖出来
+
+00:06:46.640 --> 00:06:53.880
+and I'm going to lower its height down to point five and click play again. So go to it, press
+我将把它的高度降低到5点，然后再次点击播放。所以去找它，按
+
+00:06:53.880 --> 00:06:59.560
+F and this time we have four hits. So hopefully at this point you have a pretty good idea
+F，这次我们有四次点击。因此，希望在这一点上你有一个相当好的想法
+
+00:06:59.560 --> 00:07:04.080
+about what I'm trying to do in here. So for these hit results that we get, I'm going to
+关于我在这里要做什么。所以，对于我们得到的这些命中结果，我将
+
+00:07:04.080 --> 00:07:09.420
+go back to this climb system animation and adjust it. I'm going to double click to open
+回到这个爬升系统的动画并调整它。我将双击来打开
+
+00:07:09.420 --> 00:07:14.320
+this vaulting. So in order for this motion warping to work, we need to provide this animation
+拱顶。所以为了使这个运动扭曲工作，我们需要为这个动画提供
+
+00:07:14.320 --> 00:07:20.440
+with two targets. The first target is for when the hand reaches the surface and the second
+有两个目标。第一个目标是当手到达表面时，第二个目标是当角色降落时。
+
+00:07:20.440 --> 00:07:27.160
+target is when the character lands. So somewhere near here and the first target point, this
+第二个目标是角色落地时的目标。所以在这里和第一个目标点之间的某个地方，这个
+
+00:07:27.160 --> 00:07:32.780
+can simply be the hit result of our first line trace. And if the first line trace does
+可以简单地成为我们第一条线迹的打击结果。如果第一条线的追踪没有
+
+00:07:32.780 --> 00:07:37.840
+not have a hit result, then we shouldn't start vaulting. But we also need to rule out the
+没有命中的结果，那么我们就不应该开始跳伞。但我们也需要排除以下情况
+
+00:07:37.840 --> 00:07:43.920
+situation when the landing point is not valid. If the line trace here does not have a valid
+着陆点无效的情况。如果这里的线迹没有一个有效的
+
+00:07:43.920 --> 00:07:49.160
+hit result, then we shouldn't start vaulting either. And I'm going to go back to my viewport,
+击结果，那么我们也不应该开始跳马。而我要回到我的视口、
+
+00:07:49.160 --> 00:07:55.900
+click play again. So with our current set up, I'm going to press F. We have five line traces.
+再次点击播放。在我们目前的设置下，我将按下F键，我们有五个线迹。
+
+00:07:55.900 --> 00:08:00.120
+So the first hit result is going to be the target location for the hand and we can pick
+所以第一条结果将是手的目标位置，我们可以从其他四条中选择一个作为目标位置。
+
+00:08:00.120 --> 00:08:05.060
+from the other four as the target location when the character lands. And which one we
+作为角色落地时的目标位置。而我们选择哪一个
+
+00:08:05.060 --> 00:08:09.440
+pick here depends on how far you think this vaulting should move our character. And you
+取决于你认为这个跳跃应该使我们的角色移动多远。而你
+
+00:08:09.440 --> 00:08:14.680
+can promote more member variables to control this. For example, the gap between these line
+可以促进更多的成员变量来控制这一点。例如，这些线迹之间的间隙
+
+00:08:14.680 --> 00:08:20.640
+traces, the length of these line traces. You can do all of that if you want. All right,
+的间隙，这些线迹的长度。如果你想的话，你可以做所有这些事情。好了、
+
+00:08:20.640 --> 00:08:24.960
+now that we know what we need from these traces, I'm going to close my project again. Click
+现在我们知道我们需要从这些痕迹中得到什么，我将再次关闭我的项目。点击
+
+00:08:24.960 --> 00:08:30.040
+save selected. I'm going to change this function a bit. So go back to my header file. Instead
+保存选择。我要把这个函数改一下。所以回到我的头文件中去。而不是
+
+00:08:30.040 --> 00:08:34.920
+of can start vaulting, I'm going to give it to our parameters. So the first one is going
+我打算把它交给我们的参数，而不是开始拱顶。所以第一个参数将是
+
+00:08:34.920 --> 00:08:43.720
+to be an F vector. It's going to be a reference. I'm going to call this out vault start position.
+是一个F向量。它将是一个参考。我将把这个称为拱顶的起始位置。
+
+00:08:43.720 --> 00:08:50.160
+And the second out parameter is going to be another F vector reference. I'm going to call
+第二个参数将是另一个F向量参考。我将把它称为
+
+00:08:50.160 --> 00:08:56.520
+this out vault land position. All right, I'm going to copy these two parameters and paste
+这是出库位置。好的，我将复制这两个参数并粘贴到这个函数中。
+
+00:08:56.520 --> 00:09:02.480
+them back to this function. And the first thing that I want to do inside of this function,
+把它们粘贴到这个函数中。在这个函数中，我想做的第一件事是、
+
+00:09:02.480 --> 00:09:08.440
+I'm going to set this to our parameters to zero vectors. So set the first one to be F
+我将把我们的参数设置为零矢量。所以把第一个参数设置为F
+
+00:09:08.440 --> 00:09:16.120
+vector, zero vector, and do the same thing to the second one. So copy this and paste
+向量，零向量，然后对第二个参数做同样的事情。所以复制这个并粘贴
+
+00:09:16.120 --> 00:09:23.040
+it to here and set it to another zero vector. All right, I'm going to scroll down. So I'm
+并将其设置为另一个零矢量。好了，我要向下滚动。所以我打算
+
+00:09:23.040 --> 00:09:28.320
+going to store the return result of this function inside of an F hit result. And I'm going to
+将这个函数的返回结果存储在一个F命中结果里面。我打算
+
+00:09:28.320 --> 00:09:37.160
+call this variable vault trace hit. Then I'm going to check. So F i is equal to zero. So
+调用这个变量来追踪命中。然后我将进行检查。所以F i等于零。所以
+
+00:09:37.160 --> 00:09:43.400
+that means this is our first line trace and this vault trace hit the B blocking hit is
+这意味着这是我们的第一行追踪，这个金库追踪命中B封锁命中是
+
+00:09:43.400 --> 00:09:48.560
+true. So our first line trace is hitting something. If that's the case, I'm going to set this out
+为真。所以我们的第一行追踪是击中了什么。如果是这样的话，我将设置这个出库参数
+
+00:09:48.560 --> 00:09:59.920
+parameter out vault star position to be the impact point of this trace hit. And then I'm
+参数出穹顶星的位置，作为这个轨迹撞击的影响点。然后我将
+
+00:09:59.920 --> 00:10:07.120
+going to do another check. So if i is equal to four, so this is our last line trace and
+再做一次检查。所以，如果i等于4，那么这是我们的最后一条线迹，并且
+
+00:10:07.120 --> 00:10:12.200
+this line trace has a valid blocking hit. If that's the case, I'm going to set this
+这条线追踪有一个有效的阻断点。如果是这样的话，我就要把这个
+
+00:10:12.200 --> 00:10:20.240
+lame position to be the impact point. Copy this one and paste it in here. Then outside
+瘸腿的位置为撞击点。复制这个，然后把它粘贴在这里。然后在外面
+
+00:10:20.240 --> 00:10:28.640
+of this loop, I'm going to do an F check. So if this out vault star position is not
+在这个循环中，我要做一个F检查。因此，如果这个出库星的位置不等于
+
+00:10:28.640 --> 00:10:45.620
+equal to a zero vector and this out vault lame position is not equal to a zero vector.
+等于一个零向量，并且这个出库的跛脚位置不等于一个零向量。
+
+00:10:45.620 --> 00:10:51.320
+If both of these conditions are true, then we should return true in here. So we should
+如果这两个条件都是真的，那么我们应该在这里返回真。所以我们应该
+
+00:10:51.320 --> 00:10:58.620
+start voting. And if this condition is false, so in the else case, then I'm going to return
+开始投票。如果这个条件是假的，那么在其他情况下，我将返回
+
+00:10:58.620 --> 00:11:04.880
+false. Then I'm going to scroll back to this tristart voting. Now we'll need to fill in
+false。然后我将滚动到这个三段式投票。现在我们需要填入
+
+00:11:04.880 --> 00:11:09.280
+two parameters. So I'm going to create two new local variables in here. The first one
+两个参数。所以我将在这里创建两个新的局部变量。第一个
+
+00:11:09.280 --> 00:11:14.040
+is going to be a vector. I'm going to call it vault star position. And the second one
+将是一个向量。我将把它称为穹顶星的位置。而第二个
+
+00:11:14.040 --> 00:11:21.520
+is going to be vault land position. And I'm going to pass in these two variables to this
+将会是金库的陆地位置。我将把这两个变量传给这个
+
+00:11:21.520 --> 00:11:29.240
+function. So if this function returns true, both of these variables will be filled with
+函数。所以如果这个函数返回真，这两个变量将被填入
+
+00:11:29.240 --> 00:11:33.280
+the valid surface hit result. And there are some things that we can use later for our
+有效的表面撞击结果。还有一些东西，我们可以在以后用于我们的
+
+00:11:33.280 --> 00:11:37.840
+motion working. All right, to prove this is working, I'm going to print these two values
+运动工作。好的，为了证明这一点，我将打印这两个值
+
+00:11:37.840 --> 00:11:45.360
+out. So it's going to be debug print and the message is going to be this start position.
+出来。所以这将是一个调试打印，信息将是这个起始位置。
+
+00:11:45.360 --> 00:11:49.980
+And I'm going to append another string in here. So I'm going to convert this start position
+我还要在这里添加一个字符串。所以我将把这个起始位置
+
+00:11:49.980 --> 00:12:00.960
+to a human readable string. And I'm going to print this land position and convert this
+转换为人类可读的字符串。我将打印这个位置并将这个
+
+00:12:00.960 --> 00:12:10.120
+value into a string. And if this condition returns false, then I'm going to print a message
+值转换成一个字符串。如果这个条件返回错误，那么我将打印一个信息
+
+00:12:10.120 --> 00:12:16.960
+that says, "enable to vault". And I'm going to delete this variable. All right, I'm going
+说，"启用金库"。然后我将删除这个变量。好的，我将会
+
+00:12:16.960 --> 00:12:25.440
+to launch my editor back. So go back to my editor, I'm going to click play. And first,
+启动我的编辑器。所以回到我的编辑器，我将点击播放。首先、
+
+00:12:25.440 --> 00:12:30.720
+I'm going to press F. So my message says, "enable to vault". And that's what we want. I'm going
+所以我的信息说，"启用保险库"。这就是我们想要的。我将会
+
+00:12:30.720 --> 00:12:35.920
+to go to this surface, then press F. And now we have a valid start and land position for
+现在我们有了一个有效的起始和着陆位置，可以让我们的运动发挥作用。
+
+00:12:35.920 --> 00:12:41.920
+our motion working. Great. I'm going to go to this surface here, then press F. And here
+我们的运动工作。很好。我要去这个表面，然后按F。
+
+00:12:41.920 --> 00:12:47.480
+it says, "enable to vault". Great. I'm going to go to here, then press F. So later for
+它说，"启用金库"。很好。我要去这里，然后按F。
+
+00:12:47.480 --> 00:12:52.840
+this surface, we should be able to start voting as well. Now with this piece of information
+这个表面，我们也应该能够开始投票。现在有了这一信息
+
+00:12:52.840 --> 00:12:57.840
+in the next lecture, we'll look at how we can actually trigger motion working. And I
+在下一讲中，我们将看看我们如何能够真正触发运动工作。而我
+
+00:12:57.840 --> 00:13:03.800
+got some important notes for you. For my implementation, I used the multiple line traces to check the
+我为你准备了一些重要的说明。在我的实现中，我使用了多线追踪的方式来检查
+
+00:13:03.800 --> 00:13:09.760
+vaultable surface. And based on the written results, the function returns true or false.
+拱顶的表面。并根据写出的结果，函数返回真或假。
+
+00:13:09.760 --> 00:13:14.440
+And if this is not something you like and you've spotted another way to do this, feel free
+如果这不是你喜欢的，而且你已经发现了其他的方法，请随时
+
+00:13:14.440 --> 00:13:19.080
+to try out your own idea in here. I'm sure they'll be much better than mine. And if this
+在这里尝试一下你自己的想法。我相信它们会比我的好得多。而如果这
+
+00:13:19.080 --> 00:13:23.120
+is the method that you want to go for, feel free to refer back to the video for help.
+是你想采用的方法，请随时回到视频中寻求帮助。
+
+00:13:23.120 --> 00:13:26.440
+All right, it's time for you to do the same. I'll see you in the next lecture.
+好了，现在是你做同样事情的时候了。我们在下一个讲座中见。
+
+00:13:26.440 --> 00:13:36.800
+[music]
+[音乐]

@@ -1,0 +1,545 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.360
+Welcome, after last lecture, now we have a working control rig for snapping both of our
+欢迎，经过上次的讲座，现在我们有了一个有效的控制装置，可以在攀爬时将我们的双手和双脚都扣在
+
+00:00:10.360 --> 00:00:16.480
+hands and feet to the climbable surface when we are climbing.
+手和脚在可攀爬的表面上。
+
+00:00:16.480 --> 00:00:20.520
+And starting from this lecture, we'll look at how we can use motion morphing to take
+从这节课开始，我们将研究如何使用运动变形技术来进一步提高
+
+00:00:20.520 --> 00:00:23.060
+our climbing system further.
+我们的攀爬系统更进一步。
+
+00:00:23.060 --> 00:00:25.320
+So what is motion morphing?
+那么什么是运动变形呢？
+
+00:00:25.320 --> 00:00:30.080
+Well in simple terms, it's a feature that can dynamically adjust our character's root
+简单地说，它是一个可以动态地调整我们的角色的根部运动的功能
+
+00:00:30.080 --> 00:00:33.680
+motion to align to the targets that we specify.
+来对准我们指定的目标。
+
+00:00:33.680 --> 00:00:38.680
+So far we have used root motion to help us to achieve things like climbing down the ledge,
+到目前为止，我们已经使用了根部运动来帮助我们实现诸如爬下壁架的事情、
+
+00:00:38.680 --> 00:00:43.720
+climbing up the ledge, and thanks to the control rig, we can manually adjust how much we want
+由于控制装置的存在，我们可以手动调整我们想要的根部运动的程度。
+
+00:00:43.720 --> 00:00:46.340
+the root motion to move our character.
+根部运动来移动我们的角色。
+
+00:00:46.340 --> 00:00:51.120
+But still, the value there is predefined inside of the editor and there's no control of it
+但是，那里的值仍然是在编辑器中预定义的，而且在运行时也无法控制它
+
+00:00:51.120 --> 00:00:52.360
+during runtime.
+在运行期间。
+
+00:00:52.360 --> 00:00:57.640
+And if without control rig, there really isn't an editor solution for us to adjust the movement
+如果没有控制设备，就真的没有一个编辑器可以让我们调整根部运动的移动
+
+00:00:57.640 --> 00:01:00.560
+of the root motion animation inside of the editor.
+根部运动动画在编辑器中的移动。
+
+00:01:00.560 --> 00:01:02.920
+But everything changes with motion morphing.
+但是有了运动变形，一切都变了。
+
+00:01:02.920 --> 00:01:08.440
+So with motion morphing, we can dynamically set the target for the root motion animation
+所以有了运动变形，我们可以动态地设置根部运动动画的目标
+
+00:01:08.440 --> 00:01:12.100
+and in the runtime, we can warp our character to the target.
+并且在运行时，我们可以将我们的角色扭曲到目标上。
+
+00:01:12.100 --> 00:01:16.800
+And this is such a powerful feature that can allow us to move and rotate our character
+这是一个非常强大的功能，可以让我们移动和旋转我们的角色
+
+00:01:16.800 --> 00:01:19.700
+so the movement of it fits better with the animation.
+这样它的运动就能更好地配合动画。
+
+00:01:19.700 --> 00:01:22.160
+So let's look at how we can set it up.
+因此，让我们来看看我们如何设置它。
+
+00:01:22.160 --> 00:01:26.080
+First we'll need to enable the motion morphing plugin for our project.
+首先，我们需要为我们的项目启用运动变形插件。
+
+00:01:26.080 --> 00:01:33.760
+I'm going to go to edit and inside the plugins in here, I'm going to search for motion morphing.
+我要去编辑，在这里的插件里面，我要搜索运动变形。
+
+00:01:33.760 --> 00:01:36.140
+So this is the plugin that we need to enable.
+所以这是我们需要启用的插件。
+
+00:01:36.140 --> 00:01:41.320
+Take it and just click yes for this message and we'll need to restart our editor.
+拿到它，然后点击这个信息的 "是"，我们就需要重新启动我们的编辑器。
+
+00:01:41.320 --> 00:01:44.000
+So I'm going to click restart now.
+所以我现在要点击重新启动。
+
+00:01:44.000 --> 00:01:48.960
+All right after having the editor back, I'm going to close this tab and close my project.
+好了，在编辑器恢复后，我将关闭这个标签并关闭我的项目。
+
+00:01:48.960 --> 00:01:53.280
+Next I'm going to create a motion morphing component inside of our character class.
+接下来我将在我们的角色类中创建一个运动变形组件。
+
+00:01:53.280 --> 00:01:57.960
+So I'm going to scroll down and open this system character.h.
+所以我要向下滚动并打开这个系统character.h。
+
+00:01:57.960 --> 00:02:00.080
+First I'm going to forward declare the type.
+首先，我要向前声明这个类型。
+
+00:02:00.080 --> 00:02:06.820
+So the type is going to be class HueMotionMorphingComponent.
+所以这个类型将是HueMotionMorphingComponent类。
+
+00:02:06.820 --> 00:02:09.240
+Then I'm going to declare a member variable for it.
+然后我将为它声明一个成员变量。
+
+00:02:09.240 --> 00:02:11.560
+So copy this type, go down.
+所以复制这个类型，往下看。
+
+00:02:11.560 --> 00:02:14.960
+I'm going to place it in here.
+我将把它放在这里。
+
+00:02:14.960 --> 00:02:18.720
+Copy this Hue property.
+复制这个Hue属性。
+
+00:02:18.720 --> 00:02:27.000
+Place it in here and I'm going to name this variable MotionMorphingComponent.
+把它放在这里，我将把这个变量命名为MotionMorphingComponent。
+
+00:02:27.000 --> 00:02:32.120
+And next thing I'm going to head over to the constructor to create a default sub object.
+接下来，我要到构造器那里去创建一个默认的子对象。
+
+00:02:32.120 --> 00:02:36.840
+So press Ctrl + K, Ctrl + O to go to the cpp file.
+所以按Ctrl + K, Ctrl + O转到cpp文件。
+
+00:02:36.840 --> 00:02:42.320
+Then I'm going to copy this name and scroll down.
+然后我将复制这个名字并向下滚动。
+
+00:02:42.320 --> 00:02:50.640
+I'm going to delete these two lines of comment and place the variable in here.
+我要删除这两行注释，把变量放在这里。
+
+00:02:50.640 --> 00:02:53.680
+And I'm going to copy this create default sub object.
+我将复制这个创建默认子对象。
+
+00:02:53.680 --> 00:03:00.440
+The type is going to be HueMotionMorphingComponent.
+类型将是HueMotionMorphingComponent。
+
+00:03:00.440 --> 00:03:05.500
+And the name, I'm going to call it MotionMorphingComp.
+名字，我打算叫它MotionMorphingComp。
+
+00:03:05.500 --> 00:03:09.100
+And we'll also need to include the header file for this motion morphing.
+我们还需要包括这个运动变形的头文件。
+
+00:03:09.100 --> 00:03:14.680
+And the fastest way to find that is to select this type and press F12 to go to its header
+找到它的最快方法是选择这个类型，然后按F12键进入它的头文件。
+
+00:03:14.680 --> 00:03:15.680
+file.
+文件。
+
+00:03:15.680 --> 00:03:21.200
+Then press Ctrl + K, Ctrl + O. I'm going to select this header file, go back to my
+然后按Ctrl + K, Ctrl + O。我将选择这个头文件，回到我的
+
+00:03:21.200 --> 00:03:24.480
+cpp and paste it in here.
+cpp并把它粘贴到这里。
+
+00:03:24.480 --> 00:03:27.840
+Alright I'm going to try to compile and I don't have a successful compile.
+好了，我要尝试编译了，我没有编译成功。
+
+00:03:27.840 --> 00:03:29.460
+Let's investigate the reason.
+让我们调查一下原因。
+
+00:03:29.460 --> 00:03:30.720
+So scroll down.
+所以向下滚动。
+
+00:03:30.720 --> 00:03:36.600
+Here you can see it says cannot open this include file MotionMorphingComponent.h.
+在这里你可以看到它说不能打开这个包含文件MotionMorphingComponent.h。
+
+00:03:36.600 --> 00:03:38.360
+And in here I have some red squiggles.
+在这里我有一些红色的斜线。
+
+00:03:38.360 --> 00:03:43.200
+So if this happens, usually it means there's a missing module that we need to include inside
+所以如果发生这种情况，通常意味着我们需要在build.cs文件中包含一个缺失的模块。
+
+00:03:43.200 --> 00:03:44.920
+of our build.cs file.
+我们的build.cs文件中。
+
+00:03:44.920 --> 00:03:49.240
+And to quickly find out which module that we need to include, the fastest way will be
+为了快速找出我们需要加入的模块，最快的方法是
+
+00:03:49.240 --> 00:03:51.020
+searching for this header file.
+搜索这个头文件。
+
+00:03:51.020 --> 00:03:54.280
+So I'm going to copy this name, paste it in here.
+所以我要复制这个名字，把它粘贴到这里。
+
+00:03:54.280 --> 00:03:57.900
+And you can see this header file is under the module MotionMorphing.
+你可以看到这个头文件在MotionMorphing模块下。
+
+00:03:57.900 --> 00:04:00.840
+So I'm going to select this folder, press F2.
+所以我将选择这个文件夹，按F2键。
+
+00:04:00.840 --> 00:04:05.680
+Once I have the name selected, I'm going to press Ctrl + C to copy it.
+一旦我选择了这个名字，我就要按Ctrl + C来复制它。
+
+00:04:05.680 --> 00:04:09.080
+Then I'm going to go back to my build.cs.
+然后我再回到我的build.cs。
+
+00:04:09.080 --> 00:04:14.160
+So scroll down and double click to open this ClimbSystem.build.cs.
+所以向下滚动并双击，打开这个CimbSystem.build.cs。
+
+00:04:14.160 --> 00:04:16.160
+And we'll need that module in here.
+我们将需要这个模块在这里。
+
+00:04:16.160 --> 00:04:20.560
+So I'm going to start this one on a new line and organize these names.
+所以我要在新的一行开始这个模块，并组织这些名称。
+
+00:04:20.560 --> 00:04:25.320
+So these are the existing modules that we've already included.
+所以这些是我们已经包含的现有模块。
+
+00:04:25.320 --> 00:04:26.860
+And I'm going to add in a new one.
+我将添加一个新的模块。
+
+00:04:26.860 --> 00:04:31.760
+So the next one that we need to add in is this MotionMorphing.
+所以我们需要添加的下一个模块是MotionMorphing。
+
+00:04:31.760 --> 00:04:37.840
+Alright I'm going to try to compile again.
+好吧，我再试着编译一下。
+
+00:04:37.840 --> 00:04:40.000
+And this time I have a successful compile.
+这一次，我的编译成功了。
+
+00:04:40.000 --> 00:04:45.760
+And now if I go back to my character.cpp, you can see that Red Squiggle is still there.
+现在如果我回到我的character.cpp，你可以看到Red Squiggle还在那里。
+
+00:04:45.760 --> 00:04:50.160
+And if we don't get rid of this later, when we need to access this variable, we won't
+如果我们以后不把它去掉，当我们需要访问这个变量时，我们就不能自动完成。
+
+00:04:50.160 --> 00:04:52.560
+be able to have auto completion back.
+我们就不能再有自动完成的功能了。
+
+00:04:52.560 --> 00:04:58.000
+And the fastest way to do that, I'm going to launch my editor back first.
+做到这一点的最快方法是，我先启动我的编辑器。
+
+00:04:58.000 --> 00:05:02.480
+So inside of my editor, I'm going to go to Tools and I'm going to click this Refresh
+因此，在我的编辑器中，我将进入 "工具"，点击 "刷新"。
+
+00:05:02.480 --> 00:05:08.120
+Visual Studio Project.
+Visual Studio项目。
+
+00:05:08.120 --> 00:05:09.960
+Alright the refreshing is complete.
+好了，刷新完成了。
+
+00:05:09.960 --> 00:05:13.520
+Now I'm going to close my project again and go back to Visual Studio.
+现在我将再次关闭我的项目，回到Visual Studio。
+
+00:05:13.520 --> 00:05:17.900
+Now I can click this Reload All.
+现在我可以点击这个Reload All。
+
+00:05:17.900 --> 00:05:20.940
+And you can see after reloading that Red Squiggle is gone.
+你可以看到重新加载后，红色斜线已经消失了。
+
+00:05:20.940 --> 00:05:23.680
+And now we should be able to have the auto completion back.
+现在我们应该可以恢复自动完成的功能了。
+
+00:05:23.680 --> 00:05:26.600
+Alright I'm going to close this build.cs file.
+好了，我要关闭这个build.cs文件。
+
+00:05:26.600 --> 00:05:29.280
+And there's one more thing that I want to do inside of code.
+还有一件事我想在代码中做。
+
+00:05:29.280 --> 00:05:31.040
+So go back to the header file.
+所以请回到头文件中。
+
+00:05:31.040 --> 00:05:33.240
+I'm first going to copy this type.
+我首先要复制这个类型。
+
+00:05:33.240 --> 00:05:35.100
+Then go to the bottom of it.
+然后转到它的底部。
+
+00:05:35.100 --> 00:05:39.600
+So I'm going to create a getter for that component.
+所以我要为这个组件创建一个getter。
+
+00:05:39.600 --> 00:05:41.120
+So start a new line.
+所以开始一个新的行。
+
+00:05:41.120 --> 00:05:44.360
+It's going to be another force inline.
+这将是另一个内联力。
+
+00:05:44.360 --> 00:05:45.480
+And this is the type.
+这是该类型。
+
+00:05:45.480 --> 00:05:50.600
+I'm going to call this getMotionMorphingComponent.
+我将把它叫做getMotionMorphingComponent。
+
+00:05:50.600 --> 00:05:52.200
+And it's going to be const.
+它将是常数。
+
+00:05:52.200 --> 00:05:58.480
+And I'm going to return this motion morphing component.
+我将会返回这个运动变形组件。
+
+00:05:58.480 --> 00:06:00.960
+Alright I'm going to compile again.
+好了，我要再次编译了。
+
+00:06:00.960 --> 00:06:02.320
+I have a successful compile.
+我已经编译成功了。
+
+00:06:02.320 --> 00:06:04.400
+I'm going to launch my editor back.
+我将重新启动我的编辑器。
+
+00:06:04.400 --> 00:06:05.400
+Go inside of my editor.
+进入我的编辑器。
+
+00:06:05.400 --> 00:06:08.800
+I'm going to double click to open this character blueprint.
+我将双击来打开这个角色蓝图。
+
+00:06:08.800 --> 00:06:13.760
+And you can see in here we have one more component added and it's this motion morphing component.
+你可以看到在这里我们又添加了一个组件，它就是这个运动变形组件。
+
+00:06:13.760 --> 00:06:16.240
+And that's the basic set for motion morphing.
+这就是运动变形的基本设置。
+
+00:06:16.240 --> 00:06:18.100
+And there's one last thing that I want to do.
+还有最后一件事我想做。
+
+00:06:18.100 --> 00:06:20.080
+So I'm going to close this window.
+所以我将关闭这个窗口。
+
+00:06:20.080 --> 00:06:24.840
+And in the resources dropdown of this lecture, you should be able to find a USF file.
+在本讲座的资源下拉菜单中，你应该能够找到一个USF文件。
+
+00:06:24.840 --> 00:06:27.320
+It's the animation that we're going to use later.
+这是我们以后要使用的动画。
+
+00:06:27.320 --> 00:06:29.680
+Make sure you download it before you proceed.
+在你继续之前，确保你下载它。
+
+00:06:29.680 --> 00:06:30.840
+I've already done that.
+我已经这样做了。
+
+00:06:30.840 --> 00:06:33.560
+So the file is called voting_rm.
+所以这个文件叫做 voting_rm。
+
+00:06:33.560 --> 00:06:35.760
+So I'm going to select this file.
+所以我将选择这个文件。
+
+00:06:35.760 --> 00:06:37.380
+Control + C to copy it.
+Control + C来复制它。
+
+00:06:37.380 --> 00:06:39.840
+Go inside of my clamping system.
+进入我的钳制系统内部。
+
+00:06:39.840 --> 00:06:42.200
+Double click to open this content folder.
+双击来打开这个内容文件夹。
+
+00:06:42.200 --> 00:06:45.620
+And Control + V to paste the USF in here.
+然后Control + V将USF粘贴到这里。
+
+00:06:45.620 --> 00:06:47.020
+Then go back to my project.
+然后回到我的项目。
+
+00:06:47.020 --> 00:06:49.240
+Go inside of the content folder.
+转到内容文件夹里面。
+
+00:06:49.240 --> 00:06:51.720
+And this is the animation that we're going to use.
+这就是我们要使用的动画。
+
+00:06:51.720 --> 00:06:54.800
+And we'll need to assign it a new skeleton.
+我们需要给它分配一个新的骨架。
+
+00:06:54.800 --> 00:06:58.720
+So right mouse button click and select this replace skeleton.
+所以鼠标右键单击并选择这个替换骨架。
+
+00:06:58.720 --> 00:07:02.520
+So this is an animation that comes from one of Epic's sample project.
+所以这是一个来自Epic的样本项目的动画。
+
+00:07:02.520 --> 00:07:06.240
+I've already retargeted it to be compatible with our SK mannequin.
+我已经对它进行了重定位，以便与我们的SK人体模型兼容。
+
+00:07:06.240 --> 00:07:09.760
+So just select this skeleton and click OK.
+所以只要选择这个骨架并点击OK。
+
+00:07:09.760 --> 00:07:11.580
+And now the animation should be ready.
+现在这个动画应该已经准备好了。
+
+00:07:11.580 --> 00:07:12.860
+Double click to open it.
+双击来打开它。
+
+00:07:12.860 --> 00:07:15.520
+And you can see this is a voting animation.
+你可以看到这是个投票动画。
+
+00:07:15.520 --> 00:07:19.640
+And if I select the root bone here, it also has the root motion intact.
+如果我选择这里的根骨，它也有完整的根部动作。
+
+00:07:19.640 --> 00:07:25.120
+And later we'll look at how we can use this animation with motion morphing.
+稍后我们将看看我们如何使用这个动画和运动变形。
+
+00:07:25.120 --> 00:07:26.840
+It's time for our challenge today.
+现在是我们今天的挑战时间。
+
+00:07:26.840 --> 00:07:31.360
+The challenge is I'd like you to enable the motion morphing plugin in your project.
+这个挑战是我希望你在你的项目中启用运动变形插件。
+
+00:07:31.360 --> 00:07:35.400
+After this step, same as I did, I'd like you to create a motion morphing component for
+在这一步之后，和我一样，我希望你为你的角色创建一个运动变形组件。
+
+00:07:35.400 --> 00:07:36.400
+your character.
+你的角色。
+
+00:07:36.400 --> 00:07:39.340
+And don't forget to include the corresponding header file.
+不要忘记包含相应的头文件。
+
+00:07:39.340 --> 00:07:43.560
+And also you'll need to add in the corresponding module to your build.cs file.
+而且你还需要在你的build.cs文件中加入相应的模块。
+
+00:07:43.560 --> 00:07:47.760
+And once you have the component ready, last thing, make sure you import the animation
+一旦你准备好组件，最后一件事，确保你导入动画
+
+00:07:47.760 --> 00:07:48.760
+for voting.
+用于投票。
+
+00:07:48.760 --> 00:07:51.440
+Alright, pause the video now and give this a go.
+好了，现在暂停视频，给它一个机会。
+
+00:07:51.440 --> 00:07:53.880
+Or refer back to the video if you need help.
+如果你需要帮助，也可以参考视频。
+
+00:07:53.880 --> 00:07:55.240
+And I'll see you in the next lecture.
+我们在下一个讲座中再见吧。
+
+00:07:57.160 --> 00:08:07.160
+[music]
+[音乐]

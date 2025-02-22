@@ -1,0 +1,465 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:09.600
+Welcome. In the last lecture, we created two callback functions that will be triggered
+欢迎。在上一节课中，我们创建了两个将被触发的回调函数
+
+00:00:09.600 --> 00:00:15.480
+when our player enters and exits the clamp state. And in this lecture, we are going to
+当我们的玩家进入和退出夹具状态时。在这堂课中，我们将介绍
+
+00:00:15.480 --> 00:00:21.040
+look at how we can use these two functions to add in and remove input mapping context.
+看看我们如何使用这两个函数来添加和删除输入映射上下文。
+
+00:00:21.040 --> 00:00:25.640
+So this is the default mapping context that we've been using. And you can see inside of
+这是我们一直使用的默认映射上下文。你可以看到里面的
+
+00:00:25.640 --> 00:00:31.880
+it there are four actions. So we have jump, move, look, and our clamp. So for this move,
+它有四个动作。所以我们有跳跃，移动，看和我们的钳子。因此，对于这一举动，
+
+00:00:31.880 --> 00:00:36.200
+you can see these are the key bindings and we can use these keys to move our character
+您可以看到这些键绑定，我们可以使用这些键来移动我们的角色
+
+00:00:36.200 --> 00:00:42.460
+on the ground. And what I want here is I like to also use these same keys to move our character
+趴在地上。我想要的是我也想用这些键来移动我们的角色
+
+00:00:42.460 --> 00:00:47.480
+when we are climbing. And I also don't want to check the clamp state at the input level.
+当我们在爬山的时候。我也不想检查输入电平上的钳位状态。
+
+00:00:47.480 --> 00:00:52.960
+So how can we do that? Well, to achieve what we want, we'll need to understand how to use
+那么我们怎么才能做到这一点呢？好的，为了实现我们想要的，我们需要了解如何使用
+
+00:00:52.960 --> 00:00:59.120
+this mapping context. So our default move action is inside of this default input mapping
+此映射上下文。因此，我们的默认移动操作位于此默认输入映射的内部
+
+00:00:59.120 --> 00:01:04.320
+context. And in order for this to work, we'll need to create a new input action. Here I'm
+背景。为了使其起作用，我们需要创建一个新的输入操作。我在这里
+
+00:01:04.320 --> 00:01:09.820
+going to call it climb move action. And this action here, it needs to be in its own input
+我要把它叫做攀爬移动行动。而这个动作，它需要在自己的输入中
+
+00:01:09.820 --> 00:01:14.360
+mapping context. So I'm going to call it climb input mapping context. And this move action
+映射上下文。因此，我将其称为爬升输入映射上下文。而这一移动动作
+
+00:01:14.360 --> 00:01:19.920
+will have the exact same key binding as this default move action. So somehow we'll need
+将具有与此默认移动操作完全相同的键绑定。所以不知何故我们需要
+
+00:01:19.920 --> 00:01:26.000
+to allow this action to override this one. And thanks to our enhanced input system to
+以允许此操作覆盖此操作。多亏了我们增强的输入系统
+
+00:01:26.000 --> 00:01:31.280
+do that, we just need to change their priority. So this default input mapping context will
+要做到这一点，我们只需要改变他们的优先顺序。因此，此默认输入映射上下文将
+
+00:01:31.280 --> 00:01:37.280
+be added at priority zero. And if we want to override this action, this newly added mapping
+被添加到优先级为零。如果我们想要覆盖此操作，则新添加的映射
+
+00:01:37.280 --> 00:01:43.600
+context needs to be a higher priority. So I'm going to say priority one. As long as the
+背景需要是更高的优先级。所以我要说的是第一要务。只要
+
+00:01:43.600 --> 00:01:48.320
+number here is higher than this one, even though these two actions, they have the same
+这里的数字比这个高，即使这两个动作，它们有相同的
+
+00:01:48.320 --> 00:01:53.480
+key binding, the higher one will override the lower one. So that's the theory part.
+键绑定，较高的键绑定将覆盖较低的键绑定。这就是理论上的部分。
+
+00:01:53.480 --> 00:01:57.440
+Let's start coding. I'm going to close my project, go back to my visual studio. I'm
+让我们开始编码吧。我要结束我的项目，回到我的视觉工作室。我
+
+00:01:57.440 --> 00:02:02.600
+going to go inside of this climbing system character.h. Then I'm going to copy this mapping
+要进入这个攀爬系统的角色。然后我要复制这张地图
+
+00:02:02.600 --> 00:02:10.180
+context and I'm going to paste it in here. And this time I'm going to call it climb mapping
+上下文，我将把它粘贴到这里。这一次我要把它叫做攀登地图
+
+00:02:10.180 --> 00:02:16.860
+context. Then above these two mapping context, I'm going to create two handy functions to
+背景。然后，在这两个映射上下文之上，我将创建两个方便的函数来
+
+00:02:16.860 --> 00:02:22.240
+add and remove the mapping context we want. So under these two callback functions, I'm
+添加和删除所需的映射上下文。因此，在这两个回调函数下，我
+
+00:02:22.240 --> 00:02:28.000
+going to create the first one. I'm going to call it add input mapping context, and it's
+我要创建第一个。我将其称为添加输入映射上下文，它是
+
+00:02:28.000 --> 00:02:34.000
+going to have two function inputs. So the first one is going to be this u input mapping context.
+将有两个功能输入。所以第一个将是这个u输入映射上下文。
+
+00:02:34.000 --> 00:02:39.280
+I'm going to call it context to add. And the second one is going to be in 32. I'm going
+我将把它称为上下文来添加。而第二个将在32岁。我要走了
+
+00:02:39.280 --> 00:02:46.280
+to call it in priority. All right. That's the first function. And the second function,
+将其列为优先事项。好的。这是第一个函数。以及第二个功能，
+
+00:02:46.280 --> 00:02:52.360
+I'm going to call it remove input mapping context. And the rest is going to be the same as this
+我将其称为删除输入映射上下文。其余部分将与此相同
+
+00:02:52.360 --> 00:02:57.960
+function. But this time we don't need this priority. All right, I'm going to create two
+功能。但这一次，我们不需要这个优先事项。好的，我要创建两个
+
+00:02:57.960 --> 00:03:05.360
+function definitions, place this function under begin play. So paste it in here. Then
+函数定义，将此函数放在Begin Play下。所以把它贴在这里。然后
+
+00:03:05.360 --> 00:03:10.880
+create a function definition for removing input mapping context. So paste the function
+创建用于删除输入映射上下文的函数定义。因此，粘贴该函数
+
+00:03:10.880 --> 00:03:16.240
+definition in here. So the function body for adding, we have the exact code we need.
+定义在这里。所以要添加的函数体，我们有了我们需要的确切代码。
+
+00:03:16.240 --> 00:03:20.320
+So it's inside of the speaking plane. These lines come with this template code that we
+所以它在说话的飞机里。这些行与我们的模板代码一起提供
+
+00:03:20.320 --> 00:03:26.640
+are using. So I'm going to cut these lines and paste them in here. So first we need to
+都在使用。所以我要把这些线条剪下来，粘贴到这里。所以首先我们需要
+
+00:03:26.640 --> 00:03:32.080
+cast to get hold of our player controller. Then we'll need to access this enhanced input
+施法来控制我们的玩家控制器。那么我们就需要访问这个增强的输入
+
+00:03:32.080 --> 00:03:39.000
+subsystem. Once this subsystem is valid, we can add mapping context. So now this time,
+子系统。一旦这个子系统有效，我们就可以添加映射上下文。所以这一次，
+
+00:03:39.000 --> 00:03:45.920
+instead of adding this default mapping context, I'm going to change this to context to add.
+我不会添加这个默认的映射上下文，而是将其更改为要添加的上下文。
+
+00:03:45.920 --> 00:03:52.640
+So our function input and change the priority to be this in priority. All right, that's
+因此，我们的函数输入并将优先级更改为该优先级。好的，这就是
+
+00:03:52.640 --> 00:03:58.300
+the adding and I'm going to copy this code again. I'm going to take care of removing.
+加法后，我将再次复制这段代码。我会负责搬走的。
+
+00:03:58.300 --> 00:04:03.760
+So this time we need to call a different function. It's called remove mapping context. And I'm
+所以这一次我们需要调用一个不同的函数。这称为删除映射上下文。而且我是
+
+00:04:03.760 --> 00:04:13.480
+going to pass in this context to add. So that's adding and removing done. And just to be safe
+将在此上下文中传递以添加。因此，添加和删除操作已经完成。为了安全起见
+
+00:04:13.480 --> 00:04:19.160
+here, I'm also going to check if this mapping context is valid. If it's not valid, I'm going
+在这里，我还将检查该映射上下文是否有效。如果无效，我就去
+
+00:04:19.160 --> 00:04:27.200
+to return and do the same thing for this removing. And next thing I'm going to call this function
+返回并为这个移除做同样的事情。接下来，我将调用这个函数
+
+00:04:27.200 --> 00:04:34.280
+inside of begin play. So here we need to add in the default mapping context and the default
+在Begin Play内部。因此，在这里，我们需要添加默认映射上下文和默认
+
+00:04:34.280 --> 00:04:43.160
+priority will be zero. So that's the basics app. I'm going to try to compile first. All
+优先级将为零。这就是基本的应用程序。我要先试着编译。全
+
+00:04:43.160 --> 00:04:48.760
+right, I have a successful compile and next thing I'm going to call this function. So
+好的，我已经成功编译了，接下来我要调用这个函数。所以
+
+00:04:48.760 --> 00:04:54.880
+copy it and go down to this on player enter climb state. I'm going to paste the function
+复制它并在玩家进入爬升状态时向下移动。我要粘贴该函数
+
+00:04:54.880 --> 00:05:00.280
+in here and this time I'm going to add in this client mapping context. The priority
+在这里，这一次我将添加这个客户端映射上下文。优先事项
+
+00:05:00.280 --> 00:05:05.320
+I'm going to set it to be one. So when we're climbing, we'll only be using input call back
+我要将其设置为1。因此，当我们攀登时，我们将只使用输入回调
+
+00:05:05.320 --> 00:05:10.080
+functions that are only built for climbing. All right, this is the adding and when we
+仅为攀登而建的功能。好的，这是加法，当我们
+
+00:05:10.080 --> 00:05:17.480
+exit the climb state, I'm going to call the function remove mapping context and pass in
+退出攀登状态，我将调用函数Remove映射上下文并传入
+
+00:05:17.480 --> 00:05:23.120
+this climb mapping context. And that's our client mapping context done. And next thing
+这一攀登地图的背景。这就是我们的客户端映射上下文。下一件事是
+
+00:05:23.120 --> 00:05:27.560
+we need to take care of the input action. So go back to my header file. I'm going to
+我们需要处理输入操作。因此，返回到我的头文件。我这就做
+
+00:05:27.560 --> 00:05:33.440
+scroll down. I'm going to copy this move action, paste it in here. I'm going to change it to
+向下滚动。我要复制这个移动动作，粘贴到这里。我要把它改成
+
+00:05:33.440 --> 00:05:40.240
+climb move action. Then I'm going to go back to my CPP file, scroll up to the function
+爬升移动动作。然后，我将返回到我的CPP文件，向上滚动到函数
+
+00:05:40.240 --> 00:05:47.320
+mining for this input component. Then I'm going to copy this by action move action.
+挖掘此输入组件。然后我将通过动作移动动作来复制它。
+
+00:05:47.320 --> 00:05:52.600
+I'm going to copy it and paste it in here. So instead of move action, I'm going to change
+我要把它复制并粘贴到这里。所以我要改变的不是行动，而是改变
+
+00:05:52.600 --> 00:05:59.600
+this to climb move action and the trigger event will be triggered. One interesting thing
+该爬升移动动作和触发事件将被触发。一件有趣的事
+
+00:05:59.600 --> 00:06:04.360
+here to mention is you can see for this jump action, the trigger event is triggered as
+值得一提的是，您可以看到，对于此跳转操作，触发事件被触发为
+
+00:06:04.360 --> 00:06:09.720
+well. So that means if we hold down our space bar the whole time, our player will keep jumping.
+井。这意味着如果我们一直按住空格键，我们的球员就会继续跳跃。
+
+00:06:09.720 --> 00:06:13.720
+I don't think that should be the case for jumping. Instead of this triggered, I think
+我认为这不应该是跳跃的情况。而不是触发，我认为
+
+00:06:13.720 --> 00:06:18.880
+it should be this started. But again, this one here passed the Apex code review, so it
+应该是从这个开始的。但是再一次，这里的这个通过了Apex代码审查，所以它
+
+00:06:18.880 --> 00:06:23.200
+must be here for a reason. All right, I'm going to scroll to the right. So for this
+一定是有原因的。好的，我要向右滚动。所以为了这件事
+
+00:06:23.200 --> 00:06:28.240
+default move action, now we don't need to bind it to this move. We can just bind it
+默认移动操作，现在我们不需要将其绑定到此移动。我们可以把它绑在一起
+
+00:06:28.240 --> 00:06:33.440
+to the function that we created. So it's called handle ground movement input. And for this
+添加到我们创建的函数。所以它被称为手柄地面运动输入。为了这一点
+
+00:06:33.440 --> 00:06:40.640
+climb move action, I'm going to bind it to the function for climb movement. So it's called
+爬升移动动作，我要将它绑定到爬升移动的功能上。所以它被称为
+
+00:06:40.640 --> 00:06:47.280
+handle climb movement input. So when we're climbing, this function here will be called.
+手柄爬升动作输入。所以当我们攀登的时候，这里的这个函数会被调用。
+
+00:06:47.280 --> 00:06:51.520
+And when we are walking, this function here will be called. And now we don't need the
+当我们行走时，这里的这个函数将被调用。现在我们不需要
+
+00:06:51.520 --> 00:06:56.160
+default move function anymore. So we don't check this logic here at the input level anymore.
+默认的移动功能已经不存在了。所以我们不再在输入级别检查这个逻辑。
+
+00:06:56.160 --> 00:07:00.160
+I'm going to delete this function, go back to the header file. I'm going to find this
+我要删除这个函数，回到头文件。我要去找这个
+
+00:07:00.160 --> 00:07:05.840
+move and I'm going to delete it and go back to the CPP file. I'm going to delete this
+移动，我要删除它，并返回到CPP文件。我要删除这篇文章
+
+00:07:05.840 --> 00:07:12.720
+one as well. All right, I'm going to try to compile again. I have a successful compile.
+再来一杯。好的，我要试着再编译一遍。我有一个成功的汇编。
+
+00:07:12.720 --> 00:07:17.880
+I'm going to launch my editor back. There are still a couple of things that we need
+我要让我的编辑回来。我们还需要几样东西
+
+00:07:17.880 --> 00:07:22.040
+to do in order for this to work. So first I'm going to organize my folder. I'm going
+才能让这件事奏效。所以首先我要整理我的文件夹。我要走了
+
+00:07:22.040 --> 00:07:28.120
+to move this plane space to this animation folder, select move here and move this control
+要将此平面空间移动到此动画文件夹，请选择移动到此处并移动此控件
+
+00:07:28.120 --> 00:07:33.520
+rake to this folder as well. Then I'm going to directly move this input folder to our
+也可以搜索到这个文件夹。然后，我将直接将此输入文件夹移动到我们的
+
+00:07:33.520 --> 00:07:37.880
+climb system. Inside of that, you can see this is the default mapping context. I'm going
+爬升系统。在其中，您可以看到这是默认的映射上下文。我要走了
+
+00:07:37.880 --> 00:07:45.080
+to move the entire folder over. So drag it to climb system, select move here, then double
+要移动整个文件夹，请执行以下操作。因此，拖动它以攀登系统，选择移动到这里，然后双倍
+
+00:07:45.080 --> 00:07:50.240
+click to open it. Now we can create a new mapping context from scratch and manually
+单击以打开它。现在，我们可以从头开始手动创建新的映射上下文
+
+00:07:50.240 --> 00:07:55.720
+add in those modifiers for move action if we want. And that's just time consuming. The
+如果我们需要的话，可以添加移动动作的修饰符。而这是非常耗时的。这个
+
+00:07:55.720 --> 00:08:01.080
+fastest way to handle it in here will be directly duplicating this mapping context. So I'm going
+在这里处理它的最快方法是直接复制该映射上下文。所以我要走了
+
+00:08:01.080 --> 00:08:05.840
+to select it, press control plus D to duplicate it. I'm going to call this IMC underscore
+要选择它，请按Ctrl+D复制它。我将把它称为IMC下划线
+
+00:08:05.840 --> 00:08:10.600
+climb and double click to open it. So for this climb mapping context, we don't need
+爬上去，然后双击打开它。因此，对于这个攀登地图环境，我们不需要
+
+00:08:10.600 --> 00:08:16.080
+jump. I'm going to delete this. We don't need look. We don't need climb. So I only
+跳。我要删除这篇文章。我们不需要看。我们不需要爬。所以我只是
+
+00:08:16.080 --> 00:08:20.840
+want to keep this IA move and you can see these are the default key bindings. So we'll
+我想保持此IA移动，您可以看到这些是默认的密钥绑定。所以我们会
+
+00:08:20.840 --> 00:08:26.720
+need to create a new input action in here. I'm going to go to actions and I'm going to
+需要在此处创建新的输入操作。我要去看比赛，我要去
+
+00:08:26.720 --> 00:08:33.560
+select this IA move control plus D to duplicate it. I'm going to change this to IA underscore
+选择此IA移动控件加D以复制它。我要将其更改为IA下划线
+
+00:08:33.560 --> 00:08:38.800
+climb move. If you decided to create one from scratch, make sure you set the value type
+爬上去，动起来。如果您决定从头开始创建，请确保设置了值类型
+
+00:08:38.800 --> 00:08:44.520
+for your climb move to be access to D. So if this one here is a digital bull, it just
+让你的攀登移动到D，所以如果这是一个数字公牛，它只是
+
+00:08:44.520 --> 00:08:48.680
+won't work. So keep that in mind. All right. Go back to my client mapping context. I'm
+没用的。因此，请记住这一点。好的。返回到我的客户端映射上下文。我
+
+00:08:48.680 --> 00:08:57.320
+going to change this input action from IA move to IA underscore climb move and hit save.
+将此输入操作从IA Move更改为IA下划线，然后攀登、移动并点击保存。
+
+00:08:57.320 --> 00:09:03.120
+So you can see this newly created input action has the exact same key bindings as a ground
+因此，您可以看到这个新创建的输入操作具有与GROUND完全相同的键绑定
+
+00:09:03.120 --> 00:09:08.620
+movement. And later when we add this mapping context, it will overwrite the one that has
+有动静。稍后，当我们添加此映射上下文时，它将覆盖具有
+
+00:09:08.620 --> 00:09:13.680
+lower priority. All right. There's one last thing that we need to do. So go back to this
+优先级较低。好的。我们还需要做最后一件事。所以回到这个问题上
+
+00:09:13.680 --> 00:09:18.680
+character blueprint, double click to open it. And inside of the search box here, I'm going
+人物蓝图，双击即可打开。在这里的搜索框里，我要
+
+00:09:18.680 --> 00:09:23.200
+to search input. So here we need to add in this climb mapping context. There will be
+以搜索输入。所以在这里，我们需要添加这个攀登地图的上下文。会有
+
+00:09:23.200 --> 00:09:29.640
+our IMC climb and this climb move action. I'm going to add in this IA climb move. All
+我们的IMC攀登和这次攀登移动动作。我要加上这个IA攀登动作。全
+
+00:09:29.640 --> 00:09:36.680
+right. Click compile. I'm going to test this. So press play and we can still move on the
+正确的。单击编译。我要测试一下这个。所以按下Play，我们仍然可以继续
+
+00:09:36.680 --> 00:09:43.600
+ground. I'm going to enter the climb state and I can still climb using the same key.
+地面。我要进入攀爬状态，我仍然可以用同样的钥匙攀登。
+
+00:09:43.600 --> 00:09:49.560
+Only this time we are no longer checking the logic at the input level and we are using
+只是这一次我们不再在输入级检查逻辑，而是使用
+
+00:09:49.560 --> 00:09:56.240
+the newly created mapping context that we just set. Great. This is working as expected.
+我们刚刚设置的新创建的映射上下文。太棒了。这起到了预期的作用。
+
+00:09:56.240 --> 00:10:02.480
+All right. Let's do a quick wrap up. In order for this to work, you'll first need to create
+好的。让我们快点结束吧。要使其发挥作用，您首先需要创建
+
+00:10:02.480 --> 00:10:07.920
+the function for adding and removing mapping context from code. And then we can use these
+用于在代码中添加和删除映射上下文的函数。然后我们就可以用这些
+
+00:10:07.920 --> 00:10:13.160
+functions to help us to do so when the player enters and leaves the climb state. After this
+当玩家进入和离开攀爬状态时，帮助我们这样做的函数。在这之后
+
+00:10:13.160 --> 00:10:18.560
+one, don't forget to bind function to its own input action. So you'll be ground movement
+第一，不要忘记将函数绑定到它自己的输入操作。所以你将会是地面运动
+
+00:10:18.560 --> 00:10:24.440
+to ground movement input action, climb movement to climb movement input action. And inside
+到地面动作输入动作，到爬升动作到爬升动作输入动作。在里面
+
+00:10:24.440 --> 00:10:30.120
+of the editor, don't forget to create the new mapping context and new input action.
+在编辑器中，不要忘记创建新的映射上下文和新的输入操作。
+
+00:10:30.120 --> 00:10:34.440
+And the last step, don't forget to assign the ones that you created in blueprint. And now
+最后一步，不要忘记分配您在BluePrint中创建的那些。而现在
+
+00:10:34.440 --> 00:10:39.560
+with this newly created climb mapping context, we can achieve the two key input actions that
+有了这个新创建的攀登映射上下文，我们可以实现以下两个关键输入操作
+
+00:10:39.560 --> 00:10:43.840
+we want and we'll look at how we can do that in the next lecture. So it's time for you
+我们希望，我们将在下一节课中研究如何做到这一点。所以现在是你的时间了
+
+00:10:43.840 --> 00:10:48.080
+to do the same and refer back to the video if you need help. And I'll see you in the
+来做同样的事情，如果你需要帮助，请回过头来看视频。我会在房间里见你
+
+00:10:48.080 --> 00:10:48.680
+next lecture.
+下一堂课。
+
+00:10:48.680 --> 00:10:58.680
+[MUSIC]
+[音乐]
+
+00:10:58.680 --> 00:11:08.680
+[BLANK_AUDIO]
+[BLACK_AUDIO]

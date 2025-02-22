@@ -1,0 +1,65 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.840
+Hey, welcome back. This just will be a short video to fix the right hand position when climbing up.
+嘿，欢迎回来。这只是一个简短的视频，以解决爬升时右手的位置问题。
+
+00:00:05.840 --> 00:00:10.160
+So one thing that's been bugging me is when we reach the ledge and try to climb up,
+有一件事一直困扰着我，那就是当我们到达壁架并试图往上爬的时候、
+
+00:00:10.160 --> 00:00:14.240
+the position of our right hand seems to be higher than the ledge.
+我们的右手的位置似乎比壁架高。
+
+00:00:14.240 --> 00:00:20.880
+And that's something that I like to fix before we move on. Since this will just be some simple
+而这是我想在我们继续前进之前解决的问题。由于这只是一些简单的
+
+00:00:20.880 --> 00:00:25.760
+adjustment, I'm going to directly do it inside of this animation sequence. So double click to open
+调整，我将直接在这个动画序列中进行调整。所以双击来打开
+
+00:00:25.760 --> 00:00:31.200
+this climb to top linked and inside of this skeleton tree here, I'm going to scroll down
+在这个骨架树中，我将向下滚动到上臂R。
+
+00:00:31.200 --> 00:00:39.040
+to this upper arm R. And first thing at the first frame, I'm going to click here to add new key.
+首先在第一帧，我将点击这里添加新的键。
+
+00:00:39.040 --> 00:00:49.440
+Then I'm going to scroll to the part when this right hand is reaching out
+然后我将滚动到这个右手伸出来的部分
+
+00:00:49.440 --> 00:00:56.560
+to grab something in the air. All right, somewhere near here. And I'm going to change its rotation
+去抓空中的东西。好的，在这附近的某个地方。我将改变它的旋转
+
+00:00:56.560 --> 00:01:05.680
+a little bit. So I'm going to rotate it a bit and this way and rotate it a bit and this way.
+一点点。所以我要把它旋转一下，然后再这样旋转一下，再这样旋转一下。
+
+00:01:05.680 --> 00:01:10.000
+And I'm going to click add the new key.
+然后我将点击添加新键。
+
+00:01:10.000 --> 00:01:13.920
+And try to preview it.
+并尝试预览它。
+
+00:01:17.520 --> 00:01:22.240
+Yeah, I think this will work. I'm going to see what this looks like in play.
+是的，我认为这将是工作。我要看看在游戏中这是什么样子。
+
+00:01:22.240 --> 00:01:29.760
+So try to climb up. Yeah, something like that.
+所以试着爬上去。是的，类似这样的东西。
+
+00:01:29.760 --> 00:01:41.200
+I think this is already something that we can use. Much better than the original look.
+我想这已经是我们可以使用的东西了。比原来的样子好多了。
+
+00:01:41.200 --> 00:02:11.200
+And
+而且

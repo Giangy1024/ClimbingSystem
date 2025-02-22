@@ -1,0 +1,365 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.520
+Welcome. In the last lecture, we created this anim montage for us to climb to the top. And
+欢迎。在上一次讲座中，我们创建了这个动画蒙太奇，让我们爬到顶峰。而
+
+00:00:10.520 --> 00:00:15.420
+in this lecture, we'll look at how we can use this montage. So the animation is ready.
+在这节课中，我们将看看如何使用这个蒙太奇。所以动画已经准备好了。
+
+00:00:15.420 --> 00:00:19.840
+Now we need to take care of the coding part. I'm gonna close my project. Then I'm gonna
+现在我们需要处理一下编码部分。我将关闭我的项目。然后我将
+
+00:00:19.840 --> 00:00:27.240
+delete these debug functions. So delete this line. And delete these else gates. And inside
+删除这些调试函数。所以删除这一行。并删除这些else门。而在
+
+00:00:27.240 --> 00:00:34.840
+of this function, I'm going to disable the debug shape. So delete this true. And inside
+这个函数中，我将禁用调试形状。所以删除这个真。而在
+
+00:00:34.840 --> 00:00:40.480
+of this trace from iHeight, I'm going to delete this true. We don't need to see any of it
+iHeight的跟踪，我将删除这个true。我们不需要看到任何的
+
+00:00:40.480 --> 00:00:46.880
+now. And I'm going to go back to my header file, scroll down to this climb BP variables.
+现在。我将回到我的头文件，向下滚动到这个BP变量。
+
+00:00:46.880 --> 00:00:53.960
+We'll need another anim montage. So I'm going to copy this one and paste it in here. I'm
+我们将需要另一个动画蒙太奇。所以我要复制这个并把它粘贴到这里。我将
+
+00:00:53.960 --> 00:01:01.880
+going to call this climb to top montage. Then I'm going to go to the CPP file and scroll
+我把这个叫做 "爬到顶 "蒙太奇。然后我将进入CPP文件并滚动到
+
+00:01:01.880 --> 00:01:10.400
+up to the physics climb function. So if this condition is true, I'm going to play the montage.
+到物理学的爬升功能。所以如果这个条件是真的，我就会播放这个蒙太奇。
+
+00:01:10.400 --> 00:01:16.320
+So we can use the function to do so. And passing in climb to top montage. And before I do
+所以我们可以用这个函数来做。并传入爬升到顶部蒙太奇。而在我做之前
+
+00:01:16.320 --> 00:01:22.320
+this, I'm going to first call the function stop climbing. So by doing this, we'll be
+之前，我将首先调用函数stop climbing。所以通过这样做，我们将
+
+00:01:22.320 --> 00:01:28.540
+out of the climbing state and go inside of the falling state. But this still won't work.
+出了爬升状态，进入了下降状态。但这仍然不会起作用。
+
+00:01:28.540 --> 00:01:33.480
+So here we need the montage to lift our character up. But there's one function inside of the
+所以在这里我们需要蒙太奇来提升我们的角色。但是在父类中的一个函数
+
+00:01:33.480 --> 00:01:38.840
+parent class that's preventing us from doing it. So I'm going to go to the header file,
+父类中的一个函数使我们无法做到这一点。所以我将进入头文件、
+
+00:01:38.840 --> 00:01:44.240
+then scroll up. I'm going to select this character moving component, press F12 to go inside of
+然后向上滚动。我将选择这个角色移动组件，按F12键，进入它的内部。
+
+00:01:44.240 --> 00:01:49.880
+it. Then I'm going to search. So the function name is called constrain anim root motion.
+它的内部。然后我将进行搜索。所以这个函数的名字叫做约束动画根部运动。
+
+00:01:49.880 --> 00:01:57.360
+So I'm going to type in constrain and I'm going to search. It's not this one. And this is
+所以我将输入constrain，然后我将搜索。这不是这个。而这是
+
+00:01:57.360 --> 00:02:02.040
+the function that we need to override. If you select this function and you press F12
+我们需要覆盖的函数。如果你选择这个函数并按F12
+
+00:02:02.040 --> 00:02:07.440
+to go inside of it. So you can see in this function, if this is falling is true, then
+来进入它的内部。所以你可以看到在这个函数中，如果这个下降是真的，那么
+
+00:02:07.440 --> 00:02:12.360
+we won't be overriding the velocity that Z. So we won't be able to lift our character
+我们将不会覆盖Z的速度。
+
+00:02:12.360 --> 00:02:16.760
+up if we are inside of the falling state, but that's not what we want. So we'll need
+上升，但这不是我们想要的。所以我们需要
+
+00:02:16.760 --> 00:02:22.160
+to override this. I'm going to select this function again to go to the header file. Then
+覆盖这个。我将再次选择这个函数，转到头文件。然后
+
+00:02:22.160 --> 00:02:28.400
+I'm going to copy this function. So copy it and go back to my header file. I'm going to
+我将复制这个函数。所以复制它并回到我的头文件。我将会
+
+00:02:28.400 --> 00:02:35.840
+paste the function under this get max acceleration and mark this function as override. And I'm
+把这个函数粘贴在获得最大加速度下面，并把这个函数标记为重写。然后我
+
+00:02:35.840 --> 00:02:42.080
+going to create a function definition, place the function under this one. So paste it in
+创建一个函数定义，把这个函数放在这个函数下面。所以把它粘贴到
+
+00:02:42.080 --> 00:02:48.520
+here. Then inside of this function, I'm going to do an if check. So first I'm going to check
+这里。然后在这个函数中，我将做一个if检查。所以我首先要检查
+
+00:02:48.520 --> 00:02:58.120
+if this is falling is true and this owning playerNM instance is true and this owning
+如果这个下降是真的，这个拥有的播放器NM实例是真的，这个拥有的
+
+00:02:58.120 --> 00:03:05.080
+playerNM instance is any montage playing is true. So if these three conditions are all
+playerNM实例是任何蒙太奇播放为真。所以如果这三个条件都是
+
+00:03:05.080 --> 00:03:10.760
+true, then that means we want to override the Z velocity. And for that, I'm going to
+为真，那就意味着我们要覆盖Z方向的速度。为此，我将会
+
+00:03:10.760 --> 00:03:18.800
+create a const local Boolean. I'm going to call this one B is playing I am montage. Then
+创建一个常量本地布尔值。我将把这个称为B正在播放我是蒙太奇。然后
+
+00:03:18.800 --> 00:03:27.480
+I'm going to check. So if this Boolean is true, then I want to return this function
+我将进行检查。所以如果这个布尔值是真的，那么我想返回这个函数
+
+00:03:27.480 --> 00:03:37.280
+input group motion velocity. And if this condition is false, I want to return the super version
+输入组运动速度。而如果这个条件是假的，我想返回这个函数的超级版本
+
+00:03:37.280 --> 00:03:45.720
+of this function. So copy this and paste it in here. Delete the things we don't need.
+这个函数的超级版本。所以，复制这个并把它粘贴到这里。删除我们不需要的东西。
+
+00:03:45.720 --> 00:03:50.720
+And that's pretty much it. I'm going to compile first. Hey, this is me from the future. One
+这就差不多了。我先来编译一下。嘿，这就是来自未来的我。有一点
+
+00:03:50.720 --> 00:03:56.040
+thing to point out here is so I'm going to scroll down to this physics climb. Instead
+这里要指出的是，所以我要向下滚动到这个物理学的攀登。而不是
+
+00:03:56.040 --> 00:04:01.080
+of this function, I'm manually calling stop climbing, but actually we don't need to do
+而不是这个函数，我手动调用停止爬升，但实际上我们不需要这样做。
+
+00:04:01.080 --> 00:04:05.680
+this and calling stop climbing here is way too early. So by playing this climb montage
+在这里调用停止爬升是太早了。所以通过播放这个攀爬蒙太奇
+
+00:04:05.680 --> 00:04:11.400
+here, since we're using it to lift our character up, we'll be transitioning into falling state
+就会过渡到下降状态
+
+00:04:11.400 --> 00:04:16.520
+automatically calling stop climbing before playing this montage will actually cause some
+在播放这个蒙太奇之前自动调用停止攀登，实际上会导致一些
+
+00:04:16.520 --> 00:04:21.280
+issues later. You'll see what that is very soon. Even though we don't need this function
+以后的问题。你很快就会看到那是什么。尽管我们不需要这个函数
+
+00:04:21.280 --> 00:04:26.520
+stop climbing, since we will be transitioning into the falling state automatically, we'll
+停止爬升，因为我们将自动过渡到下降状态，我们仍然需要保留这个函数。
+
+00:04:26.520 --> 00:04:33.760
+still need to keep the function. Constraint and then root motion velocity in order to
+仍然需要保留这个函数。约束，然后是根部运动的速度，以便
+
+00:04:33.760 --> 00:04:39.560
+allow our root motion to lift our character up. Alright, back to the Omi. And I have a
+让我们的根部运动将我们的角色抬起来。好了，回到欧米的问题上。我有一个
+
+00:04:39.560 --> 00:04:44.880
+successful compile. And the last thing that I want to do, so I'm going to go down to this
+编译成功。我想做的最后一件事是，我要去看一下这个
+
+00:04:44.880 --> 00:04:50.900
+own climb montage ended and I'm going to add an L skates. So in the L skates, I'm going
+自己的攀登蒙太奇结束，我要添加一个L型溜冰鞋。所以在L型溜冰鞋中，我将会
+
+00:04:50.900 --> 00:04:59.440
+to directly set the movement mode here to move walk. So once we are downplaying climb
+直接将运动模式设置为移动行走。所以，一旦我们把爬升
+
+00:04:59.440 --> 00:05:04.400
+to top montage, we should be entering this walking mode. Alright, I'm going to launch
+到顶部的蒙太奇，我们就应该进入这个步行模式。好的，我将启动
+
+00:05:04.400 --> 00:05:12.800
+my editor back and go inside of my editor. I'm going to duplicate a new mesh. So select
+我的编辑器，然后进入我的编辑器内部。我将复制一个新的网格。所以选择
+
+00:05:12.800 --> 00:05:19.880
+this mesh, press out on my keyboard, duplicate it, drag it to here. Then I'm going to delete
+这个网格，按键盘上的键，复制它，把它拖到这里。然后我将删除
+
+00:05:19.880 --> 00:05:26.460
+this player start. Now when we press play, we should be able to start at the camera position.
+这个播放器开始。现在，当我们按下播放键时，我们应该能够从摄像机的位置开始。
+
+00:05:26.460 --> 00:05:31.380
+Then I'm going to go into this climb system, open this BPE climb character. Inside of the
+然后我将进入这个攀爬系统，打开这个BPE攀爬角色。在这个
+
+00:05:31.380 --> 00:05:38.280
+movement component, I'm going to assign the montage in here. Then click compile and I'm
+运动组件中，我将把蒙太奇分配到这里。然后点击编译，我将
+
+00:05:38.280 --> 00:05:46.560
+going to test. So press play, go to the surface, enter the climb state, then try to climb up.
+进行测试。所以按下播放键，到表面去，进入攀爬状态，然后试着爬上去。
+
+00:05:46.560 --> 00:05:52.400
+And there you go. The montage is working. It's just that the play rate is not high enough.
+然后你就可以了。蒙太奇正在工作。只是播放率还不够高。
+
+00:05:52.400 --> 00:05:57.800
+I'm going to increase the play rate of it. So go inside of this climb to top, I'm going
+我打算提高它的播放率。所以在这个爬到顶的过程中，我将
+
+00:05:57.800 --> 00:06:09.600
+to increase its race scale to 2.1. Click save, then click play and go to the surface, climb
+把它的比赛规模增加到2.1。点击保存，然后点击播放，去到表面，爬上
+
+00:06:09.600 --> 00:06:20.240
+to the top. Alright, it's looking much better. I'm going to try it with this surface. So
+到顶部。好了，现在看起来好多了。我打算用这个表面来试试。所以
+
+00:06:20.240 --> 00:06:30.240
+climb to the top. And I noticed a small issue. So when we get to the top, the feet of our
+爬到顶部。我注意到一个小问题。所以当我们爬到顶部时，我们的角色的脚
+
+00:06:30.240 --> 00:06:36.560
+character are clipping through the ground. And to fix that, we can go back to our sequencer.
+角色的脚在地面上被削掉了。为了解决这个问题，我们可以回到我们的序列器中。
+
+00:06:36.560 --> 00:06:42.120
+So go to the content folder, double click to open this anim map, click save, select it,
+所以到内容文件夹，双击打开这个动画地图，点击保存，选择它、
+
+00:06:42.120 --> 00:06:47.040
+and go to this animation folder, raw, climb to the top, double click to open this sequencer
+然后到这个动画文件夹中，生，爬到顶部，双击打开这个序列器
+
+00:06:47.040 --> 00:06:52.440
+and select this route control. So to fix that issue, at the first frame, I'm going to lower
+并选择这个路线控制。所以为了解决这个问题，在第一帧，我将把根部的骨头降低一点
+
+00:06:52.440 --> 00:06:59.640
+the root bone down a little bit, then click this add key. Then I'm going to move to the
+根部的骨头降低一点，然后点击这个添加键。然后我将移动到
+
+00:06:59.640 --> 00:07:08.320
+final frame and push this root bone down a little bit to somewhere near here. Then click
+最后一帧，把这个根骨往下推一点，推到靠近这里的地方。然后点击
+
+00:07:08.320 --> 00:07:13.080
+this add key. Alright, I'm going to click this button here to sync the changes. And
+这个添加键。好的，我将点击这个按钮来同步这些变化。然后
+
+00:07:13.080 --> 00:07:17.840
+I'm going to preview the changes that we've made. So go back to this montages folder,
+我将预览我们所做的改变。所以回到这个蒙太奇文件夹、
+
+00:07:17.840 --> 00:07:25.680
+open this anim montage and click pause in here. So you can see when we reach to the
+打开这个动画蒙太奇，点击这里的暂停。所以你可以看到当我们到了
+
+00:07:25.680 --> 00:07:32.640
+final frame, our feet are on the ground. I'm going to click save, then I'm going to go
+最后一帧时，我们的脚已经在地上了。我将点击保存，然后我将去
+
+00:07:32.640 --> 00:07:39.520
+back to my third person map. So open this maps, double click to open it, click save,
+回到我的第三人称地图。所以打开这个地图，双击打开它，点击保存、
+
+00:07:39.520 --> 00:07:49.800
+select it, then I'm going to try again. So click play, start climbing, move to the top,
+选择它，然后我再试一次。所以点击播放，开始爬升，移动到顶部、
+
+00:07:49.800 --> 00:08:02.320
+and just like that. It's working as expected. How beautiful is that? And there's another
+就像这样。它像预期的那样工作了。这多漂亮啊？还有一个
+
+00:08:02.320 --> 00:08:08.600
+issue that I noticed. So if I hold down W key the whole time and press F, I won't be
+我注意到另一个问题。所以，如果我一直按住W键，然后按F键，我将无法
+
+00:08:08.600 --> 00:08:15.720
+able to enter the climb state. And the reason for that is I think I made a mistake in the
+能进入爬升状态。其原因是我认为我在代码中犯了一个错误。
+
+00:08:15.720 --> 00:08:21.480
+code. So I'm going to go back to my code. Inside of this check has reached the ledge.
+代码。所以我要回到我的代码中去。在这个检查里面已经到达了壁架。
+
+00:08:21.480 --> 00:08:26.420
+So we don't actually need to call the function start climbing. I'm going to delete this line.
+所以我们实际上不需要调用开始爬升这个函数。我将删除这一行。
+
+00:08:26.420 --> 00:08:30.400
+When the condition is true, if we call it start climbing, then we'll leave the climb
+当条件为真时，如果我们调用它开始爬升，那么我们就会离开爬升
+
+00:08:30.400 --> 00:08:34.960
+state and if I hold down my W key the whole time, my ground speed will be greater than
+状态，如果我一直按住W键，我的地面速度将大于
+
+00:08:34.960 --> 00:08:40.160
+zero. Then we'll be transitioning into the for loop state and that's not what we want.
+零。然后我们就会过渡到for loop状态，这不是我们想要的。
+
+00:08:40.160 --> 00:08:44.800
+At the end of this montage, we've already set the movement mode to the walking mode.
+在这个蒙太奇的最后，我们已经将运动模式设置为行走模式。
+
+00:08:44.800 --> 00:08:48.680
+So this way it should work just fine. All right, I'm going to quickly save all then
+所以这样应该可以正常工作了。好的，我将快速保存所有然后
+
+00:08:48.680 --> 00:08:54.760
+trigger left coding. All right, left coding succeeded. I'm going to test again. So hold
+触发左键编码。好的，左键编码成功了。我要再次测试。所以请按住
+
+00:08:54.760 --> 00:09:02.460
+down W key the whole time. Yeah, this way is working much better. So we can enter the
+一直按住W键。是的，这种方式工作得更好。所以我们可以进入
+
+00:09:02.460 --> 00:09:06.940
+climb state then climb up the ledge. If we don't want to do that, we'll be entering the
+攀爬状态，然后爬上壁架。如果我们不想这样做，我们将进入空闲状态，然后爬上壁架。
+
+00:09:06.940 --> 00:09:13.360
+idle state then climb up the ledge. And that's great. Everything is working as expected.
+闲置状态，然后爬上壁架。而这很好。一切都在按预期工作。
+
+00:09:13.360 --> 00:09:18.680
+Later, when you try to implement this by yourself, so first you'll need to play the montage,
+以后，当你试图自己实现这个时，那么首先你需要播放蒙太奇、
+
+00:09:18.680 --> 00:09:22.980
+then don't forget to override the root motion constraint. And if your feet like mine are
+然后别忘了覆盖根部运动约束。如果你的脚像我一样是
+
+00:09:22.980 --> 00:09:28.120
+clipping through the ground, you can fix that by adjusting the root control and don't forget
+你可以通过调整根部控制来解决这个问题。
+
+00:09:28.120 --> 00:09:32.280
+to set your movement mode back to walking when your montage has ended. All right, it's
+当你的蒙太奇结束时，把你的运动模式设置为步行。好了，现在是
+
+00:09:32.280 --> 00:09:35.320
+time for you to do the same. I'll see you in the next lecture.
+是时候让你做同样的事情了。我们在下一个讲座中再见吧。
+
+00:09:35.320 --> 00:09:45.720
+[Music]
+[音乐]

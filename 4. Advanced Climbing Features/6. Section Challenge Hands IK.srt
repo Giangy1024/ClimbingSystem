@@ -1,0 +1,397 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:11.200
+Welcome. In the last lecture, we successfully set up the IK for our right foot. And now,
+欢迎。在上一讲中，我们成功地为我们的右脚设置了IK。而现在、
+
+00:00:11.200 --> 00:00:17.680
+both of our feet are snapping to the climbable surface when we are climbing. And that's great.
+我们的两只脚都能在攀爬时紧贴在可攀爬表面。而这很好。
+
+00:00:17.680 --> 00:00:23.680
+Now that we have the feet placement ready, next thing we need to take care of the hands.
+现在我们已经准备好了脚的位置，接下来我们需要处理手的问题。
+
+00:00:23.680 --> 00:00:27.720
+And I think you are more than ready to take it from here. So your challenge is simple.
+我想你们已经准备好了，可以开始行动了。所以你的挑战很简单。
+
+00:00:27.720 --> 00:00:33.200
+I'd like you to handle the IK for both of the hands. They should be the exact same as
+我希望你能处理两只手的IK。它们应该与我们的脚的IK完全相同。
+
+00:00:33.200 --> 00:00:38.280
+our foot IK. So feel free to use them as a reference if you need. Alright, pause the
+我们的脚的IK。所以，如果你需要的话，可以随意使用它们作为参考。好了，暂停
+
+00:00:38.280 --> 00:00:46.000
+video now and give this a go or come back if you need help.
+暂停视频，试试这个，如果需要帮助再来。
+
+00:00:46.000 --> 00:00:50.360
+Welcome back. How did that go for you? Hopefully at this point, you have a fully functional
+欢迎回来。你做得怎么样了？希望在这一点上，你有一个功能齐全的
+
+00:00:50.360 --> 00:00:54.960
+climb IK. And don't worry if you ran into any issues. Let's look at how I would do it.
+攀登 IK。如果你遇到了什么问题，也不用担心。让我们来看看我是怎么做的。
+
+00:00:54.960 --> 00:00:59.520
+So double click to open this climb IK. First thing, I'm going to organize these variables.
+双击来打开这个攀岩IK。首先，我将组织这些变量。
+
+00:00:59.520 --> 00:01:05.800
+So I'm going to select this foot_LR_TargetOffset. Give it a category. So I'm going to change
+所以我将选择这个foot_LR_TargetOffset。给它一个类别。所以我将改变
+
+00:01:05.800 --> 00:01:13.080
+its name to foot. And I'm going to move this one to the same category. Move this one as
+它的名字是foot。我将把这个移到同一类别。把这个也移到
+
+00:01:13.080 --> 00:01:21.120
+well. And this one. Alright, I'm going to hide these variables. And next thing, I'm
+也是。还有这个。好了，我要隐藏这些变量。接下来，我将
+
+00:01:21.120 --> 00:01:26.160
+going to duplicate this function. Plug this one to here. Then I'm going to change this
+复制这个函数。把这个插入到这里。然后我将把这个
+
+00:01:26.160 --> 00:01:39.040
+to IK_HandL. And promote this to a variable. Change its name to Hand_L_TargetOffset. And
+到IK_HandL。并将其提升为一个变量。把它的名字改为Hand_L_TargetOffset。然后
+
+00:01:39.040 --> 00:01:45.400
+connect this bin to here. Then go to next step. I'm going to reset it if we are not
+将这个bin连接到这里。然后进入下一个步骤。我将重置它，如果我们不在
+
+00:01:45.400 --> 00:01:52.560
+climbing. So set it in here. And next thing, I'll need to interpolate it. Duplicate this
+攀登。所以把它设置在这里。而接下来，我需要对它进行插值。复制这个
+
+00:01:52.560 --> 00:02:00.520
+interpolate node. Plug this into socket B. And I'm going to connect this time to here.
+插值节点。把这个插入插座B，而我这次要连接到这里。
+
+00:02:00.520 --> 00:02:07.960
+And add the root ground node. Move it down a bit. And promote the result of it into another
+并添加根地节点。把它往下移一点。并把它的结果推广到另一个
+
+00:02:07.960 --> 00:02:17.680
+variable. And change its name to Hand_L_CurrentOffset. And drag out this variable. Get it. Plug it
+变量。并把它的名字改为Hand_L_CurrentOffset。然后拖出这个变量。得到它。插入它
+
+00:02:17.680 --> 00:02:24.460
+into socket A. And connect this bin to here. And go down. Right mouse button click to bring
+将这个垃圾桶连接到这里。然后往下走。鼠标右键点击，把
+
+00:02:24.460 --> 00:02:31.480
+out the modified transform node. And connect this one to here. Now for the element 0, I'm
+出修改后的转换节点。将这个节点连接到这里。现在对于0号元素，我将
+
+00:02:31.480 --> 00:02:38.680
+going to change its name to IK_HandL. And for the transform here, I'm going to drag out
+将它的名字改为IK_HandL。对于这里的变换，我将拖出
+
+00:02:38.680 --> 00:02:44.160
+this current offset. Get it. Plug it into translation. And change its mode to additive
+这个当前的偏移量。得到它。把它插入转换。并把它的模式改为加法的
+
+00:02:44.160 --> 00:02:51.560
+global. And move down to full body IK. I'm going to add another element. Change its name
+全局。并向下移动到全身IK。我将添加另一个元素。把它的名字改为
+
+00:02:51.560 --> 00:03:03.280
+to Hand_L. And duplicate this get transform node. Change it to IK_HandL. Plug this transform
+为Hand_L。并复制这个得到的变换节点。把它改成IK_HandL。把这个变换
+
+00:03:03.280 --> 00:03:07.880
+into here. Alright. Click compile. And we have the same warning. I'm going to ignore
+到这里。好的。点击编译。我们有同样的警告。我将会忽略
+
+00:03:07.880 --> 00:03:15.360
+it this time. And I'm going to press play in here. So go to the surface. Press F. And
+它这次。我将在这里按下播放键。所以到表面去。按F。
+
+00:03:15.360 --> 00:03:25.120
+I'm going to try to move. So I think the offset is too much for this left hand. I'm going
+我将尝试移动。所以我觉得这个偏移量对这个左手来说太大。我打算
+
+00:03:25.120 --> 00:03:32.720
+to lower it down a bit. So go back to this graph. I'm going to give this target location
+把它放低一点。所以回到这个图形上。我将给这个目标位置
+
+00:03:32.720 --> 00:03:45.240
+offset a default value of 5 minutes. And click compile. And test this again. And try to move.
+偏移量的默认值为5分钟。然后点击编译。再测试一下这个。并尝试移动。
+
+00:03:45.240 --> 00:03:59.240
+I think 5 units works. Maybe a bit more. I'm going to change this to 7 units. And click
+我认为5个单位可以。也许更多一点。我打算把它改成7个单位。然后点击
+
+00:03:59.240 --> 00:04:16.720
+compile. Try again. Yeah, I think 7 units works better. And that's the left hand ready.
+编译。再试一次。是的，我认为7个单位效果更好。这就是左手的准备。
+
+00:04:16.720 --> 00:04:21.320
+Next thing I'm going to take care of the right hand. So select this function again. Duplicate
+接下来我要处理右手的问题。所以再次选择这个函数。复制
+
+00:04:21.320 --> 00:04:34.860
+it. Connect this pin to here. Change this one to IK_HandR. And promote it to variable.
+它。把这个引脚连接到这里。把这个改为IK_HandR。并将其提升为变量。
+
+00:04:34.860 --> 00:04:42.480
+Change its name to Hand_R_TargetOffset. Before I forget, I'm going to move these variables
+把它的名字改为Hand_R_TargetOffset。在我忘记之前，我将把这些变量
+
+00:04:42.480 --> 00:04:50.160
+into its own group. So change the category to Hand. Move this one to there. Move this
+到它自己的组中。所以把类别改为手。把这个移到那里。把这个
+
+00:04:50.160 --> 00:04:58.880
+one as well. And connect this pin to here. Then next thing I'm going to reset it. So
+一个也是。并将这个针脚连接到这里。然后，接下来我将重置它。所以
+
+00:04:58.880 --> 00:05:05.600
+drag out this target offset. Set it. Connect this pin to here. Then interpolate this value.
+拖出这个目标偏移。设置它。把这个引脚连接到这里。然后把这个值插进去。
+
+00:05:05.600 --> 00:05:11.520
+So duplicate this node. Drag out this target offset. Plug it into socket B. Promote the
+所以复制这个节点。拖出这个目标偏移。把它插入插座B，促进
+
+00:05:11.520 --> 00:05:21.560
+result into another variable. Change its name to Hand_R_CurrentOffset. And move it to this
+结果进入另一个变量。把它的名字改为Hand_R_CurrentOffset。并把它移到这个
+
+00:05:21.560 --> 00:05:30.600
+hand category. Drag it out. Get it. And plug it into socket A. Organize these nodes a bit
+手的类别。把它拖出来。得到它。把它插入插座A，把这些节点整理一下
+
+00:05:30.600 --> 00:05:40.800
+and connect this pin to here. And drag out this time. Plug it in here. Add the rerun
+并把这个针脚连接到这里。再把这次的拖出来。把它插在这里。添加重新运行
+
+00:05:40.800 --> 00:05:46.640
+now. Alright, that's the interpreting done. And next thing I'm going to modify is transform.
+现在。好了，这就是解释工作的完成。接下来我要修改的是变换。
+
+00:05:46.640 --> 00:05:52.280
+So right mouse button click. Type in modify transform. Connect this pin to here. And inside
+所以，鼠标右键单击。键入修改变换。把这个引脚连接到这里。而在
+
+00:05:52.280 --> 00:06:03.760
+the flip dropdown, change this name to Hand_R. Change this node to Additive Global. Drag out
+翻转下拉菜单，把这个名字改为Hand_R。把这个节点改成Additive Global。拖出
+
+00:06:03.760 --> 00:06:10.480
+this current offset. Get it. Set the translation. This is the exact same as the bone previous
+这个电流偏移。得到它。设置翻译。这与之前的骨头完全一样
+
+00:06:10.480 --> 00:06:17.880
+to this one. And I'm going to scroll down to this full body IK. Add one more element.
+到这个。我将向下滚动到这个全身的IK。再添加一个元素。
+
+00:06:17.880 --> 00:06:31.040
+Change its name to Hand_R. And get hold of this IK_HandR. Plug the transform into here
+把它的名字改为Hand_R。并掌握这个IK_HandR。将变换插入这里
+
+00:06:31.040 --> 00:06:36.640
+and we should be good to go. Click compile. Click it again. And go back to my level. I'm
+然后我们就可以开始了。点击编译。再点击一下。然后回到我的水平。我将
+
+00:06:36.640 --> 00:06:44.060
+going to press play. And try to climb up. So I think for our right hand, I need to increase
+要按下播放键。然后试着往上爬。所以我想对于我们的右手，我需要增加
+
+00:06:44.060 --> 00:06:51.960
+the offset distance. Now instead of 7 units, I'm going to change this to 9 units and click
+偏移距离。现在，我将把它改为9个单位，而不是7个单位，然后点击
+
+00:06:51.960 --> 00:07:02.600
+compile. Alright, test this again. So try to climb up. Yeah, I think it looks good enough.
+编译。好了，再测试一下。所以试着爬起来。是的，我认为它看起来足够好。
+
+00:07:02.600 --> 00:07:08.120
+I think when we're climbing our right hand is clipping through a little bit but I think
+我想当我们爬升的时候，我们的右手有一点被剪掉了，但我认为
+
+00:07:08.120 --> 00:07:15.800
+we don't need to worry about that. This already looks good enough. And after some play testing,
+我们不需要担心这个问题。这看起来已经足够好了。经过一些游戏测试，我注意到我的代码里面有一个错误、
+
+00:07:15.800 --> 00:07:20.560
+I notice an error inside of my code for this control rig. So I'm going to double click
+我注意到在这个控制装置的代码中存在一个错误。所以我打算双击
+
+00:07:20.560 --> 00:07:27.400
+to open it and zoom in to this target offset. So I shouldn't be resetting these values in
+来打开它并放大到这个目标偏移。所以我不应该在这里重新设置这些值
+
+00:07:27.400 --> 00:07:35.100
+here. Instead, I'm going to select all of these nodes, cut them, and paste them in here.
+这里。相反，我要选择所有这些节点，把它们剪切下来，然后粘贴到这里。
+
+00:07:35.100 --> 00:07:43.060
+So when this main condition is false, I'm going to reset all of these vectors and connect
+因此，当这个主要条件为假时，我将重置所有这些向量，并将这个引脚连接到这里。
+
+00:07:43.060 --> 00:07:48.640
+this pin to here and delete these two nodes. So when this condition should do climbIkTrace
+这个引脚连接到这里，并删除这两个节点。所以当这个条件应该做climbIkTrace时
+
+00:07:48.640 --> 00:07:53.640
+is false, I'm going to reset all of these values and it shouldn't be done after this
+是假的，我将重置所有这些值，它不应该在这个
+
+00:07:53.640 --> 00:07:59.200
+sequence node. Alright, I'm going to click compile. And there's another issue that I
+序列节点之后。好了，我要点击编译了。还有一个问题，我
+
+00:07:59.200 --> 00:08:04.680
+noticed. So I'm going to click play and I'm going to try to climb to the right. So you
+注意到的另一个问题。所以我将点击播放，并尝试向右爬。所以你
+
+00:08:04.680 --> 00:08:10.240
+can see while I'm passing through this area, my right hand is clipping through the surface
+你可以看到，当我通过这个区域时，我的右手正从表面上划过。
+
+00:08:10.240 --> 00:08:14.280
+and to figure out the reason behind it, thanks to the debug function that we set up inside
+为了弄清楚这背后的原因，感谢我们在控制装置中设置的调试功能。
+
+00:08:14.280 --> 00:08:19.800
+of our control rig, we can easily figure out why. So I'm going to go back to it. Then I'm
+我们可以很容易地找出原因。所以我将回到它。然后我
+
+00:08:19.800 --> 00:08:26.840
+going to go to, I'm going to take the show debug shape and I'm going to click play again
+我要去，我将采取显示调试形状，我将再次点击播放
+
+00:08:26.840 --> 00:08:32.640
+and enter the climb state. Notice that I can no longer see the debug shape and that's because
+并进入爬升状态。注意，我已经看不到调试形状了，这是因为
+
+00:08:32.640 --> 00:08:37.080
+I've just restarted my editor. I'll need to type in the console command again. So it'll
+我刚刚重新启动了我的编辑器。我需要再次输入控制台的命令。所以它将是
+
+00:08:37.080 --> 00:08:44.520
+be a underscore enum node underscore control rig debug one and hit enter. And there's my
+是一个underscore枚举节点underscore控制设备debug one，然后点击回车。这就是我的
+
+00:08:44.520 --> 00:08:50.340
+debug line. I'm going to climb to the right and you can see for a single frame there,
+调试线。我要爬到右边去，你可以看到那里有一个单帧、
+
+00:08:50.340 --> 00:08:56.540
+we don't have a valid head location. So to fix that issue, we can simply increase the
+我们没有一个有效的头部位置。所以为了解决这个问题，我们可以简单地增加
+
+00:08:56.540 --> 00:09:01.760
+trace radius for our severe trace. So I'm going to go inside of this function and zoom
+追踪的半径。因此，我将进入这个函数并放大
+
+00:09:01.760 --> 00:09:09.720
+in to this severe trace by object types. So if I increase this radius to 20 units and
+按对象类型放大到这个严重的跟踪。所以，如果我把这个半径增加到20个单位，然后
+
+00:09:09.720 --> 00:09:18.800
+click compile, then try again. And this time it gets much better. And now every time when
+点击编译，然后再试一次。这一次，它变得更好了。现在每次当
+
+00:09:18.800 --> 00:09:24.840
+we pass this area, we'll have a valid head location. And with our current set up, now
+我们都会有一个有效的头部位置。以我们现在的设置，现在
+
+00:09:24.840 --> 00:09:30.960
+if I try to move to a straight angle like this, you can see both of our hands and feet
+如果我试图像这样以一个直角移动，你可以看到我们的手和脚
+
+00:09:30.960 --> 00:09:36.920
+are trying to reach the surface in here. And we can even climb up on an angle like this.
+都试图到达这里的表面。而且我们甚至可以像这样以一个角度爬上去。
+
+00:09:36.920 --> 00:09:40.400
+But again, I don't think we should be able to do this during climbing, but this is a
+但同样，我认为我们不应该在攀爬过程中做这个，但这是一个
+
+00:09:40.400 --> 00:09:46.400
+perfect area to test our control rig. And if this is what you want and you like to make
+但这是一个测试我们控制装置的完美区域。如果这是你想要的，而且你喜欢使
+
+00:09:46.400 --> 00:09:53.480
+this much better. So I'm going to slowly move to the left and go to the right. You
+这要好得多。所以我要慢慢地向左移动，向右走。你可以看到
+
+00:09:53.480 --> 00:09:57.400
+can see when I'm at a spot like this, because our severe trace does not have a valid head
+你可以看到，当我在这样一个地方的时候，因为我们的严重跟踪没有一个有效的头部位置
+
+00:09:57.400 --> 00:10:02.300
+location, our right hand is in the air. So if there's something they want to prevent,
+位置，我们的右手就在空中。因此，如果有什么他们想要防止的东西、
+
+00:10:02.300 --> 00:10:07.400
+you want to snap our hand the whole time, you can either keep increasing the trace radius
+你想一直扣住我们的手，你可以继续增加我们的严重追踪的半径
+
+00:10:07.400 --> 00:10:12.560
+for our severe trace, or you can perform a second trace here to find the climbable surface.
+或者你可以在这里进行第二次追踪以找到可攀登的表面。
+
+00:10:12.560 --> 00:10:17.120
+I'm going to leave that as an optional challenge to you. I'm sure at this point, you know
+我打算把这个作为一个可选的挑战留给你。我相信在这一点上，你一定知道
+
+00:10:17.120 --> 00:10:22.360
+how to implement that by yourself. And since we've just increased the trace radius for
+如何自己实现它。因为我们刚刚增加了严重追踪的半径。
+
+00:10:22.360 --> 00:10:27.720
+our severe trace, if I'm climbing on a surface like this, I'm going to try to move to the
+如果我在这样的表面上爬行，我将尝试向右移动。
+
+00:10:27.720 --> 00:10:36.800
+right. You can see as I'm moving my head location will be above the character's head. So for
+右边。你可以看到在我移动的过程中，我的头部位置将在角色的头部上方。所以对于
+
+00:10:36.800 --> 00:10:41.800
+a surface like this, the radius is too large. And this is also something that you can dive
+这样的一个表面，半径太大了。如果你对这个问题感兴趣的话，你也可以在后面深入研究一下。
+
+00:10:41.800 --> 00:10:47.000
+into later yourself if you are interested in resolving this issue. So for example, instead
+如果你对解决这个问题感兴趣的话，你也可以稍后深入研究一下。因此，举例来说
+
+00:10:47.000 --> 00:10:51.960
+of using a fixed value for our severe trace, you can change it dynamically depending on
+你可以根据我们的角色所处的表面，动态地改变它，而不是使用一个固定的值来进行严厉的追踪。
+
+00:10:51.960 --> 00:10:57.000
+what kind of surface that our character is on. And the radius that I'm using for surfaces
+我们的角色在什么样的表面上。而我对表面使用的半径
+
+00:10:57.000 --> 00:11:07.880
+like this will work just fine. And that's pretty much it for our ClimbIK. We can even
+这样就可以正常工作了。这就是我们的ClimbIK的基本情况。我们甚至可以
+
+00:11:07.880 --> 00:11:18.680
+climb to the border of this map if we want. And we can climb back in. And later if you
+如果我们想的话，可以爬到地图的边界。我们还可以爬回来。以后如果你
+
+00:11:18.680 --> 00:11:23.000
+notice any other issues, you can use our debug functions to come up with your own solution
+注意到任何其他的问题，你可以使用我们的调试功能来想出你自己的解决方案
+
+00:11:23.000 --> 00:11:28.480
+to solve it. And starting from next lecture, we are going to look at how we can add in
+来解决它。从下一节课开始，我们将研究如何在我们的攀登系统中加入
+
+00:11:28.480 --> 00:11:32.880
+more features to our climbing system. I'll see you in the next lecture.
+更多的功能到我们的爬坡系统中。我们在下一讲再见。
+
+00:11:32.880 --> 00:11:34.880
+[END]
+[结束]

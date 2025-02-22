@@ -1,0 +1,109 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.040
+Welcome.
+欢迎。
+
+00:00:06.040 --> 00:00:09.600
+Let's first create a C++ project for us to work with.
+让我们首先创建一个C++项目，让我们使用。
+
+00:00:09.600 --> 00:00:13.680
+And here I'm going to select the third person template as our starting point.
+在这里我将选择第三人称模板作为我们的起点。
+
+00:00:13.680 --> 00:00:18.200
+Since it contains all the boilerplate movement code that we need, it can really help us to
+因为它包含了所有我们需要的模板运动代码，它可以真正帮助我们
+
+00:00:18.200 --> 00:00:23.100
+save some time and focus on the actual implementation of our climbing system.
+它可以帮助我们节省一些时间，把精力放在攀爬系统的实际实现上。
+
+00:00:23.100 --> 00:00:26.940
+So after having the third person selected, this is where I want to put my project.
+所以在选择了第三人称之后，我想把我的项目放在这里。
+
+00:00:26.940 --> 00:00:32.760
+And I'm going to name my project Climbing System and make sure you select this C++.
+我将把我的项目命名为 "攀登系统"，并确保你选择了这个C++。
+
+00:00:32.760 --> 00:00:35.680
+Then I'm going to click create.
+然后我将点击创建。
+
+00:00:35.680 --> 00:00:39.880
+So after creating the project, this is what you should see inside of third person template.
+所以在创建项目后，这就是你在第三人称模板中应该看到的东西。
+
+00:00:39.880 --> 00:00:45.360
+Now if I click play, you can see I can already run around using the existing character.
+现在，如果我点击播放，你可以看到我已经可以使用现有的角色到处跑了。
+
+00:00:45.360 --> 00:00:51.640
+And if I go to my Visual Studio inside of the climbing system, go to source and inside
+如果我进入Visual Studio的攀岩系统，进入源代码，在攀岩系统这个文件夹中
+
+00:00:51.640 --> 00:00:56.160
+of this folder climbing system, these are all the files that we currently have.
+这个文件夹中的攀岩系统，这些是我们目前拥有的所有文件。
+
+00:00:56.160 --> 00:00:59.520
+So our character class is called ClimbingSystemCharacter.h.
+所以我们的角色类被称为ClimbingSystemCharacter.h。
+
+00:00:59.520 --> 00:01:01.600
+I'm going to open it.
+我将打开它。
+
+00:01:01.600 --> 00:01:05.520
+Like I said, all the boilerplate code has already been done for us.
+就像我说的，所有的模板代码都已经为我们完成了。
+
+00:01:05.520 --> 00:01:10.480
+So we have components for the camera, for the spring arm, and we also have a good starting
+所以我们有摄像机和弹簧臂的组件，我们也有一个很好的默认增强输入系统的起点。
+
+00:01:10.480 --> 00:01:13.760
+point for the default enhanced input system.
+默认的增强型输入系统的起点。
+
+00:01:13.760 --> 00:01:15.980
+We're going to look into this code later.
+我们将在后面研究这些代码。
+
+00:01:15.980 --> 00:01:21.000
+And one more thing that I like to mention is inside of this level prototyping filter,
+还有一件事我想提及的是在这个水平原型过滤器里面、
+
+00:01:21.000 --> 00:01:25.480
+inside of meshes, you can see you already have some basic primitive shapes that we can
+在网格里面，你可以看到你已经有一些基本的原始形状，我们可以
+
+00:01:25.480 --> 00:01:30.240
+use and later we can use them to build the surfaces that we can climb.
+以后我们可以用它们来构建我们可以攀爬的表面。
+
+00:01:30.240 --> 00:01:32.240
+And it's time for a challenge.
+现在是进行挑战的时候了。
+
+00:01:32.240 --> 00:01:33.520
+So a challenge is simple.
+所以挑战很简单。
+
+00:01:33.520 --> 00:01:38.480
+I'd like you to create a C++ project based on the third person template.
+我想让你在第三人称模板的基础上创建一个C++项目。
+
+00:01:38.480 --> 00:01:40.200
+This should be a fairly easy challenge.
+这应该是一个相当容易的挑战。
+
+00:01:40.200 --> 00:01:43.680
+Pause the video now and give this a go and I'll see you in the next lecture.
+现在暂停视频，给它一个机会，我们在下一个讲座中见。
+
+00:01:43.680 --> 00:01:54.600
+[Music]
+[音乐]

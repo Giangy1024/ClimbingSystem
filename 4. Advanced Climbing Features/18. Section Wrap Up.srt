@@ -1,0 +1,57 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.920
+Welcome back. Now after our hard work, our climbing system is finally coming together.
+欢迎回来。现在，经过我们的努力，我们的攀登系统终于组装在一起了。
+
+00:00:05.920 --> 00:00:11.040
+And now we have working locomotion for climbing. We can hop up, we can hop down,
+现在我们有了可以工作的攀岩运动。我们可以跳起来，我们可以跳下来，
+
+00:00:11.040 --> 00:00:17.680
+we can enter and exit the climb state, and we can also climb up and climb down the ledge.
+我们可以进入和退出攀爬状态，也可以爬上爬下悬崖。
+
+00:00:17.680 --> 00:00:22.960
+And if we want, when our character is near a vaultable surface, we can start vaulting.
+如果我们愿意，当我们的角色接近可跳跃的表面时，我们可以开始跳跃。
+
+00:00:22.960 --> 00:00:27.120
+And that's a really cool feature. And the last thing that I want to do,
+这真的是一个很酷的功能。我最不想做的事就是
+
+00:00:27.120 --> 00:00:31.040
+so I'm going to disable the capsule shape. I don't need to see it anymore.
+所以我要禁用胶囊形状。我不需要再看到它了。
+
+00:00:31.040 --> 00:00:35.360
+So go back to my character blueprint. Inside of this capsule component,
+所以回到我的角色蓝图吧。在该胶囊组件的内部，
+
+00:00:35.360 --> 00:00:41.520
+I'm going to take this hidden in game, click compile, and click play.
+我将把这个隐藏在游戏中，点击编译，然后点击播放。
+
+00:00:41.520 --> 00:00:46.640
+And now we can really have fun with our climbing system.
+现在我们可以真正享受我们的攀岩系统带来的乐趣了。
+
+00:00:46.640 --> 00:00:55.840
+Congratulations on getting this far, and I'd like you to pat yourself on the back.
+祝贺你走到这一步，我希望你能拍拍自己的后背。
+
+00:00:56.480 --> 00:01:01.520
+These are not some easy features to create. And with the tools and knowledge you have now,
+创建这些功能并非易事。有了你现在所拥有的工具和知识，
+
+00:01:01.520 --> 00:01:05.440
+you can pretty much add in any other features that you see fit in here.
+你几乎可以在这里添加你认为合适的任何其他功能。
+
+00:01:05.440 --> 00:01:08.960
+And I really can't wait to see what you come up with next.
+我真的迫不及待想知道你下一步会做什么。
+
+00:01:08.960 --> 00:01:15.440
+So go try out your own ideas, and most importantly, have fun with our climbing system.
+所以去尝试你自己的想法，最重要的是，享受我们的攀岩系统。

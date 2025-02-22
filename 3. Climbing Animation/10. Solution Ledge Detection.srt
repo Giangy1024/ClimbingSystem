@@ -1,0 +1,321 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.000
+Welcome back. How did that go for you? Hopefully that wasn't too hard for you to do.
+欢迎回来。你的工作进展如何？希望这对你来说不是太难。
+
+00:00:05.000 --> 00:00:07.000
+Now let's look at how I implement it.
+现在让我们看看我是如何实现它的。
+
+00:00:07.000 --> 00:00:12.000
+So first, I'm going to disable the debug shape for this floor check.
+因此，首先，我将禁用这个楼层检查的调试形状。
+
+00:00:12.000 --> 00:00:15.000
+So I'm going to delete this tool.
+所以我将删除这个工具。
+
+00:00:15.000 --> 00:00:18.000
+Then I'm going to go back to my header file.
+然后我将回到我的头文件。
+
+00:00:18.000 --> 00:00:23.000
+And under the snap movement to climb both surfaces, I'm going to create a new function.
+在爬上两个表面的快照运动下，我将创建一个新的函数。
+
+00:00:23.000 --> 00:00:29.000
+This function will return a bool. I'm going to call this check has reached ledge.
+这个函数将返回一个bool。我将调用这个检查已到达壁架。
+
+00:00:29.000 --> 00:00:37.000
+And I'm going to create a function definition and paste the function under this snap movement to climb both surfaces.
+我将创建一个函数定义，并把这个函数粘贴到这个快速移动爬上两个表面的下面。
+
+00:00:37.000 --> 00:00:39.000
+So paste it in here.
+所以把它粘贴在这里。
+
+00:00:39.000 --> 00:00:45.000
+Alright, first thing I'm going to call the function trace from eye height.
+好的，首先我将调用这个函数从眼睛的高度开始追踪。
+
+00:00:45.000 --> 00:00:50.000
+So for the trace distance, I'm going to give it a hard code value of 100 units.
+所以对于追踪距离，我将给它一个100单位的硬编码值。
+
+00:00:50.000 --> 00:00:55.000
+And for the trace offset, so now simply tracing from eye height is not high enough.
+对于追踪的偏移量，所以现在简单地从眼睛的高度追踪是不够的。
+
+00:00:55.000 --> 00:00:57.000
+I'm going to give it an offset of 50 units.
+我将给它一个50个单位的偏移。
+
+00:00:57.000 --> 00:01:01.000
+So the line trace will start 50 units above the eye height.
+所以线条追踪将从眼睛高度以上50个单位开始。
+
+00:01:01.000 --> 00:01:06.000
+And I'm going to store the return result of this inside of a local variable.
+我将把这个返回的结果存储在一个局部变量中。
+
+00:01:06.000 --> 00:01:11.000
+So it's going to be an F hit result. I'm going to call this ledge hit result.
+所以它将会是一个F值的结果。我将把这个称为 "壁架撞击结果"。
+
+00:01:11.000 --> 00:01:14.000
+And the next thing that I'm going to check.
+接下来我要检查的是。
+
+00:01:14.000 --> 00:01:25.000
+So if this ledge hit result.b blocking hit is not true, then that means above the character, there isn't a climbable surface.
+所以，如果这个壁架撞击结果.b阻挡撞击不是真的，那么就意味着在这个角色上面，没有一个可攀爬的表面。
+
+00:01:25.000 --> 00:01:29.000
+In that case, I'm going to do the second line trace in here.
+在这种情况下，我将在这里做第二行追踪。
+
+00:01:29.000 --> 00:01:36.000
+So it's going to be a const F vector. I'm going to call this one walkable surface trace start.
+所以它将是一个常量F向量。我将把这个称为一个可行走的表面追踪开始。
+
+00:01:36.000 --> 00:01:44.000
+And it's going to equal to this ledge hit result dot trace end.
+它将等于这个壁架撞击结果的点状追踪结束。
+
+00:01:44.000 --> 00:01:47.000
+So this will be our new line trace start.
+所以这将是我们新的线条追踪起点。
+
+00:01:47.000 --> 00:01:54.000
+And for the new line trace end, I'm going to first create a const F vector.
+对于新的线迹终点，我将首先创建一个常量F矢量。
+
+00:01:54.000 --> 00:01:57.000
+I'm going to call this one down vector.
+我将把这个称为一个向下的向量。
+
+00:01:57.000 --> 00:02:04.000
+And it's going to equal to updated component get up vector and inverse this vector.
+它将等于更新的分量，并反转这个向量。
+
+00:02:04.000 --> 00:02:09.000
+So for the new line trace end, it's going to be another const F vector.
+因此，对于新的线迹末端，它将是另一个常量F向量。
+
+00:02:09.000 --> 00:02:14.000
+I'm going to call this walkable surface trace end.
+我将把这个可行走的表面称为追踪终点。
+
+00:02:14.000 --> 00:02:26.000
+So it's going to equal to this trace start plus the down vector multiplied with a value.
+所以它将等于这个追踪的起点加上向下的矢量乘以一个值。
+
+00:02:26.000 --> 00:02:30.000
+So here I'm going to give it a code value of 100 units.
+所以在这里我打算给它一个100单位的代码值。
+
+00:02:30.000 --> 00:02:32.000
+I think this is more than enough. All right.
+我认为这已经足够了。好了。
+
+00:02:32.000 --> 00:02:43.000
+After this line, I'm going to call the function to line trace single by object and pass in this start.
+在这一行之后，我将调用函数来按对象单行追踪，并传入这个开始。
+
+00:02:43.000 --> 00:02:49.000
+Pass in this end.
+传入这个结束。
+
+00:02:49.000 --> 00:02:52.000
+And pass in true for show debug shape.
+传入 "true "表示显示调试形状。
+
+00:02:52.000 --> 00:02:58.000
+And I'm going to store the return result of this inside of another local variable.
+我将把返回的结果存储在另一个局部变量中。
+
+00:02:58.000 --> 00:03:01.000
+So it's going to be an F hit result.
+所以，它将是一个F的命中结果。
+
+00:03:01.000 --> 00:03:06.000
+I'm going to call this one walkable surface hit result.
+我将把这个称为一个可行走的表面命中结果。
+
+00:03:06.000 --> 00:03:09.000
+Then I'm going to use another if check.
+然后我将使用另一个if检查。
+
+00:03:09.000 --> 00:03:15.000
+Here I'm simply going to check if this hit result has a blocking hit.
+在这里，我将简单地检查这个命中结果是否有一个阻塞的命中。
+
+00:03:15.000 --> 00:03:19.000
+If this is true, I'm going to return true and this function.
+如果是真的，我将返回true和这个函数。
+
+00:03:19.000 --> 00:03:24.000
+If you like to do some complicated checks in here to decide if the surface is walkable,
+如果你想在这里做一些复杂的检查来决定这个表面是否可以行走、
+
+00:03:24.000 --> 00:03:27.000
+you can use things like that product to check the surface normal.
+你可以使用像那个产品一样的东西来检查表面的法线。
+
+00:03:27.000 --> 00:03:30.000
+Or you can even check if it's parallel with a vector.
+或者你甚至可以检查它是否与一个矢量平行。
+
+00:03:30.000 --> 00:03:32.000
+You know how to do all of that.
+这些你都知道怎么做。
+
+00:03:32.000 --> 00:03:35.000
+And at the end of this function, I'm going to return false.
+在这个函数的最后，我将返回false。
+
+00:03:35.000 --> 00:03:40.000
+And I also like to enable the debug shape for this trace from eye height.
+我也喜欢从眼睛的高度为这个跟踪启用调试形状。
+
+00:03:40.000 --> 00:03:46.000
+So I'm going to go inside of it and pass in a true in here.
+所以我将在其中加入一个 "true"，并将其传入。
+
+00:03:46.000 --> 00:03:51.000
+All right. Last thing that we need to do, we need to call the function check has reached ledge.
+好的。我们需要做的最后一件事是，我们需要调用检查已到达窗台的函数。
+
+00:03:51.000 --> 00:03:58.000
+So I'm going to copy it, scroll up to this face six client under this net movement to climb the raw surfaces.
+所以我将复制它，向上滚动到这个面的六个客户端，在这个净运动下爬上原始表面。
+
+00:03:58.000 --> 00:04:00.000
+I'm going to do an if check.
+我将做一个if检查。
+
+00:04:00.000 --> 00:04:07.000
+So if this check has reached the ledge is true, I'm going to print a debug message to the screen.
+所以如果这个检查已经到达窗台是真的，我就要向屏幕上打印一个调试信息。
+
+00:04:07.000 --> 00:04:14.000
+So here I'm going to say ledge reached and give it a color of green.
+所以在这里我要说的是到达壁架并给它一个绿色的颜色。
+
+00:04:14.000 --> 00:04:17.000
+Give it a value of one for this in key.
+对于这个键，给它一个1的值。
+
+00:04:17.000 --> 00:04:24.000
+And if it's false, I'm going to print another message that says ledge not reached.
+如果它是假的，我将打印另一条信息，说是没有达到壁垒。
+
+00:04:24.000 --> 00:04:26.000
+And the color is going to be red.
+颜色将是红色。
+
+00:04:26.000 --> 00:04:27.000
+All right. That should be it.
+好的。应该就是这样了。
+
+00:04:27.000 --> 00:04:29.000
+I'm going to try to compile first.
+我先试着编译一下。
+
+00:04:29.000 --> 00:04:34.000
+I have a successful compile. I'm going to launch my editor back.
+我有一个成功的编译。我将启动我的编辑器回来。
+
+00:04:34.000 --> 00:04:40.000
+Go inside of my editor and we're going to press play and start climbing.
+进入我的编辑器，我们将按下播放键，开始爬行。
+
+00:04:40.000 --> 00:04:44.000
+And you can see this is our line trace above our head.
+你可以看到这是我们头顶上的线条痕迹。
+
+00:04:44.000 --> 00:04:49.000
+So I'm going to try to climb up to here.
+所以我将尝试爬到这里。
+
+00:04:49.000 --> 00:04:54.000
+And here it says ledge reached and we are drawing two line traces.
+这里写着 "已到达壁架"，我们正在画两条线的痕迹。
+
+00:04:54.000 --> 00:04:56.000
+Great. This is working as expected.
+很好。这就像预期的那样工作。
+
+00:04:56.000 --> 00:04:58.000
+And I'm going to climb down.
+我现在要爬下去。
+
+00:04:58.000 --> 00:05:02.000
+Here it says ledge not reached. Climb up. Ledge reached.
+这里说没有到达壁架。爬上去。已到达壁架。
+
+00:05:02.000 --> 00:05:06.000
+And when this condition is true, our character should climb up the edge.
+当这个条件为真时，我们的角色应该爬上边缘。
+
+00:05:06.000 --> 00:05:09.000
+Right now our character is inside of this idle state.
+现在我们的角色处于闲置状态。
+
+00:05:09.000 --> 00:05:14.000
+And same as the floor check, I don't want this condition to be true if we are not climbing up.
+和地板检查一样，如果我们不往上爬，我不希望这个条件为真。
+
+00:05:14.000 --> 00:05:16.000
+And that's something really easy to add.
+这是很容易添加的东西。
+
+00:05:16.000 --> 00:05:24.000
+So I'm going to go back to my code and go inside of this function and scroll down.
+所以我将回到我的代码中，进入这个函数并向下滚动。
+
+00:05:24.000 --> 00:05:38.000
+So if we have a blocking head for the walkable surfaces and this get unrotated climb velocity dot z is greater than 10 units.
+所以，如果我们有一个可行走表面的阻挡头，并且这个得到未旋转的爬升速度点z大于10单位。
+
+00:05:38.000 --> 00:05:42.000
+If both of these conditions are true, then we should climb up.
+如果这两个条件都是真的，那么我们就应该爬上去。
+
+00:05:42.000 --> 00:05:48.000
+All right. I'm going to quickly save all, use the hotkeys and then trigger live coding.
+好的。我将快速保存所有，使用热键，然后触发实时编码。
+
+00:05:48.000 --> 00:05:50.000
+All right. Live coding succeeded.
+好的。实时编码成功了。
+
+00:05:50.000 --> 00:05:54.000
+I'm going to press play again and try to climb up.
+我将再次按下播放键并尝试爬上去。
+
+00:05:54.000 --> 00:05:57.000
+So here it says ledge not reached.
+在这里，它说没有到达窗台。
+
+00:05:57.000 --> 00:06:01.000
+And for a single frame there it says ledge reached.
+有一帧显示已到达壁架。
+
+00:06:01.000 --> 00:06:06.000
+And if we are inside of this idle state, it says ledge not reached.
+如果我们在这个空闲的状态下，它说没有到达壁架。
+
+00:06:06.000 --> 00:06:09.000
+Great. This is working as expected.
+很好。这是按预期工作的。
+
+00:06:09.000 --> 00:06:14.000
+What was your solution like? Was yours similar to mine or did you come up with a much better one?
+你的解决方案是怎样的？你的方案和我的相似吗？还是你想出了一个更好的方案？
+
+00:06:14.000 --> 00:06:18.000
+Do share your solution in the Discord channel and I'll see you in the next lecture.
+请在 Discord 频道中分享你的解决方案，我们将在下一次讲座中见。

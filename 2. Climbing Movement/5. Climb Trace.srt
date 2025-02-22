@@ -1,0 +1,269 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:09.840
+Welcome. In the last lecture, we successfully create a handy function for us to perform
+欢迎。在上一讲中，我们成功地创建了一个方便的函数，为我们执行
+
+00:00:09.840 --> 00:00:16.080
+capsule trace. And in this lecture, we look at how we can use this to trace for the climbable
+胶囊追踪。而在这一讲中，我们将看看如何使用这个函数来追踪可攀登的
+
+00:00:16.080 --> 00:00:21.040
+surfaces. For that, I'm going to create a new region just above the region for climb
+表面。为此，我将创建一个新的区域，就在爬升区域的上方
+
+00:00:21.040 --> 00:00:26.280
+variables. I'm going to create a new one. So it's going to be pound region. I'm going
+变量。我将创建一个新的。所以这将是一个磅状区域。我将
+
+00:00:26.280 --> 00:00:31.600
+to call this one climb core. And inside of it, I'm going to create a function. It's
+称之为爬升核心。在它里面，我将创建一个函数。它是
+
+00:00:31.600 --> 00:00:37.000
+going to be void. I'm going to call it trace climbable surfaces. And I'm going to create
+将会是空的。我将把它称为 "追踪可攀登表面"。然后我将创建
+
+00:00:37.000 --> 00:00:42.100
+a function definition, paste the function below this region, and I'm going to copy
+一个函数定义，把这个函数粘贴到这个区域下面，然后我把这个区域复制到
+
+00:00:42.100 --> 00:00:49.960
+this region to here. So inside of this function, we'll need to call the function that we just
+这个区域到这里。所以在这个函数里面，我们需要调用我们在上一节课中创建的函数
+
+00:00:49.960 --> 00:00:54.320
+created in the last lecture. So I'm going to paste it in here. And we'll need to fill
+在上一节课中创建的函数。所以我要把它粘贴到这里。我们还需要填写
+
+00:00:54.320 --> 00:00:59.320
+in the trace start and trace end. But how can we get such information? Since we are
+追踪开始和追踪结束。但是我们如何才能得到这样的信息呢？因为我们是在
+
+00:00:59.320 --> 00:01:04.920
+inside of character moving component, we cannot do things like get actor location and rotation.
+角色移动组件的内部，我们不能做诸如获得演员位置和旋转的事情。
+
+00:01:04.920 --> 00:01:10.200
+Well, to solve this issue, there's another variable just for that. So our character movement
+好吧，为了解决这个问题，有另一个变量专门用于此。所以我们的角色移动
+
+00:01:10.200 --> 00:01:15.760
+component inherits from this U moving component. And inside of it, there's a variable is called
+组件继承自这个U移动组件。在它的内部，有一个变量叫做
+
+00:01:15.760 --> 00:01:20.440
+updated component. And you can see from the comment, it says this is the component we
+更新组件。你可以从注释中看到，它说这是我们的组件
+
+00:01:20.440 --> 00:01:26.120
+move and update. So this is the actual component that moves our character. We can use this
+移动和更新。所以这就是实际的移动我们的角色的组件。我们可以用这个
+
+00:01:26.120 --> 00:01:31.960
+to get hold of important information like our characters for vector location and rotation
+来获取重要的信息，比如我们的角色的矢量位置和旋转方向
+
+00:01:31.960 --> 00:01:36.640
+for us to do the calculation we need. So right above this function, I'm going to create a
+以便我们进行所需的计算。所以就在这个函数的上方，我将创建一个
+
+00:01:36.640 --> 00:01:43.120
+variable. It's going to be a const F vector. I'm going to call this one start. We can access
+变量。它将是一个Const F向量。我将把这个变量称为 "开始"。我们可以访问
+
+00:01:43.120 --> 00:01:49.440
+the component updated component directly inside of this class. And we can use the function
+直接访问这个类中的更新组件。而且我们可以使用函数
+
+00:01:49.440 --> 00:01:54.720
+get component locations to get hold of the location of our character. And since we are
+get component locations来获取我们角色的位置。由于我们是
+
+00:01:54.720 --> 00:01:59.880
+detecting the surfaces in front of our character, I'm going to offer some start offset. So it
+探测我们角色前面的表面，我将提供一些起始偏移。所以它
+
+00:01:59.880 --> 00:02:05.200
+will be the component location plus the start offset we need. And for that, I'm going to
+将是组件的位置加上我们需要的起始偏移。为此，我将会
+
+00:02:05.200 --> 00:02:10.120
+create another variable. So it's going to be another const F vector. I'm going to call
+创建另一个变量。所以它将是另一个常量F矢量。我将把它称为
+
+00:02:10.120 --> 00:02:20.520
+this start offset and you'll be our updated component get forward vector. And I'm going
+这个起始偏移量将是我们更新后的分量前进矢量。而我将会
+
+00:02:20.520 --> 00:02:26.360
+to increase its length by 30 units and I'm going to copy this start offset and paste
+把它的长度增加30个单位，然后把这个起始偏移量复制并粘贴到
+
+00:02:26.360 --> 00:02:31.680
+it in here. So this is the start of our capsule trace. And as for the end, I'm going to create
+它在这里。所以这是我们的胶囊追踪的开始。至于终点，我将创建
+
+00:02:31.680 --> 00:02:36.280
+another variable. So it's going to be another const F vector. I'm going to call it end.
+另一个变量。所以它将是另一个常数F矢量。我将把它称为结束。
+
+00:02:36.280 --> 00:02:42.720
+So the end would be the start plus some values. So how capsule trace works in here is you
+所以终点将是起点加上一些数值。所以胶囊追踪在这里的工作原理是你
+
+00:02:42.720 --> 00:02:48.640
+will draw multiple capsules between the start and end we specify in here. And for the end
+将在我们指定的起点和终点之间绘制多个胶囊。而对于结束
+
+00:02:48.640 --> 00:02:54.200
+in here, I'm just going to give it a very small value. So you'll be start plus this
+我只是要给它一个很小的值。所以你会在开始时加上这个
+
+00:02:54.200 --> 00:03:00.680
+updated component get forward vector. So by doing this, we should be able to see two capsules
+更新的分量得到向前的矢量。因此，通过这样做，我们应该能够看到两个胶囊
+
+00:03:00.680 --> 00:03:05.280
+that are almost overlapping with each other. Since the forward vector here only has length
+几乎是相互重叠的。因为这里的前向量只有长度
+
+00:03:05.280 --> 00:03:13.640
+of one. All right, I'm going to fill in start, then fill in end. And as for the show debug
+1的长度。好吧，我先填上开始，再填上结束。而对于显示调试
+
+00:03:13.640 --> 00:03:19.360
+shape, I'm going to fill in true so that we can see what the shape is actually like. All
+形状，我要填入true，这样我们就可以看到这个形状的实际情况了。好的
+
+00:03:19.360 --> 00:03:23.880
+right, this is the function that we'll use to trace for climbable surfaces. But when
+好的，这就是我们用来追踪可攀爬表面的函数。但是，什么时候
+
+00:03:23.880 --> 00:03:27.560
+should we actually call this function? Well, for now, I'm going to call it inside of the
+我们应该在什么时候真正调用这个函数呢？嗯，现在，我打算在
+
+00:03:27.560 --> 00:03:32.520
+take function. So if you go to the header file of the component class, if you go to
+函数中调用。所以，如果你去看组件类的头文件，如果你去看
+
+00:03:32.520 --> 00:03:38.560
+the parent class, you character movement component. Instead of it, you can directly search for
+父类，你的角色运动组件。而不是它，你可以直接搜索
+
+00:03:38.560 --> 00:03:44.760
+take component. And you can see this is the function that we can use. So I'm going to
+take组件。而且你可以看到这是我们可以使用的函数。所以我打算
+
+00:03:44.760 --> 00:03:50.200
+copy this function. And I'm going to paste it back to our header file. So I'm going to
+复制这个函数。我将把它粘贴到我们的头文件中。所以我将
+
+00:03:50.200 --> 00:03:57.440
+create a public section for it. Then I'm going to create a function definition for this tick
+为它创建一个公共部分。然后我将为这个tick创建一个函数定义
+
+00:03:57.440 --> 00:04:02.360
+and place it above this client traces. And first thing I'm going to call the super version
+的函数定义，并把它放在这个客户端痕迹的上面。首先，我将调用它的超级版本
+
+00:04:02.360 --> 00:04:11.000
+of it. I'm going to copy of this and paste it in here and delete all the types. Then
+它的超级版本。我将复制这个并粘贴到这里，然后删除所有的类型。然后
+
+00:04:11.000 --> 00:04:15.360
+I'm going to call the function that I just created. So I'm going to copy this and paste
+我将调用我刚刚创建的函数。所以我打算复制这个并粘贴
+
+00:04:15.360 --> 00:04:21.200
+it in here. All right, that's pretty much it. I'm going to press control plus B to compile.
+它在这里。好了，这就差不多了。我将按控制键加B来编译。
+
+00:04:21.200 --> 00:04:25.960
+I have a successful compile. I'm going to press control plus F5 to launch my editor.
+我有一个成功的编译。我将按下控制键加F5来启动我的编辑器。
+
+00:04:25.960 --> 00:04:29.640
+All right, go inside of my editor. There's one more thing that we need to do. So I'm
+好了，进入我的编辑器。还有一件事我们需要做。所以我将
+
+00:04:29.640 --> 00:04:35.080
+going to open the blueprint class. Then I'm going to go inside of this custom moving component.
+要打开蓝图类。然后我将进入这个自定义移动组件。
+
+00:04:35.080 --> 00:04:39.240
+So you can see these are the variables that we created in the last lecture. And for this
+所以你可以看到这些是我们在上次讲座中创建的变量。而对于这个
+
+00:04:39.240 --> 00:04:44.760
+climbable surface type, I'm going to click add element. And this is the type that we'll
+可攀爬表面类型，我将点击添加元素。这就是我们将
+
+00:04:44.760 --> 00:04:50.000
+be tracing for static. All right, I'm going to press compile. Then I'm going to press
+追踪静态的类型。好的，我将按下编译。然后我将按
+
+00:04:50.000 --> 00:04:57.680
+play. And you can see this is the shape. Now if we run to the surfaces in here, you can
+播放。你可以看到这就是形状。现在，如果我们运行到这里的表面，你可以看到我们得到了一次撞击。
+
+00:04:57.680 --> 00:05:03.520
+see we get one hit. Since we're only tracing for static, if we run to this blue cube here,
+你可以看到我们得到了一个结果。因为我们只追踪静态的东西，如果我们跑到这个蓝色的立方体上，就不会有任何结果、
+
+00:05:03.520 --> 00:05:08.360
+we don't get a hit. And that's perfect. That is what we want. And since we are doing capsule
+我们没有得到一个结果。这很完美。这就是我们想要的。由于我们在做胶囊
+
+00:05:08.360 --> 00:05:12.480
+trace multi-fold objects, we can get hold of all the different surfaces in front of
+追踪多重物体，我们可以掌握所有不同的表面，在我们面前
+
+00:05:12.480 --> 00:05:18.800
+us. So inside of this level prototyping folder, meshes, I'm going to drag out different meshes.
+我们。所以在这个水平原型文件夹里面，网格，我将拖出不同的网格。
+
+00:05:18.800 --> 00:05:22.960
+So for this cube, I'm going to increase its size a little bit. So maybe three for the
+所以对于这个立方体，我要把它的大小增加一点。因此，可能是3个X和5个Y，8个Y。
+
+00:05:22.960 --> 00:05:33.200
+X and five for the Y and eight for the Z. And now if I duplicate this shape, rotate it a
+现在，如果我复制这个形状，把它旋转一下，变成这样。
+
+00:05:33.200 --> 00:05:43.760
+little bit to something like this. And if I press play, now if I go to the surface here,
+变成这样的东西。如果我按下播放键，现在如果我转到这里的表面、
+
+00:05:43.760 --> 00:05:48.960
+you can see I get two hit results. And this will be extremely useful later for our calculation
+你可以看到我得到了两个结果。这对我们以后的计算将非常有用。
+
+00:05:48.960 --> 00:05:53.960
+when we are climbing. Later when you implement this by yourself, so we can use the updated
+当我们在爬坡时。以后当你自己实现了这一点，那么我们就可以用更新的
+
+00:05:53.960 --> 00:05:58.320
+component to get hold of all the important information that we need. And don't forget
+组件来掌握所有我们需要的重要信息。而且别忘了
+
+00:05:58.320 --> 00:06:02.600
+to add in the trace type inside of Character Blueprint in order to get the correct hit
+在角色蓝图中加入跟踪类型，以便得到正确的打击结果。
+
+00:06:02.600 --> 00:06:06.800
+result. Alright, time for you to set up your own Climb Trace and I'll see you in the next
+结果。好了，是时候让你建立你自己的攀爬跟踪了，我们在下一节课上见。
+
+00:06:06.800 --> 00:06:07.160
+lecture.
+讲座。
+
+00:06:07.160 --> 00:06:17.160
+[Music]
+[音乐]
+
+00:06:17.160 --> 00:06:19.160
+[Music]
+[音乐]

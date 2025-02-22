@@ -1,0 +1,389 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.080
+Welcome.
+欢迎。
+
+00:00:06.080 --> 00:00:10.860
+In the last lecture, we successfully add in this ledge check and now we have the ability
+在上一讲中，我们成功地加入了这个壁架检查，现在我们有能力
+
+00:00:10.860 --> 00:00:14.120
+to tell if the character has reached the ledge.
+来判断角色是否已经到达窗台。
+
+00:00:14.120 --> 00:00:18.580
+And the next step that we need to do, so if this condition is true, our character should
+下一步我们需要做的是，如果这个条件是真的，我们的角色应该
+
+00:00:18.580 --> 00:00:20.200
+climb up the ledge.
+爬上窗台。
+
+00:00:20.200 --> 00:00:22.960
+And for that, we'll need to download some new animations.
+为此，我们需要下载一些新的动画。
+
+00:00:22.960 --> 00:00:27.700
+So here I am inside of Mixamo with the correct character uploaded.
+所以我现在在Mixamo里面，上传了正确的角色。
+
+00:00:27.700 --> 00:00:32.080
+Instead of the search bar here, I'm going to search Climb and press Enter.
+我不使用搜索栏，而是搜索 "攀登"，然后按回车键。
+
+00:00:32.080 --> 00:00:35.240
+So there are many different animations here for that.
+因此，这里有许多不同的动画，用于此。
+
+00:00:35.240 --> 00:00:39.700
+And after some testing, I found out that, so I'm going to scroll down, this climbing
+经过一些测试，我发现，所以我将向下滚动，这个爬升
+
+00:00:39.700 --> 00:00:41.900
+to top works the best.
+到顶部的效果最好。
+
+00:00:41.900 --> 00:00:44.080
+So this is the one that I'm going to download.
+所以这是我要下载的一个。
+
+00:00:44.080 --> 00:00:46.000
+So I'm going to select this one.
+所以我要选择这一个。
+
+00:00:46.000 --> 00:00:48.960
+And there's one thing here that I'm sure you can notice.
+这里有一件事，我相信你可以注意到。
+
+00:00:48.960 --> 00:00:53.880
+So you can see the animation is moving the character mesh, but in here we don't have
+所以你可以看到动画正在移动角色的网格，但在这里我们没有
+
+00:00:53.880 --> 00:00:55.960
+in place option to tick.
+in place option to tick.
+
+00:00:55.960 --> 00:00:57.720
+And this is where things get tricky.
+这就是事情变得棘手的地方。
+
+00:00:57.720 --> 00:01:02.360
+So in order to climb up the ledge, this is something that we need to rely on root motion
+所以为了爬上窗台，我们需要依靠根部运动来实现。
+
+00:01:02.360 --> 00:01:03.360
+to achieve.
+来实现。
+
+00:01:03.360 --> 00:01:06.440
+So basically we'll need the animation to lift our character up.
+所以基本上我们需要动画来提升我们的角色。
+
+00:01:06.440 --> 00:01:11.400
+If we were to do this completely from code, it'll be extremely complicated to match the
+如果我们完全用代码来做这件事，那么要将动作和动画相匹配就会非常复杂。
+
+00:01:11.400 --> 00:01:13.280
+movement with the animation.
+动作和动画相匹配。
+
+00:01:13.280 --> 00:01:16.020
+So using root motion here would work the best.
+所以在这里使用根部运动将是最有效的。
+
+00:01:16.020 --> 00:01:21.720
+But for animations from Mixamo, after we convert the animations using Mixamo converter, the
+但是对于来自Mixamo的动画，在我们使用Mixamo转换器转换动画后，根动作不会被转移到Mixamo中。
+
+00:01:21.720 --> 00:01:25.240
+root motion won't be transferred to the converted version.
+根动作不会被转移到转换后的版本。
+
+00:01:25.240 --> 00:01:29.120
+In other words, we won't be able to use the root motion for this animation.
+换句话说，我们将不能为这个动画使用根动作。
+
+00:01:29.120 --> 00:01:31.040
+Let me quickly show you what that looks like.
+让我快速向你展示这看起来像什么。
+
+00:01:31.040 --> 00:01:38.080
+So I'm going to download this animation, click download and make sure you tick without skin.
+所以我要下载这个动画，点击下载，并确保你勾选无皮肤。
+
+00:01:38.080 --> 00:01:40.920
+So this is the first animation that we're going to get.
+所以这是我们要得到的第一个动画。
+
+00:01:40.920 --> 00:01:46.360
+And the second one, I'm going to search for hang in here.
+第二个动画，我将在这里搜索挂。
+
+00:01:46.360 --> 00:01:50.040
+And I'm going to scroll down.
+然后我向下滚动。
+
+00:01:50.040 --> 00:01:52.620
+So this is the second one that we're going to get.
+所以这是我们要得到的第二个动画。
+
+00:01:52.620 --> 00:01:54.320
+So this drop to free hang.
+因此，这个下降到自由悬挂。
+
+00:01:54.320 --> 00:01:59.280
+I'm going to click it and you can see for this animation, it doesn't have in place option
+我将点击它，你可以看到对于这个动画，它没有到位选项
+
+00:01:59.280 --> 00:02:00.280
+as well.
+也是如此。
+
+00:02:00.280 --> 00:02:03.280
+I'm going to download this one.
+我将下载这个动画。
+
+00:02:03.280 --> 00:02:04.760
+Every setting here checks out.
+这里的每一个设置都是正确的。
+
+00:02:04.760 --> 00:02:06.480
+Click download.
+点击下载。
+
+00:02:06.480 --> 00:02:10.080
+And next thing we'll need to go through the conversion process again.
+接下来，我们需要再次进行转换过程。
+
+00:02:10.080 --> 00:02:12.720
+So I'm going to go inside of this incoming FBX.
+所以我将进入这个传入的FBX内部。
+
+00:02:12.720 --> 00:02:15.520
+I'm going to delete all these animations inside.
+我要删除里面所有的动画。
+
+00:02:15.520 --> 00:02:17.880
+So press delete and click yes.
+所以按删除键，然后点击是。
+
+00:02:17.880 --> 00:02:21.120
+Next thing I'm going to paste the animation downloaded to here.
+接下来我要把下载的动画粘贴到这里。
+
+00:02:21.120 --> 00:02:26.600
+So select this clamping to top and select this drop to free hang.
+所以选择这个夹子到顶部，选择这个下降到自由悬挂。
+
+00:02:26.600 --> 00:02:30.520
+Control plus C and control plus V then.
+然后控制加C和控制加V。
+
+00:02:30.520 --> 00:02:33.120
+And I'm going to open this mix-melt converter.
+我将打开这个混合-融化转换器。
+
+00:02:33.120 --> 00:02:37.720
+Left click to continue, enter the conversion process, scroll down.
+左击继续，进入转换过程，向下滚动。
+
+00:02:37.720 --> 00:02:40.600
+And I'm going to click here to convert the animations.
+我将点击这里来转换动画。
+
+00:02:40.600 --> 00:02:42.320
+Alright the conversion is done.
+好了，转换已经完成。
+
+00:02:42.320 --> 00:02:46.440
+I'm going to close this window, go to this outgoing FBX.
+我将关闭这个窗口，转到这个输出的FBX。
+
+00:02:46.440 --> 00:02:47.440
+Then go back to my project.
+然后回到我的项目中去。
+
+00:02:47.440 --> 00:02:51.400
+I'm going to drag in those two animations.
+我要拖入这两个动画。
+
+00:02:51.400 --> 00:02:55.000
+So I'm going to go inside of this raw folder.
+所以我要去这个原始文件夹里面。
+
+00:02:55.000 --> 00:02:58.120
+Then I'm going to select this clamping to top.
+然后我将选择这个夹子到顶部。
+
+00:02:58.120 --> 00:03:00.920
+Then this drop to free hang.
+然后把这个下降到自由悬挂。
+
+00:03:00.920 --> 00:03:02.880
+And drag them to my content browser.
+然后把它们拖到我的内容浏览器。
+
+00:03:02.880 --> 00:03:06.000
+So every setting here should stay the same as the last time.
+所以这里的每一个设置都应该和上次一样。
+
+00:03:06.000 --> 00:03:10.080
+All we need to do now is to assign the skeleton in here.
+我们现在需要做的是在这里指定骨架。
+
+00:03:10.080 --> 00:03:11.760
+Then click import all.
+然后点击导入所有。
+
+00:03:11.760 --> 00:03:13.520
+And we have the animations here.
+我们的动画就在这里了。
+
+00:03:13.520 --> 00:03:15.840
+So I'm going to open this clamping to top.
+所以我打算把这个夹子打开到顶部。
+
+00:03:15.840 --> 00:03:19.320
+And you can see our mesh is moving.
+你可以看到我们的网格正在移动。
+
+00:03:19.320 --> 00:03:21.920
+So this indicates this is a root motion.
+所以这表明这是一个根部运动。
+
+00:03:21.920 --> 00:03:24.120
+But if I click the root bone here.
+但如果我点击这里的根部骨骼。
+
+00:03:24.120 --> 00:03:26.440
+So the red line here is our root bone.
+那么这里的红线就是我们的根骨。
+
+00:03:26.440 --> 00:03:29.320
+And this is not behaving the way that we want.
+这并不是我们想要的行为方式。
+
+00:03:29.320 --> 00:03:34.320
+So for this animation, we'll rely on this root bone to lift our character up.
+所以在这个动画中，我们将依靠这个根骨来提升我们的角色。
+
+00:03:34.320 --> 00:03:37.960
+And right now this root bone is not moving on the Z axis.
+而现在这个根骨没有在Z轴上移动。
+
+00:03:37.960 --> 00:03:39.920
+So this one here won't work.
+所以这根骨头就不能工作了。
+
+00:03:39.920 --> 00:03:42.120
+And same thing goes for this drop to free hang.
+同样的事情也适用于这个下降到自由悬挂。
+
+00:03:42.120 --> 00:03:44.520
+I'm going to double click to open it.
+我将双击来打开它。
+
+00:03:44.520 --> 00:03:48.440
+So this one is actually a bit more complicated.
+所以这个其实是比较复杂的。
+
+00:03:48.440 --> 00:03:52.800
+So we'll need to rely on the root bone to rotate our character.
+所以我们需要依靠根骨来旋转我们的角色。
+
+00:03:52.800 --> 00:03:54.840
+Then descend our character.
+然后让我们的角色下降。
+
+00:03:54.840 --> 00:03:58.000
+And right now it's simply moving on the X axis.
+而现在它只是在X轴上移动。
+
+00:03:58.000 --> 00:04:00.080
+So this one won't work either.
+所以这个也不能工作。
+
+00:04:00.080 --> 00:04:04.200
+Now you must be wondering, is there anything that we can do to fix this issue?
+现在你一定想知道，我们有什么办法来解决这个问题吗？
+
+00:04:04.200 --> 00:04:06.840
+Well, there are two in editor solutions.
+好吧，在编辑器里有两个解决方案。
+
+00:04:06.840 --> 00:04:11.480
+So the first one, in order to transfer the root motion successfully, we'll need to use
+所以第一个，为了成功地转移根部运动，我们需要使用
+
+00:04:11.480 --> 00:04:16.880
+a character from MixMath, then convert the mesh using the MixMath converter, then download
+一个来自MixMath的角色，然后用MixMath转换器转换网格，然后下载
+
+00:04:16.880 --> 00:04:17.960
+the animation.
+动画。
+
+00:04:17.960 --> 00:04:21.520
+The animation downloaded this way will have the root motion intact.
+通过这种方式下载的动画将有完整的根部运动。
+
+00:04:21.520 --> 00:04:26.360
+Then inside of Unreal Engine, we'll need to use IK rig to retarget the animation to our
+然后在虚幻引擎中，我们需要使用IK rig来将动画重新定位到我们的
+
+00:04:26.360 --> 00:04:27.360
+skeleton.
+骨架。
+
+00:04:27.360 --> 00:04:32.800
+This is quite a lengthy process and the root motion transferred this way can be quite problematic
+这是一个相当长的过程，而且以这种方式传输的根动作可能会有很大的问题
+
+00:04:32.800 --> 00:04:33.920
+sometimes.
+有时。
+
+00:04:33.920 --> 00:04:38.980
+And the second solution is, we can manually animate the root bone of our character using
+第二个解决方案是，我们可以使用序列器中的
+
+00:04:38.980 --> 00:04:43.840
+control rig inside of Sequencer, and the second one works much better than the first one.
+在Sequencer中控制装备，第二个办法比第一个办法好得多。
+
+00:04:43.840 --> 00:04:48.820
+By doing this, we'll also have manual control of how much we want the root bone to lift
+通过这样做，我们还可以手动控制我们希望根部骨骼提升多少
+
+00:04:48.820 --> 00:04:50.160
+the character up.
+角色抬高的程度。
+
+00:04:50.160 --> 00:04:52.120
+And this is the way that we're going to use.
+而这就是我们要使用的方式。
+
+00:04:52.120 --> 00:04:55.120
+We'll look at how we can do that in the next lecture.
+我们将在下一节课上研究如何做到这一点。
+
+00:04:55.120 --> 00:04:59.080
+So these are the two animations that I just downloaded and converted.
+所以这是我刚刚下载并转换的两个动画。
+
+00:04:59.080 --> 00:05:03.000
+Once you have the animations ready, we'll look at how we can actually add root motions
+一旦你准备好了这些动画，我们将在下一节课看看我们如何能够真正地将根部动作
+
+00:05:03.000 --> 00:05:04.640
+to them in the next lecture.
+在下一节课上，我们将研究如何为它们添加根部动作。
+
+00:05:04.640 --> 00:05:06.520
+I'll see you in the next lecture.
+下一讲见。
+
+00:05:07.020 --> 00:05:17.020
+[music]
+[音乐]

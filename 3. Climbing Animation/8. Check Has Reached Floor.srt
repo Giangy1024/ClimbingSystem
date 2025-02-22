@@ -1,0 +1,421 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:11.200
+Welcome. In the last lecture, we successfully ended the locomotion for our climbing. Now
+欢迎。在上一次讲座中，我们成功地结束了攀登的运动。现在
+
+00:00:11.200 --> 00:00:18.000
+we can climb up, down, left and right. Now before we move on, there's small issue that
+我们可以向上、向下、向左和向右爬。在我们继续前进之前，有一个小问题
+
+00:00:18.000 --> 00:00:24.280
+I'd like to fix. So for my climb left and right, there's still a bit of sliding happening.
+我想修正一下。在我向左和向右爬的过程中，仍然有一些滑动发生。
+
+00:00:24.280 --> 00:00:29.920
+And the reason for that is, the starting position of those two animations is not the same as
+其原因是，这两个动画的起始位置和我们的空闲动画不一样。
+
+00:00:29.920 --> 00:00:36.320
+our idle animation. And I'd like to fix that. So go back to my animation folder, open this
+我们的空闲动画。而我想解决这个问题。所以回到我的动画文件夹，打开这个
+
+00:00:36.320 --> 00:00:42.280
+adjusted, double click to open this left adjusted, double click to open this right adjusted,
+调整，双击打开这个左调整，双击打开这个右调整、
+
+00:00:42.280 --> 00:00:49.320
+click pause. So right now for my animations, they are a bit lower than the idle animation.
+点击暂停。所以现在对于我的动画来说，它们比空闲动画要低一些。
+
+00:00:49.320 --> 00:00:57.200
+So I need to lift them up a little bit. To something like this, click add key. And for
+所以我需要把它们抬高一点。对这样的东西，点击添加键。而对于
+
+00:00:57.200 --> 00:01:08.560
+this left, click pause and lift this one up a little bit. So something like this should
+左边这个，点击暂停，把这个抬高一点。所以像这样的事情应该
+
+00:01:08.560 --> 00:01:20.440
+do click add key and click play. I'm going to test it. So move to the right. Maybe I'll
+点击添加键，然后点击播放。我准备测试一下。所以移到右边。也许我将
+
+00:01:20.440 --> 00:01:27.600
+need a little bit more. So go back to this left, lift it up a little bit more. Something
+需要更多一点。所以回到这个左边，再往上提一点。一些
+
+00:01:27.600 --> 00:01:35.120
+like this, click add key. For this right, lift it up a little bit more, add key and
+像这样，点击添加钥匙。对于这个右边，再把它抬起来一点，添加钥匙，然后
+
+00:01:35.120 --> 00:01:49.200
+click play again. Yeah, something like that. Now I think their positions are the same.
+再点击播放。是的，类似这样。现在我认为他们的位置是一样的。
+
+00:01:49.200 --> 00:01:55.160
+And just like so, I think this is looking much better. We're going to fix the hands and
+就像这样，我认为这看起来好多了。我们要用控制耙来修正手和
+
+00:01:55.160 --> 00:02:00.560
+the feet placement later using control rake. So don't worry about that. And the next feature
+脚的位置，然后使用控制耙。所以不用担心这个问题。而下一个功能
+
+00:02:00.560 --> 00:02:05.920
+that I like to add, so we can climb to the left and climb to the right. We can climb
+所以我们可以向左和向右爬行。我们可以爬
+
+00:02:05.920 --> 00:02:11.480
+up and climb down. The thing that I want to do, so when the character has reached the
+上爬和下爬。我想做的事情是，当角色到达地面时，比如说在这里附近，我想退出。
+
+00:02:11.480 --> 00:02:16.800
+floor, say somewhere near here, I want to exit the clamp state automatically. Right
+地板，比如说在这里附近，我想自动退出钳制状态。对
+
+00:02:16.800 --> 00:02:22.080
+now we'll need to press F to do that manually. And I like to automate this process. Luckily
+现在我们需要按F键来手动操作。而我喜欢把这个过程自动化。幸运的是
+
+00:02:22.080 --> 00:02:26.800
+for us, without current app, that's something really easy to do. So I'm going to close my
+对我们来说，没有当前的应用程序，这是很容易做到的事情。所以我将关闭我的
+
+00:02:26.800 --> 00:02:31.280
+project, go back to Visual Studio. I'm going to go back to my custom movement component
+项目，回到Visual Studio。我将回到我的自定义运动组件
+
+00:02:31.280 --> 00:02:38.800
+dot H and I'm going to scroll up. So under the function check should stop climbing. I'm
+点H，我将向上滚动。所以在功能检查下应该停止爬行。我将
+
+00:02:38.800 --> 00:02:43.560
+going to create another function. It's going to return a blow as well. I'm going to call
+将创建另一个函数。它也将返回一个打击。我将调用
+
+00:02:43.560 --> 00:02:50.720
+this function check has reached floor and I'm going to create a function definition under
+这个函数检查已经到达地面，我将在这个函数下创建一个函数定义
+
+00:02:50.720 --> 00:02:57.260
+this check should stop climbing. And I'm going to place the function in here. So instead
+这个检查应该停止爬升。我将把这个函数放在这里。因此，代替
+
+00:02:57.260 --> 00:03:02.140
+of this function, same as our climb trace, I'm going to use a capsule trace, but this
+这个函数，和我们的爬升追踪一样，我将使用一个胶囊追踪，但这次我将追踪到
+
+00:03:02.140 --> 00:03:07.040
+time I'm going to trace down to see if the character has reached the floor. And by doing
+这次我要向下追踪，看看角色是否已经到达地面。而通过这样做
+
+00:03:07.040 --> 00:03:12.000
+so we'll be also taking into the situation when the climbable surface isn't completely
+这样做，我们也会考虑到当可攀爬的表面不是完全
+
+00:03:12.000 --> 00:03:16.480
+flat into account. You'll know what I'm talking about very soon. So I'm going to delete this
+平的情况。你很快就会知道我在说什么了。所以我将删除这
+
+00:03:16.480 --> 00:03:23.040
+line and same as our climb trace, we'll need a start and an end. So first I'm going to
+行，和我们的爬升轨迹一样，我们需要一个开始和一个结束。所以我首先要做的是
+
+00:03:23.040 --> 00:03:29.400
+create a const F vector. I'm going to call this down vector and it's going to equal to
+创建一个常量F矢量。我将把这个称为下降矢量，它将等于
+
+00:03:29.400 --> 00:03:35.840
+update the component, get up vector. And I'm going to inverse this up vector. So this is
+更新分量，得到向上的向量。然后我将反转这个向上的矢量。所以这就是
+
+00:03:35.840 --> 00:03:41.920
+our down vector and I'm going to create another const F vector. I'm going to call this start
+我将创建另一个常量F向量。我将把这个称为开始
+
+00:03:41.920 --> 00:03:49.120
+offset. And it's going to equal to this down vector multiply with our heart code value of
+偏移。它将等于这个下行向量乘以我们的心脏代码值
+
+00:03:49.120 --> 00:03:56.640
+50 units. So this is our trace start offset. Then I'm going to create a const F vector.
+50个单位。所以这就是我们的追踪起始偏移。然后我将创建一个常量F向量。
+
+00:03:56.640 --> 00:04:01.600
+I'm going to call this one start and it's going to equal to this updated component, get
+我将调用这个开始，它将等于这个更新的分量，得到
+
+00:04:01.600 --> 00:04:09.160
+component location. And I'm going to plus this start offset. So this is our capsule trace
+分量的位置。我将加上这个起始偏移。所以这就是我们的胶囊追踪
+
+00:04:09.160 --> 00:04:16.360
+start. And I'm going to create another one. This will be the end and it's going to equal
+开始。我还将创建另一个。这将是终点，它将等于
+
+00:04:16.360 --> 00:04:23.560
+to start plus down vector. All right, we have the start and the end. Next thing I'm going
+开始加向下的矢量。好了，我们有了起点和终点。接下来，我将会
+
+00:04:23.560 --> 00:04:34.880
+to call the function do capsule trace multi by object and pass in this start the end.
+调用do capsule trace multi by object这个函数，并把这个start和end传进去。
+
+00:04:34.880 --> 00:04:39.600
+And for this draw debug shape, I'm going to pass in true. So we'll be drawing the shape
+对于这个绘制调试形状，我将传入true。所以我们将在每一帧画出这个形状
+
+00:04:39.600 --> 00:04:44.600
+every frame and I'm going to store the return result of this function inside of a local
+我将把这个函数的返回结果存储在一个局部的
+
+00:04:44.600 --> 00:04:54.280
+variable. So it's going to be a t array of type of hit result. I'm going to call this
+变量内。所以它将是一个t数组类型的命中结果。我将把这个称为
+
+00:04:54.280 --> 00:05:04.200
+possible floor hits. And first thing I'm going to check. So if this possible floor hits is
+可能的楼层命中。我首先要检查的是。所以如果这个可能的楼层命中率是
+
+00:05:04.200 --> 00:05:12.000
+empty, then I'm going to return false. So once we get past this if check, I'm going to loop
+是空的，那么我将会返回false。所以一旦我们通过了这个if检查，我就会在这个数组中循环
+
+00:05:12.000 --> 00:05:17.720
+through this array. So it's going to be a range based for loop. It'll be a const F hit
+通过这个数组。所以这将是一个基于范围的for循环。这将是一个 const F hit
+
+00:05:17.720 --> 00:05:25.240
+result reference. I'm going to call this possible floor hit and I'm going to look through this
+结果的引用。我将调用这个可能的楼层命中，我将通过这个
+
+00:05:25.240 --> 00:05:34.960
+array. So when we have reached the floor, very likely we'll have two hits. One hit is for
+数组。因此，当我们已经达到地板时，很可能我们会有两个命中。一个命中是针对
+
+00:05:34.960 --> 00:05:41.040
+the climbable surface and another hit is the floor. So I like to filter out the floor hit
+一个是可攀爬的表面，另一个是地板。所以我喜欢过滤掉地板上的点击
+
+00:05:41.040 --> 00:05:46.400
+and that's something we can use the hit impact normal to do. So I'm going to use the function
+这就是我们可以用撞击法则来做的事情。所以我将使用函数
+
+00:05:46.400 --> 00:05:53.760
+inside of F vector is called parallel. So I'm going to check if this possible floor
+里面的F向量被称为平行。所以我将检查这个可能的地板是否
+
+00:05:53.760 --> 00:06:03.960
+hit the impact normal. I'm going to inverse it. So if this inverse impact normal is parallel
+撞击法线。我将对它进行反演。所以，如果这个反向的冲击法线与这个F向量、向上的向量平行
+
+00:06:03.960 --> 00:06:12.040
+with this F vector, up vector, then this should be our floor. Here I'm assuming the normal
+与这个F向量，向上的向量平行，那么这就应该是我们的地板。这里我假设可行走楼层的法线
+
+00:06:12.040 --> 00:06:16.880
+of the walkable floor is always facing up. Depending on the geometry in your level, you
+的法线总是朝上。根据你的关卡中的几何形状，你
+
+00:06:16.880 --> 00:06:22.240
+can use a dot product here to do more specific checks. At this point, I'm confident that
+你可以在这里使用点积来做更具体的检查。在这一点上，我相信
+
+00:06:22.240 --> 00:06:28.040
+you know how to do it by yourself. So this is the first check. So the second check. So
+你知道如何自己做。所以这是第一个检查。所以是第二个检查。所以
+
+00:06:28.040 --> 00:06:40.400
+if our get unrotated climb velocity dot Z is less than negative 10 units. So here I'm
+如果我们得到的未旋转的爬升速度点Z小于负10单位。所以我在这里
+
+00:06:40.400 --> 00:06:46.880
+confirming if we are indeed moving down. When we first start climbing, we'll have a valid
+确认我们是否确实在向下移动。当我们第一次开始爬升时，我们会有一个有效的
+
+00:06:46.880 --> 00:06:51.840
+floor hit, but we shouldn't be able to exit the climb state since we are not moving down.
+地面，但我们不应该能够退出爬升状态，因为我们没有向下移动。
+
+00:06:51.840 --> 00:06:56.720
+Alright I'm going to store the result of this inside of a const local boolean. I'm going
+好了，我要把这个结果存储在一个常量的本地布尔值中。我打算
+
+00:06:56.720 --> 00:07:04.080
+to call this B floor reached. So if this B floor reached is true, I'm going to return
+来调用这个B层达到。所以，如果这个B层达到了真，我将在这里返回
+
+00:07:04.080 --> 00:07:13.520
+true in here. Outside of this for loop, I'm going to return false. Alright I'm going to
+true在这里。在这个for循环之外，我将返回false。好了，我将会
+
+00:07:13.520 --> 00:07:18.920
+compile first to see if there are any errors. I have a successful compile. Now I'm going
+先编译一下，看看是否有什么错误。我有一个成功的编译。现在我将
+
+00:07:18.920 --> 00:07:26.600
+to call the function. So copy this function and scroll up to this physics climb. I'm just
+来调用这个函数。所以，复制这个函数，然后向上滚动到这个物理学爬升。我只是
+
+00:07:26.600 --> 00:07:33.080
+going to print a debug message L for now. So if this has reached the floor is true,
+现在要打印一个调试信息L。所以，如果这个已经到达地板是真的、
+
+00:07:33.080 --> 00:07:41.480
+I'm going to print a message that says floor reached. And the color is going to be of color
+我就会打印一条信息，说是已经到达地面。颜色将是
+
+00:07:41.480 --> 00:07:49.560
+green. The key is going to be one. And in the else case, so if the condition is false, then
+绿色。键值为1。而在其他情况下，如果条件是假的，那么
+
+00:07:49.560 --> 00:07:56.440
+I'm going to say floor not reached. And I'm going to change the color to red. Alright
+我就会说没有达到地板。我将把颜色改成红色。好的
+
+00:07:56.440 --> 00:08:01.560
+I'm going to launch my editor back to see if this actually works. Go back to my editor,
+我将启动我的编辑器，看看这是否真的有用。回到我的编辑器、
+
+00:08:01.560 --> 00:08:07.320
+I'm going to press play in here. Then I'm going to press F. So you can see when we first
+我将在这里按播放键。然后我按下F键。
+
+00:08:07.320 --> 00:08:12.280
+start climbing, we have a valid floor hit. But since we are not moving down, here it
+开始爬升时，我们有一个有效的楼层点击。但由于我们没有向下移动，这里
+
+00:08:12.280 --> 00:08:17.360
+says floor not reached. Great, this is what we want. I'm going to move up a little bit
+说未到达楼层。很好，这就是我们想要的。我将会向上移动一点儿
+
+00:08:17.360 --> 00:08:24.080
+then move down. And you can see for a few frames there it says floor reached. I'm going
+然后向下移动。你可以看到有几帧显示已经到达底线。我将
+
+00:08:24.080 --> 00:08:31.440
+to try again. And move down. Floor reached. Great, this is working. And all that's left
+再试一次。然后向下移动。到达楼层。很好，这是在工作。而剩下的
+
+00:08:31.440 --> 00:08:37.480
+there to do is to actually call the function stop climbing. And I like to do that inside
+要做的就是实际调用停止攀登的函数。而我喜欢在
+
+00:08:37.480 --> 00:08:44.400
+of this function. So if check should stop climbing is true, or check has reached the
+这个函数中进行。所以，如果检查应该停止攀爬为真，或者检查已经到达
+
+00:08:44.400 --> 00:08:49.840
+floor is true, either way I'm going to stop climbing. I'm going to delete this debug function.
+为真，无论如何，我都要停止攀爬。我将删除这个调试函数。
+
+00:08:49.840 --> 00:08:55.360
+Then I'm going to use live coding. So press control plus shift plus S to save all, then
+然后我将使用实时编码。所以按control加shift加S来保存所有，然后
+
+00:08:55.360 --> 00:09:02.960
+control plus O plus F11 to trigger the live coding. All right, live coding succeeded.
+控制键加O键加F11来触发实时编码。好的，实时编码成功了。
+
+00:09:02.960 --> 00:09:10.800
+I'm going to test it again. So press play and enter the climb state, move up and move
+我准备再测试一下。所以按播放，进入爬升状态，向上移动，移动
+
+00:09:10.800 --> 00:09:22.680
+down. And just like that, we can exit the climb state. Great, this is working as expected.
+下来。就这样，我们可以退出爬升状态。很好，这是在按照预期工作。
+
+00:09:22.680 --> 00:09:28.000
+And there's one issue that I like to fix. You can see when we are exiting the climb state,
+还有一个问题，我想解决。你可以看到当我们退出爬升状态的时候、
+
+00:09:28.000 --> 00:09:33.840
+we are inside of that climb drop animation. That's not really too ideal. So the thing
+我们是在爬升下降动画中。这真的不是太理想。所以我希望
+
+00:09:33.840 --> 00:09:39.520
+that I want is when we have reached the floor, I want to transition into the for loop state
+我想要的是，当我们到达地面时，我想过渡到for loop状态
+
+00:09:39.520 --> 00:09:44.640
+directly. And there's something we can do inside of our animation blueprint. So go back
+直接进入。我们可以在我们的动画蓝图中做一些事情。所以请回到
+
+00:09:44.640 --> 00:09:50.000
+to this app. I'm going to go back to this full body. So between this climb drop and
+到这个应用程序。我将回到这个全身。所以在这个爬升下降和
+
+00:09:50.000 --> 00:09:55.760
+this for loop, I like to add in another condition. So drag out another pin connected to here.
+循环之间，我喜欢添加另一个条件。所以拖出另一个针脚连接到这里。
+
+00:09:55.760 --> 00:10:00.640
+If later for some reason, when you do this, you cannot see the newly added condition.
+如果后来由于某种原因，当你这样做时，你不能看到新添加的条件。
+
+00:10:00.640 --> 00:10:06.240
+You can just double click to open the condition that you have, then go back to this full body.
+你可以双击来打开你的条件，然后回到这个完整的主体。
+
+00:10:06.240 --> 00:10:10.580
+You should be able to see the condition. I believe this is a bug in 5.1. So I'm going
+你应该能够看到这个条件。我相信这是在5.1中的一个错误。所以我打算
+
+00:10:10.580 --> 00:10:15.860
+to open this new condition. And under this reference, I'm going to hold down control
+打开这个新的条件。在这个参考条件下，我将按住控制键
+
+00:10:15.860 --> 00:10:20.760
+and drag out this ground speed. I know I've named it ground speed, but if we're moving
+并拖出这个地面速度。我知道我把它命名为地面速度，但如果我们在空中移动
+
+00:10:20.760 --> 00:10:26.160
+in the air, we'll have some valid values for this variable. So I'm going to do an if check.
+但如果我们在空中移动，我们会有一些有效的变量值。所以我打算做一个if检查。
+
+00:10:26.160 --> 00:10:31.360
+If this ground speed is greater than zero, connect this to can enter transition. Then
+如果这个地面速度大于零，就把这个连接到可以进入过渡。然后
+
+00:10:31.360 --> 00:10:36.000
+if this is true, I'm going to enter this for loop state. All right. I'm going to click
+如果这是真的，我将进入这个for循环状态。好的。我将会点击
+
+00:10:36.000 --> 00:10:44.120
+compile and go back to my level, click play, press F, exit the climb state. And just like
+编译，回到我的关卡，点击播放，按F，退出爬升状态。就这样
+
+00:10:44.120 --> 00:10:53.560
+that, we can transition directly into the for loop state. How cool is that? And now we
+就这样，我们可以直接过渡到for loop状态。这多酷啊？而现在我们
+
+00:10:53.560 --> 00:10:59.960
+can climb up, we can climb down. When we have reached the floor, we can exit the climb state.
+可以往上爬，可以往下爬。当我们到达地面时，我们可以退出攀爬状态。
+
+00:10:59.960 --> 00:11:08.440
+Great. This is working really well. To detect the floor, I use a capsule to trace
+很好。这工作真的很好。为了检测地板，我使用了一个胶囊来追踪
+
+00:11:08.440 --> 00:11:14.160
+downwards and among those hit results, I checked if there is a valid floor hit. And if there
+追踪，并且在这些撞击结果中，我检查是否有一个有效的地板撞击。而如果有
+
+00:11:14.160 --> 00:11:19.720
+is, we can transition to this for loop directly. This shouldn't be too hard for you to implement
+是，我们可以直接过渡到这个for循环。这对你来说应该不难实现
+
+00:11:19.720 --> 00:11:24.000
+by yourself. Feel free to refer back to the video if you need help. And I'll see you
+自己实现。如果你需要帮助，可以随时回看视频。我将在
+
+00:11:24.000 --> 00:11:24.880
+in the next lecture.
+在下一个讲座中见。
+
+00:11:24.880 --> 00:11:34.880
+[Music]
+[音乐]
+
+00:11:34.880 --> 00:11:36.880
+[Music]
+[音乐]

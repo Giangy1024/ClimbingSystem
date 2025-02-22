@@ -1,0 +1,433 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:09.840
+Welcome. In the last lecture, we got hold of some climbing animations we need and starting
+欢迎。在上一讲中，我们掌握了一些我们需要的攀登动画，从这一讲开始，我们将研究如何实际使用这些动画。
+
+00:00:09.840 --> 00:00:15.020
+from this lecture, we are looking into how we can actually use these animations. So first
+从这节课开始，我们将研究如何实际使用这些动画。所以首先
+
+00:00:15.020 --> 00:00:20.300
+thing I'm going to take care of transitioning from idle to climbing and this is the animation
+我将处理从空闲到爬升的过渡，这就是我将使用的动画。
+
+00:00:20.300 --> 00:00:26.440
+that I'm going to use. So you can see it's called idle to brace the hang. And I think
+这是我要使用的动画。所以你可以看到它被称为 "空闲 "以支撑悬空。而且我认为
+
+00:00:26.440 --> 00:00:31.600
+this animation is too long. I don't need it to be this long. So I'm going to adjust it
+这个动画太长了。我不需要它这么长。所以我打算调整它
+
+00:00:31.600 --> 00:00:36.680
+a little bit. So close this window. I'm going to first go back to my animation folder. Right
+一点点。所以关闭这个窗口。我将首先回到我的动画文件夹。鼠标右键
+
+00:00:36.680 --> 00:00:41.120
+mouse button click to create a new folder. I'm going to call this one adjusted. I'm going
+鼠标键点击创建一个新的文件夹。我将把这个文件夹称为 "调整"。我将
+
+00:00:41.120 --> 00:00:45.680
+to press control plus D to duplicate this animation and I'm going to change its name
+按control加D来复制这个动画，我将把它的名字改为
+
+00:00:45.680 --> 00:00:53.320
+to idle to climb underscore adjusted. So I'm going to make all the adjustments needed to
+改为 "闲置 "为 "调整 "的下划线。所以我将进行所有必要的调整，以使这个复制的动画
+
+00:00:53.320 --> 00:00:57.640
+get this duplicated one so that we always have a backup to come back to. Alright, I'm
+这样我们就有了一个备份，可以随时回来使用。好的，我将
+
+00:00:57.640 --> 00:01:02.720
+going to move this animation to adjusted folder. Select move here, then go inside of it, double
+将这个动画移到调整后的文件夹中。在这里选择移动，然后进入它的内部，双击
+
+00:01:02.720 --> 00:01:10.840
+click to open it. So we don't need to be this long. About 20 frames would be enough. So
+点击来打开它。所以我们不需要这么长。大约20帧就够了。所以
+
+00:01:10.840 --> 00:01:18.120
+right before our character grabs the wall. Alright, something like this. I'm going to
+就在我们的角色抓住墙之前。好的，像这样。我将会
+
+00:01:18.120 --> 00:01:24.760
+right mouse button click and remove from frame 21 to 39. And next thing I'm going to scroll
+鼠标右键点击，从第21帧到第39帧删除。接下来，我将向下滚动
+
+00:01:24.760 --> 00:01:29.600
+down and take this enable root motion. The reason why I want to take this is I'm going
+下去，并采取这个启用根部动作。我之所以要这样做的原因是我要
+
+00:01:29.600 --> 00:01:35.440
+to create an anim montage based on this animation and use that anim montage to transition us
+在这个动画的基础上创建一个动画蒙太奇，用这个动画蒙太奇把我们从闲置状态过渡到
+
+00:01:35.440 --> 00:01:40.040
+from idle to climbing. Having the root motion enabled here can prevent us from moving the
+从闲置状态过渡到爬升状态。在这里启用根部运动可以防止我们在蒙太奇播放时移动角色
+
+00:01:40.040 --> 00:01:45.160
+character when the montage is playing. Alright, I'm going to close this window and right mouse
+当蒙太奇正在播放时，可以防止我们移动角色。好的，我将关闭这个窗口，然后用鼠标右键
+
+00:01:45.160 --> 00:01:52.040
+button click and select create anim montage. I'm going to rename this to am underscore
+点击鼠标右键，选择创建动画蒙太奇。我将把这个重命名为am underscore
+
+00:01:52.040 --> 00:01:57.200
+idle to climb. Then back to animation folder, create a new folder. I'm going to call it
+idle to climb. 然后回到动画文件夹，创建一个新的文件夹。我将把它叫做
+
+00:01:57.200 --> 00:02:02.180
+montages. We'll need to create different montages later. Then I'm going to move this anim montage
+montages。我们以后将需要创建不同的蒙太奇。然后我将把这个动画蒙太奇
+
+00:02:02.180 --> 00:02:07.480
+to this folder. Select move here. And there's one more thing that we need to do in order
+到这个文件夹。在这里选择移动。还有一件事我们需要做，以便
+
+00:02:07.480 --> 00:02:12.280
+to play the montage successfully. So I'm going to go back to this climb system, open this
+来成功播放蒙太奇。所以我将回到这个攀登系统，打开这个
+
+00:02:12.280 --> 00:02:17.580
+app. So I'm going to drag out a pin and I'm going to type in slot and default slot here
+应用程序。所以我将拖出一个针，然后我将在这里输入插槽和默认插槽
+
+00:02:17.580 --> 00:02:22.480
+should work since I don't plan to create other slots. And by default, an anim montage will
+应该可以，因为我不打算创建其他槽。默认情况下，一个动画蒙太奇将使用
+
+00:02:22.480 --> 00:02:28.240
+be using the default slot. So I'm going to double click to open this montage and you
+使用默认的槽。所以我将双击来打开这个蒙太奇，你可以看到这里使用的是
+
+00:02:28.240 --> 00:02:32.840
+can see in here it's using the default slot. So this should work. Alright, I'm going to
+你可以在这里看到它正在使用默认槽。所以这应该可以了。好的，我将会
+
+00:02:32.840 --> 00:02:38.480
+close this window and go to file, click save all, then close my project. Next thing we
+关闭这个窗口，转到文件，点击全部保存，然后关闭我的项目。下一件事我们
+
+00:02:38.480 --> 00:02:42.440
+need to take care of the coding part. So I'm going to right mouse button click this tab
+我们需要处理编码的部分。所以我打算用鼠标右键点击这个标签
+
+00:02:42.440 --> 00:02:47.080
+and select close all but this. And I'm going to scroll out first and I'm going to forward
+并选择关闭所有内容，除了这个。我将首先滚出，我将转发
+
+00:02:47.080 --> 00:02:54.240
+declare the type. So it's going to be class U anim montage. And I'm going to copy this
+声明这个类型。所以它将是U类动画蒙太奇。我将复制这个
+
+00:02:54.240 --> 00:03:00.860
+type, scroll down to this climb BP variables, paste the type in here and I'm going to name
+类型，向下滚动到这个攀登BP变量，把这个类型粘贴到这里，然后我将命名为
+
+00:03:00.860 --> 00:03:09.120
+this pointer idle to climb montage and I'm going to copy this U property, paste it in
+我将把这个指针空闲命名为攀登蒙太奇，我将复制这个U属性，把它粘贴到
+
+00:03:09.120 --> 00:03:16.360
+here and I'm going to scroll up to this climb core variables. So under this current climbable
+我将复制这个U属性，把它粘贴到这里，然后我将向上滚动到这个攀登核心变量。所以在这个当前可爬升
+
+00:03:16.360 --> 00:03:22.960
+surface normal, I'm going to create an empty U property and the type is going to be U anim
+表面法线下，我将创建一个空的U属性，其类型将是U动画
+
+00:03:22.960 --> 00:03:31.800
+instance. I'm going to call this owning player anim instance and we also need to forward
+实例。我将会把这个拥有播放器的动画实例称为U动画，我们还需要向前
+
+00:03:31.800 --> 00:03:40.000
+declare the type. So copy this type, paste it in here. Alright, I'm going to scroll down
+声明这个类型。所以复制这个类型，把它粘贴到这里。好的，我将向下滚动
+
+00:03:40.000 --> 00:03:45.380
+to this climb core and in here I'm going to create a new function. I'm going to call this
+在这里我将创建一个新的函数。我将调用这个
+
+00:03:45.380 --> 00:03:52.080
+function play climb montage and it's going to have one input parameter. It's going to
+它将有一个输入参数。它将有一个输入参数。
+
+00:03:52.080 --> 00:03:58.000
+be U anim montage. I'm going to call this one montage to play. So later I'm going to
+是U动画蒙太奇。我将调用这一个蒙太奇来播放。所以稍后我将会
+
+00:03:58.000 --> 00:04:02.480
+use this function to play all the montages needed and I'm going to create a function
+使用这个函数来播放所有需要的蒙太奇，我将创建一个函数
+
+00:04:02.480 --> 00:04:09.040
+definition press control plus K control plus O to go to the CPP file. I'm going to go to
+定义按control plus K control plus O进入CPP文件。我将去到
+
+00:04:09.040 --> 00:04:14.920
+the bottom of it and paste the function in here and to play the montage we'll need to
+要播放蒙太奇，我们需要得到有效的动画实例，并将其粘贴在这里。
+
+00:04:14.920 --> 00:04:20.480
+get hold of the valid anim instance and I like to do that in begin play. So go back to
+为了播放蒙太奇，我们需要掌握有效的动画实例，我喜欢在开始播放时这样做。所以请回到
+
+00:04:20.480 --> 00:04:25.560
+the header file above this tick component. I'm going to create a new function. It's going
+头文件，在这个tick组件上面。我将创建一个新的函数。它将会是
+
+00:04:25.560 --> 00:04:31.720
+to be virtual void. It's going to be begin play and I'm going to mark it as override
+它将是虚拟无效的。它将会是begin play，我将会把它标记为override
+
+00:04:31.720 --> 00:04:37.520
+and create a function definition place the function above this tick component. So go
+并创建一个函数定义，把这个函数放在这个tick组件上面。所以去
+
+00:04:37.520 --> 00:04:42.980
+to the top and place it in here. First thing I'm going to call super and copy this game
+到顶部，把它放在这里。首先，我将调用super并复制这个游戏
+
+00:04:42.980 --> 00:04:49.520
+play. So instead of begin play I'm going to access the variable character owner and use
+播放。所以我将访问变量character owner并使用get mesh和get anim instance函数来代替beginning play。
+
+00:04:49.520 --> 00:04:57.600
+the function get mesh and get anim instance. And I'm going to store the value inside of
+函数get mesh和get anim instance。我将把这个值存储在我们创建的变量中。
+
+00:04:57.600 --> 00:05:04.280
+the variable that we created. So it will be owning player anim instance and that's it.
+我们创建的变量里面。所以它将是拥有玩家的动画实例，就这样了。
+
+00:05:04.280 --> 00:05:09.880
+Then I'm going to go back to this play montage function. So first thing I'm going to check
+然后我将回到这个播放蒙太奇的函数。所以我首先要检查
+
+00:05:09.880 --> 00:05:18.760
+if montage to play is not valid. I'm going to return then if owning player anim instance
+如果要播放的蒙太奇是无效的。如果拥有的播放器动画实例无效，我将返回
+
+00:05:18.760 --> 00:05:26.240
+is not valid I'm going to return as well. Then the third check so if I'm going to copy this
+是无效的，我也会返回。然后第三项检查，如果我打算复制这个
+
+00:05:26.240 --> 00:05:38.200
+owning anim instance. So if there's any montage playing I'm going to return as well. So by
+拥有的动画实例。所以如果有任何蒙太奇正在播放，我也会返回。所以通过
+
+00:05:38.200 --> 00:05:42.960
+doing this we won't be able to interrupt other montages. Alright once we get past these three
+这样做，我们就不能打断其他蒙太奇。好了，一旦我们通过了这三个
+
+00:05:42.960 --> 00:05:49.920
+if checks I'm going to use the function owning player anim instance and call the function
+如果检查，我将使用拥有播放器动画实例的函数并调用函数
+
+00:05:49.920 --> 00:05:59.800
+montage underscore play and fill in this montage to play. And I have some red squiggles and
+montage underscore play并填入这个蒙太奇播放。我有一些红色的斜线
+
+00:05:59.800 --> 00:06:05.440
+that's because I have a typo for this anim montage. So I'm going to select this type
+那是因为我在这个动画蒙太奇中出现了一个错字。所以我将选择这个类型
+
+00:06:05.440 --> 00:06:12.520
+press control plus F to search and I'm going to replace it you anim montage. So it's TA
+按control加F键搜索，我要把它换成动画蒙太奇。所以它是TA
+
+00:06:12.520 --> 00:06:20.600
+not AD and change this to current project and select find next and change this one as well
+不是AD，把这个改成当前项目，然后选择查找下一个，把这个也改了。
+
+00:06:20.600 --> 00:06:27.320
+change this one change this one and that's pretty much it. Now I'm going to go back to
+改变这个项目，改变这个项目，这就差不多了。现在我将回到
+
+00:06:27.320 --> 00:06:32.800
+my cpp file and I'm going to try to compile. I have a successful compile. So far we've
+我的cpp文件并尝试编译。我有一个成功的编译。到目前为止，我们已经
+
+00:06:32.800 --> 00:06:37.440
+only set up the function to play the montage but we haven't really played the idle to climb
+到目前为止，我们只设置了播放蒙太奇的功能，但我们还没有真正播放空闲的爬坡动作。
+
+00:06:37.440 --> 00:06:43.960
+montage and I like to do that inside of toggle climbing. So I'm going to go to the top of
+蒙太奇，而我喜欢在切换攀登中做这个。所以我要去到这个cpp文件的顶部向上滚动。
+
+00:06:43.960 --> 00:06:50.440
+this cpp file scroll up. So this is our toggle climbing. Now if this can start climbing is
+这个cpp文件的顶部向上滚动。这就是我们的切换式攀登。现在，如果这个可以开始攀登是
+
+00:06:50.440 --> 00:06:55.920
+true instead of directly calling start climbing I'm going to delete this function. I'm going
+true，而不是直接调用start climbing，我将删除这个函数。我将会
+
+00:06:55.920 --> 00:07:02.880
+to call the function play climb montage and fill in this idle to climb montage. So if
+调用play climb montage这个函数，并把这个空闲填到 climb montage。所以，如果
+
+00:07:02.880 --> 00:07:09.160
+we can start climbing I want to enter the climb state when we finish playing this montage.
+我们可以开始攀登，我想在我们播放完这个蒙太奇后进入攀登状态。
+
+00:07:09.160 --> 00:07:13.800
+But how can we know when the montage is finished playing? Well there's a delegate inside of
+但是我们怎么能知道蒙太奇什么时候播放完了呢？好吧，在一个实例的内部有一个委托。
+
+00:07:13.800 --> 00:07:19.800
+an instance that we can use. So I'm going to scroll up to begin play. Right after we
+的一个委托，我们可以使用它。所以我要向上滚动，开始播放。就在我们
+
+00:07:19.800 --> 00:07:26.080
+get hold of this owning player in instance I'm going to check. So if this owning player
+掌握了这个拥有播放器的实例后，我就会进行检查。所以如果这个拥有播放器的
+
+00:07:26.080 --> 00:07:33.760
+in an instance is true then I'm going to access the delegate inside. So the name is called
+实例是真的，那么我就会访问里面的委托。所以这个名字叫做
+
+00:07:33.760 --> 00:07:41.560
+own montage ended. So this is the delegate that we need to bind to and I'm going to use
+own montage ended. 所以这就是我们需要绑定的委托，我将会使用
+
+00:07:41.560 --> 00:07:50.400
+the helper macro add dynamic to help us to bind the function needed and fill in this.
+我将使用辅助宏add dynamic来帮助我们绑定所需的函数，并填入这个。
+
+00:07:50.400 --> 00:07:55.080
+And the second input parameter will be the address of our member function. Let's find
+而第二个输入参数将是我们的成员函数的地址。让我们找出
+
+00:07:55.080 --> 00:07:59.760
+out the requirements for it. So I'm going to select this own montage ended press F12
+的要求。所以我将选择这个自己的蒙太奇结束按F12
+
+00:07:59.760 --> 00:08:04.360
+to go to its definition. Then I'm going to select this type. So it's called own montage
+转到它的定义。然后我将选择这个类型。所以它被称为自己的蒙太奇
+
+00:08:04.360 --> 00:08:10.280
+ended MC delegate and press F12 again. So you can see this is a dynamic multicast delegate.
+结束的MC委托，再按F12。所以你可以看到这是一个动态组播委托。
+
+00:08:10.280 --> 00:08:17.280
+It has two parameters. So our member function needs to have you and a montage and a boolean
+它有两个参数。所以我们的成员函数需要有你和一个蒙太奇和一个布尔值
+
+00:08:17.280 --> 00:08:23.360
+as input parameters. So I'm going to copy this go back to my header file and under display
+作为输入参数。所以我要把这个复制到我的头文件中，并在display
+
+00:08:23.360 --> 00:08:28.500
+climb montage function I'm going to create a U function. So we need to have a U function
+攀登蒙太奇函数，我将创建一个U函数。所以我们需要有一个U函数
+
+00:08:28.500 --> 00:08:34.560
+in order to have a successful binding for a multicast delegate. So it needs to be void.
+以便成功绑定一个多播委托。所以它需要是无效的。
+
+00:08:34.560 --> 00:08:41.400
+I'm going to call this one own climb montage ended and paste these function inputs and
+我将调用这个自己的攀登蒙太奇结束，并粘贴这些函数输入，并删除我们不需要的东西。
+
+00:08:41.400 --> 00:08:51.040
+delete the things we don't need. And I'm going to create a function definition and place
+删除那些我们不需要的东西。我将创建一个函数定义，并将其放在
+
+00:08:51.040 --> 00:08:57.280
+the function below this play client montage paste it in here. I'm going to copy the address
+把这个函数放在这个播放客户端蒙太奇的下面，把它粘贴在这里。我将复制这个函数的地址
+
+00:08:57.280 --> 00:09:04.840
+of this function then fill in in here. I have a title for a dynamic. I mean, I fixed that
+这个函数的地址，然后填在这里。我有一个动态的标题。我的意思是，我固定了这个
+
+00:09:04.840 --> 00:09:10.040
+and besides this own montage ended there's another one that I want to bind to. So I'm
+除了这个自己的蒙太奇结束，还有一个我想绑定的。所以我
+
+00:09:10.040 --> 00:09:15.200
+going to select this and I'm instance and the second delegate is called own montage
+我要选择这个，我的实例和第二个委托被称为自己的蒙太奇
+
+00:09:15.200 --> 00:09:20.240
+blending out and the rest is going to be the same as this one above. So I'm going to copy
+融合，其余的将和上面这个一样。所以我将复制
+
+00:09:20.240 --> 00:09:26.760
+this and paste it in here. All right. I'm going to compile first to see if there are any errors.
+并把它粘贴到这里。好的。我先编译一下，看看是否有什么错误。
+
+00:09:26.760 --> 00:09:31.320
+All right. I have a successful compile. So this function will be called when a montage
+好的。我有一个成功的编译。所以这个函数将在一个蒙太奇结束时被调用
+
+00:09:31.320 --> 00:09:36.640
+has ended. So for that I'm going to print a debug message for now. So it can be debug
+结束时调用这个函数。所以为此我打算暂时打印一个调试信息。所以它可以是debug
+
+00:09:36.640 --> 00:09:43.000
+print and the message is going to be climbed montage ended and I'm going to launch my editor
+print，这个信息将是攀升的蒙太奇结束，我将启动我的编辑器
+
+00:09:43.000 --> 00:09:49.680
+back. I have a back inside of my editor. I'm going to go back to this climb system, open
+返回。我的编辑器里面有一个返回。我将回到这个攀登系统，打开
+
+00:09:49.680 --> 00:09:55.520
+this BP character and open for blueprint editor. So first thing I'm going to assign a valid
+这个BP角色并打开蓝图编辑器。所以我首先要在蓝图中指定一个有效的
+
+00:09:55.520 --> 00:10:01.080
+montage inside of the blueprint. So for this idle to climb, I'm going to select this idle
+蒙太奇在蓝图中。因此，为了让这个空闲的人攀爬，我将选择这个空闲的人
+
+00:10:01.080 --> 00:10:07.260
+to climb and press compile. Now I'm going to press play and go to a climb both surface.
+攀爬，然后按编译。现在我将按下播放键，并进入一个爬升的两个表面。
+
+00:10:07.260 --> 00:10:14.960
+Press F and you can see we are playing a montage in here and that's great. And we have debug
+按F键，你可以看到我们在这里播放一个蒙太奇，这很好。而且我们有调试
+
+00:10:14.960 --> 00:10:22.960
+message printed to the screen. Great. Everything is working. Later when you are doing this
+信息打印到屏幕上。很好。一切都在工作。以后你在做这个的时候
+
+00:10:22.960 --> 00:10:27.240
+yourself, if for some reason you cannot play your montage, double check if you have created
+你自己，如果因为某些原因你不能播放你的蒙太奇，请仔细检查你是否在动画蓝图中创建了一个槽。
+
+00:10:27.240 --> 00:10:32.440
+a slot in animation blueprint and if the function binding is not working, make sure you have
+动画蓝图中的槽，如果函数绑定不起作用，请确保你有回调函数的U函数宏。
+
+00:10:32.440 --> 00:10:36.920
+the U function macro for the callback function and don't forget to assign montage in your
+确保你有回调函数的U函数宏，不要忘记在你的蓝图中指定蒙太奇。
+
+00:10:36.920 --> 00:10:40.600
+blueprint. All right. It's time for you to do the same and I'll see you in the next lecture.
+蓝图中指定蒙太奇。好了。现在是你做同样事情的时候了，我们在下一个讲座中再见。
+
+00:10:40.600 --> 00:10:41.600
+[Music]
+[音乐]
+
+00:10:43.600 --> 00:10:44.600
+[Music]
+[音乐]
+
+00:10:44.600 --> 00:10:50.600
+[Music]
+[音乐]
+
+00:10:50.600 --> 00:10:51.600
+[Music]
+[音乐]

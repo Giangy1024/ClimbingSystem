@@ -1,0 +1,313 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:09.640
+Welcome! In the last lecture, we successfully created a two key action that can only be
+欢迎!在上一节课中，我们成功地创建了两个关键动作，只有
+
+00:00:09.640 --> 00:00:15.320
+triggered when we are climbing. And now, with the callback function ready, in this lecture,
+当我们在攀登时触发。现在，回调函数准备好了，在这节课中，
+
+00:00:15.320 --> 00:00:19.760
+we are going to look at how we should trigger the hopping. So we've already taken care
+我们将看看应该如何触发跳跃。所以我们已经注意到了
+
+00:00:19.760 --> 00:00:25.440
+of this notifying climbing state, adding removing input mapping context, and next thing would
+通知爬升状态，添加删除输入映射上下文，下一件事将是
+
+00:00:25.440 --> 00:00:30.520
+be this request hopping. This one here should be triggered through player's input and our
+就是这个要求的跳跃。这里的这个应该通过玩家的输入和我们的
+
+00:00:30.520 --> 00:00:35.440
+custom movement component should take it from there and handle the hopping for us. So let's
+自定义移动组件应该从那里获取它，并为我们处理跳跃。所以让我们
+
+00:00:35.440 --> 00:00:40.520
+talk about this handle hopping. So the first thing that we need to figure out is the hopping
+说说这个手柄跳跃吧。所以我们首先要弄清楚的是跳跃
+
+00:00:40.520 --> 00:00:46.000
+direction. This action here should be entirely depending on our input. When the player triggers
+方向。这里的操作应该完全取决于我们的输入。当玩家触发
+
+00:00:46.000 --> 00:00:52.160
+hopping, if only the W key is down, then we should hop up. And if there's only the S key
+跳跃，只要W键按下，我们就应该跳起来。如果只有S的钥匙
+
+00:00:52.160 --> 00:00:57.360
+down, then we should hop down. But there are also cases where the player is moving to the
+下来，然后我们应该跳下来。但也有一些情况下，球员将转移到
+
+00:00:57.360 --> 00:01:04.240
+left and to the right through input. And more than this fall, our player can also move diagonally.
+通过输入向左和向右。除了今年秋天，我们的球员还可以沿对角移动。
+
+00:01:04.240 --> 00:01:09.120
+So top left, top right, there will be a total of eight cases that we need to handle, along
+所以左上角，右上角，我们总共有八个案件需要处理，
+
+00:01:09.120 --> 00:01:14.560
+with many other edge cases. And for simplicity's sake in here, I'm only going to allow our
+与许多其他边缘情况。为了简单起见，我只允许我们的
+
+00:01:14.560 --> 00:01:21.440
+character to hop up and down. And I'm going to categorize all the other scenarios as invalid
+上下跳跃的角色。我会将所有其他场景归类为无效
+
+00:01:21.440 --> 00:01:26.000
+input range. So in this lecture, we'll look at how we can figure out the hopping direction.
+输入范围。因此，在这节课中，我们将看看如何找出跳跃的方向。
+
+00:01:26.000 --> 00:01:31.840
+I'm first going to close my project, go back to my code. I'm going to go to this custom
+我首先要结束我的项目，回到我的代码。我要去参加这个风俗
+
+00:01:31.840 --> 00:01:40.560
+movement component.h and hide these regions. And under this public section below this toggle
+移动组件.h并隐藏这些区域。在此切换下的公共部分下
+
+00:01:40.560 --> 00:01:46.000
+climbing, I'm going to create a new function. I'm going to call this function request hopping.
+攀登，我要创造一个新的功能。我将把这个函数称为RequestHopping。
+
+00:01:46.960 --> 00:01:54.240
+And I'm going to create a function body and place the function at the bottom of this CPP file,
+我将创建一个函数体，并将该函数放在此CPP文件的底部，
+
+00:01:54.240 --> 00:02:01.280
+perhaps above this set motion board target. So place it in here. Then inside of our character
+或许高于这一设定的动漫板目标。所以把它放在这里。然后在我们的角色内部
+
+00:02:01.280 --> 00:02:06.480
+class, I'm going to call this function. So when this climb hop action started, I'm going to delete
+类，我要调用这个函数。所以当这个爬升跳跃动作开始时，我将删除
+
+00:02:06.480 --> 00:02:13.200
+this default function. I'm going to check if custom movement component is valid. If it is,
+此默认功能。我要检查一下自定义移动组件是否有效。如果是的话，
+
+00:02:13.200 --> 00:02:20.240
+I'm going to call the function request hopping. And next, our custom movement component should
+我将调用函数RequestHopping。接下来，我们的自定义移动组件应该
+
+00:02:20.240 --> 00:02:25.120
+take it from there. So go back to the CPP file. Here's what I like to do to figure out the
+从那里开始吧。因此，返回到CPP文件。以下是我想要做的，以弄清楚
+
+00:02:25.120 --> 00:02:30.080
+direction. So inside of the character movement component class, there's a function that we can
+方向。因此，在角色移动组件类内部有一个函数，我们可以
+
+00:02:30.080 --> 00:02:35.920
+use. It's called get last input vector. So with this function, we can know which is specific
+使用。它被称为获取最后一个输入向量。所以有了这个函数，我们可以知道哪一个是特定的
+
+00:02:35.920 --> 00:02:41.840
+movement action key is pressed, and we can act based on it. So to visualize this, I'm going to
+按下移动操作键，我们就可以根据它来操作。因此，为了使这一点可视化，我将
+
+00:02:41.840 --> 00:02:47.760
+print this value out. And same as our climbing velocity, I like to un-rotate this vector. So
+将此值打印出来。和我们的爬升速度一样，我喜欢不旋转这个向量。所以
+
+00:02:47.760 --> 00:02:54.800
+the value will always be consistent. So I'm going to use this ukismamath library and access the
+该值将始终保持一致。所以我将使用这个ukismaath库并访问
+
+00:02:54.800 --> 00:03:03.840
+function quad underscore un-rotate vector and pass in this updated component, get component quad. So
+函数quad下划线取消旋转向量，并传入这个更新的组件，获取组件quad。所以
+
+00:03:03.840 --> 00:03:10.000
+this is the cartonian and this is the vector that we want to un-rotate. So paste it in here.
+这是Cartonian，这是我们想要取消旋转的矢量。所以把它贴在这里。
+
+00:03:10.960 --> 00:03:17.120
+Then I'm going to store the return result of it inside of a local variable. So it's going to be
+然后，我将把它的返回结果存储在一个局部变量中。所以这将会是
+
+00:03:17.120 --> 00:03:24.880
+const f vector. I'm going to call it un-rotate it last input vector. Then I'm going to print this
+常量f向量。我将它称为非旋转，最后一个输入向量。然后我要把这个打印出来
+
+00:03:24.880 --> 00:03:31.280
+value out. So I'm going to select this variable. First, I'm going to use the function get safe
+价值外溢。所以我要选择这个变量。首先，我将使用Get Safe函数
+
+00:03:31.280 --> 00:03:38.320
+normal. Then I'm going to convert this value into a string. Next, I'm going to use the function debugged
+很正常。然后，我将把这个值转换成一个字符串。接下来，我将使用已调试的函数
+
+00:03:38.320 --> 00:03:44.080
+print and pass in this value. Since I want to call this function inside of tick, I'm going to also
+打印并传入此值。由于我想在tick内部调用此函数，因此我还将
+
+00:03:44.080 --> 00:03:50.880
+specify the color cyan and a value of one for this key. Then I'm going to copy these two lines,
+为该关键点指定青色和值1。然后我要复制这两行，
+
+00:03:50.880 --> 00:03:56.640
+go back to tick, paste them in here, and launch my editor back.
+返回到Tick，粘贴到这里，然后启动我的编辑器。
+
+00:03:56.640 --> 00:04:05.760
+Go inside of the editor, I'm going to click play. And I'm going to go to the surface here and press
+进入编辑器内部，我要点击播放。我要到地面上去按下
+
+00:04:05.760 --> 00:04:12.320
+F. So you can see when I'm moving up, the value for the z-axis will always be one.
+所以你们可以看到，当我向上移动时，z轴的值总是1。
+
+00:04:12.320 --> 00:04:20.320
+And when I'm moving to the left, the value will always be negative one for the y. No matter which
+当我移到左边时，y的值总是为负1。无论是哪一个
+
+00:04:20.320 --> 00:04:28.080
+surface I'm climbing, the value here will be consistent. And that's great. So this is the value
+表面我在攀登，这里的价值将是一致的。这太棒了。这就是它的价值
+
+00:04:28.080 --> 00:04:33.360
+that we're going to use to determine the hopping direction. So I'm going to go back to my code.
+我们将用它来确定跳跃的方向。所以我要回到我的代码上来。
+
+00:04:33.360 --> 00:04:37.120
+Now I'm going to delete these two lines and tick. We don't need to see them anymore.
+现在我要删除这两行并打勾。我们不需要再见到他们了。
+
+00:04:37.120 --> 00:04:44.640
+Then go back to my function request hopping. I'm going to delete this one. Since I'm only going to
+然后返回到我的功能请求跳转。我要删除这一条。因为我只打算
+
+00:04:44.640 --> 00:04:50.880
+allow our character to hop up and down, I'll need to rule out the other situations in here. And there
+允许我们的角色上下跳跃，我需要排除这里的其他情况。还有那里
+
+00:04:50.880 --> 00:04:58.240
+are plenty of ways for us to do that. And here I'm going to use the function dot product. So this
+我们有很多方法可以做到这一点。在这里，我将使用函数点积。所以这就是
+
+00:04:58.240 --> 00:05:04.160
+inside of this F vector dot product and the two vectors that I'm going to compare. The first one
+在这个F向量点积和我将要比较的两个向量的内部。第一个
+
+00:05:04.160 --> 00:05:10.400
+is this un-rotated last input vector. And the second one will be this F vector double column
+是未旋转的最后一个输入向量。第二个是这个F向量双列
+
+00:05:10.400 --> 00:05:17.440
+up vector. So I'm comparing our input vector with this up vector. And in case you forget the return
+向上向量。所以我将我们的输入向量与这个向上向量进行比较。以防你忘了退货
+
+00:05:17.440 --> 00:05:23.200
+result of a dot product, I'm going to store it inside of a local float. I'm going to call this
+一个点积的结果，我将把它存储在一个局部浮点数中。我要把这个叫作
+
+00:05:23.200 --> 00:05:29.120
+dot result. So if these two vectors, they are parallel, the value will be one. If they're the
+点结果。所以如果这两个向量是平行的，那么这个值就是1。如果他们是
+
+00:05:29.120 --> 00:05:35.280
+exact opposite, the value will be negative one. And in here, I'm going to directly print this value out.
+恰好相反，该值将为负一。在这里，我将直接打印出这个值。
+
+00:05:35.280 --> 00:05:44.560
+So it'll be debug print. And I'm going to say dot result and append a string in here. So it's going
+所以它将是调试打印。我要说点结果，然后在这里附加一个字符串。所以它正在进行中
+
+00:05:44.560 --> 00:05:52.800
+to be F string, sanitize float and pass in this dot result. Then I'm going to use an if check to
+要成为F字符串，请清理浮动并传入此点结果。然后我将使用If检查来
+
+00:05:52.800 --> 00:06:01.520
+check this dot result. So if this dot result is greater than 0.9f, then I'm going to print a message
+检查这个点的结果。因此，如果这个点结果大于0.9F，那么我将打印一条消息
+
+00:06:01.520 --> 00:06:11.440
+that says hop up. And else if this dot result is less than or equal to negative 0.9f,
+上面写着跳起来。否则如果该点结果小于或等于负0.9F，
+
+00:06:11.440 --> 00:06:21.040
+then I'm going to say this is hop down. Then in the else case, so if neither of these conditions
+那我就说这是跳下来的。在Else的情况下，如果这两个条件都不是
+
+00:06:21.040 --> 00:06:28.960
+is true, I'm going to print a message that says invalid input range. And that should be it.
+为真，我将打印一条消息，指出输入范围无效。应该就是这样了。
+
+00:06:28.960 --> 00:06:33.280
+These lines here to help us to figure out the hopping direction. All right, I'm going to quickly
+这些线条帮助我们找出跳跃的方向。好的，我要很快地
+
+00:06:33.280 --> 00:06:40.240
+save all then trigger live coding. All right, live coding succeeded. Let's test this. So I'm going to
+全部保存，然后触发实时编码。好了，现场编码成功。让我们来测试一下这个。所以我要去
+
+00:06:40.240 --> 00:06:46.800
+go to the surface, press F and I'm going to move up, then press space bar. Here it says hop up.
+到表面，按F键，我要向上移动，然后按空格键。这上面写着跳上来。
+
+00:06:46.800 --> 00:06:54.640
+Great. Move down, says hop down. And if I'm trying to move to the left, it says invalid input range,
+太棒了。往下走，说往下跳。如果我试图移到左边，它会显示无效的输入范围，
+
+00:06:54.640 --> 00:07:01.840
+move to the right and invalid input range. Great. Now I'm going to try to move to the top left.
+移到右侧无效的输入范围。太棒了。现在我要试着移到左上角。
+
+00:07:01.840 --> 00:07:08.800
+And here I'm having some incorrect result. It says hop up and that's not what I want.
+在这里我得到了一些不正确的结果。上面说跳起来，这不是我想要的。
+
+00:07:08.800 --> 00:07:14.000
+And I think I just know the reason for that. So I'm going to go back to my code.
+我想我知道是什么原因了。所以我要回到我的代码上来。
+
+00:07:14.880 --> 00:07:23.920
+So in here for this result, I forgot to add get safe normal. So this vector here is not normalized.
+所以在这里，对于这个结果，我忘了添加Get Safe Normal。所以这里的这个向量没有被规格化。
+
+00:07:23.920 --> 00:07:28.080
+That's why we are having the unexpected result. All right, quickly save all again,
+这就是为什么我们会有意想不到的结果。好的，再次快速保存所有内容，
+
+00:07:28.080 --> 00:07:32.000
+trigger live coding and go back to my project. I'm going to test this again.
+触发实时编码并返回到我的项目。我要再测试一次。
+
+00:07:32.000 --> 00:07:39.120
+So try to climb to the top left and this time it says invalid input range. Great. Top right,
+所以试着爬到左上角，这一次它显示无效的输入范围。太棒了。右上角，
+
+00:07:40.400 --> 00:07:50.400
+same thing. Bottom left, same thing. Bottom right and move to the right. And just like that,
+同样的事情。左下角，一样的东西。右下角，然后向右移动。就像这样，
+
+00:07:50.400 --> 00:07:56.960
+we have just filtered out the hopping direction from our input and we are almost there for our
+我们刚刚从我们的输入中过滤掉了跳跃方向，我们几乎已经完成了
+
+00:07:56.960 --> 00:08:02.560
+hopping. And I got some important notes for you. So the key function here is this get less input
+跳跃。我有一些重要的笔记要给你。所以这里的关键功能是获得更少的输入
+
+00:08:02.560 --> 00:08:07.520
+vector and make sure it's unrotated and normalized before you use it. Once you get
+向量，并确保它在使用之前未旋转和规格化。一旦你得到了
+
+00:08:07.520 --> 00:08:13.840
+hold of the information you need, you can use the dot product to tell if this is a valid input range
+掌握所需信息后，可以使用点积来判断这是否是有效的输入范围
+
+00:08:13.840 --> 00:08:18.960
+and we can use it to allow our character to hop up and down. Feel free to refer back to the video
+我们可以用它来让我们的角色上下跳跃。请随时回看视频
+
+00:08:18.960 --> 00:08:25.040
+if you need help and I'll see you in the next lecture.
+如果你需要帮助，我会在下一节课上见到你。
+
+00:08:25.040 --> 00:08:33.040
+[Music]
+[音乐]

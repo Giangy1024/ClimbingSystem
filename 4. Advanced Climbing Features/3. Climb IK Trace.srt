@@ -1,0 +1,337 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.820
+Welcome. In the last lecture, we successfully set up a control rig inside of our NMP, and
+欢迎。在上一讲中，我们成功地在NMP中设置了一个控制装置，并且
+
+00:00:10.820 --> 00:00:15.720
+using the sphere trace and draw transform functions it provides, now we have a new way
+使用它提供的球体追踪和绘图变换功能，现在我们有了一种新的方法
+
+00:00:15.720 --> 00:00:22.700
+to detect the surface in front of us when we are climbing.
+来检测我们面前的表面。
+
+00:00:22.700 --> 00:00:28.780
+But the thing is, how can we actually use this to fix our hands and feet placement?
+但问题是，我们如何才能真正利用这个来固定我们的手和脚的位置？
+
+00:00:28.780 --> 00:00:33.920
+To do that, let's be clear about what we want here. So we want to erase this offset between
+要做到这一点，让我们清楚地知道我们在这里想要什么。所以我们要消除手和表面之间的偏移
+
+00:00:33.920 --> 00:00:38.720
+the hands and the surface when we are climbing. In other words, we need to know how much we
+当我们攀爬时，手和表面之间的偏移。换句话说，我们需要知道我们应该在多大程度上
+
+00:00:38.720 --> 00:00:43.440
+should move our hands towards the surface, and that's something the sphere trace can
+换句话说，我们需要知道我们的手应该向表面移动多少，而这一点球体追踪可以
+
+00:00:43.440 --> 00:00:44.440
+tell us.
+告诉我们。
+
+00:00:44.440 --> 00:00:50.560
+So by using sphere traces here, there are two pieces of information. So we already know
+所以通过在这里使用球体追踪，有两个信息。所以我们已经知道
+
+00:00:50.560 --> 00:00:56.600
+the head location and we know the location of our hand bone. And by doing a simple calculation
+头部的位置，我们知道手骨的位置。通过做一个简单的计算
+
+00:00:56.600 --> 00:01:02.760
+here, we can know the exact distance that we need to move our hands towards the surface.
+我们就可以知道我们的手需要向表面移动的确切距离。
+
+00:01:02.760 --> 00:01:06.820
+So let's look at how we can set this up. Go back to my viewport, I'm going to go back
+所以让我们来看看我们如何设置这个。回到我的视口，我将回到
+
+00:01:06.820 --> 00:01:11.560
+to my control rig. Since this is something that we'll use over and over again later,
+到我的控制设备。因为这是我们以后要反复使用的东西、
+
+00:01:11.560 --> 00:01:16.480
+I like to create a function to handle it. So I'm going to go to my blueprint tab and
+我喜欢创建一个函数来处理它。所以我将进入我的蓝图标签，然后点击这个按钮。
+
+00:01:16.480 --> 00:01:21.480
+I'm going to click this button here to create a function. So click it. Then I'm going to
+我将点击这个按钮来创建一个函数。所以点击它。然后我将
+
+00:01:21.480 --> 00:01:28.680
+rename this function to climb_ik_trace and drag out this node. So same as blueprint or
+重命名这个函数为climb_ik_trace，然后拖出这个节点。所以和蓝图或
+
+00:01:28.680 --> 00:01:33.720
+C++, we can give this function different function inputs. And the first function input that
+C++，我们可以给这个函数不同的函数输入。而第一个函数输入
+
+00:01:33.720 --> 00:01:43.440
+I like to add will be something called rig_element_key. So select this one and I'm going to change its
+我想添加的第一个函数是叫做rig_element_key的东西。所以选择这个，我将把它的
+
+00:01:43.440 --> 00:01:51.920
+name to ik_bone to trace_from. So later we can tell this function, which ik_bone is you
+名字改为ik_bone到trace_from。所以以后我们可以告诉这个函数，哪个ik_bone是你的
+
+00:01:51.920 --> 00:01:57.560
+use as a starting point to do the severe trace. All right, first thing I'm going to drag out
+作为一个起点来进行严格的追踪。好的，我首先要拖出
+
+00:01:57.560 --> 00:02:04.240
+this pane and select get_transform. Then click this dropdown for transform. I'm going to
+这个窗格，选择get_transform。然后点击Transform的下拉菜单。我将会
+
+00:02:04.240 --> 00:02:09.880
+drag out this translation pane and promote it to a local variable. So this can prevent
+拖出这个翻译窗格，并将其提升为一个局部变量。所以这可以防止
+
+00:02:09.880 --> 00:02:14.920
+us from a messy graph and the local variable is only visible to the function. All right,
+乱的图形，而且这个局部变量只对函数可见。好的、
+
+00:02:14.920 --> 00:02:19.560
+I'm going to click compile in here and this is the local variable that I just created.
+我将在这里点击编译，这是我刚刚创建的局部变量。
+
+00:02:19.560 --> 00:02:27.800
+I'm going to rename it to input_ik_bone_translation and connect this pane to here. And the next
+我将把它重命名为input_ik_bone_translation，并把这个窗格连接到这里。而接下来
+
+00:02:27.800 --> 00:02:32.800
+thing I'm going to drag out this pane and type in sequence. And we can add pane here
+我将拖出这个窗格并输入序列。我们可以在这里添加窗格
+
+00:02:32.800 --> 00:02:37.400
+if there are multiple things that we need to do. Again, just a cleaner way to create
+如果我们有多件事情需要做的话。同样，只是用一种更简洁的方式来创建
+
+00:02:37.400 --> 00:02:42.880
+a graph. So first thing I'm going to set up the trace_start and end for our severe trace.
+一个图表。所以，首先我要为我们的严重追踪设置追踪的开始和结束。
+
+00:02:42.880 --> 00:02:49.000
+So drag out this local variable, select get, then drag out this pane. I'm going to use a
+所以拖出这个局部变量，选择获取，然后拖出这个窗格。我将使用一个
+
+00:02:49.000 --> 00:02:56.640
+subtract node in here and give it a value of five for the y. So our trace will start
+在这里使用一个减法节点，给它一个5的y值。
+
+00:02:56.640 --> 00:03:02.120
+at five units behind the bone that we selected and move this node out a little bit. So I'd
+从我们选择的骨头后面的5个单位开始，然后把这个节点移出去一点。所以我想
+
+00:03:02.120 --> 00:03:08.760
+like to promote this to a local variable and click compile. I'm going to rename this local
+想把它提升到一个局部变量，然后点击编译。我将把这个局部变量重命名为
+
+00:03:08.760 --> 00:03:15.560
+variable to severe trace start and connect this a pane to here. Then I'm going to drag
+变量重命名为严厉的跟踪开始，并将这个窗格连接到这里。然后我将把
+
+00:03:15.560 --> 00:03:22.600
+out this ik_bone_translation again, get. This time I'm going to use add. Same as what we
+再拖出这个ik_bone_translation，得到。这一次我将使用添加。和我们做的一样
+
+00:03:22.600 --> 00:03:32.240
+did and give it a value of 15 units for the y. And promote this to a local variable. Click
+给它一个15个单位的y值，并把它提升到一个局部变量。点击
+
+00:03:32.240 --> 00:03:40.040
+compile. Rename this to severe trace end and connect this one to here. All right, this
+编译。把这个重命名为严厉的跟踪端，把这个连接到这里。好了，这
+
+00:03:40.040 --> 00:03:44.680
+is what we have so far. Now with all of these values cached, the next thing that I want
+这就是我们到目前为止所拥有的。现在，有了所有这些值的缓存，我想做的下一件事是
+
+00:03:44.680 --> 00:03:49.520
+to do, I'm going to create another function input. So I want to be able to toggle the
+要做的下一件事，我将创建另一个函数输入。所以我希望能够通过简单的操作来切换
+
+00:03:49.520 --> 00:03:55.360
+debug shape on and off by simply taking a boolean in here. So I'm going to create another function
+调试形状的开关，只需在这里取一个布尔值。所以我将创建另一个函数
+
+00:03:55.360 --> 00:04:03.280
+input, change it to boolean. Change its name to show_debug_shape and click compile. Then
+输入，把它改为布尔值。把它的名字改为show_debug_shape，然后点击编译。然后
+
+00:04:03.280 --> 00:04:07.520
+move through the end of this graph and we can directly get help with the function input
+移动到这个图的末尾，我们可以直接得到函数输入的帮助。
+
+00:04:07.520 --> 00:04:14.000
+that we created. So right mouse button click and type in get show_debug_shape. And hold
+我们创建的。所以鼠标右键点击，输入get show_debug_shape。并按住
+
+00:04:14.000 --> 00:04:19.680
+down b on my keyboard to bring out the branch node. So if this condition is true, connect
+按住我的键盘上的b，带出分支节点。所以，如果这个条件是真的，把
+
+00:04:19.680 --> 00:04:29.000
+this one to here. I'm going to use the function draw_debug_line. I'll draw a line, connect
+这个节点到这里。我将使用函数draw_debug_line。我将画一条线，连接
+
+00:04:29.000 --> 00:04:38.480
+it to here. Then drag out this severe trace start, select get it, pass it to a. Drag out
+它连接到这里。然后拖出这个严重跟踪的开始，选择得到它，把它传给a。
+
+00:04:38.480 --> 00:04:45.520
+this severe trace end, connect it to b. Change the thickness to 3 and I'm going to drag down
+把厚度改成3，然后我把这个返回节点拖下来。
+
+00:04:45.520 --> 00:04:56.400
+this return node and organize my graph a bit. So connect this b to return. Alright, I like
+这个返回节点，把我的图组织一下。所以把这个b连接到返回。好了，我喜欢
+
+00:04:56.400 --> 00:05:01.160
+to test this. So go back to my forward_solve. I'm going to delete all of these nodes and
+来测试这个。所以回到我的forward_solve。我将删除所有这些节点，并且
+
+00:05:01.160 --> 00:05:07.920
+I'm going to drag out this climb_ik trace. So connect it to here. Click this drop down
+我将拖出这个climb_ik轨迹。所以把它连接到这里。点击这个下拉菜单
+
+00:05:07.920 --> 00:05:15.800
+to select a bone. And in this drop down here I'm going to select the bone ik_foot_l and
+来选择一个骨头。在这个下拉菜单中，我将选择骨骼ik_foot_l，并采取这个show_debug_shape。
+
+00:05:15.800 --> 00:05:23.600
+take this show_debug_shape. And there it is. Our function is working. And it's time for
+拿出这个show_debug_shape。这就是了。我们的函数正在工作。现在是时候进行
+
+00:05:23.600 --> 00:05:28.560
+a challenge. So our challenge is I'd like you to create a function to do the climb_ik
+一个挑战。我们的挑战是，我希望你们创建一个函数来做爬行_ik
+
+00:05:28.560 --> 00:05:32.960
+trace. This is the function that we need to use over and over again later. And same as
+追踪。这就是我们以后需要反复使用的函数。和我一样
+
+00:05:32.960 --> 00:05:37.600
+I did, I'd like you to provide the function with necessary inputs. So things like the
+我所做的，我希望你为这个函数提供必要的输入。因此，像
+
+00:05:37.600 --> 00:05:43.200
+input bone element and the ability to toggle the debug shape on and off. And after this
+输入骨元素，以及打开和关闭调试形状的能力。而在这之后
+
+00:05:43.200 --> 00:05:48.020
+step I'd like you to also set up severe trace in your function as well. Remember, using
+我希望你也能在你的函数中设置严重的跟踪。记住，在你的函数中使用
+
+00:05:48.020 --> 00:05:52.560
+local variables in your function can help to create a cleaner graph. Alright, pause the
+在你的函数中使用局部变量可以帮助创建一个更干净的图形。好了，暂停一下
+
+00:05:52.560 --> 00:05:59.640
+video now and give this a go. I'll come back if you need help.
+现在暂停视频，试试这个。如果你需要帮助，我会回来的。
+
+00:05:59.640 --> 00:06:04.080
+Welcome back. How was that? Hopefully at this point you already have your climb_ik trace
+欢迎回来。刚才怎么样？希望在这一点上，你已经准备好了你的 climb_ik 跟踪
+
+00:06:04.080 --> 00:06:07.680
+function ready. Don't worry if you ran into any issues. Let's look at how I would do it.
+函数准备好了。如果你遇到了任何问题，不要担心。让我们来看看我是怎么做的。
+
+00:06:07.680 --> 00:06:11.920
+So double click to open this function. So I'm going to comment this node first. So for
+所以双击打开这个函数。所以我将首先对这个节点进行注释。所以对于
+
+00:06:11.920 --> 00:06:17.480
+this node we are simply setting up severe trace star and int. And the second thing that
+这个节点，我们只是简单地设置了严重的跟踪星和int。而第二件事是
+
+00:06:17.480 --> 00:06:23.240
+I want to do, I'm going to right mouse button click and type in severe trace by object types.
+我想做的第二件事是，我将按下鼠标右键，输入对象类型的严重跟踪。
+
+00:06:23.240 --> 00:06:30.800
+And drag out this severe trace star, get it, connect it to the start, drag this one out,
+拖出这个严重跟踪星，得到它，把它连接到起点，拖出这个、
+
+00:06:30.800 --> 00:06:36.800
+connect it to int. And for the object types here, click this add button to add in word
+连接到int。对于这里的对象类型，点击这个添加按钮来添加单词
+
+00:06:36.800 --> 00:06:42.920
+static. And next thing I'm going to promote this hit location to another local variable
+静态。接下来，我将把这个命中的位置提升到另一个局部变量
+
+00:06:42.920 --> 00:06:49.520
+and click compile. Scroll down, I'm going to rename this to severe trace hit location
+并点击编译。向下滚动，我将把它重命名为严重的跟踪位置
+
+00:06:49.520 --> 00:06:54.320
+and connect this pin to here. And same as what we've done above, I'm going to copy these
+并把这个引脚连接到这里。和我们上面所做的一样，我将复制这两个
+
+00:06:54.320 --> 00:07:01.320
+two nodes and place them in here, delete this extra one and connect this pin to here. So
+两个节点，并把它们放在这里，删除这个额外的节点，把这个引脚连接到这里。所以
+
+00:07:01.320 --> 00:07:07.920
+if we want to show the debug shape and drag out this hit, use an end boolean in here, connect
+如果我们想显示调试形状，并拖出这一击，在这里使用一个结束布尔值，连接
+
+00:07:07.920 --> 00:07:13.680
+this one to here, this one to socket 8. So if we want to show the debug shape and we
+这个连接到这里，这个连接到插座8。所以，如果我们想显示调试形状，并且我们
+
+00:07:13.680 --> 00:07:18.400
+have a valid hit location, I'm going to connect this one to here. Then I'm going to use the
+有一个有效的命中位置，我将把这个连接到这里。然后我将使用
+
+00:07:18.400 --> 00:07:24.560
+function draw transform and pass in this and connect this pin to here. And the transform
+函数绘制转化图，然后把这个引脚连接到这里。变形
+
+00:07:24.560 --> 00:07:31.440
+here I'm going to click the drop down and drag out this severe trace hit location, connect
+我将在这里点击下拉菜单，拖出这个严重追踪的位置，把它连接到翻译，并给它一个值。
+
+00:07:31.440 --> 00:07:40.160
+it to translation and give it a value of three for the thickness changes mode to box. All
+它与平移相连，并给它一个3的值，将厚度模式改为方框。所有的
+
+00:07:40.160 --> 00:07:46.200
+right, I'm going to drag down this return node and I'm going to organize these nodes.
+好的，我要把这个返回节点拖下来，我将组织这些节点。
+
+00:07:46.200 --> 00:07:54.740
+So drag them to the side and I'm going to comment them. So for this nose, we are setting up severe
+所以把它们拖到一边，我要对它们进行注释。所以对于这个鼻子，我们正在设置严重的
+
+00:07:54.740 --> 00:08:01.560
+trace and next thing I'm going to add another pin, connect this C to this return node. All
+追踪，接下来我要增加一个引脚，把这个C连接到这个返回节点。所有
+
+00:08:01.560 --> 00:08:07.080
+right, click compile and I'm going to test this. So go back to my viewpro, I'm going
+好的，点击编译，我要测试这个。所以回到我的viewpro，我将
+
+00:08:07.080 --> 00:08:15.040
+to click play and we can see our debug line. I can see the hit location. Great, everything
+点击播放，我们可以看到我们的调试线。我可以看到击中的位置。很好，一切
+
+00:08:15.040 --> 00:08:21.680
+is working as usual. So this is the function that I just created. There are quite a few
+都在照常工作。所以这是我刚刚创建的函数。有相当多的
+
+00:08:21.680 --> 00:08:26.440
+nodes in it, but the function itself is not complicated at all. So feel free to refer
+节点，但该函数本身一点也不复杂。所以，如果你需要帮助，可以随时参考
+
+00:08:26.440 --> 00:08:30.400
+back to the video if you need help and I'll see you in the next lecture.
+如果你需要帮助，请参考视频，我们在下一节课见。
+
+00:08:30.400 --> 00:08:40.920
+[Music]
+[音乐]

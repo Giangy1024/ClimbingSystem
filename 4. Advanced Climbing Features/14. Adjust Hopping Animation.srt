@@ -1,0 +1,437 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.000
+[Music]
+[音乐]
+
+00:00:05.000 --> 00:00:12.000
+Welcome! In the last lecture, we successfully filtered out the hopping direction from player's input.
+欢迎!在上一节课中，我们成功地从玩家的输入中过滤出了跳跃的方向。
+
+00:00:12.000 --> 00:00:19.000
+And now, with this ready, the next thing that I want to do, I'm going to get hold of the hopping animations that we need.
+现在，准备好了，下一件我想做的事情，我将获得我们需要的跳跃动画。
+
+00:00:19.000 --> 00:00:27.000
+So go back to Mixamo, in the search box here, I'm going to search "hang", and you can see in here we have this brace hang hop up.
+所以回到Mixamo，在这里的搜索框中，我要搜索“挂起”，你可以看到在这里我们有这个支架挂起。
+
+00:00:27.000 --> 00:00:33.000
+So this is the one that we're going to get. And same as usual, there isn't an "in place" option in here.
+所以这就是我们要得到的。和往常一样，这里没有“就地”选项。
+
+00:00:33.000 --> 00:00:38.000
+That means we'll need to adjust this animation in Control Rake. So I'm going to download it.
+这意味着我们需要在Control Rake中调整这个动画。所以我要下载它。
+
+00:00:38.000 --> 00:00:42.000
+And make sure "select without skin", and click "download".
+并确保“选择无皮肤”，点击“下载”。
+
+00:00:42.000 --> 00:00:50.000
+So this is hopping up, and I'm going to download this brace hang drop. So we can use this to hop down.
+所以这是跳起来的，我要下载这个支撑吊点。所以我们可以用这个跳下去。
+
+00:00:50.000 --> 00:00:53.000
+I'm going to click "download".
+我要点击“下载”。
+
+00:00:53.000 --> 00:01:03.000
+So these are the animations that I just downloaded from Mixamo. If you'd like to catch up with me, you can pause the video now and give this a go.
+这些是我刚刚从Mixamo下载的动画。如果你想跟上我，你现在可以暂停视频，然后试一试。
+
+00:01:03.000 --> 00:01:07.000
+Welcome back! And now we'll need to retarget these animations.
+欢迎回来！现在我们需要重新定位这些动画。
+
+00:01:07.000 --> 00:01:12.000
+So I'm going to select this brace hang hop up and this brace hang drop. I'm going to copy them.
+所以我要选择这个支撑吊点和这个支撑吊点。我要把它们复制下来。
+
+00:01:12.000 --> 00:01:16.000
+Then I'm going to go inside of this incoming FBX, double click to open it.
+然后我要进入这个传入的FBX，双击打开它。
+
+00:01:16.000 --> 00:01:21.000
+I've already cleared this folder, so I'm going to paste my animations in here.
+我已经清除了这个文件夹，所以我要将我的动画粘贴到这里。
+
+00:01:21.000 --> 00:01:28.000
+Then I'm going to double click to open this Mixamo converter. Left click to continue, and enter the conversion process.
+然后我要双击打开这个Mixamo转换器。左键点击继续，进入转换过程。
+
+00:01:28.000 --> 00:01:32.000
+Scroll down, click this button here to convert the animations.
+向下滚动，单击此处以转换动画。
+
+00:01:32.000 --> 00:01:38.000
+Then click this button here to open the folder. And these are my converted animations.
+然后点击此处打开该文件夹。这些是我改编的动画。
+
+00:01:38.000 --> 00:01:43.000
+So with these two animations selected, I'm going to drag them to my content browser.
+选中这两个动画后，我将把它们拖到我的内容浏览器中。
+
+00:01:43.000 --> 00:01:48.000
+And select the skeleton in here. And click "inport all".
+然后选择这里的骨架。并点击“全部导入”。
+
+00:01:48.000 --> 00:01:52.000
+And there you go. These are the raw animations that we can use later.
+这就对了。这些是我们以后可以使用的原始动画。
+
+00:01:52.000 --> 00:01:59.000
+So this is for hopping down, this one is for hopping up.
+这个是用来跳下来的，这个是用来跳上来的。
+
+00:01:59.000 --> 00:02:08.000
+One thing here that you need to be careful with, so this animation here has the same name as the animation that we use to exit our climb state.
+这里需要注意的一件事是，这个动画与我们用来退出爬升状态的动画具有相同的名称。
+
+00:02:08.000 --> 00:02:14.000
+So you can see it's also called this brace hang drop. If I double click to open this one.
+所以你可以看到它也被称为支撑吊坠。如果我双击打开这个。
+
+00:02:14.000 --> 00:02:19.000
+So make sure you rename your hop down animation before you move it to this raw folder.
+因此，在将其移动到这个原始文件夹之前，请确保重命名您的跳下动画。
+
+00:02:19.000 --> 00:02:26.000
+So I'm going to go back to my content browser. I'm going to change this name to hop down underscore raw.
+因此，我将返回到我的内容浏览器。我要把这个名字改成下划线RAW。
+
+00:02:26.000 --> 00:02:32.000
+Alright, I'm going to select these two animations and I'm going to move them to this raw folder. Select "move here".
+好的，我将选择这两个动画，并将它们移动到这个原始文件夹中。选择“移至此处”。
+
+00:02:32.000 --> 00:02:39.000
+And go to file, click "save all". And next thing, same as what we've done before, we'll need to fix their root motion.
+并转到文件，单击“全部保存”。下一步，和我们之前所做的一样，我们需要修正它们的根运动。
+
+00:02:39.000 --> 00:02:44.000
+So I'm going to first double click to open this brace hang hop up and click this root bone.
+所以我要先双击打开这个支架，挂起来，然后点击这个根骨。
+
+00:02:44.000 --> 00:02:50.000
+So you can see this root bone here is not moving. So this animation won't work.
+所以你可以看到这根骨头是不动的。所以这个动画不会起作用。
+
+00:02:50.000 --> 00:02:55.000
+And for that I'm going to go to this CR in the map.
+为此，我将转到地图上的这个CR。
+
+00:02:55.000 --> 00:03:02.000
+Then open back this animation, click this add in sequencer back to control rig.
+然后打开这个动画，点击这个附加的定序器回到控制钻机。
+
+00:03:02.000 --> 00:03:06.000
+And click this button. And now I'm going to start to adjust this animation.
+然后点击这个按钮。现在我要开始调整这个动画。
+
+00:03:06.000 --> 00:03:10.000
+So delete this redundant track and click play.
+因此，删除这首多余的曲目，然后点击播放。
+
+00:03:10.000 --> 00:03:16.000
+So this is what I have. I'm going to scroll back to the first frame.
+这就是我所拥有的。我要回滚到第一帧。
+
+00:03:16.000 --> 00:03:22.000
+Then select this root control. I'm going to select this location X to this rotation yaw.
+然后选择此根控件。我要把这个位置X选为这个旋转偏航。
+
+00:03:22.000 --> 00:03:28.000
+And I'm going to delete all these keys in here.
+我要把这里所有的钥匙都删除。
+
+00:03:28.000 --> 00:03:31.000
+Alright, first I'm going to move this root bone up.
+好的，首先我要把这根骨头往上移。
+
+00:03:31.000 --> 00:03:39.000
+So in order for this animation to work, it's important that our root bone is always below the hips and behind our feet.
+因此，为了使动画发挥作用，重要的是我们的根骨始终位于臀部以下和脚后部。
+
+00:03:39.000 --> 00:03:43.000
+So I'm going to move it backwards a little bit, somewhere near here.
+所以我要把它向后移动一点，在这里附近的某个地方。
+
+00:03:43.000 --> 00:03:46.000
+Then click this add key.
+然后点击此添加键。
+
+00:03:46.000 --> 00:03:49.000
+Alright, the starting position looks good enough.
+好的，起跑位置看起来不错。
+
+00:03:49.000 --> 00:03:56.000
+Then I'm going to scroll forward to somewhere near here.
+然后我要向前滚动到这附近的某个地方。
+
+00:03:56.000 --> 00:04:05.000
+And I'm going to move our root control up to something like this.
+我将把我们的根控制转移到类似这样的地方。
+
+00:04:05.000 --> 00:04:09.000
+Alright, I think this will do. And click this button to add new keys.
+好的，我想这个就行了。并单击此按钮以添加新的关键点。
+
+00:04:09.000 --> 00:04:11.000
+Alright, I think this will work.
+好的，我想这会奏效的。
+
+00:04:11.000 --> 00:04:15.000
+And right now for this animation it's too long. We don't need it to be this long.
+现在，对于这部动画来说，它太长了。我们不需要花这么长时间。
+
+00:04:15.000 --> 00:04:17.000
+So I'm going to trim out some frames from it.
+所以我要把它的边框剪掉一些。
+
+00:04:17.000 --> 00:04:28.000
+So I'm going to scroll to the part when the character reaches the destination. So somewhere near here.
+因此，当角色到达目的地时，我将滚动到该部分。所以在这附近的某个地方。
+
+00:04:28.000 --> 00:04:34.000
+About frame 24. Then I'm going to click this button here to add new keys.
+大约第24帧。然后，我将在此处单击此按钮以添加新的关键点。
+
+00:04:34.000 --> 00:04:39.000
+Then I'm going to trim this animation. So move this red line to here.
+然后我要修剪这个动画。所以把这条红线移到这里。
+
+00:04:39.000 --> 00:04:43.000
+Alright, that's pretty much it. We can always come back to readjust it if we need.
+好了，差不多就是这样了。如果需要，我们随时可以回来重新调整它。
+
+00:04:43.000 --> 00:04:48.000
+Then I'm going to right mouse button click this animation. Then create this linked animation sequence.
+然后我要用鼠标右键点击这个动画。然后创建该链接的动画序列。
+
+00:04:48.000 --> 00:04:52.000
+I'm going to place this linked sequence inside of this animation.
+我将把这个链接的序列放在这个动画中。
+
+00:04:52.000 --> 00:05:00.000
+Adjust it. And I'm going to rename it to hub-up_crlinked. And click OK.
+调整一下。我将把它重命名为Hub-Up_crlink。然后单击确定。
+
+00:05:00.000 --> 00:05:03.000
+And click this export to animation sequence.
+并单击此导出到动画序列。
+
+00:05:03.000 --> 00:05:05.000
+Alright, that's one animation done.
+好了，这是一个动画制作完成了。
+
+00:05:05.000 --> 00:05:08.000
+Alright, once I have the animation exported, I'm going to preview it.
+好的，一旦我输出了动画，我就会预览它。
+
+00:05:08.000 --> 00:05:14.000
+So go back to this adjust filter. Double click to open this hub-up_crlinked.
+因此，回到这个调整过滤器。双击以打开该Hub-Up_crlink。
+
+00:05:14.000 --> 00:05:19.000
+And you can see now our root bone is moving. So this should work.
+你现在可以看到我们的根骨在移动。因此，这应该会奏效。
+
+00:05:19.000 --> 00:05:24.000
+And next thing I'm going to go to asset details. Then scroll down. I'm going to enable root motion.
+接下来，我将转到资产详细信息。然后向下滚动。我要启用根部运动。
+
+00:05:24.000 --> 00:05:27.000
+Alright, go to file, click save all.
+好的，转到文件，点击全部保存。
+
+00:05:27.000 --> 00:05:32.000
+Make sure you do this before you adjust the next animation. Just in case you get a crash later.
+请确保在调整下一个动画之前执行此操作。以防你晚些时候撞车。
+
+00:05:32.000 --> 00:05:34.000
+Then I'm going to close this window.
+然后我要关上这扇窗。
+
+00:05:34.000 --> 00:05:40.000
+So I found out that if we directly adjust the second animation in here, we'll get a crash.
+所以我发现，如果我们直接调整这里的第二个动画，我们会出现崩溃。
+
+00:05:40.000 --> 00:05:43.000
+And to avoid that, I'm going to first reload this map.
+为了避免这种情况，我将首先重新加载这张地图。
+
+00:05:43.000 --> 00:05:47.000
+So go to content and double click the cr_animemap to refresh it.
+因此，转到Content并双击cr_Animemap以刷新它。
+
+00:05:47.000 --> 00:05:50.000
+And after doing this, we should be good to go.
+做完这件事后，我们应该可以走了。
+
+00:05:50.000 --> 00:05:53.000
+So go back to the raw folder. Double click to open this hub down.
+因此，请返回原始文件夹。双击以打开此集线器。
+
+00:05:53.000 --> 00:05:57.000
+And edit in sequencer, baked to control rig.
+并在定序器中编辑，烘焙以控制钻机。
+
+00:05:57.000 --> 00:05:58.000
+Click this button.
+点击此按钮。
+
+00:05:58.000 --> 00:06:01.000
+So first I'm going to delete this redundant track.
+所以首先我要删除这个多余的音轨。
+
+00:06:01.000 --> 00:06:05.000
+Then delete all of the keys inside of this root control.
+然后删除此根控件内的所有键。
+
+00:06:05.000 --> 00:06:08.000
+So select all of them and delete them.
+因此，将它们全部选中并删除。
+
+00:06:08.000 --> 00:06:11.000
+Then I'm going to move this root control up.
+然后我要将这个根控制向上移动。
+
+00:06:11.000 --> 00:06:15.000
+And move it backwards a little bit, somewhere near here.
+然后把它向后移动一点，就在这里附近的某个地方。
+
+00:06:15.000 --> 00:06:17.000
+Then I'm going to click this add key.
+然后我要点击这个Add键。
+
+00:06:17.000 --> 00:06:24.000
+Alright, I'm going to scroll forward to somewhere near frame 22, I think.
+好的，我想我要向前滚动到第22帧附近的某个地方。
+
+00:06:24.000 --> 00:06:27.000
+Then I'm going to move this root control down.
+然后我要将这个根控制向下移动。
+
+00:06:30.000 --> 00:06:33.000
+Yeah, I think somewhere near here should do.
+是的，我想这附近的某个地方应该可以。
+
+00:06:33.000 --> 00:06:36.000
+Then click add keys.
+然后单击添加关键点。
+
+00:06:36.000 --> 00:06:39.000
+And try to preview this again.
+然后再试着预览一下。
+
+00:06:39.000 --> 00:06:44.000
+Maybe move the root control down a little bit more.
+也许可以将根控件再向下移动一点。
+
+00:06:44.000 --> 00:06:47.000
+And click add keys.
+然后单击添加关键点。
+
+00:06:47.000 --> 00:06:49.000
+Alright, something like this.
+好的，就像这样。
+
+00:06:49.000 --> 00:06:56.000
+This animation here is already short enough that we don't need to train with.
+这个动画已经足够短了，我们不需要用它来训练。
+
+00:06:56.000 --> 00:07:00.000
+I'm going to directly create a linked animation sequence.
+我将直接创建一个链接的动画序列。
+
+00:07:00.000 --> 00:07:04.000
+And put it under this animation, adjust it.
+并把它放在这个动画下，调整它。
+
+00:07:04.000 --> 00:07:09.000
+Then I'm going to rename it to hub down underscore CR linked.
+然后我会将其重命名为Hub Down，下划线为CR Linked。
+
+00:07:09.000 --> 00:07:11.000
+And click OK.
+然后单击确定。
+
+00:07:11.000 --> 00:07:13.000
+And click this export to animation sequence.
+并单击此导出到动画序列。
+
+00:07:13.000 --> 00:07:16.000
+Alright, go to file and click save all.
+好的，转到文件并点击全部保存。
+
+00:07:16.000 --> 00:07:19.000
+Then I'm going to preview this.
+然后我要预览一下这个。
+
+00:07:19.000 --> 00:07:21.000
+So go back to adjust it.
+因此，回去调整一下吧。
+
+00:07:21.000 --> 00:07:25.000
+Open this hub down animation and skeleton tree, click this root bone.
+打开此中枢下的动画和骨架树，单击此根骨骼。
+
+00:07:25.000 --> 00:07:27.000
+So this should work.
+因此，这应该会奏效。
+
+00:07:27.000 --> 00:07:31.000
+And I'm going to also enable the root motion for this animation.
+我还将启用此动画的根运动。
+
+00:07:31.000 --> 00:07:35.000
+And that's pretty much it.
+差不多就是这样。
+
+00:07:35.000 --> 00:07:37.000
+And I got some important notes for you.
+我有一些重要的笔记要给你。
+
+00:07:37.000 --> 00:07:41.000
+So make sure you always click save all after adjusting your animation.
+因此，请确保在调整动画后始终单击全部保存。
+
+00:07:41.000 --> 00:07:44.000
+Otherwise, if you get a crash, you'll just lose everything.
+否则，如果你撞车了，你就会失去一切。
+
+00:07:44.000 --> 00:07:50.000
+And also, just to be safe, make sure you refresh your map before adjusting the second animation.
+此外，为了安全起见，请确保在调整第二个动画之前刷新地图。
+
+00:07:50.000 --> 00:07:55.000
+I found out that adjusting two animations in a row without doing this could crash our editor.
+我发现，在不这样做的情况下连续调整两个动画可能会使我们的编辑崩溃。
+
+00:07:55.000 --> 00:07:59.000
+And other than that, everything else should be pretty straightforward.
+除此之外，其他一切都应该非常简单。
+
+00:07:59.000 --> 00:08:04.000
+And same as always, you can download the animation that I adjusted in the resources drop down of this lecture.
+和往常一样，你可以下载我在这堂课的资源下拉列表中调整的动画。
+
+00:08:04.000 --> 00:08:08.000
+But still, I highly recommend you to try this out for yourself.
+不过，我还是强烈建议你亲自试一试。
+
+00:08:08.000 --> 00:08:10.000
+Alright, it's time for you to do it the same.
+好了，是时候让你也这么做了。
+
+00:08:10.000 --> 00:08:13.000
+And in the next lecture, we'll look at how we can use these animations.
+在下一节课中，我们将了解如何使用这些动画。
+
+00:08:13.000 --> 00:08:15.000
+I'll see you in the next lecture.
+我将在下一节课上见到你。
+
+00:08:15.000 --> 00:08:25.000
+[Music]
+[音乐]

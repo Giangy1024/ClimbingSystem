@@ -1,0 +1,65 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.640
+In this section, we will look into how we can climb up, climb down, climb to the left,
+在这一部分，我们将研究如何向上爬，向下爬，向左爬，
+
+00:00:10.640 --> 00:00:26.040
+climb to the right, climb up the ledge, climb down the ledge, enter and exit the climb state.
+向右爬，爬上岩架，爬下岩架，进入和退出爬升状态。
+
+00:00:26.040 --> 00:00:32.320
+We will begin with creating an NMInstance class in C++, then rebuild our existing animation
+我们将从用C++创建一个NMInstance类开始，然后重新构建现有动画
+
+00:00:32.320 --> 00:00:34.600
+blueprint.
+蓝图。
+
+00:00:34.600 --> 00:00:40.120
+Once we have all the state machines ready, we will go through the MixML animation pipeline
+一旦我们准备好了所有的状态机，我们将通过MixML动画管道
+
+00:00:40.120 --> 00:00:47.440
+and look at how we can use the MixML converter to help us retarget animation.
+然后看看如何使用MixML转换器来帮助我们重定动画目标。
+
+00:00:47.440 --> 00:00:55.120
+Then we will take care of the climb locomotion, along with the floor check for exiting the
+然后我们将负责爬升运动，以及退出的地板检查。
+
+00:00:55.120 --> 00:00:58.480
+climb state.
+爬升状态。
+
+00:00:58.480 --> 00:01:03.560
+We will also create another algorithm to help us detect the ledge and learn how to use control
+我们还将创建另一个算法来帮助我们检测边缘并学习如何使用控制
+
+00:01:03.560 --> 00:01:08.440
+rig to adjust the animation that we get from MixML.
+装备以调整我们从MixML获得的动画。
+
+00:01:08.440 --> 00:01:14.040
+Next, with everything we have learned, we will look into how we can use another algorithm
+接下来，结合我们所学到的所有内容，我们将研究如何使用另一种算法
+
+00:01:14.040 --> 00:01:21.120
+to help us to check whether or not we can climb down and use the same process to have
+帮助我们检查我们是否可以爬下去，并使用相同的过程来
+
+00:01:21.120 --> 00:01:23.200
+a working animation for climbing down.
+向下爬的工作动画。
+
+00:01:25.200 --> 00:01:31.920
+This is going to be a cool section with tons of new stuff for you to dive into.
+这将是一个很酷的部分，有大量的新东西供你潜入其中。
+
+00:01:31.920 --> 00:01:33.440
+When you are ready, let's get started.
+当你准备好了，我们就开始吧。
+
+00:01:33.440 --> 00:02:03.440
+[
+[

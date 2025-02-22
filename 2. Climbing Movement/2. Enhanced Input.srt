@@ -1,0 +1,473 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.280
+Welcome.
+欢迎。
+
+00:00:06.280 --> 00:00:11.000
+In the last lecture, we successfully set up a debug helper for us to print debug messages
+在上一节课中，我们成功地设置了一个调试助手，让我们在屏幕上打印调试信息
+
+00:00:11.000 --> 00:00:12.000
+to the screen.
+到屏幕上。
+
+00:00:12.000 --> 00:00:16.080
+And starting from this lecture, let's look at how we can actually set up our climbing
+从这节课开始，让我们来看看如何实际设置我们的爬行
+
+00:00:16.080 --> 00:00:17.080
+system.
+系统。
+
+00:00:17.080 --> 00:00:21.040
+So basically, in order to achieve what we want, there are three steps that we need.
+所以基本上，为了实现我们想要的东西，我们需要三个步骤。
+
+00:00:21.040 --> 00:00:23.880
+First, we need to enable climbing.
+首先，我们需要启用攀爬功能。
+
+00:00:23.880 --> 00:00:26.240
+After that, it will be character climb.
+之后，将是角色攀登。
+
+00:00:26.240 --> 00:00:28.660
+Then it will be character stop climbing.
+然后将是角色停止攀爬。
+
+00:00:28.660 --> 00:00:30.840
+This is an overly simplified process.
+这是一个过于简化的过程。
+
+00:00:30.840 --> 00:00:35.080
+There are actually many things that we need to handle in between these stages.
+实际上，在这些阶段之间，有许多事情我们需要处理。
+
+00:00:35.080 --> 00:00:36.920
+Take character climb for example.
+以角色攀爬为例。
+
+00:00:36.920 --> 00:00:41.000
+There will be many cases that we shouldn't be able to start climbing.
+会有很多情况下，我们不应该开始攀爬。
+
+00:00:41.000 --> 00:00:44.100
+And there are also many cases that we should stop climbing.
+也有很多情况下，我们应该停止攀登。
+
+00:00:44.100 --> 00:00:48.760
+For example, when our character already reached the ledge or the floor, either way we should
+例如，当我们的角色已经到达壁架或地板时，无论如何我们都应该
+
+00:00:48.760 --> 00:00:50.320
+stop climbing right away.
+马上停止攀爬。
+
+00:00:50.320 --> 00:00:52.280
+We are going to handle off those later.
+我们将在后面处理这些问题。
+
+00:00:52.280 --> 00:00:55.880
+For now, let's just look at how we should enable our climbing.
+现在，让我们来看看我们应该如何启用我们的攀爬。
+
+00:00:55.880 --> 00:00:58.000
+And I like to do that through input.
+我喜欢通过输入来做这件事。
+
+00:00:58.000 --> 00:00:59.000
+Go back to my project.
+回到我的项目中去。
+
+00:00:59.000 --> 00:01:00.800
+First, I'm going to close my project.
+首先，我将关闭我的项目。
+
+00:01:00.800 --> 00:01:02.600
+Then go back to Visual Studio.
+然后再回到Visual Studio。
+
+00:01:02.600 --> 00:01:05.440
+I'm going to go to my character's header file.
+我将转到我的角色的头文件。
+
+00:01:05.440 --> 00:01:10.920
+And if you scroll up, you can see by default, there are already many input actions set up.
+如果你向上滚动，你可以看到在默认情况下，已经有许多输入动作被设置了。
+
+00:01:10.920 --> 00:01:15.160
+So the default mapping context here, this is where we set up the key binding.
+所以这里的默认映射上下文，这就是我们设置按键绑定的地方。
+
+00:01:15.160 --> 00:01:19.680
+Unlike the old input system that needs us to set up the key binding in project settings,
+不像以前的输入系统，需要我们在项目设置中设置按键绑定、
+
+00:01:19.680 --> 00:01:24.160
+and we also need to have individual input actions for us to bind to the keys and the
+而且我们还需要有单独的输入动作来绑定我们需要的键和
+
+00:01:24.160 --> 00:01:25.840
+functions that we need.
+我们需要的功能。
+
+00:01:25.840 --> 00:01:32.400
+This is actually a very powerful system that allows us to add or remove keys during runtime.
+这实际上是一个非常强大的系统，它允许我们在运行时添加或删除键。
+
+00:01:32.400 --> 00:01:36.340
+And we can even switch between different mapping contexts if we want.
+如果我们愿意，我们甚至可以在不同的映射上下文之间切换。
+
+00:01:36.340 --> 00:01:41.180
+And if you scroll down, these are the two functions that bind to these two actions.
+如果你往下看，这是与这两个动作绑定的两个函数。
+
+00:01:41.180 --> 00:01:46.680
+So inside of my cpp file, you can see for the move function, it's binding to this move
+所以在我的cpp文件中，你可以看到移动函数，它被绑定到这个移动
+
+00:01:46.680 --> 00:01:47.860
+action.
+动作。
+
+00:01:47.860 --> 00:01:49.600
+And this is our jump action.
+而这是我们的跳跃动作。
+
+00:01:49.600 --> 00:01:53.520
+We are going to handle all of these movement code differently when we are climbing.
+当我们在攀爬时，我们将以不同的方式处理所有这些运动代码。
+
+00:01:53.520 --> 00:01:58.840
+So now I just want to set up a key that enables the character to start climbing.
+所以现在我只想设置一个键，使角色开始爬升。
+
+00:01:58.840 --> 00:02:00.720
+So go back to my header file.
+所以回到我的头文件中去。
+
+00:02:00.720 --> 00:02:03.940
+First I'm going to organize the order of these functions.
+首先我要组织这些函数的顺序。
+
+00:02:03.940 --> 00:02:10.360
+So I'm going to move this constructor to the top of the header file and move this generality
+所以我要把这个构造函数移到头文件的顶部，把这个通用的
+
+00:02:10.360 --> 00:02:14.520
+body to the top.
+体移到顶部。
+
+00:02:14.520 --> 00:02:19.160
+Then I'm going to set up a private section.
+然后我将设置一个私有部分。
+
+00:02:19.160 --> 00:02:22.220
+Then scroll down, I'm going to delete this protected.
+然后向下滚动，我将删除这个受保护的部分。
+
+00:02:22.220 --> 00:02:25.200
+So I want these two functions to be private as well.
+所以我希望这两个函数也是私有的。
+
+00:02:25.200 --> 00:02:28.020
+Then I'm going to adjust the order of the move function.
+然后我将调整移动函数的顺序。
+
+00:02:28.020 --> 00:02:33.800
+So I'm going to cut it and move it to be below this move action.
+所以我要把它剪掉，然后把它移到这个移动动作的下面。
+
+00:02:33.800 --> 00:02:35.880
+Then I'm going to set up a new input action.
+然后，我将设置一个新的输入动作。
+
+00:02:35.880 --> 00:02:41.920
+So I'm going to copy these two lines, control plus C and control plus V to put it in here.
+所以我要复制这两行，控制加C和控制加V，把它放在这里。
+
+00:02:41.920 --> 00:02:46.600
+Instead of loop action, I'm going to change this to climb action.
+我将改变这个动作，而不是循环动作，改为爬升动作。
+
+00:02:46.600 --> 00:02:50.520
+And I'm going to create a function for us to bind to this input action.
+我将创建一个函数，让我们与这个输入动作绑定。
+
+00:02:50.520 --> 00:02:56.160
+I'm going to call this function on climb action started and it needs one input parameter.
+我将在爬升动作开始时调用这个函数，它需要一个输入参数。
+
+00:02:56.160 --> 00:02:58.120
+There will be this input action value.
+将会有这个输入动作的值。
+
+00:02:58.120 --> 00:03:00.920
+So I'm going to copy this and paste it in here.
+所以我要复制这个并把它粘贴到这里。
+
+00:03:00.920 --> 00:03:08.160
+And I'm going to create a function definition and paste the function to be below this look.
+我将创建一个函数定义，并将该函数粘贴到这个外观的下面。
+
+00:03:08.160 --> 00:03:12.280
+First thing I'm going to set up the key binding inside of this function, set up player input
+首先，我要在这个函数中设置密钥绑定，设置播放器输入组件。
+
+00:03:12.280 --> 00:03:13.280
+component.
+组件。
+
+00:03:13.280 --> 00:03:17.000
+So I'm going to copy this line and I'm going to paste it in here.
+所以我要复制这一行并把它粘贴到这里。
+
+00:03:17.000 --> 00:03:20.280
+Now instead of loop action, this will be our climb action.
+现在，代替循环动作，这将是我们的爬升动作。
+
+00:03:20.280 --> 00:03:24.640
+So I'm going to copy this and paste it in here.
+所以我要复制这句话并把它粘贴到这里。
+
+00:03:24.640 --> 00:03:28.920
+Now for this trigger event, instead of triggered, I'm going to change it to something else.
+现在，对于这个触发事件，我将把它改成其他的东西，而不是触发的。
+
+00:03:28.920 --> 00:03:32.920
+So I'm going to delete this and type in colon colon.
+所以我将删除这个，然后输入冒号。
+
+00:03:32.920 --> 00:03:35.920
+You can see in here there are many stages that we can choose.
+你可以看到这里有很多阶段，我们可以选择。
+
+00:03:35.920 --> 00:03:40.480
+If this is triggered, the function that's bound to this input action will be constantly
+如果这个被触发了，绑定在这个输入动作上的函数就会被不断地触发
+
+00:03:40.480 --> 00:03:43.360
+triggered as long as the input key is down.
+只要输入键不动，就会被触发。
+
+00:03:43.360 --> 00:03:45.680
+But that's not what I want for our climb action.
+但这不是我想要的我们的攀登行动。
+
+00:03:45.680 --> 00:03:48.180
+I'm going to change this to start it.
+我要把这个改为启动它。
+
+00:03:48.180 --> 00:03:52.520
+So now we are only able to trigger this action once, even if the key is down.
+所以现在我们只能触发这个动作一次，即使按键是向下的。
+
+00:03:52.520 --> 00:03:55.900
+Then I'm going to change the function to the function that I just created.
+然后我要把这个函数改为我刚刚创建的函数。
+
+00:03:55.900 --> 00:04:06.440
+So scroll down and I'm going to copy this one and I'm going to paste it in here.
+所以向下滚动，我要复制这个，并把它粘贴到这里。
+
+00:04:06.440 --> 00:04:11.180
+Then I'm going to press control plus B to compile.
+然后我将按控制键加B来编译。
+
+00:04:11.180 --> 00:04:14.480
+Now let's look at how we should implement the function.
+现在让我们来看看我们应该如何实现这个函数。
+
+00:04:14.480 --> 00:04:17.160
+So scroll down till this on climb action is started.
+所以向下滚动，直到这个在攀登动作开始。
+
+00:04:17.160 --> 00:04:21.280
+So by pressing the button, I like to enable or disable climbing.
+所以通过按下按钮，我喜欢启用或禁用爬升。
+
+00:04:21.280 --> 00:04:23.060
+We're going to handle that later.
+我们将在后面处理这个问题。
+
+00:04:23.060 --> 00:04:28.120
+Now I just want to print a message to the screen to prove this key binding is working.
+现在我只想在屏幕上打印一条信息，以证明这个按键绑定是有效的。
+
+00:04:28.120 --> 00:04:30.560
+So scroll up to the begin play.
+所以向上滚动到开始播放。
+
+00:04:30.560 --> 00:04:36.320
+I'm going to cut this debug line and I'm going to move it to here.
+我要剪下这个调试行，把它移到这里。
+
+00:04:36.320 --> 00:04:41.200
+I'm going to change the message to climb action started.
+我将把信息改为爬升动作开始。
+
+00:04:41.200 --> 00:04:49.280
+Alright, I'm going to press control plus F5 to launch my editor.
+好了，我要按控制键加F5来启动我的编辑器。
+
+00:04:49.280 --> 00:04:51.800
+Go back to my project in order for the key binding to work.
+回到我的项目中去，以便使键的绑定发挥作用。
+
+00:04:51.800 --> 00:04:54.120
+There are still two more steps that we need to do.
+还有两个步骤我们需要做。
+
+00:04:54.120 --> 00:04:57.160
+So I'm going to go to this third person folder.
+所以我要去这个第三人称文件夹。
+
+00:04:57.160 --> 00:04:59.760
+You can see in there there's a folder called input.
+你可以看到在那里有一个叫输入的文件夹。
+
+00:04:59.760 --> 00:05:04.080
+I'm going to open it and this is the default mapping input context.
+我将打开它，这是默认的映射输入上下文。
+
+00:05:04.080 --> 00:05:08.280
+And inside of the actions folder, these are all the input actions.
+而在行动文件夹里面，这些是所有的输入行动。
+
+00:05:08.280 --> 00:05:09.920
+We'll need to create a new one.
+我们需要创建一个新的。
+
+00:05:09.920 --> 00:05:14.320
+So right mouse button click and go to input and select input action.
+所以鼠标右键点击，进入输入，选择输入动作。
+
+00:05:14.320 --> 00:05:17.520
+I'm going to call this action ia_climb.
+我将把这个动作称为ia_climb。
+
+00:05:17.520 --> 00:05:19.520
+Double click to open this input action.
+双击来打开这个输入动作。
+
+00:05:19.520 --> 00:05:22.920
+For a single key event, we do want this value type to be bool.
+对于一个单键事件，我们确实希望这个值的类型是bool。
+
+00:05:22.920 --> 00:05:25.160
+So the default setting will work in here.
+所以默认设置在这里就可以了。
+
+00:05:25.160 --> 00:05:29.960
+Then I'm going to go back to this input folder, open this mapping context and click this drop
+然后我将回到这个输入文件夹，打开这个映射上下文，点击这个下拉菜单，显示所有现有的映射。
+
+00:05:29.960 --> 00:05:32.300
+down to show all the existing mappings.
+来显示所有现有的映射。
+
+00:05:32.300 --> 00:05:33.720
+Now we need to add a new one.
+现在我们需要添加一个新的。
+
+00:05:33.720 --> 00:05:39.380
+So we can click this add button to add a new one and fill in our ia_climb.
+所以我们可以点击这个添加按钮来添加一个新的，并填入我们的ia_climb。
+
+00:05:39.380 --> 00:05:41.320
+And we can set up the key binding in here.
+我们可以在这里设置密钥绑定。
+
+00:05:41.320 --> 00:05:43.960
+So I'm going to press this keyboard.
+所以我将按下这个键盘。
+
+00:05:43.960 --> 00:05:47.600
+Then I'm going to use F to trigger the climbing.
+然后我将使用F来触发攀登。
+
+00:05:47.600 --> 00:05:49.480
+Alright that's the key binding done.
+好了，这就完成了按键绑定。
+
+00:05:49.480 --> 00:05:51.480
+There's still one more thing that we need to do.
+还有一件事我们需要做。
+
+00:05:51.480 --> 00:05:55.280
+So go back to my third person folder inside of blueprints.
+所以请回到蓝图中的第三人称文件夹。
+
+00:05:55.280 --> 00:05:58.000
+Double click to open this third person character.
+双击来打开这个第三人称角色。
+
+00:05:58.000 --> 00:06:00.680
+Remember our input action is just a pointer.
+记住我们的输入动作只是一个指针。
+
+00:06:00.680 --> 00:06:05.400
+In order for it to work, we need to also assign values inside of the blueprint class.
+为了让它工作，我们还需要在蓝图类中赋值。
+
+00:06:05.400 --> 00:06:11.840
+So I'm going to open this for blueprint editor and I'm going to type in input to search.
+因此，我将打开这个蓝图编辑器，我将输入输入法来搜索。
+
+00:06:11.840 --> 00:06:14.840
+And you can see these are the existing input actions.
+你可以看到这些是现有的输入动作。
+
+00:06:14.840 --> 00:06:18.840
+Now for the climb action, I'm going to fill in our ia_climb.
+现在，对于爬升动作，我将填入我们的ia_climb。
+
+00:06:18.840 --> 00:06:19.840
+And that's it.
+就这样了。
+
+00:06:19.840 --> 00:06:23.360
+I'm going to click compile and go back to my level.
+我将点击编译并回到我的关卡。
+
+00:06:23.360 --> 00:06:28.760
+I'm going to click play in here and I'm going to press F. You can see a debug message has
+我将点击这里的播放，然后按F。
+
+00:06:28.760 --> 00:06:32.200
+been printed to the screen and it says climb action started.
+你可以看到一条调试信息被打印到屏幕上，上面写着攀登动作开始。
+
+00:06:32.200 --> 00:06:35.640
+Alright, our key binding is working.
+好了，我们的按键绑定工作完成了。
+
+00:06:35.640 --> 00:06:39.760
+Later when you try to implement this by yourself, remember you need to create and assign this
+以后当你尝试自己实现这个动作时，请记住你需要创建并指定这个
+
+00:06:39.760 --> 00:06:40.940
+input action.
+输入动作。
+
+00:06:40.940 --> 00:06:45.960
+So that includes creating a variable inside of the header file and assigning the actual
+因此，这包括在头文件中创建一个变量，并将实际的
+
+00:06:45.960 --> 00:06:48.080
+object in the blueprint class.
+对象在蓝图类中。
+
+00:06:48.080 --> 00:06:51.280
+And don't forget to set up the key binding in the mapping context.
+不要忘了在映射上下文中设置键的绑定。
+
+00:06:51.280 --> 00:06:54.760
+Alright it's time to set up your own input action and I'll see you in the next lecture.
+好了，现在是设置你自己的输入动作的时候了，我们在下一讲再见。
+
+00:06:55.440 --> 00:07:05.440
+[music]
+[音乐]

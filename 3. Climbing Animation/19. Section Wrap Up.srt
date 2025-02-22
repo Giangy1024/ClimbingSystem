@@ -1,0 +1,113 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.120
+Hey, welcome back. In this section, we've added so many features to our climbing system.
+嘿，欢迎回来。在这一节中，我们为我们的攀登系统增加了许多功能。
+
+00:00:05.120 --> 00:00:09.120
+And before we move on, there are a couple of issues that I'd like to fix. So first,
+而在我们继续前进之前，有几个问题是我想解决的。所以首先、
+
+00:00:09.120 --> 00:00:17.040
+I'm going to go back to my code. Then I'm going to scroll up to this toggle climbing.
+我要回到我的代码中去。然后，我要向上滚动到这个切换攀登。
+
+00:00:17.040 --> 00:00:23.280
+So I'm going to change the default value for this can climb down ledge. So instead of 300 units,
+所以我要改变这个可以爬下壁架的默认值。所以不要用300个单位、
+
+00:00:23.280 --> 00:00:29.120
+for the second line trace, I'm going to change it to 200 units. Then I'm going to use lab coding
+第二行追踪，我要把它改为200单位。然后我将使用实验室编码
+
+00:00:29.120 --> 00:00:39.200
+again. All right, lab coding succeeded. Now I'm going to climb up. And on a surface like this,
+再来一次。好了，实验室编码成功了。现在我要爬上去了。而在这样的一个表面上、
+
+00:00:39.200 --> 00:00:43.040
+at this moment, that second line trace does not have a hit, so I can climb down.
+此刻，第二条线迹没有被击中，所以我可以爬下去。
+
+00:00:43.040 --> 00:00:50.160
+And I think this works much better than the original way. And another thing that I like to
+而且我认为这比原来的方式好得多。还有一件事，我喜欢
+
+00:00:50.160 --> 00:00:55.680
+fix. So right now, I don't quite like the blending between the montage and this climb locomotion.
+修复。所以现在，我不太喜欢蒙太奇和这个爬升运动之间的融合。
+
+00:00:56.800 --> 00:01:00.960
+And to fix that, I'm going to double click to open this climb down ledge.
+为了解决这个问题，我将双击打开这个爬下的壁架。
+
+00:01:00.960 --> 00:01:08.400
+So I'm going to adjust this blend out time here. Currently, this blend time is 0.25 seconds.
+所以我要在这里调整这个混合时间。目前，这个混合时间是0.25秒。
+
+00:01:08.400 --> 00:01:13.520
+And by lowering down this number here, we'll also be playing more of this original information,
+通过降低这里的数字，我们也将播放更多的这个原始信息、
+
+00:01:13.520 --> 00:01:20.000
+and we can descend our character more. So I'm going to lower down this blend time to 0.24,
+我们可以让我们的角色下降得更多。所以我要把这个混合时间降低到0.24、
+
+00:01:20.000 --> 00:01:26.400
+and change this blend option from linear to cubic and hit save. Back to my level,
+并将这个混合选项从线性改为立方，然后点击保存。回到我的水平、
+
+00:01:26.400 --> 00:01:33.920
+I'm going to test again. So click play and go to this surface, climb up, then try to climb down.
+我将再次进行测试。所以点击播放，到这个表面，爬上去，然后试着爬下来。
+
+00:01:33.920 --> 00:01:41.840
+Yeah, I think this looks a bit better than the original one. I'm going to try again in here.
+是的，我认为这看起来比原来的要好一些。我打算在这里再试一次。
+
+00:01:41.840 --> 00:01:48.240
+A bit smoother, I think.
+我觉得更光滑一点。
+
+00:01:50.080 --> 00:01:54.560
+And that should be all of it. Now we have our climb locomotion ready. We can climb up,
+这应该就是全部了。现在我们已经准备好了我们的爬升运动。我们可以往上爬了、
+
+00:01:54.560 --> 00:02:03.040
+and we can climb down. When we have reached the floor, we can exit the climb state. Great,
+也可以往下爬。当我们到达地面时，我们可以退出爬升状态。好极了、
+
+00:02:03.040 --> 00:02:08.080
+everything is working.
+一切都正常了。
+
+00:02:08.960 --> 00:02:13.120
+And there's one last thing that I want to do. So I'm going to close my project
+还有最后一件事，我想做。所以我将关闭我的项目
+
+00:02:13.120 --> 00:02:20.320
+and go to this tick component. I'm going to come out this function. I don't need to see
+并转到这个打勾组件。我将出来这个函数。我不需要再看到
+
+00:02:20.320 --> 00:02:24.320
+those debug lines anymore. And I'm also going to go inside of it.
+那些调试线了。我也要进入它的内部。
+
+00:02:24.320 --> 00:02:30.320
+And I'm going to go to this button here. And I'm going to go to this button here.
+我要去这个按钮那里。我要去这个按钮那里。
+
+00:02:30.320 --> 00:02:34.320
+And I'm going to go to this button here. And I'm going to go to this button here.
+我要去这个按钮那里。我要去这个按钮这里。
+
+00:02:34.320 --> 00:02:42.960
+And I'm also going to go inside of it. And disable these debug lines. So they need to be true.
+我也要去它的内部。并禁用这些调试行。所以它们需要为真。
+
+00:02:42.960 --> 00:02:52.720
+And I'm going to compile. I have a successful compile. And in the next section,
+然后我就开始编译了。我有一个成功的编译。在下一节中
+
+00:02:52.720 --> 00:02:58.160
+we are going to look at how we can add in more interesting features. I'll see you in the next section.
+我们将看看如何加入更多有趣的功能。下一节见。

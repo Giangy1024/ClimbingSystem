@@ -1,0 +1,593 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.680
+Welcome!
+欢迎你
+
+00:00:06.680 --> 00:00:11.640
+In the last lecture, we successfully recreated this animation blueprint for our character.
+在上一节课中，我们成功地为我们的角色重新创建了这个动画蓝图。
+
+00:00:11.640 --> 00:00:16.600
+And now with everything ready, we can finally start to add in some climbing animations.
+现在一切准备就绪，我们终于可以开始添加一些攀爬的动画了。
+
+00:00:16.600 --> 00:00:19.680
+And we'll be getting animations from Miximal.
+我们将从Miximal获取动画。
+
+00:00:19.680 --> 00:00:22.700
+And this is the pipeline that we'll go through later.
+这就是我们稍后要经历的管道。
+
+00:00:22.700 --> 00:00:25.720
+So first, we'll need to download the Miximal converter.
+所以首先，我们需要下载Miximal转换器。
+
+00:00:25.720 --> 00:00:30.200
+Because the default bone hierarchy from the Miximal's character mesh is not compatible
+因为Miximal的角色网格中的默认骨骼层次结构与Unreal不兼容。
+
+00:00:30.200 --> 00:00:31.400
+with Unreal.
+与虚幻系统不兼容。
+
+00:00:31.400 --> 00:00:35.680
+Using the converter here can save us so much time and trouble for retargeting the animation
+在这里使用转换器可以为我们重新定位动画节省大量的时间和麻烦。
+
+00:00:35.680 --> 00:00:36.680
+that we get.
+我们得到的动画。
+
+00:00:36.680 --> 00:00:41.160
+Once we have the converter ready, we'll need to upload the skeleton you provide to Miximal
+一旦我们准备好转换器，我们就需要将您提供的骨架上传到Miximal
+
+00:00:41.160 --> 00:00:43.440
+in order to have a working conversion.
+以便进行有效的转换。
+
+00:00:43.440 --> 00:00:46.440
+After this step, we can start downloading some animation.
+这一步之后，我们可以开始下载一些动画。
+
+00:00:46.440 --> 00:00:50.560
+The animations that we're gonna get first are for the climb locomotion.
+我们首先要得到的动画是用于攀爬运动的。
+
+00:00:50.560 --> 00:00:53.720
+So it's important here that we take the option in place.
+所以在这里，我们采取原地不动的选项很重要。
+
+00:00:53.720 --> 00:00:59.040
+So we'll want to drive the movement of the animation by our code and not by the animation
+所以我们要通过我们的代码来驱动动画的运动，而不是通过动画
+
+00:00:59.040 --> 00:01:00.040
+itself.
+本身。
+
+00:01:00.040 --> 00:01:04.080
+There will be cases that we want the animation to take over and to drive the movement of
+在某些情况下，我们想让动画接管并驱动角色的运动。
+
+00:01:04.080 --> 00:01:05.080
+our character.
+我们的角色。
+
+00:01:05.080 --> 00:01:07.360
+We'll look at how we can handle that later.
+我们将在后面研究如何处理这个问题。
+
+00:01:07.360 --> 00:01:11.860
+Once we've downloaded all the animations we need, we can enter the conversion process.
+一旦我们下载了所有我们需要的动画，我们就可以进入转换过程。
+
+00:01:11.860 --> 00:01:14.760
+Then you'll be importing and adjusting the animations.
+然后你就可以导入和调整动画了。
+
+00:01:14.760 --> 00:01:18.920
+Since we're getting free animations here, pretty much every animation that we get needs
+因为我们在这里得到的是免费的动画，所以我们得到的每一个动画几乎都需要
+
+00:01:18.920 --> 00:01:21.640
+quite some adjusting before it can be used.
+都需要进行一些调整才能使用。
+
+00:01:21.640 --> 00:01:25.960
+Especially when we need to add room motion to the animations that we get.
+特别是当我们需要在我们得到的动画中添加房间运动时。
+
+00:01:25.960 --> 00:01:30.520
+So if you have access to some higher quality paid assets, it's gonna save you a lot of
+因此，如果你能得到一些质量较高的付费资产，这将为你节省大量的
+
+00:01:30.520 --> 00:01:31.520
+time.
+时间。
+
+00:01:31.520 --> 00:01:35.600
+But once you are familiar with this process, you can pretty much use any animation from
+但是，一旦你熟悉了这个过程，你几乎可以在你的游戏中使用任何来自
+
+00:01:35.600 --> 00:01:37.040
+Miximal in your game.
+Miximal的任何动画都可以在你的游戏中使用。
+
+00:01:37.040 --> 00:01:38.380
+Alright let's get started.
+好了，让我们开始吧。
+
+00:01:38.380 --> 00:01:40.980
+So first we'll need to download the Miximal converter.
+首先，我们需要下载Miximal转换器。
+
+00:01:40.980 --> 00:01:44.120
+You can find the link of this website in the resources drop down.
+你可以在资源下拉菜单中找到这个网站的链接。
+
+00:01:44.120 --> 00:01:47.320
+I've already done this so I'm not gonna download it again.
+我已经做了这个，所以我不会再下载它了。
+
+00:01:47.320 --> 00:01:53.080
+So make sure you have the converter ready, then you can go to miximal.com.
+所以请确保你准备好转换器，然后你可以去miximal.com。
+
+00:01:53.080 --> 00:01:56.600
+First thing that you need to do, you need to click this upload character.
+你需要做的第一件事是，你需要点击这个上传字符。
+
+00:01:56.600 --> 00:02:00.720
+And in here, we need to select a character file and drop it in here.
+在这里，我们需要选择一个角色文件，然后把它放到这里。
+
+00:02:00.720 --> 00:02:04.000
+So this is where I placed my Miximal converter.
+所以这就是我放置Miximal转换器的地方。
+
+00:02:04.000 --> 00:02:07.280
+And to select the character mesh, you need to go inside of this mannequins.
+为了选择角色网格，你需要进入这个人体模型的内部。
+
+00:02:07.280 --> 00:02:13.200
+Since we're using Manny the whole time, we need to go into this Manny Unreal Engine 5.
+因为我们一直在使用Manny，所以我们需要进入这个Manny Unreal Engine 5。
+
+00:02:13.200 --> 00:02:15.840
+And I'm gonna use this SKM Manny Simple.
+而我要使用这个SKM Manny Simple。
+
+00:02:15.840 --> 00:02:18.720
+So we can drag it and place it in here.
+所以我们可以拖动它并把它放在这里。
+
+00:02:18.720 --> 00:02:21.720
+Alright once the uploading is completed, this is what you should see.
+好了，一旦上传完成，这就是你应该看到的。
+
+00:02:21.720 --> 00:02:23.320
+Just click next.
+只需点击下一步。
+
+00:02:23.320 --> 00:02:24.880
+And this is what you should see.
+这就是你应该看到的。
+
+00:02:24.880 --> 00:02:27.340
+And we can start downloading animations we need.
+我们可以开始下载我们需要的动画。
+
+00:02:27.340 --> 00:02:29.480
+So first I'm gonna search Climb.
+所以我首先要搜索 "攀登"。
+
+00:02:29.480 --> 00:02:32.280
+And these are all the Climb animations Miximal has.
+这些是Miximal所有的攀登动画。
+
+00:02:32.280 --> 00:02:33.400
+I'm gonna scroll down.
+我将向下滚动。
+
+00:02:33.400 --> 00:02:36.740
+So the first one that I'm gonna get is this climbing up wall.
+所以我将得到的第一个动画是这个爬墙。
+
+00:02:36.740 --> 00:02:40.360
+So click it.
+所以点击它。
+
+00:02:40.360 --> 00:02:42.240
+And you can see this is the animation.
+你可以看到这就是动画。
+
+00:02:42.240 --> 00:02:45.400
+So make sure you take this in place.
+所以请确保你把它放在原位。
+
+00:02:45.400 --> 00:02:47.020
+And click download.
+然后点击下载。
+
+00:02:47.020 --> 00:02:52.080
+One important setting here is for this skin, make sure you select without skin.
+这里有一个重要的设置，对于这个皮肤，确保你选择没有皮肤。
+
+00:02:52.080 --> 00:02:55.920
+Otherwise you won't be able to have a working animation later when you want to import it
+否则，当你想把它导入到虚幻中时，你将不能有一个有效的动画。
+
+00:02:55.920 --> 00:02:56.920
+to Unreal.
+到虚幻中。
+
+00:02:56.920 --> 00:02:58.880
+Alright I'm gonna click download.
+好的，我将点击下载。
+
+00:02:58.880 --> 00:03:02.400
+So this will be the animation for moving our character up.
+所以这将是我们的角色向上移动的动画。
+
+00:03:02.400 --> 00:03:06.280
+And I'm gonna also download this climbing down wall.
+我还要下载这个爬下墙的动画。
+
+00:03:06.280 --> 00:03:08.720
+And also take this in place option.
+还有这个就地取材的选项。
+
+00:03:08.720 --> 00:03:10.040
+And go to download.
+然后转到下载。
+
+00:03:10.040 --> 00:03:11.600
+Every setting here checks out.
+这里的每一个设置都会被选中。
+
+00:03:11.600 --> 00:03:12.600
+And click download.
+然后点击下载。
+
+00:03:12.600 --> 00:03:14.720
+Alright, that's up and down ready.
+好了，这就是上下的准备。
+
+00:03:14.720 --> 00:03:18.720
+And we still need animations for left, right, and idle.
+我们仍然需要左、右和空闲的动画。
+
+00:03:18.720 --> 00:03:21.320
+So I'm gonna change a new word for searching.
+所以我要换一个新词来搜索。
+
+00:03:21.320 --> 00:03:24.220
+So instead of climb I'm gonna type in hang.
+所以我要输入hang，而不是climb。
+
+00:03:24.220 --> 00:03:25.220
+And press enter.
+然后按回车键。
+
+00:03:25.220 --> 00:03:26.620
+And this press hang shimmy.
+然后按hang shimmy。
+
+00:03:26.620 --> 00:03:27.620
+This is what we need.
+这就是我们需要的。
+
+00:03:27.620 --> 00:03:30.960
+So I'm gonna click this one.
+所以我将点击这个。
+
+00:03:30.960 --> 00:03:34.280
+And take this in place.
+然后把这个放在原位。
+
+00:03:34.280 --> 00:03:35.840
+And click download.
+并点击下载。
+
+00:03:35.840 --> 00:03:38.000
+And click this button.
+然后点击这个按钮。
+
+00:03:38.000 --> 00:03:40.600
+So this is for moving character to the left.
+所以这是为了把人物移到左边。
+
+00:03:40.600 --> 00:03:43.380
+And this one.
+还有这个。
+
+00:03:43.380 --> 00:03:46.260
+We can use this to move our character to the right.
+我们可以用这个将我们的角色移到右边。
+
+00:03:46.260 --> 00:03:47.880
+So take this in place.
+所以把这个拿在原地。
+
+00:03:47.880 --> 00:03:51.480
+Download it.
+下载它。
+
+00:03:51.480 --> 00:03:54.320
+Alright that's up, down, left, and right ready.
+好了，这就是上、下、左、右的准备。
+
+00:03:54.320 --> 00:03:56.120
+And there's this hanging idle.
+还有这个悬空的空闲。
+
+00:03:56.120 --> 00:03:58.520
+So this can be our idle animation.
+所以这可以作为我们的闲置动画。
+
+00:03:58.520 --> 00:04:03.080
+So I'm gonna download it.
+所以我将下载它。
+
+00:04:03.080 --> 00:04:06.880
+Alright that's all the animations that we need for locomotion.
+好了，这就是我们需要的所有运动的动画。
+
+00:04:06.880 --> 00:04:09.860
+And I'm also gonna get some transitioning animations.
+我还将得到一些过渡动画。
+
+00:04:09.860 --> 00:04:13.880
+So this one, brace hang drop.
+所以这一个，支撑悬垂。
+
+00:04:13.880 --> 00:04:16.720
+This can be used when we want to exit the climb state.
+这可以在我们想退出爬升状态时使用。
+
+00:04:16.720 --> 00:04:21.880
+Alright I'm gonna click download.
+好的，我将点击下载。
+
+00:04:21.880 --> 00:04:25.160
+And I'm gonna scroll down.
+我将向下滚动。
+
+00:04:25.160 --> 00:04:27.620
+So this idle to brace hang.
+所以这个空闲的支架悬挂。
+
+00:04:27.620 --> 00:04:30.680
+This can be used when we want to enter the climb state.
+这可以在我们想进入爬升状态时使用。
+
+00:04:30.680 --> 00:04:35.000
+So I'm gonna get this one and click download.
+所以我将得到这个动画并点击下载。
+
+00:04:35.000 --> 00:04:37.360
+Alright that's all the animations we need for now.
+好了，这就是我们现在需要的所有的动画。
+
+00:04:37.360 --> 00:04:40.440
+So these are the animations that I got from MixiMail.
+所以这些是我从MixiMail得到的动画。
+
+00:04:40.440 --> 00:04:44.880
+If you'd like to catch up with me, you can pause the video now and download these animations
+如果你想跟上我的节奏，你可以暂停视频并下载这些动画
+
+00:04:44.880 --> 00:04:48.840
+yourself.
+你自己。
+
+00:04:48.840 --> 00:04:49.840
+Welcome back.
+欢迎回来。
+
+00:04:49.840 --> 00:04:53.800
+Hopefully at this point you have all the animations ready and now we can start the
+希望在这一点上你已经准备好了所有的动画，现在我们可以开始
+
+00:04:53.800 --> 00:04:55.520
+conversion process.
+转换过程。
+
+00:04:55.520 --> 00:04:58.720
+So these are the animations that I just downloaded.
+所以这些是我刚刚下载的动画。
+
+00:04:58.720 --> 00:05:02.840
+So first I'm gonna select all of them and Ctrl+C.
+所以我首先要选择所有的动画，然后按Ctrl+C。
+
+00:05:02.840 --> 00:05:08.360
+Then go inside of this MixiMail converter, inside of this incoming FBX.
+然后进入MixiMail转换器，在这个传入的FBX里面。
+
+00:05:08.360 --> 00:05:14.440
+Double click to open it, then Ctrl+V to place this raw animation inside of it.
+双击打开它，然后Ctrl+V把这个原始动画放在里面。
+
+00:05:14.440 --> 00:05:18.520
+Then I'm gonna go back to this MixiMail converter, double click to open it.
+然后我再回到MixiMail转换器，双击打开它。
+
+00:05:18.520 --> 00:05:21.360
+So left click to continue.
+所以左键点击继续。
+
+00:05:21.360 --> 00:05:23.560
+And enter this conversion process.
+并进入这个转换过程。
+
+00:05:23.560 --> 00:05:25.380
+Scroll down.
+向下滚动。
+
+00:05:25.380 --> 00:05:29.840
+So these are all the animations inside of that incoming FBX folder.
+所以这些都是进入FBX文件夹的所有动画。
+
+00:05:29.840 --> 00:05:32.560
+And you can change the suffix here if you like.
+如果你喜欢，你可以在这里改变后缀。
+
+00:05:32.560 --> 00:05:37.680
+So I'm gonna click here to convert the animations.
+所以我将点击这里来转换这些动画。
+
+00:05:37.680 --> 00:05:38.720
+Alright just like that.
+好的，就这样。
+
+00:05:38.720 --> 00:05:43.360
+Now we can open the folder with converting animations and these are the animations that
+现在我们可以打开转换动画的文件夹，这些是我们可以导入到虚幻中的动画。
+
+00:05:43.360 --> 00:05:45.060
+we can import to Unreal.
+我们可以导入到虚幻中。
+
+00:05:45.060 --> 00:05:49.160
+So go back inside of my project, I'm gonna right mouse button click to create a new folder.
+所以回到我的项目里面，我将点击鼠标右键来创建一个新的文件夹。
+
+00:05:49.160 --> 00:05:53.880
+I'm gonna call this one animation and double click to open it, create another folder.
+我要把这个叫做动画，然后双击打开它，创建另一个文件夹。
+
+00:05:53.880 --> 00:05:55.360
+I'm gonna name it raw.
+我将把它命名为raw。
+
+00:05:55.360 --> 00:05:58.320
+So pretty much every animation needs some adjusting.
+所以几乎每一个动画都需要进行一些调整。
+
+00:05:58.320 --> 00:06:02.000
+I'm gonna place all of these raw animations inside of this folder.
+我将把所有这些原始动画放在这个文件夹里。
+
+00:06:02.000 --> 00:06:03.960
+So double click to open it.
+所以双击来打开它。
+
+00:06:03.960 --> 00:06:06.020
+And I'm gonna minimize this window.
+我将最小化这个窗口。
+
+00:06:06.020 --> 00:06:12.520
+Then I'm gonna select all of these converted animations and drag them to this folder.
+然后我要选择所有这些转换后的动画，把它们拖到这个文件夹里。
+
+00:06:12.520 --> 00:06:15.600
+So first thing we'll need to specify is the skeleton in here.
+所以我们首先需要指定的是这里的骨架。
+
+00:06:15.600 --> 00:06:20.160
+So select this dropdown and select this SK_MANECON.
+所以选择这个下拉菜单并选择这个SK_MANECON。
+
+00:06:20.160 --> 00:06:25.000
+And inside of this MixiMail converter, if you keep scrolling down, you can see these
+在这个MixiMail转换器中，如果你继续向下滚动，你可以看到这些
+
+00:06:25.000 --> 00:06:28.640
+are the configurations for importing animations.
+是导入动画的配置。
+
+00:06:28.640 --> 00:06:31.360
+So you can use this as a reference if you need.
+所以，如果你需要，你可以把它作为一个参考。
+
+00:06:31.360 --> 00:06:37.440
+So basically we'll need to click this advanced dropdown and we need to take this use default
+因此，基本上我们需要点击这个高级下拉菜单，我们需要把使用默认的
+
+00:06:37.440 --> 00:06:41.400
+sample rate and untick this do not import curves.
+采样率，并取消勾选不导入曲线的选项。
+
+00:06:41.400 --> 00:06:42.400
+Then we should be good to go.
+然后我们就可以开始了。
+
+00:06:42.400 --> 00:06:45.120
+Alright, I'm gonna click this import all.
+好的，我将点击这个导入所有。
+
+00:06:45.120 --> 00:06:46.120
+And there you go.
+然后你就可以了。
+
+00:06:46.120 --> 00:06:47.560
+We have our animations.
+我们有了我们的动画。
+
+00:06:47.560 --> 00:06:49.840
+So double click to open this one.
+所以双击来打开这个。
+
+00:06:49.840 --> 00:06:53.720
+So this is our transition animation.
+所以这是我们的过渡动画。
+
+00:06:53.720 --> 00:06:56.640
+And this is the animation that we can use to climb to the left.
+这是我们可以用来向左爬的动画。
+
+00:06:56.640 --> 00:07:00.240
+I'm gonna change the name of it.
+我将改变它的名字。
+
+00:07:00.240 --> 00:07:05.840
+So this shimmy_1, I'm gonna change it to climbed left.
+所以这个shimmy_1，我要把它改成向左爬行。
+
+00:07:05.840 --> 00:07:09.200
+And this one, I'm gonna change it to climbed right.
+而这个，我要把它改成向右爬。
+
+00:07:09.200 --> 00:07:14.000
+And we have this climbing down and this climbing up.
+我们有这个向下攀登和这个向上攀登。
+
+00:07:14.000 --> 00:07:18.000
+I'm sure you can notice between these two animations, there's quite some offset.
+我相信你可以注意到在这两个动画之间，有一些偏移。
+
+00:07:18.000 --> 00:07:21.200
+So later we'll need to adjust them before they can be used.
+因此，在使用它们之前，我们需要对它们进行调整。
+
+00:07:21.200 --> 00:07:26.680
+And we'll have this hanging idle and idle to brace the hang.
+而我们将有这个悬挂的空闲和空闲来支撑这个悬挂。
+
+00:07:26.680 --> 00:07:29.480
+Alright, everything is working properly.
+好了，一切都工作正常了。
+
+00:07:29.480 --> 00:07:33.640
+And in the next lecture, we'll look at how we can actually use these animations.
+在下一讲中，我们将看看我们如何能够实际使用这些动画。
+
+00:07:33.640 --> 00:07:38.720
+So these are the things that you need to be careful with when using animations from Mixmo.
+因此，这些是你在使用Mixmo的动画时需要注意的事情。
+
+00:07:38.720 --> 00:07:41.760
+Feel free to refer back to the video if you need help.
+如果你需要帮助，可以随时回看视频。
+
+00:07:41.760 --> 00:07:43.120
+And I'll see you in the next lecture.
+我们在下一个讲座中再见。
+
+00:07:43.560 --> 00:07:53.560
+[music]
+[音乐]

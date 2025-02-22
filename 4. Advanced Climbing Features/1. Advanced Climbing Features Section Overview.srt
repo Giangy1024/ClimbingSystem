@@ -1,0 +1,33 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.000
+In this section, we are going to look at how we can use control rig to help us to fix the placement of our hands and feet when we are climbing.
+在本节中，我们将研究如何使用控制装置来帮助我们在攀爬时固定手和脚的位置。
+
+00:00:08.000 --> 00:00:17.000
+Then we are looking to how to use motion warping to help us achieve vaulting and hopping.
+然后，我们将研究如何使用运动扭曲来帮助我们实现跳高和跳远。
+
+00:00:22.000 --> 00:00:32.000
+We will begin with control rig, then we are going to create a handy function called climb make a trace for us to fix the placement of our hands and feet.
+我们将从控制设备开始，然后我们将创建一个方便的函数，叫做 "攀登"，为我们固定手和脚的位置提供跟踪。
+
+00:00:32.000 --> 00:00:49.000
+After we have a working control rig, we are going to dive into motion warping and create more algorithms to help us to check which surface is vaultable and dynamically set the target point during runtime through motion warping.
+在我们有了一个有效的控制装置之后，我们将深入研究运动扭曲，并创建更多的算法来帮助我们检查哪个表面是可跳的，并在运行期间通过运动扭曲动态地设置目标点。
+
+00:00:49.000 --> 00:01:06.000
+After vaulting, we are going to dive deep into enhanced input system and look at how we can use it to create a two key action that can only be triggered during climbing for our hopping.
+拱顶之后，我们将深入到增强的输入系统，看看我们如何利用它来创建一个只能在攀爬过程中触发的双键动作，以实现我们的跳跃。
+
+00:01:06.000 --> 00:01:21.000
+Once we have successfully filtered out the hopping direction through player's input, we are going to go through the mix amount animation pipeline again and add in hopping up and hopping down to our climbing system.
+一旦我们成功地通过玩家的输入过滤出跳跃的方向，我们将再次通过混合量动画管道，并在我们的攀爬系统中加入向上跳跃和向下跳跃。
+
+00:01:21.000 --> 00:01:27.000
+This is going to be an interesting section. When you are ready, let's dive right in.
+这将是一个有趣的部分。当你准备好了，让我们直接进入。
+
+00:01:28.000 --> 00:01:31.000
+[no audio]
+[无音频]

@@ -1,0 +1,945 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.580
+(upbeat music)
+(欢快的音乐)
+
+00:00:02.580 --> 00:00:07.080
+Welcome, in the last lecture,
+欢迎大家，在上一次的讲座中、
+
+00:00:07.080 --> 00:00:10.400
+we successfully set up this physics climb function.
+我们成功地设置了这个物理学爬升功能。
+
+00:00:10.400 --> 00:00:12.400
+One important thing here to mention is,
+这里要提到的一件重要事情是、
+
+00:00:12.400 --> 00:00:14.120
+this function here, same as take,
+这个函数在这里，和拿的一样、
+
+00:00:14.120 --> 00:00:16.160
+will be run every frame.
+将在每一帧运行。
+
+00:00:16.160 --> 00:00:18.560
+So once we are inside of the climb state,
+所以一旦我们进入了爬升状态、
+
+00:00:18.560 --> 00:00:21.600
+this physics climb here will be constantly run.
+这个物理爬升函数就会持续运行。
+
+00:00:21.600 --> 00:00:23.680
+We can use this function input delta time
+我们可以利用这个函数输入的delta时间
+
+00:00:23.680 --> 00:00:26.480
+to help us to achieve many different things we need.
+来帮助我们实现许多我们需要的不同事情。
+
+00:00:26.480 --> 00:00:28.780
+So in this lecture, we'll look at how we can process
+在这个讲座中，我们将看看我们如何能够处理
+
+00:00:28.780 --> 00:00:30.880
+all the climbable surfaces info.
+所有的可爬升表面信息。
+
+00:00:30.880 --> 00:00:33.480
+And let's try to narrow it down in here.
+而在这里，让我们试着缩小它的范围。
+
+00:00:33.480 --> 00:00:36.100
+What exactly do we need to process?
+我们到底需要处理什么？
+
+00:00:36.100 --> 00:00:38.800
+Well, there are two pieces of information that we need.
+嗯，我们需要两部分信息。
+
+00:00:38.800 --> 00:00:42.760
+So first, we'll need the current climbable surface location.
+首先，我们需要当前的可爬升表面的位置。
+
+00:00:42.760 --> 00:00:44.160
+And the second one,
+第二件事、
+
+00:00:44.160 --> 00:00:47.120
+we'll need the current climbable surface normal.
+我们需要当前可爬升表面的法线。
+
+00:00:47.120 --> 00:00:49.480
+These two vectors here are essential for us
+这两个向量对于我们
+
+00:00:49.480 --> 00:00:51.280
+to do the calculation we need.
+来进行我们需要的计算。
+
+00:00:51.280 --> 00:00:54.320
+So we'll first look at this climbable surface location.
+所以我们先看一下这个可爬升面的位置。
+
+00:00:54.320 --> 00:00:56.280
+And for the math that we need to do later,
+而对于我们后面需要做的数学运算、
+
+00:00:56.280 --> 00:00:58.480
+is mainly about vector subtraction.
+主要是关于向量的减法。
+
+00:00:58.480 --> 00:01:01.240
+And just to provide you with a simple example,
+只是为了给你提供一个简单的例子、
+
+00:01:01.240 --> 00:01:04.260
+so you can see in here, I have two 2D points.
+所以你可以看到这里，我有两个2D点。
+
+00:01:04.260 --> 00:01:08.600
+And the first one, let's say it has a value of five in the X
+第一个点，假设它在X轴上的数值是5，在Y轴上的数值是3。
+
+00:01:08.600 --> 00:01:12.800
+and a value of three in the Y, I'm gonna call it V1.
+和一个Y值为3的点，我把它叫做V1。
+
+00:01:12.800 --> 00:01:16.440
+And the second one, let's say it has a value of three
+第二个点，假设它的数值为3
+
+00:01:16.440 --> 00:01:19.840
+in the X and one for the Y, I'm gonna call it V2.
+X值为3，Y值为1，我就叫它V2。
+
+00:01:19.840 --> 00:01:22.440
+So here we are using two simple vectors
+所以在这里我们用两个简单的向量
+
+00:01:22.440 --> 00:01:24.280
+to represent their locations.
+来表示它们的位置。
+
+00:01:24.280 --> 00:01:28.320
+And now if I use V1 to subtract V2,
+现在如果我用V1减去V2、
+
+00:01:28.320 --> 00:01:30.200
+what's the result that I'm gonna get?
+我将得到什么结果？
+
+00:01:30.200 --> 00:01:34.240
+So let's using five to subtract three
+所以我们用5减去3
+
+00:01:34.240 --> 00:01:36.340
+and using three to subtract one.
+和用三减一。
+
+00:01:36.340 --> 00:01:41.240
+And the result will be two for the X and two for the Y.
+结果将是X为2，Y为2。
+
+00:01:41.240 --> 00:01:44.200
+And this is the new vector that we're gonna get.
+这就是我们要得到的新向量。
+
+00:01:44.200 --> 00:01:46.360
+And if I move this vector to here
+如果我把这个向量移到这里
+
+00:01:46.360 --> 00:01:49.280
+and use these three vectors to form a triangle,
+并用这三个向量组成一个三角形、
+
+00:01:49.280 --> 00:01:51.180
+this is my final result.
+这就是我的最终结果。
+
+00:01:51.180 --> 00:01:52.920
+And that's the math we need.
+这就是我们需要的数学知识。
+
+00:01:52.920 --> 00:01:56.440
+So by using one vector to subtract the other,
+所以通过用一个向量减去另一个向量，
+
+00:01:56.440 --> 00:01:59.920
+we can get a vector pointing from the second one
+我们可以得到一个矢量，从第二个矢量指向第一个矢量
+
+00:01:59.920 --> 00:02:01.240
+to the first one.
+到第一个。
+
+00:02:01.240 --> 00:02:03.920
+So now this position here, this is our character
+所以现在这个位置，是我们的角色
+
+00:02:03.920 --> 00:02:05.180
+and this position here,
+和这个位置、
+
+00:02:05.180 --> 00:02:07.560
+this is our climbable surface location.
+这是我们的可攀爬表面的位置。
+
+00:02:07.560 --> 00:02:09.380
+But doing a simple subtraction here,
+但在这里做一个简单的减法、
+
+00:02:09.380 --> 00:02:12.200
+we can get a vector pointing from character
+我们可以得到一个矢量，指向从角色
+
+00:02:12.200 --> 00:02:13.880
+to the climbable surface.
+到可爬升表面。
+
+00:02:13.880 --> 00:02:17.280
+And we can perform all sorts of calculation we need in here.
+我们可以在这里进行各种我们需要的计算。
+
+00:02:17.280 --> 00:02:19.640
+And just to examine what we've just learned,
+为了检验我们刚刚学到的东西、
+
+00:02:19.640 --> 00:02:21.500
+I have a challenge for you.
+我有一个挑战给你。
+
+00:02:21.500 --> 00:02:23.840
+So here I have the same vectors
+这里我有同样的向量
+
+00:02:23.840 --> 00:02:27.640
+and this time I'm gonna use V2 to subtract V1,
+这次我要用V2来减去V1、
+
+00:02:27.640 --> 00:02:29.920
+what is the new vector that I'm gonna get.
+我将得到的新向量是什么。
+
+00:02:29.920 --> 00:02:33.520
+Pause the video now and see if you can solve this by yourself.
+现在暂停视频，看看你是否能自己解决这个问题。
+
+00:02:33.520 --> 00:02:38.560
+Welcome back.
+欢迎回来。
+
+00:02:38.560 --> 00:02:41.920
+So by using the V2 to subtract V1,
+所以通过使用V2减去V1、
+
+00:02:41.920 --> 00:02:43.960
+we'll be using three to subtract five,
+我们将用3减去5、
+
+00:02:43.960 --> 00:02:45.320
+we'll get negative two.
+我们会得到负2。
+
+00:02:45.320 --> 00:02:47.560
+And use one to subtract three,
+再用1减去3、
+
+00:02:47.560 --> 00:02:49.480
+we'll get another negative two.
+我们会得到另一个负2。
+
+00:02:49.480 --> 00:02:52.760
+So this is our result and this is our new vector.
+所以这是我们的结果，这是我们的新矢量。
+
+00:02:52.760 --> 00:02:55.440
+And if I move this vector to this spot
+如果我把这个向量移到这个地方
+
+00:02:55.440 --> 00:02:59.140
+and use these three vectors to form another triangle,
+并用这三个向量组成另一个三角形、
+
+00:02:59.140 --> 00:03:01.280
+this is the result that I'm gonna get.
+这就是我将得到的结果。
+
+00:03:01.280 --> 00:03:03.200
+You can see comparing to the last vector,
+你可以看到，与上一个向量相比，这两个点之间的距离仍然很小、
+
+00:03:03.200 --> 00:03:06.160
+the distance between these two points are still the same,
+这两点之间的距离仍然是一样的、
+
+00:03:06.160 --> 00:03:08.780
+but the vector here is the exact opposite.
+但这里的矢量却完全相反。
+
+00:03:08.780 --> 00:03:12.480
+So we are getting a vector pointing from V1 to V2.
+所以我们得到了一个从V1指向V2的向量。
+
+00:03:12.480 --> 00:03:14.600
+And that's another important math calculation
+这是另一个重要的数学计算
+
+00:03:14.600 --> 00:03:15.660
+that we'll do later.
+我们稍后会做。
+
+00:03:15.660 --> 00:03:18.840
+So if we want to inverse the direction of a vector,
+所以，如果我们想反转一个矢量的方向、
+
+00:03:18.840 --> 00:03:21.640
+we can simply multiply it with an active one,
+我们可以简单地将其与一个活动的方向相乘、
+
+00:03:21.640 --> 00:03:23.000
+keep that in mind.
+牢记这一点。
+
+00:03:23.000 --> 00:03:25.000
+All right, now that you know what we need to do
+好了，现在你知道我们需要做什么了
+
+00:03:25.000 --> 00:03:27.200
+with this clampable surface location,
+要做的事情、
+
+00:03:27.200 --> 00:03:28.320
+let's look at what we can do
+让我们来看看我们能用这个可夹持表面的法线做什么
+
+00:03:28.320 --> 00:03:30.160
+with this clampable surface normal.
+我们来看看我们可以用这个可夹持表面的法线做什么。
+
+00:03:30.160 --> 00:03:32.040
+And first we'll need to understand
+首先，我们需要了解
+
+00:03:32.040 --> 00:03:33.680
+what is a surface normal.
+什么是曲面法线。
+
+00:03:33.680 --> 00:03:35.880
+So when dealing with surface normals,
+所以在处理表面法线的时候
+
+00:03:35.880 --> 00:03:38.720
+we're mostly gonna be dealing with face normal
+我们主要是要处理面法线
+
+00:03:38.720 --> 00:03:40.320
+and vertex normal.
+和顶点法线。
+
+00:03:40.320 --> 00:03:42.320
+So normals, they are univectors,
+所以法线，它们是单向量、
+
+00:03:42.320 --> 00:03:44.600
+they only have a length of one.
+它们的长度只有一个。
+
+00:03:44.600 --> 00:03:46.520
+The valuable information you can provide
+你可以提供的有价值的信息
+
+00:03:46.520 --> 00:03:48.800
+is the direction information.
+是方向信息。
+
+00:03:48.800 --> 00:03:50.720
+You can see for the face normal here,
+你可以在这里看到面部法线、
+
+00:03:50.720 --> 00:03:53.920
+it's simply just a line pointing straight out from the face.
+它只是一条从脸部直接指向外面的线。
+
+00:03:53.920 --> 00:03:57.060
+And it can tell us which direction this face is facing.
+它可以告诉我们这个脸是朝哪个方向的。
+
+00:03:57.060 --> 00:03:59.800
+And same thing goes for the vertex normal in here.
+这里的顶点法线也是如此。
+
+00:03:59.800 --> 00:04:03.000
+It can tell us which direction this vertices is facing.
+它可以告诉我们这个顶点朝向哪个方向。
+
+00:04:03.000 --> 00:04:06.000
+And that's exactly what we need to do our calculation.
+而这正是我们需要做的计算。
+
+00:04:06.000 --> 00:04:09.200
+All right, that's the theory part, that's star coding.
+好了，这就是理论部分，这就是星形编码。
+
+00:04:09.200 --> 00:04:10.360
+Go back to my Visual Studio,
+回到我的Visual Studio、
+
+00:04:10.360 --> 00:04:11.960
+I'm gonna go to the header file.
+我将转到头文件。
+
+00:04:11.960 --> 00:04:14.360
+And inside of this ClampCore variables,
+在这个ClampCore变量里面、
+
+00:04:14.360 --> 00:04:16.780
+I'm gonna create two new variables.
+我将创建两个新的变量。
+
+00:04:16.780 --> 00:04:19.580
+So the first one is gonna be an S vector.
+因此，第一个将是一个S向量。
+
+00:04:19.580 --> 00:04:23.680
+I'm gonna call it currentClimbableSurfaceLocation.
+我将把它称为currentClimbableSurfaceLocation。
+
+00:04:23.680 --> 00:04:25.140
+And the second vector,
+而第二个矢量、
+
+00:04:25.140 --> 00:04:28.840
+I'm gonna call it currentClimbableSurfaceNormal.
+我将把它称为currentClimbableSurfaceNormal。
+
+00:04:28.840 --> 00:04:31.200
+And if you recall, we are using a capsule trace
+如果你还记得，我们正在使用一个胶囊轨迹
+
+00:04:31.200 --> 00:04:34.380
+to capture all of those different surfaces in front of us.
+来捕捉我们面前的所有这些不同的表面。
+
+00:04:34.380 --> 00:04:37.920
+So very likely that we'll have multiple hit locations
+因此，我们很可能会有多个撞击位置
+
+00:04:37.920 --> 00:04:40.160
+and multiple surface normals.
+和多个表面法线。
+
+00:04:40.160 --> 00:04:42.720
+And we'll need to find a way to combine them as a whole.
+而我们需要找到一种方法将它们作为一个整体来组合。
+
+00:04:42.720 --> 00:04:45.280
+So I'm gonna expand this ClampCore.
+所以我将扩展这个ClampCore。
+
+00:04:45.280 --> 00:04:47.200
+And under this physics clamp,
+在这个物理钳子下面
+
+00:04:47.200 --> 00:04:49.000
+I'm gonna create another function.
+我将创建另一个函数。
+
+00:04:49.000 --> 00:04:51.000
+So I'm gonna call this function
+所以我将调用这个函数
+
+00:04:51.000 --> 00:04:55.760
+processClimbableSurfaceInfo.
+processClimbableSurfaceInfo。
+
+00:04:55.760 --> 00:04:58.320
+And I'm gonna create a function definition.
+然后我要创建一个函数定义。
+
+00:04:58.320 --> 00:05:01.900
+I'm gonna place this function under this physics clamp.
+我将把这个函数放在这个物理夹子下面。
+
+00:05:01.900 --> 00:05:06.460
+So place it in here.
+所以把它放在这里。
+
+00:05:06.460 --> 00:05:08.600
+And first thing I'm gonna call this function.
+我首先要调用这个函数。
+
+00:05:08.600 --> 00:05:11.880
+So scroll up and set a physics clamp.
+所以向上滚动并设置一个物理钳。
+
+00:05:11.880 --> 00:05:13.880
+So first I'm gonna call the function
+所以我首先要调用这个函数
+
+00:05:13.880 --> 00:05:16.520
+choiceClimbableSurfaces.
+choiceClimbableSurfaces。
+
+00:05:16.520 --> 00:05:19.800
+Since this physics clamp will be run every frame,
+因为这个物理钳制将在每一帧运行、
+
+00:05:19.800 --> 00:05:21.920
+once we are inside of the clamp state,
+一旦我们进入了钳制状态、
+
+00:05:21.920 --> 00:05:23.640
+we'll be using this function here
+我们将在这里使用这个函数
+
+00:05:23.640 --> 00:05:27.120
+to constantly fill in the useful information we need.
+来不断填入我们需要的有用信息。
+
+00:05:27.120 --> 00:05:30.620
+And in case you forget, inside of this function,
+为了防止你忘记，在这个函数里面、
+
+00:05:30.620 --> 00:05:32.200
+we're doing the capsule trace
+我们正在做胶囊追踪
+
+00:05:32.200 --> 00:05:35.440
+and we are assigning the hit results to this array.
+并将命中结果分配给这个数组。
+
+00:05:35.440 --> 00:05:37.280
+All right, I'm gonna scroll up.
+好了，我要向上滚动。
+
+00:05:37.280 --> 00:05:38.880
+And below this function,
+在这个函数下面、
+
+00:05:38.880 --> 00:05:42.160
+I'm gonna call the function that we just created.
+我将会调用我们刚刚创建的那个函数。
+
+00:05:42.160 --> 00:05:45.520
+So it'll be this processClimbableSurfaceInfo.
+所以它将是这个processClimbableSurfaceInfo。
+
+00:05:45.520 --> 00:05:47.880
+So place it in here.
+所以把它放在这里。
+
+00:05:47.880 --> 00:05:50.800
+All right, let's look at how we shall implement this function.
+好的，让我们看看我们应该如何实现这个函数。
+
+00:05:50.800 --> 00:05:53.000
+So the first thing that I want to do,
+所以我想做的第一件事是、
+
+00:05:53.000 --> 00:05:55.000
+I'm gonna use the member variable
+我将使用成员变量
+
+00:05:55.000 --> 00:05:57.240
+currentClimbableSurfaceLocation.
+currentClimbableSurfaceLocation。
+
+00:05:57.240 --> 00:06:01.700
+And I'm gonna set it to a zero vector.
+我将把它设置为一个零矢量。
+
+00:06:01.700 --> 00:06:03.680
+And I'm gonna be doing the same thing
+我将对currentClimbableSurfaceNormal做同样的事情。
+
+00:06:03.680 --> 00:06:07.200
+to the currentClimbableSurfaceNormal.
+对currentClimbableSurfaceNormal做同样的事情。
+
+00:06:07.200 --> 00:06:12.400
+And copy this, paste it in here.
+然后复制这个，把它粘贴到这里。
+
+00:06:12.400 --> 00:06:14.520
+And the next thing that I'm gonna check.
+接下来我要检查的是。
+
+00:06:14.520 --> 00:06:18.760
+So if this ClimbableSurface is trace the results.
+所以如果这个ClimbableSurface是追踪结果。
+
+00:06:18.760 --> 00:06:21.080
+So if this array is empty,
+所以如果这个数组是空的、
+
+00:06:21.080 --> 00:06:25.800
+then I'm gonna return out of this function.
+那么我就会从这个函数中返回。
+
+00:06:25.800 --> 00:06:28.480
+Since this function here will also be run every frame,
+因为这个函数也会在每一帧运行、
+
+00:06:28.480 --> 00:06:30.680
+it's important that we zero out
+重要的是，我们要在开始时把
+
+00:06:30.680 --> 00:06:32.940
+these two member variables at the beginning.
+这两个成员变量在开始时归零是很重要的。
+
+00:06:32.940 --> 00:06:34.920
+All right, once we get past this if check,
+好了，一旦我们通过了这个if检查，我将在这个数组中进行循环、
+
+00:06:34.920 --> 00:06:37.040
+I'm gonna loop through this array.
+我将在这个数组中进行循环。
+
+00:06:37.040 --> 00:06:40.200
+So it's gonna be a range-based for loop.
+所以这将是一个基于范围的for循环。
+
+00:06:40.200 --> 00:06:44.220
+It's gonna be const hit result reference.
+这将是一个const hit result reference。
+
+00:06:44.220 --> 00:06:47.000
+I'm gonna call this trace hit result.
+我将把这个称为追踪命中结果。
+
+00:06:47.000 --> 00:06:49.480
+And I'm gonna loop through this array.
+然后我将在这个数组中循环。
+
+00:06:49.480 --> 00:06:54.960
+And as for handling multiple surface normals
+至于如何处理多个表面法线
+
+00:06:54.960 --> 00:06:56.880
+and multiple impact points,
+和多个撞击点、
+
+00:06:56.880 --> 00:06:58.400
+this is what I like to do.
+这是我喜欢做的。
+
+00:06:58.400 --> 00:06:59.960
+So first I'm gonna add
+所以我首先要把
+
+00:06:59.960 --> 00:07:02.680
+all of these different locations together.
+所有这些不同的位置加在一起。
+
+00:07:02.680 --> 00:07:04.920
+So it's gonna be plus equal,
+所以要加的是相等的、
+
+00:07:04.920 --> 00:07:06.500
+the trace the result,
+追踪结果、
+
+00:07:06.500 --> 00:07:09.840
+the impact point.
+影响点。
+
+00:07:09.840 --> 00:07:12.960
+And I'm gonna add all of these normals together.
+然后我要把所有这些法线加在一起。
+
+00:07:12.960 --> 00:07:14.880
+So it's gonna be plus equal,
+所以它将会是加等号的、
+
+00:07:14.880 --> 00:07:17.280
+trace the hit result,
+追踪撞击的结果、
+
+00:07:17.280 --> 00:07:18.600
+the impact normal.
+撞击的法线。
+
+00:07:18.600 --> 00:07:22.840
+And once we've extract all of this information,
+一旦我们提取了所有这些信息、
+
+00:07:22.840 --> 00:07:24.280
+at the end of this function,
+在这个函数的结尾，
+
+00:07:24.280 --> 00:07:28.800
+I'm gonna divide this current ClimbableSurface location
+我将把这个当前的可攀爬表面的位置
+
+00:07:28.800 --> 00:07:33.220
+by the number of elements inside of this array.
+除以这个数组中的元素数量。
+
+00:07:33.220 --> 00:07:37.600
+So I'm gonna use the function num in here.
+所以我将在这里使用函数num。
+
+00:07:37.600 --> 00:07:38.440
+So by doing this,
+因此，通过这样做、
+
+00:07:38.440 --> 00:07:40.520
+we'll be getting an average location
+我们将得到一个平均位置
+
+00:07:40.520 --> 00:07:42.420
+from all of these possible locations
+从所有这些可能的位置
+
+00:07:42.420 --> 00:07:43.800
+inside of this array.
+在这个数组里面。
+
+00:07:43.800 --> 00:07:45.520
+And for the normal here,
+而对于这里的法线，我们可以简单地将其标准化、
+
+00:07:45.520 --> 00:07:47.240
+we can simply normalize it.
+我们可以简单地将其归一化。
+
+00:07:47.240 --> 00:07:50.020
+So I'm gonna copy this variable name.
+所以我将复制这个变量名。
+
+00:07:50.020 --> 00:07:54.780
+So this one is gonna equal to get safe normal.
+因此，这个变量将等于得到安全法线。
+
+00:07:54.780 --> 00:08:00.320
+And that's pretty much it.
+这就差不多了。
+
+00:08:00.320 --> 00:08:02.040
+And one last thing that I want to do,
+最后一件事是我想做的、
+
+00:08:02.040 --> 00:08:04.260
+so I'm gonna scroll down
+所以我将向下滚动
+
+00:08:04.260 --> 00:08:06.640
+to this trace ClimbableSurface is,
+到这个追踪ClimbableSurface、
+
+00:08:06.640 --> 00:08:08.400
+I'm gonna delete this true.
+我要删除这个真。
+
+00:08:08.400 --> 00:08:11.660
+So I only want to draw the debug shape for one frame
+所以我只想在一帧内画出调试形状
+
+00:08:11.660 --> 00:08:13.880
+since we're calling this function every frame
+因为我们每一帧都要调用这个函数
+
+00:08:13.880 --> 00:08:15.640
+once we start climbing.
+一旦我们开始攀登。
+
+00:08:15.640 --> 00:08:18.080
+And I'm gonna delete these two truths.
+而我要删除这两个真相。
+
+00:08:18.080 --> 00:08:20.240
+So I don't need to see the debug lines
+所以我不需要看到调试线
+
+00:08:20.240 --> 00:08:22.520
+for this trace from iHeight.
+追踪iHeight的情况。
+
+00:08:22.520 --> 00:08:25.540
+And I'm gonna press Control+B to compile.
+然后我要按Control+B来编译。
+
+00:08:25.540 --> 00:08:27.560
+All right, I have a successful compile.
+好的，我有一个成功的编译。
+
+00:08:27.560 --> 00:08:29.900
+And to prove this is working,
+为了证明这是在工作、
+
+00:08:29.900 --> 00:08:32.360
+I'm gonna print these two values out.
+我要把这两个值打印出来。
+
+00:08:32.360 --> 00:08:35.220
+So I'm gonna use debugged print.
+所以我将使用debugged print。
+
+00:08:35.220 --> 00:08:36.720
+And the message here,
+还有这里的信息、
+
+00:08:36.720 --> 00:08:41.240
+so this will be the ClimbableSurface location.
+所以这将是ClimbableSurface的位置。
+
+00:08:41.240 --> 00:08:44.400
+And I'm gonna append another string in here.
+我还要在这里添加一个字符串。
+
+00:08:44.400 --> 00:08:47.240
+So convert this to a string.
+所以把它转换成一个字符串。
+
+00:08:47.240 --> 00:08:52.440
+And for the color, I'm gonna fill in Fcolor,
+对于颜色，我要填入Fcolor、
+
+00:08:52.440 --> 00:08:54.340
+sine.
+正弦。
+
+00:08:54.340 --> 00:08:56.880
+And for this in key, I'm gonna give it a value of one.
+对于这个键，我要给它一个1的值。
+
+00:08:56.880 --> 00:08:59.760
+Then I'm gonna copy this function.
+然后我要复制这个函数。
+
+00:08:59.760 --> 00:09:01.940
+And I'm gonna paste it in here.
+然后把它粘贴到这里。
+
+00:09:01.940 --> 00:09:05.120
+So this one, this is the surface normal.
+所以这一个，是表面法线。
+
+00:09:05.120 --> 00:09:10.380
+And I'm gonna copy this normal
+我将复制这个法线
+
+00:09:10.380 --> 00:09:12.040
+and paste it in here.
+并把它粘贴到这里。
+
+00:09:12.040 --> 00:09:17.120
+And this time I'm gonna change its color from sine to red
+这次我将把它的颜色从正弦改为红色
+
+00:09:17.120 --> 00:09:20.160
+and change its in key to two.
+并把它的输入键改为2。
+
+00:09:20.160 --> 00:09:22.080
+All right, I'm gonna press Control+F5
+好的，我将按Control+F5
+
+00:09:22.080 --> 00:09:23.380
+to launch my editor back.
+来启动我的编辑器。
+
+00:09:23.380 --> 00:09:27.760
+Go back to my editor, I'm gonna press play in here.
+回到我的编辑器，我将在这里按播放键。
+
+00:09:27.760 --> 00:09:31.160
+Then I'm gonna go to a ClimbableSurface and press F.
+然后我要去找一个可攀登的表面，按F键。
+
+00:09:31.160 --> 00:09:33.400
+And you can see there's my surface location
+你可以看到这里有我的表面位置
+
+00:09:33.400 --> 00:09:34.900
+and surface normal.
+和表面法线。
+
+00:09:34.900 --> 00:09:37.320
+And we're doing this capsule trace every frame.
+我们在每一帧都做这个胶囊追踪。
+
+00:09:37.320 --> 00:09:38.220
+That's great.
+这很好。
+
+00:09:38.220 --> 00:09:40.920
+And I'm sure you can notice that we can move our character
+我相信你可以注意到，我们可以再次移动我们的角色了。
+
+00:09:40.920 --> 00:09:43.640
+again, but in a very weird way.
+但是以一种非常奇怪的方式。
+
+00:09:43.640 --> 00:09:46.480
+And that's because we have our physics function ready.
+这是因为我们已经准备好了我们的物理学功能。
+
+00:09:46.480 --> 00:09:48.420
+We should have our movement back
+我们应该恢复我们的运动
+
+00:09:48.420 --> 00:09:51.200
+and we'll still need to handle to snap our movement
+而我们仍然需要处理将我们的运动与
+
+00:09:51.200 --> 00:09:52.940
+to the ClimbableSurface.
+到可攀爬表面上。
+
+00:09:52.940 --> 00:09:54.200
+And we'll do that later.
+我们稍后会做这个。
+
+00:09:54.200 --> 00:09:57.760
+But for now, our processing is working as expected.
+但是现在，我们的处理方法正在按预期进行。
+
+00:09:57.760 --> 00:10:03.700
+So this is the function for processing that I just created
+所以这是我刚刚创建的处理函数
+
+00:10:03.700 --> 00:10:05.640
+and it's all the processing we need.
+这就是我们需要的所有处理。
+
+00:10:05.640 --> 00:10:07.600
+Now with these two variables ready,
+现在有了这两个变量的准备、
+
+00:10:07.600 --> 00:10:08.800
+starting from next lecture,
+从下一讲开始、
+
+00:10:08.800 --> 00:10:11.440
+we can finally start doing some vector math.
+我们终于可以开始做一些矢量数学了。
+
+00:10:11.440 --> 00:10:14.080
+Feel free to refer back to the video if you need help.
+如果你需要帮助，可以随时回看视频。
+
+00:10:14.080 --> 00:10:16.080
+And I'll see you in the next lecture.
+我们在下一节课再见。
+
+00:10:16.080 --> 00:10:18.660
+(upbeat music)
+(欢快的音乐)
+
+00:10:18.660 --> 00:10:21.240
+(upbeat music)
+(欢快的音乐)
+
+00:10:21.240 --> 00:10:23.820
+(upbeat music)
+(欢快的音乐)
+
+00:10:23.820 --> 00:10:26.400
+(upbeat music)
+(欢快的音乐)

@@ -1,0 +1,901 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.040
+Welcome, in the last lecture, we implemented this vaulting check for us to decide whether
+欢迎，在上一次讲座中，我们实现了这个跳马检查，以决定我们是否可以开始跳马。
+
+00:00:10.040 --> 00:00:12.080
+or not we can start vaulting.
+是否可以开始跳伞。
+
+00:00:12.080 --> 00:00:16.520
+And in this lecture, we'll look at how we can actually use this to start vaulting.
+在这一讲中，我们将看看我们如何能够实际使用它来开始拱顶。
+
+00:00:16.520 --> 00:00:19.360
+First, I'm going to take care of the editor stuff.
+首先，我要处理一下编辑器的事情。
+
+00:00:19.360 --> 00:00:24.160
+So I'm going to select this vaulting animation, double click to open it, go to asset details.
+所以我将选择这个拱顶动画，双击打开它，进入资产细节。
+
+00:00:24.160 --> 00:00:27.000
+I'm going to first enable this root motion.
+我将首先启用这个根部动作。
+
+00:00:27.000 --> 00:00:30.560
+If we don't take this, our motion morphing won't work later.
+如果我们不这样做，我们的动作变形以后就不会工作。
+
+00:00:30.560 --> 00:00:33.760
+And next thing, I'm going to create an element montage.
+接下来，我将创建一个元素蒙太奇。
+
+00:00:33.760 --> 00:00:36.880
+So right mouse button click, select create element montage.
+所以鼠标右键点击，选择创建元素蒙太奇。
+
+00:00:36.880 --> 00:00:43.320
+I'm going to name this am_vaulting and I'm going to move it to this montages folder,
+我将把这个命名为am_vaulting，并把它移到这个蒙太奇文件夹、
+
+00:00:43.320 --> 00:00:47.880
+select move here, then double click to open it and click pause in here.
+选择移动这里，然后双击打开它，在这里点击暂停。
+
+00:00:47.880 --> 00:00:52.080
+Then inside of this notify track in here, I'm going to right mouse button click and
+然后在这里的通知轨道内，我将点击鼠标右键并
+
+00:00:52.080 --> 00:00:54.120
+add notify state.
+添加通知状态。
+
+00:00:54.120 --> 00:00:56.400
+And I'm going to add in this motion morphing.
+我将在这个运动变形中添加。
+
+00:00:56.400 --> 00:00:59.240
+I'm going to increase the length of it.
+我将增加它的长度。
+
+00:00:59.240 --> 00:01:04.000
+So you can see we have a starting and an end point and the length of it will determine
+所以你可以看到我们有一个起点和一个终点，它的长度将决定
+
+00:01:04.000 --> 00:01:07.520
+how long it needs to warp the character to the target position.
+它需要多长时间将角色扭曲到目标位置。
+
+00:01:07.520 --> 00:01:11.420
+So I'm going to scroll to the frame when the character starts moving.
+所以我将滚动到角色开始移动的那一帧。
+
+00:01:11.420 --> 00:01:14.960
+So somewhere near here.
+所以在这里附近的某个地方。
+
+00:01:14.960 --> 00:01:18.680
+And I'm going to drag the starting point to here.
+然后我将把起点拖到这里。
+
+00:01:18.680 --> 00:01:25.000
+And as for the end point, so it will be when the character's hand reaches the surface.
+至于终点，所以它将是角色的手到达表面的时候。
+
+00:01:25.000 --> 00:01:28.840
+So somewhere near here, I think.
+所以，我想是在这里附近。
+
+00:01:28.840 --> 00:01:31.800
+Or here.
+或者这里。
+
+00:01:31.800 --> 00:01:35.800
+And with this end notifies state selected, I'm going to go to the drop down here.
+选定这个终点通知状态后，我要到这里的下拉菜单去。
+
+00:01:35.800 --> 00:01:37.960
+So click this drop down.
+所以点击这个下拉菜单。
+
+00:01:37.960 --> 00:01:41.760
+For this root motion modifier, I'm going to keep it at default.
+对于这个根部运动修改器，我打算将它保持在默认状态。
+
+00:01:41.760 --> 00:01:46.580
+And for this warp target name, I'm going to change it to vault start point.
+对于这个翘曲的目标名称，我将把它改为拱顶的起始点。
+
+00:01:46.580 --> 00:01:51.920
+And later in order for this to work, we'll need to have the exact same name in our C++.
+为了使其发挥作用，我们需要在我们的C++中拥有完全相同的名称。
+
+00:01:51.920 --> 00:01:56.880
+And go down for this warp translation, I'm going to take it and this EconautZ axis, I'm
+对于这个经线平移，我打算把它和这个EconautZ轴，我打算取消它。
+
+00:01:56.880 --> 00:01:58.500
+going to untick it.
+取消勾选它。
+
+00:01:58.500 --> 00:02:02.560
+So we do need to rely on this motion morphing to lift our character up.
+所以我们确实需要依靠这种运动变形来提升我们的角色。
+
+00:02:02.560 --> 00:02:05.840
+And if we don't do this, our vaulting just won't work later.
+如果我们不这样做，我们的跳马就不会成功。
+
+00:02:05.840 --> 00:02:09.360
+Alright, I'm also going to untick this warp rotation.
+好吧，我也要取消这个翘曲旋转的勾选。
+
+00:02:09.360 --> 00:02:12.800
+And for this translation, easing func, I'm going to change it to cubic.
+对于这个平移，缓和函数，我将把它改为立方体。
+
+00:02:12.800 --> 00:02:17.560
+Alright, that's pretty much what we need for this first motion morphing.
+好了，这就是我们对第一个运动变形的基本需求。
+
+00:02:17.560 --> 00:02:18.680
+And the second one.
+还有第二个。
+
+00:02:18.680 --> 00:02:24.920
+So we need to rely on the second one to move our character to the land position.
+所以我们需要依靠第二个来移动我们的角色到陆地上的位置。
+
+00:02:24.920 --> 00:02:31.440
+So I'm going to select this motion morphing, ctrl+c, then ctrl+v to copy it, then increase
+所以我将选择这个运动变形，ctrl+c，然后ctrl+v复制它，然后增加它的长度。
+
+00:02:31.440 --> 00:02:33.280
+its length.
+它的长度。
+
+00:02:33.280 --> 00:02:38.480
+So the second one should start at here.
+所以第二个动作应该从这里开始。
+
+00:02:38.480 --> 00:02:43.780
+Then it should end about here.
+然后它应该在这里结束。
+
+00:02:43.780 --> 00:02:46.680
+So right before our character lands.
+所以就在我们的角色落地之前。
+
+00:02:46.680 --> 00:02:49.280
+So somewhere around here.
+所以在这里的某个地方。
+
+00:02:49.280 --> 00:02:57.480
+Alright, for the second one, I'm going to change its warp token name to vault land point.
+好的，对于第二个，我将把它的经线标记的名字改为拱顶着陆点。
+
+00:02:57.480 --> 00:03:00.640
+And keep everything else the same as the first one.
+并保持其他一切与第一个相同。
+
+00:03:00.640 --> 00:03:03.000
+And that's pretty much it for this end of montage.
+这就是这个蒙太奇结尾的基本内容。
+
+00:03:03.000 --> 00:03:05.680
+I'm going to click save.
+我将点击保存。
+
+00:03:05.680 --> 00:03:09.000
+Then next thing we need to take care of the coding part.
+然后，接下来我们需要处理编码部分。
+
+00:03:09.000 --> 00:03:12.440
+So I'm going to close my project, select save, select it.
+所以我将关闭我的项目，选择保存，选择它。
+
+00:03:12.440 --> 00:03:16.320
+So inside of the code, there are a couple of things that we need to do.
+所以在代码里面，有几件事情我们需要做。
+
+00:03:16.320 --> 00:03:20.480
+First I'm going to create a function inside of this custom movement component.
+首先，我将在这个自定义运动组件中创建一个函数。
+
+00:03:20.480 --> 00:03:25.720
+So under this onClientMontage() edit, I'm going to create a new function.
+所以在这个onClientMontage()编辑下，我将创建一个新的函数。
+
+00:03:25.720 --> 00:03:29.860
+And I'm going to call it setMotionWarpTarget.
+我将把它叫做setMotionWarpTarget。
+
+00:03:29.860 --> 00:03:32.120
+And it's going to have two function inputs.
+它将会有两个函数输入。
+
+00:03:32.120 --> 00:03:36.600
+So the first one is going to be a const FName reference.
+所以第一个将是一个const FName引用。
+
+00:03:36.600 --> 00:03:40.120
+I'm going to call it inWarpTargetName.
+我将把它称为inWarpTargetName。
+
+00:03:40.120 --> 00:03:43.040
+And the second one is going to be a const FVector.
+第二个将是一个常量FVector。
+
+00:03:43.040 --> 00:03:45.160
+It's going to be a reference.
+它将会是一个引用。
+
+00:03:45.160 --> 00:03:49.000
+I'm going to call it int target position.
+我将把它称为int target position。
+
+00:03:49.000 --> 00:03:51.760
+All right, I'm going to create a function definition.
+好的，我将创建一个函数定义。
+
+00:03:51.760 --> 00:03:56.280
+And I'm going to place the function under this onClientMontage() edit.
+我将把这个函数放在onClientMontage()的编辑下。
+
+00:03:56.280 --> 00:03:58.660
+So place it in here.
+所以把它放在这里。
+
+00:03:58.660 --> 00:04:02.760
+And in this function, we'll need to access the motion morphing component from our character
+在这个函数中，我们需要从我们的角色访问运动变形组件
+
+00:04:02.760 --> 00:04:03.760
+class.
+类。
+
+00:04:03.760 --> 00:04:07.720
+For that, same as our nm instance, I'm going to create a variable to hold the reference
+为此，与我们的NM实例一样，我将创建一个变量来保存我们角色的引用
+
+00:04:07.720 --> 00:04:08.860
+of our character.
+我们的字符的引用。
+
+00:04:08.860 --> 00:04:12.920
+So go back to the header file, scroll down to this core variables.
+所以回到头文件，向下滚动到这个核心变量。
+
+00:04:12.920 --> 00:04:17.240
+I'm going to copy this empty U property and I'm going to forward declare the type of our
+我将复制这个空的U属性，然后我将向前声明我们的
+
+00:04:17.240 --> 00:04:18.240
+character.
+字符的类型。
+
+00:04:18.240 --> 00:04:21.360
+So go to its header file, copy this type.
+所以去它的头文件，复制这个类型。
+
+00:04:21.360 --> 00:04:28.760
+Go back to the movement component, paste it in here, add class in front of it.
+回到运动组件，把它粘贴到这里，在它的前面加上类。
+
+00:04:28.760 --> 00:04:35.560
+And I'm going to copy this type, go down and paste the type in here.
+我将复制这个类型，下去把这个类型粘贴在这里。
+
+00:04:35.560 --> 00:04:39.920
+I'm going to call this variable owning player character.
+我将把这个变量称为拥有玩家角色。
+
+00:04:39.920 --> 00:04:43.240
+And first, we need to assign some value values to this variable.
+首先，我们需要给这个变量分配一些值。
+
+00:04:43.240 --> 00:04:48.640
+So I'm going to go back to the CPP file of our character class, copy the first line,
+所以我要回到我们角色类的CPP文件中，复制第一行、
+
+00:04:48.640 --> 00:04:51.360
+go back to this custom moving component.cpp.
+回到这个自定义移动组件.cpp。
+
+00:04:51.360 --> 00:04:53.880
+I'm going to paste it in here.
+我要把它粘贴到这里。
+
+00:04:53.880 --> 00:04:57.060
+And don't forget to add the folder name in front of it.
+别忘了在前面加上文件夹的名字。
+
+00:04:57.060 --> 00:04:59.800
+And inside of the begin play, I'm going to get hold of it.
+而在开始播放里面，我将掌握它。
+
+00:04:59.800 --> 00:05:05.760
+So I'm going to cast from the type is going to be a climbing system character.
+所以我要从类型中投出的将是一个攀登系统的角色。
+
+00:05:05.760 --> 00:05:08.920
+So copy this, paste it in here.
+所以复制这个，把它粘贴到这里。
+
+00:05:08.920 --> 00:05:12.000
+And I'm going to cast from this character owner.
+我将从这个角色的主人那里施放。
+
+00:05:12.000 --> 00:05:19.000
+And I'm going to store that return result of this cast inside of our owning player character.
+我将把这个投射的返回结果存储在我们自己的玩家角色中。
+
+00:05:19.000 --> 00:05:21.200
+And just like that, I'm going to compile first.
+就这样，我先进行编译。
+
+00:05:21.200 --> 00:05:22.880
+I have a successful compile.
+我有一个成功的编译。
+
+00:05:22.880 --> 00:05:27.720
+And next thing I'm going to go back to my set motion more target function.
+接下来，我将回到我的设置运动更多目标函数。
+
+00:05:27.720 --> 00:05:32.400
+So inside of this function, I'm first going to check if this owning player character is
+所以在这个函数中，我首先要检查这个拥有的玩家角色是否是
+
+00:05:32.400 --> 00:05:33.400
+not valid.
+不有效。
+
+00:05:33.400 --> 00:05:36.920
+I'm going to return out of this function.
+我将从这个函数中返回。
+
+00:05:36.920 --> 00:05:41.400
+And once we get past this if check, I'm going to access the getter inside of our character
+一旦我们通过了这个if检查，我将访问我们的角色内部的getter
+
+00:05:41.400 --> 00:05:47.560
+class is called get motion warping component.
+类的获取器，叫做获取运动扭曲组件。
+
+00:05:47.560 --> 00:05:50.280
+And there's a function inside of this class.
+在这个类里面有一个函数。
+
+00:05:50.280 --> 00:05:55.800
+So for that we need to include is had a file, go back to the CPP file, file character class,
+因此，我们需要在一个文件中加入这个功能，回到CPP文件中，在字符类文件中、
+
+00:05:55.800 --> 00:06:01.120
+copy this line, paste it back to this custom moving component.cpp.
+复制这一行，把它粘贴到这个自定义移动组件.cpp中。
+
+00:06:01.120 --> 00:06:02.120
+Go down.
+下去吧。
+
+00:06:02.120 --> 00:06:07.400
+And the next function that we need to access is called at or update world target.
+而我们需要访问的下一个函数被称为在或更新世界目标。
+
+00:06:07.400 --> 00:06:09.960
+And you can see there are many versions that we can choose.
+你可以看到有很多版本，我们可以选择。
+
+00:06:09.960 --> 00:06:12.840
+I'm going to select this from location.
+我将从位置中选择这个。
+
+00:06:12.840 --> 00:06:17.720
+So there are two parameters we need to fill in the world target name and the target location.
+所以有两个参数我们需要填写世界目标名称和目标位置。
+
+00:06:17.720 --> 00:06:21.600
+And I'm going to fill in these two function inputs.
+而我要填入这两个函数的输入。
+
+00:06:21.600 --> 00:06:30.680
+So the first one is in world target name and the second one is in target position.
+所以第一个是世界目标名称，第二个是目标位置。
+
+00:06:30.680 --> 00:06:35.640
+All right, all there to do is to call this function inside of try start vaulting.
+好了，所有要做的就是在尝试开始跳伞时调用这个函数。
+
+00:06:35.640 --> 00:06:40.120
+So I'm going to copy this function, go back to try start vaulting.
+所以我将复制这个函数，回到尝试开始跳伞的位置。
+
+00:06:40.120 --> 00:06:42.360
+I'm going to delete these debug functions.
+我将删除这些调试函数。
+
+00:06:42.360 --> 00:06:43.360
+We don't need them anymore.
+我们不再需要它们了。
+
+00:06:43.360 --> 00:06:45.680
+I'm going to delete this one as well.
+我也要删除这个。
+
+00:06:45.680 --> 00:06:51.280
+So if this function returns true, I'm going to set the world target in here.
+所以如果这个函数返回真，我将在这里设置世界目标。
+
+00:06:51.280 --> 00:06:55.960
+So we need to fill in the world target name is going to be an F name and it should be
+所以我们需要填入世界目标的名称，它将是一个F名称，应该是我们刚刚设置的名称。
+
+00:06:55.960 --> 00:06:57.440
+the name that we just set.
+它应该是我们刚刚设置的名称。
+
+00:06:57.440 --> 00:07:05.240
+So it's called vault start point and I'm going to fill in this vault start position.
+所以它被称为苍穹起点，我将填写这个苍穹起点位置。
+
+00:07:05.240 --> 00:07:10.840
+So this is the starting position set and I'm also going to set the land position.
+所以这是起始位置的设置，我也要设置土地位置。
+
+00:07:10.840 --> 00:07:18.400
+So I'm going to change this name to vault endpoint and pass in this vault land position.
+所以我要把这个名字改为金库终点，并传入这个金库的陆地位置。
+
+00:07:18.400 --> 00:07:24.440
+All right, once we set the target for motion morphing, we also need to play the montage
+好了，一旦我们设置了运动变形的目标，我们还需要播放蒙太奇
+
+00:07:24.440 --> 00:07:26.920
+and for that we need another variable.
+为此我们需要另一个变量。
+
+00:07:26.920 --> 00:07:31.640
+So go back to my custom moving component, scroll down to this BPP variable.
+所以回到我的自定义移动组件，向下滚动到这个BPP变量。
+
+00:07:31.640 --> 00:07:34.360
+I'm going to create a new one.
+我将创建一个新的。
+
+00:07:34.360 --> 00:07:36.520
+So copy the old one, paste it in here.
+所以复制旧的那个，把它粘贴到这里。
+
+00:07:36.520 --> 00:07:42.640
+I'm going to change its name to vault montage and go back to the CPP file.
+我要把它的名字改为vault montage，然后回到CPP文件。
+
+00:07:42.640 --> 00:07:49.360
+Then here I'm going to call the function play client montage and pass in that vault montage
+然后在这里我将调用函数play client montage并传入那个vault montage
+
+00:07:49.360 --> 00:07:51.120
+and that's pretty much it.
+这就差不多了。
+
+00:07:51.120 --> 00:07:52.120
+Let's test this.
+让我们测试一下这个。
+
+00:07:52.120 --> 00:07:55.000
+I'm going to launch my editor back.
+我将启动我的编辑器回来。
+
+00:07:55.000 --> 00:08:00.840
+Go back to my editor and we're going to first go to my character class and assign the montage
+回到我的编辑器，我们将首先进入我的角色类，把蒙太奇分配给
+
+00:08:00.840 --> 00:08:03.320
+to the custom moving component.
+到自定义的移动组件。
+
+00:08:03.320 --> 00:08:08.920
+So for this vault montage, assign it this AM_Vaulting and click compile.
+所以对于这个金库蒙太奇，把它分配给这个AM_Vaulting，然后点击编译。
+
+00:08:08.920 --> 00:08:09.920
+Go back to my level.
+回到我的水平。
+
+00:08:09.920 --> 00:08:10.920
+I'm going to test it.
+我准备测试一下。
+
+00:08:10.920 --> 00:08:17.600
+So click play, go to this surface, press F and you can see it's not working.
+所以点击播放，到这个表面，按F，你可以看到它没有工作。
+
+00:08:17.600 --> 00:08:20.840
+Well actually it's working, but just not in the way we want.
+实际上它在工作，但不是以我们想要的方式。
+
+00:08:20.840 --> 00:08:26.640
+If I go to the side of this mesh, then press F again, you can see our character is in the
+如果我走到这个网格的侧面，然后再按一次F，你可以看到我们的角色是在
+
+00:08:26.640 --> 00:08:30.800
+moving, but we can't lift our character up to this surface.
+移动，但我们不能把我们的角色抬到这个表面。
+
+00:08:30.800 --> 00:08:34.140
+And the reason for that is we need to change our movement mode.
+其原因是我们需要改变我们的运动模式。
+
+00:08:34.140 --> 00:08:40.600
+So I'm going to go back to the montage and open this vaulting and I'm going to select
+所以我将回到蒙太奇，打开这个拱顶，然后我将选择
+
+00:08:40.600 --> 00:08:41.960
+this motion morphing.
+这个运动变形。
+
+00:08:41.960 --> 00:08:46.640
+Here we untick this ignore Z axis and in order for this to work, our character cannot
+在这里，我们取消忽略Z轴的选项，为了使其发挥作用，我们的角色不能在行走模式中。
+
+00:08:46.640 --> 00:08:48.480
+be inside of the walking mode.
+我们的角色不能在行走模式中。
+
+00:08:48.480 --> 00:08:53.320
+So we'll need to be inside of a movement mode that ignores gravity.
+所以我们需要在一个无视重力的运动模式中。
+
+00:08:53.320 --> 00:08:55.400
+And we have a custom mode just for that.
+我们有一个自定义模式就是为了这个。
+
+00:08:55.400 --> 00:09:00.640
+So I'm going to go back to my code and above this climb montage, I'm going to call the
+所以我将回到我的代码中，在这个攀爬蒙太奇上面，我将调用
+
+00:09:00.640 --> 00:09:02.580
+function start climbing.
+函数开始爬升。
+
+00:09:02.580 --> 00:09:07.360
+So this function here will set our movement mode to climbing and thanks to our hard work
+所以这个函数将把我们的运动模式设置为攀爬。
+
+00:09:07.360 --> 00:09:12.240
+in previous lectures, the movement physics has already been taken care of and the gravity
+感谢我们在之前的讲座中的努力工作，运动物理学已经被处理好了，重力
+
+00:09:12.240 --> 00:09:13.840
+will be ignored.
+将被忽略。
+
+00:09:13.840 --> 00:09:19.160
+And all it's left there to do is to set our movement mode back to walking when this montage
+剩下要做的就是在这个蒙太奇完成后，将我们的运动模式设置为步行。
+
+00:09:19.160 --> 00:09:21.200
+is finished the plane.
+完成后，将我们的运动模式设为步行。
+
+00:09:21.200 --> 00:09:25.640
+So I'm going to go back to this on climb montage ended.
+所以我要回到这个爬升蒙太奇结束的地方。
+
+00:09:25.640 --> 00:09:33.760
+So if the montage is equal to climb to top montage or the montage is equal to this vault
+所以，如果这个蒙太奇等于爬到顶部的蒙太奇，或者这个蒙太奇等于这个拱顶的蒙太奇
+
+00:09:33.760 --> 00:09:38.080
+montage, I'm going to set the movement mode back to walking.
+蒙太奇，我就会把运动模式设置为步行。
+
+00:09:38.080 --> 00:09:39.080
+All right.
+好的。
+
+00:09:39.080 --> 00:09:42.720
+I'm going to quickly save all then trigger live coding and go back to my project.
+我将迅速保存所有然后触发实时编码，并回到我的项目。
+
+00:09:42.720 --> 00:09:44.080
+I'm going to test it again.
+我将再次测试它。
+
+00:09:44.080 --> 00:09:52.360
+So click play, go to this match, press F and you can see this time is working.
+所以点击播放，进入这个比赛，按F，你可以看到这次是成功的。
+
+00:09:52.360 --> 00:09:53.360
+All right.
+好的。
+
+00:09:53.360 --> 00:09:55.760
+I'm going to increase the play rate of this montage.
+我要增加这个蒙太奇的播放率。
+
+00:09:55.760 --> 00:09:58.400
+So I'm going to increase it to two point one.
+所以我要把它增加到两点一线。
+
+00:09:58.400 --> 00:10:00.840
+I think right now it's too slow.
+我认为现在它太慢了。
+
+00:10:00.840 --> 00:10:02.960
+Click save and try again.
+点击保存，再试一次。
+
+00:10:02.960 --> 00:10:03.960
+Click play.
+点击播放。
+
+00:10:03.960 --> 00:10:05.940
+Go to this match.
+转到这场比赛。
+
+00:10:05.940 --> 00:10:07.460
+Press F. All right.
+按F，好的。
+
+00:10:07.460 --> 00:10:08.460
+You get the idea.
+你明白了吧。
+
+00:10:08.460 --> 00:10:11.600
+I think the two point one is too fast.
+我认为2点1的速度太快了。
+
+00:10:11.600 --> 00:10:17.320
+So I'm going to lower it down a bit, maybe to one point five and hit save.
+所以我打算把它降低一点，也许是一点五，然后点击保存。
+
+00:10:17.320 --> 00:10:19.920
+Try again.
+再试一次。
+
+00:10:19.920 --> 00:10:22.780
+Go to here, then click play.
+转到这里，然后点击播放。
+
+00:10:22.780 --> 00:10:24.960
+Press F. All right.
+按F，好了。
+
+00:10:24.960 --> 00:10:26.800
+Looking much better.
+看起来好多了。
+
+00:10:26.800 --> 00:10:28.280
+Go to this surface.
+转到这个表面。
+
+00:10:28.280 --> 00:10:30.800
+Yeah, something like that.
+是的，类似这样的东西。
+
+00:10:30.800 --> 00:10:32.880
+Maybe in here.
+也许在这里。
+
+00:10:32.880 --> 00:10:38.400
+So everything seems to be working, but actually there are still some errors.
+所以一切似乎都在工作，但实际上仍然有一些错误。
+
+00:10:38.400 --> 00:10:43.300
+So if I press F again, our character is in the vaulting, but it's still not behaving
+所以如果我再按一次F，我们的角色就会进入拱顶，但它的行为仍然不是我们想要的。
+
+00:10:43.300 --> 00:10:44.700
+the way we want.
+我们想要的方式。
+
+00:10:44.700 --> 00:10:49.300
+So if you recall back in the code, I've set the word target point to be the impact point
+所以，如果你回想一下代码，我已经把字的目标点设置成了我们最后一行的影响点
+
+00:10:49.300 --> 00:10:50.880
+of our last line trace.
+我们最后一行的影响点。
+
+00:10:50.880 --> 00:10:53.040
+But in here we are not reaching for that.
+但是在这里，我们并没有达到这个目标。
+
+00:10:53.040 --> 00:10:56.520
+And the reason for that is the mismatch of the word target name.
+其原因是目标点的名称不匹配。
+
+00:10:56.520 --> 00:11:00.200
+So I'm going to go back to this montage, double click to open it, and I'm going to select
+所以我要回到这个蒙太奇，双击打开它，然后我将选择
+
+00:11:00.200 --> 00:11:01.200
+the first motion morphing.
+第一个动作变形。
+
+00:11:01.200 --> 00:11:03.320
+You can see in here I have a typo.
+你可以看到在这里我有一个错字。
+
+00:11:03.320 --> 00:11:05.920
+So this name here is not the same as my code.
+所以这里的名字和我的代码不一样。
+
+00:11:05.920 --> 00:11:10.880
+I'm going to go back to my code and I'm going to scroll to this tristar vaulting.
+我将回到我的代码，我将滚动到这个tristar vaulting。
+
+00:11:10.880 --> 00:11:11.960
+And this is my name.
+而这是我的名字。
+
+00:11:11.960 --> 00:11:14.360
+So this is something that I'll need to double check later.
+因此，这是我以后需要仔细检查的东西。
+
+00:11:14.360 --> 00:11:21.940
+I'm going to copy this name in here and I'm going to paste it to here.
+我要把这个名字复制到这里，并把它粘贴到这里。
+
+00:11:21.940 --> 00:11:25.860
+And also for this second motion morphing, the name is different.
+还有，对于这个第二个运动变形，名字是不同的。
+
+00:11:25.860 --> 00:11:32.920
+So I'm going to go back to my code and I'm going to copy this name and I'm going to paste
+所以我要回到我的代码中，复制这个名字并粘贴到
+
+00:11:32.920 --> 00:11:33.920
+it in here.
+它在这里。
+
+00:11:33.920 --> 00:11:37.680
+And now I'm going to hit save and test this again.
+现在我要点击保存并再次测试这个。
+
+00:11:37.680 --> 00:11:42.860
+So click play and press F.
+所以点击播放并按下F。
+
+00:11:42.860 --> 00:11:46.200
+And this time it's working as expected.
+这一次，它像预期的那样工作了。
+
+00:11:46.200 --> 00:11:49.280
+Try again.
+再试一次。
+
+00:11:49.280 --> 00:11:52.080
+And this looks great.
+这看起来很好。
+
+00:11:52.080 --> 00:11:55.920
+I think the last line trace might be too far for this vaulting.
+我想最后一条线的痕迹可能对这个跳马来说太远了。
+
+00:11:55.920 --> 00:11:59.600
+I'm going to move the land point to be a bit closer to our character.
+我打算把土地点移到离我们的角色近一点的地方。
+
+00:11:59.600 --> 00:12:00.960
+So go back to my code.
+所以回到我的代码中去。
+
+00:12:00.960 --> 00:12:05.400
+Now instead of 4, I'm going to change it to 3.
+现在我把它从4改成3。
+
+00:12:05.400 --> 00:12:07.760
+Then quickly save all, trigger live coding.
+然后快速保存，触发实时编码。
+
+00:12:07.760 --> 00:12:09.120
+Alright live coding is accepted.
+好了，实时编码被接受了。
+
+00:12:09.120 --> 00:12:10.680
+I'm going to try again.
+我再试一次。
+
+00:12:10.680 --> 00:12:16.020
+Then press F. I think this distance here looks reasonable.
+然后按F，我想这个距离看起来很合理。
+
+00:12:16.020 --> 00:12:17.520
+Try again in here.
+在这里再试一次。
+
+00:12:17.520 --> 00:12:20.000
+Yeah, something like that.
+是的，类似这样的事情。
+
+00:12:20.000 --> 00:12:22.920
+We can even start vaulting in here.
+我们甚至可以在这里开始跳楼。
+
+00:12:22.920 --> 00:12:32.600
+And this looks natural enough, I think.
+我认为这看起来足够自然。
+
+00:12:32.600 --> 00:12:34.280
+And let's do a quick wrap up.
+让我们做一个快速的总结。
+
+00:12:34.280 --> 00:12:39.400
+So in order for this to work for animation, you first need to enable root motion and create
+所以为了让这个动画工作，你首先需要启用根部运动并创建一个蒙太奇。
+
+00:12:39.400 --> 00:12:40.840
+a montage from it.
+一个蒙太奇。
+
+00:12:40.840 --> 00:12:44.800
+After that, inside of that montage, you'll need to create an notified state for motion
+之后，在这个蒙太奇中，你需要为运动创建一个通知状态
+
+00:12:44.800 --> 00:12:49.600
+morphing and manually define the start and end point for the motion morphing notified
+态，并手动定义运动变形通知状态的开始和结束点。
+
+00:12:49.600 --> 00:12:50.600
+state.
+状态。
+
+00:12:50.600 --> 00:12:53.960
+After this one, you'll need to provide it with warp target name.
+在这之后，你需要为它提供扭曲的目标名称。
+
+00:12:53.960 --> 00:12:56.400
+Make sure you untick this ignore Z axis.
+确保你取消勾选这个忽略Z轴。
+
+00:12:56.400 --> 00:13:00.560
+Otherwise your motion morphing won't be able to lift the character up and make sure you
+否则你的运动变形将无法将角色抬起来，并确保你
+
+00:13:00.560 --> 00:13:02.280
+don't warp rotation.
+不要扭曲旋转。
+
+00:13:02.280 --> 00:13:05.680
+Since all we are interested in is the target location.
+因为我们所关心的是目标位置。
+
+00:13:05.680 --> 00:13:09.720
+Once you have the montage ready, we'll need to set the warp target in code.
+一旦你准备好了蒙太奇，我们就需要在代码中设置翘曲的目标。
+
+00:13:09.720 --> 00:13:14.440
+And later if the vaulting is not behaving in the way you want, double check the target
+稍后如果拱顶的行为不符合你的要求，请仔细检查目标的
+
+00:13:14.440 --> 00:13:15.560
+name.
+名称。
+
+00:13:15.560 --> 00:13:19.520
+And thanks to the debug functionalities that we have, that should be something pretty easy
+由于我们拥有的调试功能，这应该是很容易
+
+00:13:19.520 --> 00:13:20.600
+to spot.
+发现。
+
+00:13:20.600 --> 00:13:23.560
+And feel free to revert back to the video if you need help.
+如果你需要帮助，可以随时回到视频中去。
+
+00:13:23.560 --> 00:13:25.360
+Alright it's time for you to do the same.
+好了，现在是时候让你做同样的事情了。
+
+00:13:25.360 --> 00:13:26.880
+I'll see you in the next lecture.
+我们在下一节课上见。
+
+00:13:26.880 --> 00:13:37.280
+Bye for now.
+暂时再见。

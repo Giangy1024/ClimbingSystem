@@ -1,0 +1,469 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.360
+Welcome! In the last lecture, we successfully added this vaulting for our character. And
+欢迎!在上一节课中，我们成功地为我们的角色添加了这个跳跃。和
+
+00:00:10.360 --> 00:00:14.920
+now, when we are near a vaultable surface, we are pressing the same Climb Action key.
+现在，当我们在一个可跳跃的表面附近时，我们正在按下相同的攀爬操作键。
+
+00:00:14.920 --> 00:00:22.600
+We can move our character to a target point that we specify. And this looks cool.
+我们可以将角色移动到我们指定的目标点。这看起来很酷。
+
+00:00:22.600 --> 00:00:26.920
+And before we move on, I'd like to do a little bit of cleanup in my code. So I'm going to
+在我们继续之前，我想对我的代码进行一点清理。所以我要去
+
+00:00:26.920 --> 00:00:31.480
+close my project. Then inside of this custom movement component, I'm going to scroll down
+关闭我的项目。然后在此自定义移动组件中，我将向下滚动
+
+00:00:31.480 --> 00:00:36.900
+to this can start vaulting. I'm going to delete these two truths. So I don't need to see those
+这样就可以开始跳马了。我要删除这两个事实。所以我不需要看到那些
+
+00:00:36.900 --> 00:00:42.640
+debug lines anymore. And next, I'm going to go to my character class, the H. So later,
+不再调试代码行。接下来，我要去上我的角色课，H。所以稍后，
+
+00:00:42.640 --> 00:00:47.840
+we'll need to fill in more code to this header file. And currently, I think this one is a
+我们需要在这个头文件中填充更多代码。而目前，我认为这是一个
+
+00:00:47.840 --> 00:00:53.160
+bit messy with all these forward declares. So I'm going to move them to the top of my
+所有这些Forward声明都有点混乱。所以我要把它们移到我的
+
+00:00:53.160 --> 00:00:59.880
+header file. So select this one, and I'm going to paste it in here and delete the class in
+头文件。所以选择这个，我将把它粘贴到这里，并删除中的类
+
+00:00:59.880 --> 00:01:08.300
+front of it and do the same thing to this camera component. And also, I'm going to create
+在它前面，对这个相机组件做同样的事情。此外，我还将创建
+
+00:01:08.300 --> 00:01:12.760
+code regions. So I'm going to separate these components with this input actions and these
+代码区域。所以我将用这个输入操作和这些组件来分隔这些组件
+
+00:01:12.760 --> 00:01:18.560
+callback functions. So I'm going to scroll to here, then add in panel region. I'm going
+回调函数。所以我要滚动到这里，然后添加面板区域。我要走了
+
+00:01:18.560 --> 00:01:25.160
+to call this region components and delete this class in here. Select all of these four, cut
+调用此区域组件并删除此处的此类。将这四个选项全部选中，Cut
+
+00:01:25.160 --> 00:01:31.280
+them, paste them in here. If your engine version is higher than 5.1, probably you don't have
+他们，把他们贴在这里。如果您的引擎版本高于5.1，则可能没有
+
+00:01:31.280 --> 00:01:36.360
+to do this. The template code in there should be much cleaner than this one. Somehow this
+来做这件事。其中的模板代码应该比这个干净得多。不知何故，这就是
+
+00:01:36.360 --> 00:01:41.520
+version here passed the Apex code review. Next, I'm going to copy this forward declare
+这里的版本通过了Apex代码审查。接下来，我要将此声明向前复制
+
+00:01:41.520 --> 00:01:51.480
+for input math in context and paste it in here. Then delete this class in front of it and
+用于在上下文中输入数学并将其粘贴到此处。然后删除它前面的这个类并
+
+00:01:51.480 --> 00:01:58.080
+copy this one for you input action, paste it in here and delete all of these classes
+为您的输入操作复制此类，将其粘贴到此处并删除所有这些类
+
+00:01:58.080 --> 00:02:03.880
+in here. Just to make this header file a bit cleaner and you'll be much easier for us to
+在这里。只是为了让这个头文件更干净一点，我们会更容易
+
+00:02:03.880 --> 00:02:09.480
+add in more stuff later and delete these two classes. Delete this one and go to the bottom
+稍后添加更多内容并删除这两个类。删除这一条，然后转到底部
+
+00:02:09.480 --> 00:02:16.080
+of it, delete these two classes. And then I'm first going to hide this region. I'm going
+其中，删除这两个类。然后我首先要隐藏这个区域。我要走了
+
+00:02:16.080 --> 00:02:21.880
+to create a new one. So for this region, I'm going to call it input. So all the input related,
+去创造一个新的。因此，对于这个区域，我将其称为输入。所以所有的输入都是相关的，
+
+00:02:21.880 --> 00:02:30.360
+I'm going to put it in here. So cut these three, paste them in here and cut this one,
+我要把它放在这里。把这三个剪下来，贴在这里，再剪下这一个，
+
+00:02:30.360 --> 00:02:40.440
+paste it in here. And along with our climb action, paste it in here. Then I'm going to
+把它贴在这里。随着我们的攀登动作，粘贴到这里。然后我要去
+
+00:02:40.440 --> 00:02:45.200
+hide this region and the last region that I'm going to create. So I'm going to call
+隐藏这个区域和我要创建的最后一个区域。所以我要打电话给
+
+00:02:45.200 --> 00:02:55.600
+this one input callback and I'm going to cut these functions, paste them in here. And
+这一个输入回调，我将剪切这些函数，粘贴到这里。和
+
+00:02:55.600 --> 00:03:03.160
+that's pretty much it. I'm going to try to compile. All right, I have a successful compile
+差不多就是这样。我要试着汇编一下。好的，我有一个成功的汇编
+
+00:03:03.160 --> 00:03:07.680
+and this is how my header file is looking like. So if you'd like to catch up with me,
+这就是我的头文件的样子。所以如果你想跟上我的话，
+
+00:03:07.680 --> 00:03:16.640
+you can pause the video now and give this a go. Welcome back. And the next thing that
+你现在可以暂停视频，然后试一试。欢迎回来。接下来的事情是
+
+00:03:16.640 --> 00:03:22.320
+I like to add into our clamping system is hopping. With the ability to hop, this can
+我喜欢加进我们的夹紧系统是跳动的。有了跳跃的能力，它可以
+
+00:03:22.320 --> 00:03:28.120
+make our clamping system so much better. And these are the things that I want to achieve.
+让我们的夹紧系统变得更好。这些都是我想要实现的目标。
+
+00:03:28.120 --> 00:03:33.760
+So first, I want this action to be a two key action. So in order to trigger hopping during
+所以首先，我希望这个行动是两个关键的行动。所以为了在跳跃过程中触发
+
+00:03:33.760 --> 00:03:39.260
+climbing, our player needs to press both the key for moving the character and the key to
+攀登，我们的玩家需要同时按移动角色的键和键来移动角色
+
+00:03:39.260 --> 00:03:44.920
+trigger the hopping. And I'm only going to allow our character to hop up and down. And
+触发跳跃。我只会让我们的角色跳上跳下。和
+
+00:03:44.920 --> 00:03:50.040
+for the key to trigger hopping, I like it to be the same key as our jump action. So
+对于触发跳跃的键，我希望它与我们的跳跃动作是相同的键。所以
+
+00:03:50.040 --> 00:03:55.400
+when we're moving on the ground, we can press the space bar to jump. And during climbing,
+当我们在地面上移动时，我们可以按空格键跳跃。在攀登过程中，
+
+00:03:55.400 --> 00:04:00.360
+I like to use the same key to trigger hopping. And that's something the new enhanced input
+我喜欢使用相同的键来触发跳跃。这是新的增强型输入
+
+00:04:00.360 --> 00:04:06.760
+system can help us. A vivid example of this would be something like this. If you recall,
+系统可以帮助我们。这方面的一个生动例子是这样的。如果你还记得的话，
+
+00:04:06.760 --> 00:04:11.760
+this is our move function. And this function here is binding to our move action. And instead
+这是我们的移动功能。这里的这个函数绑定到我们的移动操作。相反，
+
+00:04:11.760 --> 00:04:16.480
+of this function, we are checking whether or not our character is climbing. If it is,
+在这个函数中，我们正在检查我们的角色是否在攀登。如果是的话，
+
+00:04:16.480 --> 00:04:21.120
+we handle this climb movement input in here. If it's not, we will handle the ground movement
+我们在这里处理爬升动作的输入。如果不是，我们会处理地面移动
+
+00:04:21.120 --> 00:04:26.040
+input. This solution here works, but this shouldn't really be the way for how we are
+输入。这个解决方案在这里是有效的，但这不应该真的是我们现在的方式
+
+00:04:26.040 --> 00:04:31.400
+using the enhanced input system. So we shouldn't be checking the logic inside of the input
+使用增强型输入系统。所以我们不应该检查输入内部的逻辑
+
+00:04:31.400 --> 00:04:36.800
+level. And instead, we can leave that to our enhanced input system entirely. So what I
+水平。取而代之的是，我们可以完全把它留给我们的增强型输入系统。所以我
+
+00:04:36.800 --> 00:04:42.520
+want here is when the character is on the ground, by pressing the WSAD key, we can only
+这里想要的是当角色在地上的时候，通过按WSAD键，我们只能
+
+00:04:42.520 --> 00:04:47.240
+move the character on the ground. And when the character is climbing, those same keys
+移动地面上的角色。当角色在攀登时，同样的键
+
+00:04:47.240 --> 00:04:51.640
+can only move the character on the surface. We're going to look at how we can do this
+只能在表面上移动角色。我们将看看如何做到这一点
+
+00:04:51.640 --> 00:04:56.980
+later. And in order to achieve what we want, this is the process that we'll follow later.
+后来。为了实现我们想要的，这是我们稍后要遵循的过程。
+
+00:04:56.980 --> 00:05:03.320
+So first, our custom moving component needs to take care of this notifying climb state.
+因此，首先，我们的自定义移动组件需要处理这种通知爬升状态。
+
+00:05:03.320 --> 00:05:08.240
+So when our character is inside of the climb state, I want this moving component to notify
+所以当我们的角色处于爬升状态时，我想让这个移动组件通知
+
+00:05:08.240 --> 00:05:13.560
+our character class. And our character class can respond to it by adding this input mapping
+我们的角色班级。我们的字符类可以通过添加此输入映射来响应它
+
+00:05:13.560 --> 00:05:18.880
+context. So the key bindings inside of this mapping context will only be valid when we
+背景。因此，此映射上下文中的键绑定仅在以下情况下有效
+
+00:05:18.880 --> 00:05:23.400
+are climbing. And once our character exits the climb state, we'll need to remove this
+都在攀登。一旦我们的角色退出攀爬状态，我们需要移除这个
+
+00:05:23.400 --> 00:05:29.220
+input mapping context. And we'll be back to the default mapping context. So we can jump,
+输入映射上下文。然后我们将返回到默认的映射上下文。这样我们就可以跳下去了
+
+00:05:29.220 --> 00:05:33.420
+we can run on the ground. So this hopping action here should only be triggered when
+我们可以在地上跑步。因此，此处的跳跃操作应仅在以下情况下触发
+
+00:05:33.420 --> 00:05:39.360
+we're climbing. And I like to trigger that through player input. So our player will request
+我们在往上爬。我喜欢通过玩家的输入来触发它。所以我们的玩家会要求
+
+00:05:39.360 --> 00:05:44.920
+the hopping and our custom moving component will take it from there and handle the hopping
+跳跃和我们的定制移动组件将从那里获取它并处理跳跃
+
+00:05:44.920 --> 00:05:49.480
+for us. So this is the roadmap that we'll follow. And in this lecture, we're going to
+对我们来说。这就是我们要遵循的路线图。在这堂课中，我们将介绍
+
+00:05:49.480 --> 00:05:54.000
+look at how we can take care of the first step notifying climb state. Go back to my
+看看我们如何处理通知爬升状态的第一步。回到我的
+
+00:05:54.000 --> 00:05:58.960
+code. I'm going to go to the header file of this custom moving component, scroll to the
+密码。我将转到此自定义移动组件的头文件，滚动到
+
+00:05:58.960 --> 00:06:04.800
+top. So for that, I'm going to use a simple delegate to do it. On the top of this header
+托普。因此，我将使用一个简单的委托来完成它。在此页眉的顶部
+
+00:06:04.800 --> 00:06:12.200
+file, I'm going to type in declare underscore delegate. So this is the most basic way to
+文件中，我将键入声明下划线委托。所以这是最基本的方法
+
+00:06:12.200 --> 00:06:16.640
+declare a delegate. Since what we want here is simple, we don't need to create a dynamic
+宣布一个代表。因为我们在这里想要的很简单，所以我们不需要创建动态的
+
+00:06:16.640 --> 00:06:21.420
+multicast delegate or anything like that. A simple delegate with no return value and
+多播代理或类似的东西。不带返回值的简单委托和
+
+00:06:21.420 --> 00:06:28.000
+input parameter specified will do the job. So I'm going to call this delegate F, on,
+指定的输入参数将完成此工作。所以我把这个代表称为F，On，
+
+00:06:28.000 --> 00:06:35.360
+enter climb state. And I'm going to create another delegate. So this one, I have a typo
+进入爬升状态。我将创建另一个代表。所以这一个，我有一个打字错误
+
+00:06:35.360 --> 00:06:41.120
+here. I'm going to copy this name and paste it in here. So this one I'm going to call
+这里。我要复制这个名字，然后把它粘贴到这里。所以这一次我要叫它
+
+00:06:41.120 --> 00:06:50.160
+you F, on, exit, climb state. And then scroll down. Inside of this class, I'm going to create
+你，开启，退出，爬升状态。然后向下滚动。在这个类的内部，我将创建
+
+00:06:50.160 --> 00:06:57.960
+a public section and I'm going to copy the type. So it'll be this F, on, enter climb
+一个公共部分，我要复印一下。所以它将是这个F，在，进入攀登
+
+00:06:57.960 --> 00:07:03.240
+state. I'm going to call this delegate on, enter climb state delegate. And I'm going
+州政府。我要请这位代表发言，进入攀登州代表。我要走了
+
+00:07:03.240 --> 00:07:10.000
+to copy this type. So this F, on, exit, climb state. And I'm going to call it on, exit,
+复制此类型。所以这个F，ON，EXIT，爬升状态。我要开始了，退场，
+
+00:07:10.000 --> 00:07:16.360
+climb state delegate. And then I'm going to execute this delegate if there's a function
+攀登州代表。然后，如果有一个函数，我将执行这个委托
+
+00:07:16.360 --> 00:07:23.480
+bound to it. So I'm going to go to this CPP file and scroll up to on movement mode changed.
+捆绑在它身上。因此，我将转到此CPP文件并向上滚动到移动模式已更改。
+
+00:07:23.480 --> 00:07:28.840
+So in here, so inside of this function, we'll know exactly when the character has entered
+所以在这里，所以在这个函数内部，我们将确切地知道字符何时进入
+
+00:07:28.840 --> 00:07:33.560
+the climb state. So if this is climbing is true, that means we're indeed inside of the
+攀爬状态。所以如果这是真的攀登，那就意味着我们确实在
+
+00:07:33.560 --> 00:07:38.840
+climbing state. I'm going to use the delegate to execute the function. And the function that
+攀登状态。我将使用委托来执行该函数。和它的功能
+
+00:07:38.840 --> 00:07:43.520
+we can use is called execute if bound. So if there's indeed a callback function bound
+我们可以使用的是，如果绑定，则称为执行。因此，如果确实有回调函数绑定
+
+00:07:43.520 --> 00:07:48.560
+to this delegate, it will be executed in there. This is for when the player enters the climb
+对于这个委托，它将在那里执行。这是当玩家进入攀登时使用的
+
+00:07:48.560 --> 00:07:54.320
+state. And I'm going to copy this on, exit, climb state delegate. And this is something
+州政府。我要把这个复制下来，退出，爬上州代表。这是一件
+
+00:07:54.320 --> 00:08:01.000
+that we can take care of in here. So I'm going to call the function execute if bound. So
+我们可以在这里处理。所以我将调用函数Execute If Bound。所以
+
+00:08:01.000 --> 00:08:06.120
+inside of this if check, we are checking if the player has just exited the climb state.
+在这个IF检查中，我们正在检查玩家是否刚刚退出爬升状态。
+
+00:08:06.120 --> 00:08:12.200
+All right. I'm going to try to compile first to see if there are any errors. I have a successful
+好的。我将首先尝试编译，看看是否有任何错误。我有一个成功的
+
+00:08:12.200 --> 00:08:17.520
+compile. And next thing I'm going to create the callback functions inside of our character
+编译。接下来，我将在角色内部创建回调函数
+
+00:08:17.520 --> 00:08:22.680
+class. So go back to the header file. Since I like to handle the input related stuff inside
+班级。因此，回到头文件。因为我喜欢在里面处理与输入相关的东西
+
+00:08:22.680 --> 00:08:27.280
+of those two callback functions, I'm going to place those functions in here. So the first
+在这两个回调函数中，我将把它们放在这里。所以第一个
+
+00:08:27.280 --> 00:08:34.560
+function I'm going to call it void on player enter climb state. Since the delegate we created
+函数，当玩家进入攀登状态时，我将其称为无效。由于我们创建的委托
+
+00:08:34.560 --> 00:08:39.680
+is the most basic one, our callback function doesn't need to have the U function macro.
+是最基本的一个，我们的回调函数不需要有U函数宏。
+
+00:08:39.680 --> 00:08:47.160
+And I'm going to create another function. I'm going to call this on player exit climb state.
+我将创建另一个函数。我将把这称为玩家出口爬升状态。
+
+00:08:47.160 --> 00:08:52.280
+All right. I'm going to create two function bodies. So copy this function and I'm going
+好的。我将创建两个功能体。所以复制这个函数，我就去
+
+00:08:52.280 --> 00:09:01.840
+to place it at the bottom of this CPP file and create another function in here. Paste
+将其放在此cpp文件的底部，并在此处创建另一个函数。浆糊
+
+00:09:01.840 --> 00:09:08.200
+it in here. And first thing we need to bind these two functions. So I'm going to do that
+就在这里。首先，我们需要将这两个函数绑定。所以我要这么做
+
+00:09:08.200 --> 00:09:13.000
+inside of the begin play. I'm first going to check if our custom movement component
+在Begin Play的内部。我首先要检查一下我们的自定义移动组件
+
+00:09:13.000 --> 00:09:19.360
+is valid. If it is, I'm going to access the delegate. So it's called on enter clamp state
+是有效的。如果是，我将访问该代表。所以它在进入钳位状态时被称为
+
+00:09:19.360 --> 00:09:26.200
+delegate and to bind the function, I'm going to use the function by U object. And then
+委托和绑定函数，我将通过U对象使用该函数。然后
+
+00:09:26.200 --> 00:09:31.360
+we'll need to pass in in user object. So which U object has this function, it'll be this
+我们需要传入User对象。那么哪个U对象有这个功能，它将是这样的
+
+00:09:31.360 --> 00:09:37.200
+and the address of the function. So I'm going to type in M percent type in this class double
+和函数的地址。所以我要在这个双精度类中输入MPercent类型
+
+00:09:37.200 --> 00:09:44.600
+colon and the function is called on player enter clamp state. All right. This is the
+冒号，并在播放器进入钳位状态时调用该函数。好的。这是
+
+00:09:44.600 --> 00:09:52.760
+first binding and the second binding. The delegates call on exit clamp state delegate
+第一绑定和第二绑定。代表访问出口夹具状态代表
+
+00:09:52.760 --> 00:10:03.980
+and by U object pass in this and the address. So it will be this class double colon on player
+并通过U对象传递此地址和地址。所以这将是播放器上的这个类双冒号
+
+00:10:03.980 --> 00:10:10.480
+exit clamp state. All right. That's the binding done. And the last thing to prove this is
+退出夹具状态。好的。这就是装订工作。而证明这一点的最后一件事是
+
+00:10:10.480 --> 00:10:15.640
+working and we're going to print to debug messages. So instead of this function, I'm
+正在工作，我们将打印调试消息。所以我不是这个函数，而是
+
+00:10:15.640 --> 00:10:22.440
+going to use debug print and the message is going to be entered clamp state. And inside
+将使用调试打印，消息将进入钳位状态。在里面
+
+00:10:22.440 --> 00:10:29.280
+of this function, I'm going to print the message, as it is clamp state. And that's pretty much
+在此函数中，我将打印消息，因为它处于夹具状态。而这几乎就是
+
+00:10:29.280 --> 00:10:34.840
+it. I'm going to compile. All right. I have a successful compile. I'm going to launch
+它。我要去汇编一下。好的。我有一个成功的汇编。我要发射
+
+00:10:34.840 --> 00:10:42.120
+my editor back. Go back to my editor. I'm going to test this. So click play, then press
+我的编辑回来了。回到我的编辑那里。我要测试一下这个。点击播放，然后按
+
+00:10:42.120 --> 00:10:49.560
+F and you can see I have a message printed to the screen. If I press F again, so it says
+你可以看到我在屏幕上打印了一条消息。如果我再按一次F，它就会显示
+
+00:10:49.560 --> 00:10:57.120
+as a tape clamp state, press F again entered clamp state. Great. Our delegate is working.
+作为夹带状态，再次按F进入夹带状态。太棒了。我们的代表正在工作。
+
+00:10:57.120 --> 00:11:04.480
+I'm going to try to climb to the top and it says exit a clamp state. Great. Everything
+我要试着爬到顶端，它说退出夹持状态。太棒了。一切
+
+00:11:04.480 --> 00:11:12.280
+is working as expected. And for our vaulting, the entering and exiting happened almost at
+正在发挥预期的作用。而对于我们的跳马来说，进场和退场几乎发生在8点。
+
+00:11:12.280 --> 00:11:22.480
+the same frame. All right. This is working as expected. So this is the roadmap that we
+同样的画面。好的。这起到了预期的作用。这就是我们的路线图
+
+00:11:22.480 --> 00:11:27.440
+will follow to create our hopping. And in order for our player to add and remove input
+会紧随其后来创造我们的跳跃。为了让我们的玩家添加和删除输入
+
+00:11:27.440 --> 00:11:33.080
+mapping context, our custom moving component needs to notify our character when we have
+映射上下文时，我们的自定义移动组件需要通知角色
+
+00:11:33.080 --> 00:11:39.040
+entered the clamp state and using delegate can help us to do the job. So feel free to
+进入夹具状态，使用Delegate可以帮助我们完成工作。所以你可以随意地
+
+00:11:39.040 --> 00:11:42.680
+refer back to the video if you need help and I'll see you in the next lecture.
+如果你需要帮助，请参考视频，我将在下一节课上见到你。
+
+00:11:42.680 --> 00:11:52.680
+[Music]
+[音乐]
+
+00:11:52.680 --> 00:11:53.680
+[Music]
+[音乐]

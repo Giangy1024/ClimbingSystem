@@ -1,0 +1,105 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.040
+Welcome. In the last lecture, we successfully added in the floor check. Now, when the character
+欢迎。在上一次讲座中，我们成功地加入了楼层检查。现在，当角色
+
+00:00:10.040 --> 00:00:16.220
+has reached the floor during climbing, we'll be exiting the climb state automatically.
+到达地面时，我们将自动退出攀爬状态。
+
+00:00:16.220 --> 00:00:21.300
+And now, our character can climb up, down, left, and right.
+现在，我们的角色可以向上、向下、向左和向右爬。
+
+00:00:21.300 --> 00:00:25.560
+And the next thing that I want to add in is, when our character has reached the ledge,
+接下来我想加入的是，当我们的角色到达窗台时、
+
+00:00:25.560 --> 00:00:30.960
+I want to exit the climb state and climb up the ledge automatically. And in this lecture,
+我想退出攀爬状态并自动爬上壁架。在这个讲座中
+
+00:00:30.960 --> 00:00:35.120
+we'll look at how we can implement this. And let's first try to narrow down what we
+我们将研究如何实现这一功能。首先让我们试着缩小我们的范围
+
+00:00:35.120 --> 00:00:40.040
+want to do in here. So basically, we need to do two things. First, we'll need to detect
+想在这里做什么。所以基本上，我们需要做两件事。首先，我们需要检测
+
+00:00:40.040 --> 00:00:45.320
+the ledge during climbing. And if we have indeed reached one, we need to play the ledge
+攀登过程中的壁架。而如果我们确实已经到达了一个，我们需要播放壁架
+
+00:00:45.320 --> 00:00:50.400
+climb animation. This part here is actually a bit trickier than it sounds because of the
+攀爬动画。这一部分实际上比听起来要棘手一些，因为我们使用的是
+
+00:00:50.400 --> 00:00:54.760
+animation assets that we are using. We'll know why very soon. For now, let's just take
+我们正在使用的动画资产。我们很快就会知道原因。现在，让我们只处理
+
+00:00:54.760 --> 00:00:58.480
+care of the first part. And this is how I want to approach it. I'm going to use two
+处理第一部分。这就是我想要的方法。我将使用两个
+
+00:00:58.480 --> 00:01:04.280
+line traces to detect the ledge. During climbing, I want to draw the first line trace. And if
+线迹来检测壁架。在攀爬过程中，我想画出第一条线迹。而如果
+
+00:01:04.280 --> 00:01:08.560
+the first line trace does not have a valid hit, then I'm going to draw the second line
+第一条线的轨迹没有有效的命中，那么我将绘制第二条线的轨迹
+
+00:01:08.560 --> 00:01:13.820
+trace. And if the second line trace indeed has a valid hit, then that means we have reached
+轨迹。如果第二条线的轨迹确实有一个有效的命中，那么这意味着我们已经达到了
+
+00:01:13.820 --> 00:01:18.680
+the ledge. So the first line trace here is for detecting if there's a climbable surface
+壁垒。所以这里的第一条线迹是用来检测是否有一个可攀登的表面
+
+00:01:18.680 --> 00:01:24.200
+above the character. And if there's not, the second line trace is for detecting if the
+上面是否有可攀登的表面。如果没有，第二行跟踪是为了检测该表面是否
+
+00:01:24.200 --> 00:01:28.640
+surface is walkable. Again, depending on the geometry and your level, you can perform all
+表面是否可以行走。同样，根据几何形状和你的关卡，你可以在这里进行各种检查来决定
+
+00:01:28.640 --> 00:01:34.240
+sorts of checks in here to decide if the surface is walkable. You have all the math knowledge
+你可以在这里进行各种检查来决定这个表面是否可以行走。你有所有的数学知识
+
+00:01:34.240 --> 00:01:38.840
+you need. So now we need to figure out how to draw these two line traces. And there'll
+你需要的所有数学知识。所以现在我们需要弄清楚如何画出这两条线的痕迹。今天会有
+
+00:01:38.840 --> 00:01:44.040
+be a coding challenge today. So the challenge is I'd like you to use two line traces to
+今天有一个编码挑战。这个挑战是我想让你用两条线的轨迹来
+
+00:01:44.040 --> 00:01:48.840
+detect the ledge. And if you succeed, I'd like you to put a message to the screen if
+探测壁架。如果你成功了，我希望你能在屏幕上显示一条信息，如果
+
+00:01:48.840 --> 00:01:53.320
+the character has reached the ledge. To better prepare you for the challenge, I got some hints
+角色已经到达窗台。为了让你更好地迎接挑战，我有一些提示
+
+00:01:53.320 --> 00:01:58.520
+for you. So you'll find the function that we created i-hightrace and the hit result
+暗示给你。所以你会发现我们创建的函数i-hightrace和命中结果
+
+00:01:58.520 --> 00:02:04.160
+dot trace n very useful. Alright, pause the video now and give this a go. And I'll see
+dot trace n非常有用。好了，现在暂停视频，试试这个吧。我将在
+
+00:02:04.160 --> 00:02:05.520
+you in the solution video.
+你在解决方案的视频中见。
+
+00:02:07.000 --> 00:02:17.000
+[music]
+[音乐]

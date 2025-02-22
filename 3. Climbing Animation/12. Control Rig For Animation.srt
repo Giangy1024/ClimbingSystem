@@ -1,0 +1,489 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.000
+Welcome.
+欢迎。
+
+00:00:06.000 --> 00:00:10.760
+In the last lecture we downloaded two new animations for climbing up the ledge and climbing
+在上一节课中，我们下载了两个新的动画，用于爬上壁架和爬下壁架
+
+00:00:10.760 --> 00:00:12.080
+down the ledge.
+下台阶。
+
+00:00:12.080 --> 00:00:16.080
+And in this lecture we'll look at how we can fix the root motion issue.
+而在这一讲中，我们将看看如何解决根部运动的问题。
+
+00:00:16.080 --> 00:00:21.200
+So first I'm going to go to the content, then I'm going to go to file and click new level
+首先，我将进入内容，然后我将进入文件并点击新的级别
+
+00:00:21.200 --> 00:00:24.060
+and I'm going to select this basic, click create.
+我将选择这个基础，点击创建。
+
+00:00:24.060 --> 00:00:28.760
+So later when we want to adjust the animation using Ctrl+Rick, it'll appear at the world
+所以以后当我们想用Ctrl+Rick来调整动画时，它就会出现在世界的
+
+00:00:28.760 --> 00:00:29.760
+origin.
+原点。
+
+00:00:29.760 --> 00:00:34.600
+Since the world origin in the third person map is a weird location, using a new empty
+由于第三人称地图中的世界原点是一个奇怪的位置，在这里使用一个新的空的
+
+00:00:34.600 --> 00:00:36.720
+map here should work the best.
+地图应该是最有效的。
+
+00:00:36.720 --> 00:00:40.720
+Then I'm going to go to file and click this save current level ads.
+然后我将进入文件，点击这个保存当前级别的广告。
+
+00:00:40.720 --> 00:00:49.040
+Then inside of this content folder I'm going to change this name to cr_nm_map.
+然后在这个内容文件夹里面，我将把这个名字改为cr_nm_map。
+
+00:00:49.040 --> 00:00:50.200
+And I'm going to click save.
+然后我将点击保存。
+
+00:00:50.200 --> 00:00:54.680
+So later if we need to adjust more animations I'm going to do it inside of this map.
+所以以后如果我们需要调整更多的动画，我将在这张地图中进行。
+
+00:00:54.680 --> 00:00:58.440
+And next thing I'm going to go back to this raw folder, then double click to open this
+接下来我要回到这个原始文件夹，然后双击来打开这个
+
+00:00:58.440 --> 00:00:59.560
+climbing to top.
+攀升到顶部。
+
+00:00:59.560 --> 00:01:07.080
+So I'm going to click this drop down and go to bake to control rick, select this cr_mannequin_body
+所以我将点击这个下拉菜单，进入烘焙控制里克，选择这个cr_mannequin_body
+
+00:01:07.080 --> 00:01:11.400
+and keep everything a default, click this bake to control rick.
+并保持所有的东西都是默认的，点击这个烘烤来控制瑞克。
+
+00:01:11.400 --> 00:01:16.160
+Then go back to my content browser and you can see this is what you should see.
+然后回到我的内容浏览器，你可以看到这是你应该看到的。
+
+00:01:16.160 --> 00:01:18.160
+We'll be inside of this animation mode.
+我们将在这个动画模式里面。
+
+00:01:18.160 --> 00:01:20.920
+This is the control rick for our mannequin.
+这就是我们的人体模型的控制里克。
+
+00:01:20.920 --> 00:01:26.080
+Note that there are two tracks and if I click play in here our mannequin is not moving.
+请注意，这里有两条轨道，如果我点击这里的播放，我们的人体模型就不会移动。
+
+00:01:26.080 --> 00:01:31.520
+So to fix this issue we'll need to delete the second track, so the track that does not have
+所以为了解决这个问题，我们需要删除第二个轨道，也就是没有按键的那个轨道。
+
+00:01:31.520 --> 00:01:32.520
+keys.
+键。
+
+00:01:32.520 --> 00:01:34.440
+So select this one, press delete.
+所以选择这个，按删除。
+
+00:01:34.440 --> 00:01:40.040
+And now if I click play again we can see the animation now.
+现在，如果我再次点击播放，我们就可以看到动画了。
+
+00:01:40.040 --> 00:01:45.600
+Alright I'm going to scroll back to the first frame and I'm going to click this drop down
+好的，我将滚动到第一帧，并点击这里的下拉菜单
+
+00:01:45.600 --> 00:01:50.240
+in here so we can see these are all the controls that we have.
+所以我们可以看到这些是我们拥有的所有控制。
+
+00:01:50.240 --> 00:01:55.280
+If this looks intimidating and you are thinking I'm not an animator there's no way that I'm
+如果这看起来很吓人，你在想我不是一个动画师，我不可能做到这一点。
+
+00:01:55.280 --> 00:01:56.280
+able to do this.
+能够做到这一点。
+
+00:01:56.280 --> 00:02:01.220
+Don't worry, we are not creating new animations completely from scratch in here.
+不要担心，我们在这里不是完全从头开始创建新的动画。
+
+00:02:01.220 --> 00:02:03.760
+We just need to remove and add some keys.
+我们只是需要删除和添加一些键。
+
+00:02:03.760 --> 00:02:08.000
+The only control that we are interested in is this root_control.
+我们唯一感兴趣的控件是这个root_control。
+
+00:02:08.000 --> 00:02:13.360
+So I'm going to select it and click this drop down and you can see we have control over
+所以我要选择它并点击这个下拉菜单，你可以看到我们可以控制
+
+00:02:13.360 --> 00:02:15.700
+its location, rotation, and scale.
+它的位置、旋转和比例。
+
+00:02:15.700 --> 00:02:21.840
+So I'm going to select this location x and hold down shift, select this rotation yaw.
+所以我要选择这个位置x并按住shift，选择这个旋转yaw。
+
+00:02:21.840 --> 00:02:26.740
+Once I have all of these rows selected I'm going to delete all of the keys in here.
+一旦我选择了所有这些行，我将删除这里的所有键。
+
+00:02:26.740 --> 00:02:30.840
+So select all of them, then press delete.
+所以选择所有的，然后按删除。
+
+00:02:30.840 --> 00:02:35.080
+Alright next thing, we just need to animate this root_control.
+好了，下一件事，我们只需要把这个root_control做成动画。
+
+00:02:35.080 --> 00:02:39.920
+So I'm going to click this icon here to add a new key to the current time.
+所以我要点击这个图标，为当前时间添加一个新的键。
+
+00:02:39.920 --> 00:02:42.480
+Then I'm going to forward a few frames.
+然后我将向前推进几帧。
+
+00:02:42.480 --> 00:02:47.560
+So the key here is as long as the root bone here follows the hips we should have a working
+所以这里的关键是，只要这里的根骨跟着臀部走，我们就应该有一个有效的
+
+00:02:47.560 --> 00:02:48.560
+root motion.
+根部运动。
+
+00:02:48.560 --> 00:02:55.680
+So about frame 44 I'm going to lift this root_control up to the hip.
+所以大约在第44帧，我将把这个根部控制抬高到臀部。
+
+00:02:55.680 --> 00:03:01.800
+Somewhere near here, then I'm going to click this button again to add a new key and I'm
+在这里附近的某个地方，然后我将再次点击这个按钮来添加一个新的键，我将预览我们刚才的动作。
+
+00:03:01.800 --> 00:03:06.100
+going to preview what we've just created.
+预览我们刚刚创建的东西。
+
+00:03:06.100 --> 00:03:09.480
+So you can see our root_control is moving.
+所以你可以看到我们的root_control正在移动。
+
+00:03:09.480 --> 00:03:10.480
+Let's go on.
+让我们继续。
+
+00:03:10.480 --> 00:03:16.400
+So I'm going to forward a few more frames to somewhere near here and I'm going to lift
+所以我打算再往前走几格，到这里附近的某个地方，我打算把
+
+00:03:16.400 --> 00:03:24.080
+this root_control a little bit to here, then move it to here.
+这个root_control抬高一点到这里，然后把它移到这里。
+
+00:03:24.080 --> 00:03:29.680
+Then click add key, then forward a few more frames.
+然后点击添加键，再向前移动几帧。
+
+00:03:29.680 --> 00:03:37.440
+So right about at frame 86 I'm going to move this root_control to here, lower it down to
+因此，在第86帧的时候，我将把这个根控件移到这里，把它降低到
+
+00:03:37.440 --> 00:03:44.120
+the height of the feet and move it to the center.
+脚的高度，并把它移到中心。
+
+00:03:44.120 --> 00:03:47.360
+So something like this and click add key.
+所以像这样，然后点击添加键。
+
+00:03:47.360 --> 00:03:48.560
+And that's pretty much it.
+这就差不多了。
+
+00:03:48.560 --> 00:03:51.720
+Now I'm going to preview this again.
+现在，我将再次预览这个。
+
+00:03:51.720 --> 00:03:57.180
+Alright, this should work just fine.
+好了，这应该可以正常工作了。
+
+00:03:57.180 --> 00:04:01.480
+So once we've made the adjustments we can create a new animation sequence.
+所以一旦我们做了调整，我们就可以创建一个新的动画序列。
+
+00:04:01.480 --> 00:04:06.520
+And to do that, first I'm going to click this climbing to top right mouse button click and
+要做到这一点，首先我要点击这个攀升到顶部的鼠标右键，然后
+
+00:04:06.520 --> 00:04:10.280
+here we have options to create an animation sequence.
+这里我们有创建一个动画序列的选项。
+
+00:04:10.280 --> 00:04:13.180
+I'm going to select this create linked animation sequence.
+我将选择这个创建链接动画序列。
+
+00:04:13.180 --> 00:04:17.760
+So by doing this, later if we need to make more adjustments, we can come back to this
+所以通过这样做，以后如果我们需要做更多的调整，我们可以回到这个
+
+00:04:17.760 --> 00:04:22.160
+sequencer, make the changes we need and sync the changes to this animation sequence.
+序列器，做我们需要的修改，并将这些修改同步到这个动画序列。
+
+00:04:22.160 --> 00:04:27.600
+Alright, I'm going to click it and here we need to select folder to save this animation
+好的，我将点击它，在这里我们需要选择文件夹来保存这个动画序列。
+
+00:04:27.600 --> 00:04:28.600
+sequence.
+序列。
+
+00:04:28.600 --> 00:04:32.440
+So I'm going to select this climb system, go inside of this animation, place it in this
+所以我要选择这个攀登系统，进入这个动画的内部，把它放在这个
+
+00:04:32.440 --> 00:04:33.440
+adjusted.
+调整。
+
+00:04:33.440 --> 00:04:41.400
+I'm going to rename this sequence to climb to top_cr linked and click OK.
+我要把这个序列重命名为爬升到top_cr链接，然后点击确定。
+
+00:04:41.400 --> 00:04:44.120
+And this is the window that you should see.
+这就是你应该看到的窗口。
+
+00:04:44.120 --> 00:04:48.220
+So we don't need to touch anything in here, just keep everything a default.
+所以我们不需要碰这里的任何东西，只要保持所有东西都是默认的。
+
+00:04:48.220 --> 00:04:51.560
+Then click this export to animation sequence.
+然后点击这个导出到动画序列。
+
+00:04:51.560 --> 00:04:53.520
+Alright here it says one asset created.
+好了，这里显示创建了一个资产。
+
+00:04:53.520 --> 00:04:58.160
+I'm going to go back to my content browser inside of this adjusted folder and you can
+我将回到我的内容浏览器中，在这个调整后的文件夹中，你可以看到这是我们刚才的动画。
+
+00:04:58.160 --> 00:05:00.920
+see this is the animation that we just created.
+你可以看到这就是我们刚刚创建的动画。
+
+00:05:00.920 --> 00:05:02.160
+Double click to open it.
+双击来打开它。
+
+00:05:02.160 --> 00:05:08.400
+Now you can see we have a working root motion for this animation.
+现在你可以看到我们为这个动画创建了一个有效的根动作。
+
+00:05:08.400 --> 00:05:15.360
+And if I go to the asset details now and click this enable root motion, this is something
+如果我现在去看资产的细节，并点击这个启用根动作，这是一些
+
+00:05:15.360 --> 00:05:16.400
+that you should see.
+你应该看到。
+
+00:05:16.400 --> 00:05:21.160
+So this indicates that we have a working root motion.
+所以这表明我们有一个有效的根动作。
+
+00:05:21.160 --> 00:05:23.560
+Alright I'm going to click save.
+好了，我要点击保存。
+
+00:05:23.560 --> 00:05:27.840
+Then close this window, right mouse button click this animation sequence and create a
+然后关闭这个窗口，用鼠标右键点击这个动画序列并创建一个
+
+00:05:27.840 --> 00:05:28.840
+new animation montage.
+新的动画蒙太奇。
+
+00:05:28.840 --> 00:05:36.080
+I'm going to call this one am_climb to top and I'm going to move this montage to this
+我将把这个称为am_climb to top，然后我将把这个蒙太奇移到这个
+
+00:05:36.080 --> 00:05:38.760
+montages folder, select move here.
+montages文件夹，选择移动到这里。
+
+00:05:38.760 --> 00:05:41.000
+Then I'm going to go back to our third person map.
+然后我将回到我们的第三人称地图。
+
+00:05:41.000 --> 00:05:45.600
+So it's inside of this third person maps, third person map.
+所以它就在这个第三人称地图里面，第三人称地图。
+
+00:05:45.600 --> 00:05:47.700
+Double click to open it.
+双击来打开它。
+
+00:05:47.700 --> 00:05:49.800
+Click save selected and we are back.
+点击保存选择，我们就回来了。
+
+00:05:49.800 --> 00:05:52.860
+So now you want to make more adjustments to that animation.
+所以现在你要对这个动画做更多的调整。
+
+00:05:52.860 --> 00:05:54.900
+You want to go back to the sequencer.
+你想回到序列器中去。
+
+00:05:54.900 --> 00:05:59.860
+So first we need to click this content folder, open this cr and the map.
+所以首先我们需要点击这个内容文件夹，打开这个cr和地图。
+
+00:05:59.860 --> 00:06:01.740
+Then go inside of this raw folder.
+然后进入这个raw文件夹里面。
+
+00:06:01.740 --> 00:06:06.840
+You can see there's another folder created and it's named after our animation sequence.
+你可以看到有另一个文件夹被创建，它是以我们的动画序列命名的。
+
+00:06:06.840 --> 00:06:08.620
+Double click to open it.
+双击来打开它。
+
+00:06:08.620 --> 00:06:10.720
+So this is the sequencer.
+所以这就是序列器。
+
+00:06:10.720 --> 00:06:14.800
+If you double click to open this, and you can see this is what we've just done.
+如果你双击打开这个，你可以看到这就是我们刚刚做的。
+
+00:06:14.800 --> 00:06:20.040
+So you can remove keys, add more keys, and if you want to sync the changes you make in
+所以你可以删除钥匙，添加更多的钥匙，如果你想同步你在这里所做的改变
+
+00:06:20.040 --> 00:06:23.380
+here, simply clicking file save all here won't work.
+如果你想同步你在这里所做的改变，简单地点击文件保存这里是行不通的。
+
+00:06:23.380 --> 00:06:27.600
+So if you like to sync all the changes, you'll need to click this button here.
+所以如果你想同步所有的变化，你需要点击这里的按钮。
+
+00:06:27.600 --> 00:06:32.760
+So you'll save the current sequence and you'll update the animation sequence that we created.
+所以你将保存当前的序列，并更新我们创建的动画序列。
+
+00:06:32.760 --> 00:06:38.480
+Alright I'm going to go back to my third person map.
+好了，我要回到我的第三人称地图。
+
+00:06:38.480 --> 00:06:43.240
+Now that we have the anim montage ready, I'm going to double click to open it.
+现在我们已经准备好了动画蒙太奇，我将双击打开它。
+
+00:06:43.240 --> 00:06:47.560
+In the next lecture, we'll look at how we can use this montage to lift our character
+在下一讲中，我们将看看如何使用这个蒙太奇来提升我们的角色
+
+00:06:47.560 --> 00:06:48.560
+up.
+起来。
+
+00:06:48.560 --> 00:06:52.080
+Later when you are doing this yourself, so same as I did, you'll need to create a new
+以后当你自己做这个的时候，就像我做的一样，你需要创建一个新的
+
+00:06:52.080 --> 00:06:53.080
+map.
+地图。
+
+00:06:53.080 --> 00:06:57.480
+Then you can go inside of the animation sequence that you want to adjust, click the drop down
+然后你可以在你想调整的动画序列里面，点击下拉的
+
+00:06:57.480 --> 00:06:58.480
+edit in sequencer.
+在序列器中编辑。
+
+00:06:58.480 --> 00:07:01.820
+After that, you should be inside of the animation mode.
+之后，你应该在动画模式中。
+
+00:07:01.820 --> 00:07:06.580
+So all you need to do is removing and adding keys to the root control.
+所以你需要做的就是删除和增加根控件的按键。
+
+00:07:06.580 --> 00:07:09.560
+This step is not as complicated as it sounds.
+这一步并不像它听起来那么复杂。
+
+00:07:09.560 --> 00:07:12.680
+After this step, you can create a linked anim sequence.
+这一步之后，你可以创建一个链接的动画序列。
+
+00:07:12.680 --> 00:07:14.780
+And don't forget to enable root motion.
+而且不要忘记启用根部动作。
+
+00:07:14.780 --> 00:07:18.640
+If you don't feel like going through this process, you can download the animation that
+如果你不想经历这个过程，你可以下载我在资源下拉菜单中调整的动画。
+
+00:07:18.640 --> 00:07:20.840
+I adjusted in the resources drop down.
+我在资源下拉菜单中调整的动画。
+
+00:07:20.840 --> 00:07:24.800
+If this is what you decide to do, make sure you drag the U asset that you downloaded to
+如果你决定这样做，确保你把你下载的U资产直接拖到
+
+00:07:24.800 --> 00:07:28.640
+the content browser directly and reassign the skeleton to it.
+直接拖到内容浏览器中，并将骨架重新分配给它。
+
+00:07:28.640 --> 00:07:32.400
+However, I still highly recommend you to go through this process yourself.
+然而，我仍然强烈建议你自己去完成这个过程。
+
+00:07:32.400 --> 00:07:37.000
+Once you are familiar with it, you can pretty much use any animation from Mixamo you like.
+一旦你熟悉了它，你几乎可以使用任何你喜欢的Mixamo的动画。
+
+00:07:37.000 --> 00:07:38.960
+Alright, it's time for you to do the same.
+好了，现在是时候让你做同样的事情了。
+
+00:07:38.960 --> 00:07:40.360
+And I'll see you in the next lecture.
+我们在下一个讲座中再见。
+
+00:07:40.360 --> 00:07:50.360
+[Music]
+[音乐]

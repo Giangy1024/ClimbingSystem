@@ -1,0 +1,265 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.040
+Welcome!
+欢迎你
+
+00:00:06.040 --> 00:00:11.460
+In the last lecture, we implemented this can-climb-down check, and now we have the ability to tell
+在上一讲中，我们实现了这个可以向下爬的检查，现在我们有能力来判断
+
+00:00:11.460 --> 00:00:13.540
+whether or not we can climb down.
+是否能爬下来。
+
+00:00:13.540 --> 00:00:17.620
+The trace offset for these two line traces, we still need some tweaking in order for it
+对于这两条线的轨迹偏移，我们仍然需要进行一些调整，以便让它
+
+00:00:17.620 --> 00:00:23.060
+to work better, but before I do that, I'd like to get the animation ready first.
+但在这之前，我想先把动画准备好。
+
+00:00:23.060 --> 00:00:27.320
+So go back to my content browser, go inside of this animation, raw.
+所以回到我的内容浏览器，进入这个动画的内部，原始。
+
+00:00:27.320 --> 00:00:29.960
+So this is the animation that we need to adjust.
+所以这是我们需要调整的动画。
+
+00:00:29.960 --> 00:00:37.120
+Next, I'm going to double click to open it, and I'm going to select this root bone.
+接下来，我将双击打开它，我将选择这个根骨。
+
+00:00:37.120 --> 00:00:39.520
+The root bone here is not behaving the way we want.
+这里的根骨的行为不是我们想要的。
+
+00:00:39.520 --> 00:00:43.800
+Same as the last animation, we'll need to adjust this inside of Sequencer.
+和上一个动画一样，我们需要在Sequencer中调整这个。
+
+00:00:43.800 --> 00:00:47.560
+So I'm going to go back to my Control Rig and the map.
+所以我将回到我的控制装备和地图。
+
+00:00:47.560 --> 00:00:53.280
+So go back to my content folder, double click to open this map, then go back to raw, open
+所以回到我的内容文件夹，双击打开这个地图，然后回到raw，打开这个动画，在Sequencer中点击编辑。
+
+00:00:53.280 --> 00:01:00.200
+this animation, click edit in Sequencer, back to Control Rig, and click this button.
+这个动画，在Sequencer中点击编辑，回到Control Rig，然后点击这个按钮。
+
+00:01:00.200 --> 00:01:02.360
+Then go back to my viewport.
+然后回到我的视口。
+
+00:01:02.360 --> 00:01:10.540
+I'm going to delete this redundant track, and click play in here.
+我将删除这个多余的轨道，然后点击这里的播放。
+
+00:01:10.540 --> 00:01:12.860
+So this is the animation.
+所以这就是动画了。
+
+00:01:12.860 --> 00:01:17.120
+And same as the last one, all we need to do is to adjust this root control.
+和上一个一样，我们需要做的就是调整这个根控制。
+
+00:01:17.120 --> 00:01:23.780
+So first thing, I'm going to delete all of these existing keys, so select all of them,
+所以第一件事，我要删除所有这些现有的键，所以选择所有的键、
+
+00:01:23.780 --> 00:01:25.380
+then press delete.
+然后按删除键。
+
+00:01:25.380 --> 00:01:33.400
+And at the first frame, I'm going to move this root bone up to somewhere near here.
+在第一帧，我将把这个根骨移到靠近这里的地方。
+
+00:01:33.400 --> 00:01:35.540
+Alright, something like that.
+好的，类似这样的东西。
+
+00:01:35.540 --> 00:01:37.760
+Then click this button to add key.
+然后点击这个按钮来添加钥匙。
+
+00:01:37.760 --> 00:01:42.260
+So besides changing the location here, we also need to change its rotation in order
+所以除了改变这里的位置，我们还需要改变它的旋转，以便
+
+00:01:42.260 --> 00:01:45.460
+for our movement to match with this animation.
+以使我们的运动与这个动画相匹配。
+
+00:01:45.460 --> 00:01:55.200
+So I'm going to scroll forward a few frames to frame 22, and I'm going to move this root
+所以我将向前滚动几帧到第22帧，然后我将把这个根
+
+00:01:55.200 --> 00:02:01.980
+control forward, and I'm going to enable the snapping in here.
+控件向前移动，并启用这里的抓取功能。
+
+00:02:01.980 --> 00:02:06.120
+So rotate this root control in this direction.
+所以把这个根控件朝这个方向旋转。
+
+00:02:06.120 --> 00:02:09.980
+Alright, something like that.
+好的，类似这样的东西。
+
+00:02:09.980 --> 00:02:15.520
+Then click add key, and scroll back to preview this animation.
+然后点击添加键，向后滚动以预览这个动画。
+
+00:02:15.520 --> 00:02:19.080
+Alright, so far so good.
+好了，到目前为止还不错。
+
+00:02:19.080 --> 00:02:26.240
+Then I'm going to scroll forward a few more frames to somewhere near here, and select
+然后我再向前滚动几帧，到这里附近的某个地方，然后选择
+
+00:02:26.240 --> 00:02:29.680
+this root control.
+这个根控件。
+
+00:02:29.680 --> 00:02:39.880
+First I'm going to move it forward to somewhere near here, then move it down to here.
+首先，我要把它向前移动到靠近这里的地方，然后向下移动到这里。
+
+00:02:39.880 --> 00:02:47.900
+Then rotate it to something like this, and add keys.
+然后把它旋转到像这样的地方，并添加按键。
+
+00:02:47.900 --> 00:02:57.600
+Then about frame 41, I'm going to move this root control down.
+然后在第41帧左右，我将把这个根控件向下移动。
+
+00:02:57.600 --> 00:03:01.240
+I'm going to view it in different angles.
+我要以不同的角度来观察它。
+
+00:03:01.240 --> 00:03:12.720
+So drag it to here, then push it forward a little bit to somewhere near here, and move
+所以把它拖到这里，然后把它往前推一点到这里附近的地方，然后把它往下移。
+
+00:03:12.720 --> 00:03:22.640
+it down, then rotate it, then add keys.
+它向下移动，然后旋转它，然后添加键。
+
+00:03:22.640 --> 00:03:27.600
+And I'm going to forward a few more frames.
+而我要再向前推几帧。
+
+00:03:27.600 --> 00:03:33.320
+Then I think I want to move this root control down a little bit more.
+然后我想我要把这个根控件再往下移一点。
+
+00:03:33.320 --> 00:03:37.920
+So drag it down to something like this.
+所以把它向下拖动到像这样的地方。
+
+00:03:37.920 --> 00:03:45.800
+Alright, then click add keys, and I'm going to preview what I've just made.
+好的，然后点击添加键，我将预览我刚刚做的东西。
+
+00:03:45.800 --> 00:03:54.680
+So go back to the first frame, and try to see if this root control matches with this
+所以回到第一帧，试试这个根控件是否与这个
+
+00:03:54.680 --> 00:03:57.720
+animation.
+动画。
+
+00:03:57.720 --> 00:04:02.560
+Alright, I think this will work.
+好的，我想这将会工作。
+
+00:04:02.560 --> 00:04:07.560
+If it doesn't work, we can always come back to readjust it.
+如果它不工作，我们可以随时回来重新调整。
+
+00:04:07.560 --> 00:04:11.560
+And I'm going to right mouse button click this animation, then select this create linked
+我准备用鼠标右键点击这个动画，然后选择创建链接的
+
+00:04:11.560 --> 00:04:19.320
+animation sequence, place it inside of this animation folder, adjust it, rename it to
+动画序列，把它放在这个动画文件夹里，调整它，把它改名为
+
+00:04:19.320 --> 00:04:25.480
+climb down ledge underscore cr adjusted, then click OK.
+climb down ledge underscore cr adjusted，然后点击OK。
+
+00:04:25.480 --> 00:04:28.600
+Keep everything here at default, then click export.
+保持这里的所有内容为默认，然后点击导出。
+
+00:04:28.600 --> 00:04:33.240
+And go back to my content browser, I'm going to go to this adjust it folder, then double
+回到我的内容浏览器，我将进入这个 "调整 "文件夹，然后双击打开这个 "爬下台阶"。
+
+00:04:33.240 --> 00:04:39.880
+click to open this climb down ledge adjusted, and select this root bone.
+点击打开这个 "爬下窗台调整"，并选择这个根骨。
+
+00:04:39.880 --> 00:04:42.680
+So this is what we have.
+所以这就是我们所拥有的。
+
+00:04:42.680 --> 00:04:50.560
+And I'm going to try to enable the root motion in here.
+我将尝试在这里启用根部运动。
+
+00:04:50.560 --> 00:04:52.200
+Alright this should work.
+好了，这应该可以了。
+
+00:04:52.200 --> 00:04:57.240
+Later, when you are doing this yourself, this one is a bit more complicated than the last
+稍后，当你自己做这个的时候，这个要比上一个复杂一点
+
+00:04:57.240 --> 00:04:58.240
+one.
+复杂一些。
+
+00:04:58.240 --> 00:05:01.800
+Besides the location here, we also need to adjust its rotation.
+除了这里的位置，我们还需要调整它的旋转。
+
+00:05:01.800 --> 00:05:03.900
+And that shouldn't be something too difficult to do.
+而这应该不是什么太难的事情。
+
+00:05:03.900 --> 00:05:07.080
+So feel free to refer back to the video if you need help.
+所以，如果你需要帮助，请随时参考视频。
+
+00:05:07.080 --> 00:05:11.480
+And if you don't feel like going through this process, you can download the animation that
+如果你不想经历这个过程，你可以下载这个动画。
+
+00:05:11.480 --> 00:05:14.400
+I just adjusted in the resources drop down.
+我只是在资源下拉菜单中进行了调整。
+
+00:05:14.400 --> 00:05:18.400
+Now that we have the animation ready in the next lecture, we'll look at how we can actually
+现在我们已经准备好了动画，在下一讲中，我们将看看我们如何能够实际地
+
+00:05:18.400 --> 00:05:19.400
+use it.
+使用它。
+
+00:05:19.400 --> 00:05:20.720
+I'll see you in the next lecture.
+下一讲见。
+
+00:05:20.720 --> 00:05:31.480
+[Music]
+[音乐]

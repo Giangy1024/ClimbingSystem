@@ -1,0 +1,373 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:10.920
+Welcome! In the last lecture, we successfully led our character to use the custom movement
+欢迎！欢迎 在上一讲中，我们成功地引导我们的角色使用我们创建的自定义运动
+
+00:00:10.920 --> 00:00:16.400
+component that we created. And in this lecture, we'll look at how we can use this component
+组件。在本讲中，我们将看看如何使用这个组件
+
+00:00:16.400 --> 00:00:21.800
+to enable climbing. So you already know that this is the climbing process that we'll create.
+来实现爬行。所以你已经知道，这是我们要创建的攀爬过程。
+
+00:00:21.800 --> 00:00:25.960
+And the first issue that we need to solve is, we'll need to check whether or not we
+我们需要解决的第一个问题是，我们需要检查我们是否
+
+00:00:25.960 --> 00:00:31.320
+can actually start climbing. What do I mean by that? In the scenario one, when we press
+能否真正开始爬升。我这样说是什么意思呢？在方案一中，当我们按下
+
+00:00:31.320 --> 00:00:37.160
+the climb action key, we should definitely start climbing. But in scenario two and three,
+攀爬动作键，我们肯定会开始攀爬。但是在情景二和情景三中、
+
+00:00:37.160 --> 00:00:41.560
+we shouldn't be able to do so. So how to rule out these two scenarios is the key in
+我们不应该这样做。因此，如何排除这两种情况是这里的关键所在
+
+00:00:41.560 --> 00:00:47.120
+here. To do that, we need to get hold of the climbable surface info for our character.
+这里的关键。要做到这一点，我们需要掌握我们角色的可攀爬表面信息。
+
+00:00:47.120 --> 00:00:52.080
+More specifically, we need to perform some ray traces. And the next question would be
+更确切地说，我们需要进行一些射线追踪。而下一个问题将是
+
+00:00:52.080 --> 00:00:56.960
+what type of trace that we should use in here. Take the first scenario for example. The easiest
+我们在这里应该使用什么类型的跟踪。以第一种情况为例。最简单的
+
+00:00:56.960 --> 00:01:02.520
+answer might be doing a line trace. If we were only ever to be able to climb a single
+最简单的答案可能是做一个线迹。如果我们只想爬上一个单一的
+
+00:01:02.520 --> 00:01:07.140
+surface, a simple line trace would actually work. But if we are dealing with multiple
+面，那么简单的直线追踪就可以了。但如果我们面对的是多个
+
+00:01:07.140 --> 00:01:12.000
+surfaces that are overlapping with each other, a line trace won't provide us with enough
+互相重叠的表面，直线追踪就不能为我们提供足够的
+
+00:01:12.000 --> 00:01:18.000
+information for us to do the calculation. So instead, I like to use a capsule trace.
+信息来进行计算。所以，我喜欢用一个胶囊追踪。
+
+00:01:18.000 --> 00:01:22.840
+And this could help us to handle the situation where there are multiple overlapping surfaces
+这可以帮助我们处理有多个重叠面的情况
+
+00:01:22.840 --> 00:01:28.480
+in front of us. And for the second scenario, a simple line trace would do the job. So let's
+在我们面前的情况。而对于第二种情况，一个简单的线迹就可以完成工作。所以让我们
+
+00:01:28.480 --> 00:01:33.240
+take care of the first scenario. Go back to my project. I'm going to first close my project
+处理第一种情况。回到我的项目中去。我将首先关闭我的项目
+
+00:01:33.240 --> 00:01:38.480
+and go back to Visual Studio. Inside of my custom moving component class, I'm going to
+然后回到Visual Studio。在我的自定义移动组件类中，我将会
+
+00:01:38.480 --> 00:01:43.520
+create a code region just for better readability. So I'm going to type in pound region, press
+创建一个代码区域，以提高可读性。所以我将输入磅数区域，按下
+
+00:01:43.520 --> 00:01:49.160
+tab on my keyboard. And for the region name, I'm going to call it climb traces. And I'm
+键盘上的TAB键。对于区域的名称，我将把它叫做 "攀登痕迹"。然后我将
+
+00:01:49.160 --> 00:01:55.120
+going to mark this section private. And next I'm going to create a function. So this function
+将会把这部分标记为私有。接下来我将创建一个函数。所以这个函数
+
+00:01:55.120 --> 00:02:03.000
+is going to return a t array of f hit result. So I'm going to type in t array f hit result.
+将会返回一个t数组的f命中结果。所以我将输入t数组f命中结果。
+
+00:02:03.000 --> 00:02:09.360
+And I'm going to call this function to capsule trace multi by object. And it's going to have
+然后我将调用这个函数，以便通过对象来捕获追踪多。它将会有
+
+00:02:09.360 --> 00:02:15.440
+a few input parameters. So the first one is going to be a const f vector reference. I'm
+几个输入参数。第一个参数是一个const f矢量参考。我将
+
+00:02:15.440 --> 00:02:22.120
+going to call it start. The second one is going to be another const reference. I'm going
+我将把它称为start。第二个将是另一个常量引用。我将
+
+00:02:22.120 --> 00:02:26.600
+to call it end. And the third input parameter is going to be bool. I'm going to call it
+称之为end。第三个输入参数将是bool。我将把它叫做
+
+00:02:26.600 --> 00:02:33.600
+b show debug shape. And I'm going to give it a default value of false. And I'm going
+b显示调试形状。我将给它一个默认值false。然后我将
+
+00:02:33.600 --> 00:02:40.960
+to use Visual Studio to create a function definition. So I'm going to paste the function in my cpp
+使用Visual Studio来创建一个函数定义。所以我将把这个函数粘贴到我的cpp
+
+00:02:40.960 --> 00:02:49.840
+file. Then I'm also going to paste the region to my cpp file. And the trace function that
+文件中。然后我也要把这个区域粘贴到我的cpp文件中。而我喜欢使用的跟踪函数
+
+00:02:49.840 --> 00:02:56.160
+I like to use is from Kizma system library. So we'll need to include its header file.
+我喜欢用的是Kizma系统库。所以我们需要包括它的头文件。
+
+00:02:56.160 --> 00:03:01.240
+And the fastest way to find out the full file name for us to include be searching for it.
+最快的方法是通过搜索来找出我们要包含的完整文件名。
+
+00:03:01.240 --> 00:03:07.680
+So I'm going to go to the search bar here and I'm going to type in Kizma system library.
+所以我要去搜索栏，输入Kizma系统库。
+
+00:03:07.680 --> 00:03:11.400
+And you can see this is the header file that we need. A lot of handy functions that we
+你可以看到这就是我们需要的头文件。很多方便的函数，我们
+
+00:03:11.400 --> 00:03:17.320
+use inside the footprint like print string or delete are all from this library. So I'm
+像打印字符串或删除都是来自这个库。所以我
+
+00:03:17.320 --> 00:03:21.280
+going to go to its cpp file, double click to open it. And I'm going to copy the first
+所以我要去找它的cpp文件，双击打开它。然后我将复制第一
+
+00:03:21.280 --> 00:03:27.200
+line. This is the correct include we need. And I'm going to paste it to my custom movement
+行。这就是我们需要的正确的包含。我将把它粘贴到我的自定义运动的
+
+00:03:27.200 --> 00:03:33.280
+component cpp. And I'm going to start to implement this function. So I'm going to copy this Kizma
+组件的cpp文件。我将开始实现这个功能。所以我将复制这个Kizma
+
+00:03:33.280 --> 00:03:40.440
+system library and I'm going to paste it in here. Add u in front of it. Then double column
+系统库，并将其粘贴到这里。在它前面加上u。然后双列
+
+00:03:40.440 --> 00:03:45.640
+we can access all the static functions inside. And the function that we need to use is called
+我们可以访问里面所有的静态函数。而我们需要使用的函数叫做
+
+00:03:45.640 --> 00:03:53.040
+capsule trace multi for objects. So by using this function, we can get multiple hit results
+capsule trace multi for objects。所以通过使用这个函数，我们可以得到多个命中结果
+
+00:03:53.040 --> 00:03:57.160
+if there are multiple surfaces in front of us. And as you can see, there are quite a
+如果在我们面前有多个表面。正如你所看到的，有相当多的
+
+00:03:57.160 --> 00:04:03.120
+lot of input parameters that we need to fill in. So the first one, it'll be a word context
+我们需要填入很多输入参数。所以，第一个参数，是一个词的上下文
+
+00:04:03.120 --> 00:04:07.320
+object. I'm going to fill in this. And the second one, this will be the start of the
+对象。我将填入这个。第二个，这将是追踪的开始。
+
+00:04:07.320 --> 00:04:15.480
+trace. I'm going to fill in the start, our input parameter. And the end will be our end.
+追踪的开始。我将填入开始，即我们的输入参数。末端将是我们的终点。
+
+00:04:15.480 --> 00:04:20.280
+And in here we need to define the caps of radius and half height. And there's something that
+在这里我们需要定义半径和半高的上限。还有一些东西
+
+00:04:20.280 --> 00:04:25.320
+I want to control through variables exposed to blueprint. So I'm going to go back to my
+我想通过暴露在蓝图中的变量来控制。所以我将回到我的
+
+00:04:25.320 --> 00:04:30.720
+header file and under this region, I'm going to create a new one. So for this region, I'm
+头文件，在这个区域下，我将创建一个新的区域。因此，对于这个区域，我将
+
+00:04:30.720 --> 00:04:36.960
+going to call it climbed variables. And I'm going to type in u property, edit defaults
+我将把它称为 "攀登变量"。我将输入u属性，编辑默认值
+
+00:04:36.960 --> 00:04:44.040
+only and blueprint re only. And the category, all the variables inside the character movement
+和蓝图re only。在这个类别中，所有在角色运动中的变量
+
+00:04:44.040 --> 00:04:49.240
+component follow a very specific naming convention. I'm going to follow that in here. So you'll
+组件的所有变量都遵循一个非常具体的命名规则。我将在这里遵循这个惯例。所以你会
+
+00:04:49.240 --> 00:04:57.920
+be character movement followed by a colon. And I'm going to type in climbing. And since
+角色运动，后面加一个冒号。我将输入 "攀登"。由于
+
+00:04:57.920 --> 00:05:01.920
+this is a private variable, we just market blueprint re only, we don't need to give it
+由于这是一个私有变量，我们只需要在市场上销售蓝图，我们不需要给它
+
+00:05:01.920 --> 00:05:07.880
+the meta specifier. And we can copy that from our character class. So I'm going to go to
+元指定器。我们可以从我们的角色类中复制它。所以我将进入
+
+00:05:07.880 --> 00:05:14.580
+the header file of our character class and I'm going to copy this and paste it back to
+角色类的头文件，然后复制这个并把它粘贴到
+
+00:05:14.580 --> 00:05:20.140
+this header file. And for the variable type, it's going to be a float. I'm going to call
+这个头文件。对于变量类型，它将是一个float。我将把它称为
+
+00:05:20.140 --> 00:05:27.680
+it climbed capsule trace radius. And I'm going to give it a default value of 50.f. Then I'm
+它被称为 "攀登的胶囊轨迹半径"。我将给它一个默认值50.f。
+
+00:05:27.680 --> 00:05:33.120
+going to copy this u property. And for the second one, it's going to be another float.
+复制这个u属性。对于第二个属性，它将是另一个浮点数。
+
+00:05:33.120 --> 00:05:38.000
+And I'm going to call it climbed capsule trace half height and give it a default value of
+我将把它称为攀登的胶囊跟踪的一半高度，并给它一个默认值为
+
+00:05:38.000 --> 00:05:43.640
+72.f. All right, I'm going to fill in these two variables inside of this function. So
+72.f。好的，我要把这两个变量填入这个函数中。所以
+
+00:05:43.640 --> 00:05:50.920
+this will be the radius. This will be the half height. All right. And the next parameter
+这将是半径。这将是一半的高度。好的。而下一个参数
+
+00:05:50.920 --> 00:05:57.240
+that we need to fill in. So it needs to be a t array of type E object type query. For
+我们需要填入的。所以它需要是一个E型对象类型查询的t数组。对于
+
+00:05:57.240 --> 00:06:02.320
+our climb trace here, I'm only interested in the object of type word static. Instead
+我们在这里的攀登跟踪，我只对静态字类型的对象感兴趣。而不是
+
+00:06:02.320 --> 00:06:07.600
+of creating a local variable and add element to it, every time we run the function, I like
+而不是创建一个局部变量并向其添加元素，每次我们运行函数时，我喜欢
+
+00:06:07.600 --> 00:06:12.400
+to create another member variable for this type. And as you can see, it's a pretty long
+为这个类型创建另一个成员变量。正如你所看到的，这是个相当长的
+
+00:06:12.400 --> 00:06:17.640
+type. So the fastest way for us to get to that will be go to the function body of this capsule
+类型。所以我们最快的方法是进入这个胶囊的函数体
+
+00:06:17.640 --> 00:06:23.680
+trace multi. So press F12. Then you can go to the function body in here. Then I'm going
+追踪多。所以按F12。然后你可以进入这里的函数体。然后我将
+
+00:06:23.680 --> 00:06:28.600
+to copy this. Then go back to my header file. I'm going to paste it at the top and I'm going
+复制这个。然后回到我的头文件中去。我将把它粘贴在顶部，然后我将
+
+00:06:28.600 --> 00:06:36.120
+to call this variable climbable surface trace types. And it needs to have the same u property
+将这个变量称为可攀登表面追踪类型。它需要有相同的u属性
+
+00:06:36.120 --> 00:06:42.560
+as below. So copy this one and paste it in here. Then back to my cpp file. I'm going
+和下面一样。所以复制这个并粘贴到这里。然后回到我的cpp文件。我将
+
+00:06:42.560 --> 00:06:48.640
+to fill in this variable. All right. The next one that we need to fill in is this b trace
+填入这个变量。好的。下一个我们需要填写的是这个b跟踪
+
+00:06:48.640 --> 00:06:55.000
+complex. I'm going to fill in false. And next one will be an array of a actor. So this is
+复杂。我将填写false。而下一个将是一个数组的a actor。所以这就是
+
+00:06:55.000 --> 00:07:01.200
+the actors to ignore. I'm going to fill in an empty array. So it will be t array a actor
+要忽略的演员。我将填入一个空数组。所以它将是一个数组a actor
+
+00:07:01.200 --> 00:07:07.560
+followed by a parenthesis and the next parameter. So this is an enum. It's called e draw debug
+后面有一个括号和下一个参数。所以这是一个枚举。它被称为e draw debug
+
+00:07:07.560 --> 00:07:15.840
+trace and we have an input parameter for that. So I'm going to copy the name of this and
+追踪，我们有一个输入参数用于此。所以我将复制这个名字并
+
+00:07:15.840 --> 00:07:21.320
+I'm going to paste it in here and I'm going to use a ternary operator in here. So when
+我要把它粘贴到这里，并在这里使用一个三元运算符。所以当
+
+00:07:21.320 --> 00:07:27.880
+this is true, I'm going to fill in e draw debug trace double colon for one frame. And
+为真时，我将填入一帧的e draw debug trace的双冒号。而
+
+00:07:27.880 --> 00:07:33.560
+when this is false, I'm going to fill in none. So later we can easily define where dot none
+当它为假时，我将填入无。所以以后我们可以很容易地定义在哪里点无
+
+00:07:33.560 --> 00:07:38.440
+we want to see the debug shapes in here. And the next one that we need to fill in is an
+我们想在这里看到调试形状。下一个我们需要填写的是一个
+
+00:07:38.440 --> 00:07:43.320
+out parameter. So this is the hit results that we are after. For that, I'm going to
+out参数。所以这是我们所要的命中结果。为了这个，我将
+
+00:07:43.320 --> 00:07:48.680
+create a local variable for it. So the type is going to be t array of hit result. I'm
+为它创建一个局部变量。所以类型将是命中结果的t数组。我将
+
+00:07:48.680 --> 00:07:57.440
+going to call it out capsule trace hit results and fill in this array.
+将调用它的胶囊跟踪命中结果并填入这个数组。
+
+00:07:57.440 --> 00:08:01.640
+And the last parameter that we need to fill in is this be ignore self. I'm going to fill
+我们需要填入的最后一个参数是：忽略自我。我将填写
+
+00:08:01.640 --> 00:08:07.560
+in false. All right, that's all the function parameters that we need to fill in and don't
+false。好了，这就是我们需要填入的所有函数参数，别忘了在后面加上分号。
+
+00:08:07.560 --> 00:08:12.880
+forget to put semi colon after it. And at the end of this function, I'm going to return
+别忘了在它后面加上分号。在这个函数的最后，我将返回
+
+00:08:12.880 --> 00:08:18.720
+this out capsule trace hit results. And that's pretty much it. I'm going to press control
+这个胶囊的跟踪结果。这就差不多了。我将按控制键
+
+00:08:18.720 --> 00:08:25.480
+plus B to compile. All right, I have a successful compile. Now we just reduce the amount of input
+加B来编译。好的，我有一个成功的编译。现在我们只要把输入参数的数量
+
+00:08:25.480 --> 00:08:30.840
+parameters to three. And later when we need to perform capsule trace multiple times, you'll
+参数减少到三个。以后当我们需要多次执行胶囊跟踪时，你就会
+
+00:08:30.840 --> 00:08:35.800
+be much easier for us to do so. Later when you implement this by yourself, same as I did,
+我们就能更容易地做到了。以后当你自己实现这个的时候，和我一样、
+
+00:08:35.800 --> 00:08:40.900
+you can search for the name of this file that we need to include and find out the full name
+你可以搜索我们需要包含的这个文件的名称，并找出其CPP文件中的全名
+
+00:08:40.900 --> 00:08:45.280
+inside of its CPP file. As for the function we use, as you can see, there are plenty of
+在它的CPP文件中。至于我们使用的函数，正如你所看到的，有很多的
+
+00:08:45.280 --> 00:08:49.920
+input parameters that we need to fill in. Feel free to refer back to the video if you need
+输入参数，我们需要填入这些参数。如果你需要帮助，请随时回看视频。
+
+00:08:49.920 --> 00:08:53.640
+help. All right, it's time for you to do the same and I'll see you in the next lecture.
+帮助。好了，现在是时候让你做同样的事情了，我们在下一个讲座中见。
+
+00:08:53.880 --> 00:09:03.880
+[Music]
+[音乐]

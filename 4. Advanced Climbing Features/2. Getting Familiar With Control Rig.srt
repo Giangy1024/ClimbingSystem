@@ -1,0 +1,533 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.080
+Welcome.
+欢迎。
+
+00:00:06.080 --> 00:00:10.680
+Now that we are done with the basic climbing movement with our character, and it's about
+现在我们已经完成了我们角色的基本攀爬动作，现在是时候开始固定手和脚的位置了。
+
+00:00:10.680 --> 00:00:14.440
+time that we start to fix the hand and feet placement.
+是时候我们开始修正手和脚的位置了。
+
+00:00:14.440 --> 00:00:18.680
+And as you can see, while we are climbing, there's quite some offset between the hands
+正如你所看到的，当我们在攀爬的时候，手和可攀爬的表面之间有一些偏移。
+
+00:00:18.680 --> 00:00:22.120
+and the climbable surface.
+和可攀爬的表面之间有一些偏移。
+
+00:00:22.120 --> 00:00:26.440
+And that's what we are going to fix next, and that's something that we need to do through
+这就是我们接下来要解决的问题，而这是我们需要通过
+
+00:00:26.440 --> 00:00:28.120
+Control Rig.
+控制装置。
+
+00:00:28.120 --> 00:00:33.200
+Besides using Control Rig to adjust the animation, we can also use it to generate things like
+除了用Control Rig来调整动画外，我们还可以用它来生成一些东西，例如
+
+00:00:33.200 --> 00:00:37.480
+procedural animation, hands and legs IK, things like that.
+程序性动画，手和腿的IK，诸如此类的东西。
+
+00:00:37.480 --> 00:00:39.360
+So let's look at how we can set it up.
+因此，让我们看看我们如何设置它。
+
+00:00:39.360 --> 00:00:43.800
+I'm going to right mouse button click and go to animation, scroll down to this Control
+我将按下鼠标右键，转到动画，向下滚动到这个控制
+
+00:00:43.800 --> 00:00:44.800
+Rig.
+装备。
+
+00:00:44.800 --> 00:00:50.200
+I'm going to select this Control Rig and select this one as the parent class, click create.
+我将选择这个控制钻机并选择这个作为父类，点击创建。
+
+00:00:50.200 --> 00:00:56.280
+And I'm going to name this one CR_ClimbedIK and double click to open it.
+我要把这个命名为CR_ClimbedIK，然后双击来打开它。
+
+00:00:56.280 --> 00:00:58.920
+And here we are inside of the Control Rig editor.
+现在我们在控制装置编辑器中。
+
+00:00:58.920 --> 00:01:00.160
+Everything is pretty empty.
+一切都很空。
+
+00:01:00.160 --> 00:01:04.400
+The first thing that we need to do, we need to import the bone hierarchy that we want
+我们需要做的第一件事是，我们需要导入我们想在运行时调整的骨骼层次结构。
+
+00:01:04.400 --> 00:01:06.260
+to adjust during runtime.
+在运行时进行调整。
+
+00:01:06.260 --> 00:01:12.540
+So I'm going to go to this Rig hierarchy and I'm going to click this import hierarchy.
+所以我要去这个Rig层次结构，然后点击这个导入层次结构。
+
+00:01:12.540 --> 00:01:14.460
+And here we need to select the mesh.
+在这里我们需要选择网格。
+
+00:01:14.460 --> 00:01:17.880
+So in the drop down here, I'm going to search many simple.
+所以在这里的下拉菜单中，我将搜索许多简单的。
+
+00:01:17.880 --> 00:01:20.700
+This is the mesh that we've been using the whole time.
+这就是我们一直在使用的网格。
+
+00:01:20.700 --> 00:01:24.440
+So I'm going to select it and click OK.
+所以我要选择它并点击确定。
+
+00:01:24.440 --> 00:01:25.440
+And there you go.
+然后你就可以了。
+
+00:01:25.440 --> 00:01:26.920
+There are many in our viewport.
+我们的视口里有很多。
+
+00:01:26.920 --> 00:01:34.600
+So if you'd like to catch up with me, you can pause the video now and give this a go.
+所以，如果你想跟上我的节奏，你可以暂停视频，试试这个。
+
+00:01:34.600 --> 00:01:35.600
+Welcome back.
+欢迎回来。
+
+00:01:35.600 --> 00:01:37.400
+Now we have the bone hierarchy ready.
+现在我们已经准备好了骨头的层次结构。
+
+00:01:37.400 --> 00:01:40.240
+Next thing that we're going to look at is this forwards solve.
+接下来我们要看的是这个前向解。
+
+00:01:40.240 --> 00:01:45.000
+So this one here means we want to use the rig to control the bones and the backwards
+所以，这意味着我们要用装备来控制骨骼，而反向的
+
+00:01:45.000 --> 00:01:46.620
+solve is the exact opposite.
+解则完全相反。
+
+00:01:46.620 --> 00:01:48.840
+We want to use the bone to control the rig.
+我们想用骨头来控制装备。
+
+00:01:48.840 --> 00:01:54.000
+Now I just want to set up some simple debug lines to prove this Control Rig is working.
+现在我只想设置一些简单的调试线来证明这个控制钻机是有效的。
+
+00:01:54.000 --> 00:01:58.240
+And to do that, I'm first going to use the right mouse button click and I'm going to
+要做到这一点，我首先要使用鼠标右键点击，然后我打算
+
+00:01:58.240 --> 00:02:02.440
+type in get transform and select this node get transform.
+键入get transform，然后选择这个节点get transform。
+
+00:02:02.440 --> 00:02:07.160
+So the item type here is the bone and in the name here we can select which bone we want.
+所以这里的项目类型是骨头，在这里的名称中我们可以选择我们想要的骨头。
+
+00:02:07.160 --> 00:02:13.920
+So in the drop down here, I'm going to scroll down and I'm going to select this IK_FUL.
+所以在这里的下拉菜单中，我要向下滚动并选择这个IK_FUL。
+
+00:02:13.920 --> 00:02:17.900
+So an IK bone is a virtual bone in our characters bone hierarchy.
+所以IK骨是我们的角色骨层次中的一个虚拟骨。
+
+00:02:17.900 --> 00:02:25.640
+So in the search box here, if I search IK and select this IK_FUL, you can see this is where
+所以在搜索框中，如果我搜索IK并选择IK_FUL，你可以看到这是它的位置。
+
+00:02:25.640 --> 00:02:28.040
+it is located.
+它的位置。
+
+00:02:28.040 --> 00:02:32.940
+So I'm going to use the location of it as the starting point to draw a simple debug
+所以我将使用它的位置作为起点来画一个简单的调试线
+
+00:02:32.940 --> 00:02:36.400
+line to prove our Control Rig is working.
+来证明我们的控制钻机在工作。
+
+00:02:36.400 --> 00:02:41.760
+And to do that, it's actually something pretty similar as what we've done so far.
+要做到这一点，实际上和我们到目前为止所做的事情非常相似。
+
+00:02:41.760 --> 00:02:46.800
+So I'm going to drag out this node and click this transform and I'm going to drag out this
+所以我要拖出这个节点，并点击这个变换，然后我将拖出这个
+
+00:02:46.800 --> 00:02:47.760
+translation.
+翻译。
+
+00:02:47.760 --> 00:02:51.240
+So first I'm going to use a subtract now.
+首先，我将使用一个减法。
+
+00:02:51.240 --> 00:02:53.800
+And the value that I'm going to subtract from it.
+而我要从中减去的值。
+
+00:02:53.800 --> 00:02:57.680
+So to our bones, the forward axis is this y axis.
+所以对我们的骨头来说，前进轴是这个Y轴。
+
+00:02:57.680 --> 00:03:01.420
+So I'm going to give it a value of 10 units for the y.
+所以我将给它一个10个单位的Y轴值。
+
+00:03:01.420 --> 00:03:06.240
+So our trace start will be behind this IK bone.
+所以我们的追踪起点将在这个IK骨骼的后面。
+
+00:03:06.240 --> 00:03:09.000
+And I'm going to use another node add.
+我将使用另一个节点添加。
+
+00:03:09.000 --> 00:03:11.840
+So this is going to be our trace end.
+所以这将是我们的追踪终点。
+
+00:03:11.840 --> 00:03:14.880
+And I'm going to give it a value of 100 units for the y.
+我将给它一个100单位的Y值。
+
+00:03:14.880 --> 00:03:15.880
+All right.
+好的。
+
+00:03:15.880 --> 00:03:19.160
+So now that we have our line trace start, our line trace end, I'm going to use a debug
+现在我们有了线条追踪的起点和终点，我将使用一个调试
+
+00:03:19.160 --> 00:03:20.260
+function to show it.
+函数来显示它。
+
+00:03:20.260 --> 00:03:25.080
+So right mouse button click and I'm going to type in draw line and select this function
+所以鼠标右键点击，我将输入draw line并选择这个函数
+
+00:03:25.080 --> 00:03:27.740
+and connect this execution pin to here.
+并把这个执行引脚连接到这里。
+
+00:03:27.740 --> 00:03:33.520
+So the socket A is our line trace start, socket B is our line trace end.
+所以插座A是我们的线迹开始，插座B是我们的线迹结束。
+
+00:03:33.520 --> 00:03:35.400
+And the color here will be red.
+而这里的颜色将是红色。
+
+00:03:35.400 --> 00:03:36.400
+That's fine.
+这很好。
+
+00:03:36.400 --> 00:03:38.880
+And I'm going to change its thickness to five units.
+我将把它的厚度改为5个单位。
+
+00:03:38.880 --> 00:03:42.620
+And you can see this is our debug line.
+你可以看到这就是我们的调试线。
+
+00:03:42.620 --> 00:03:44.360
+Maybe three units is enough.
+也许三个单位就够了。
+
+00:03:44.360 --> 00:03:45.360
+All right.
+好的。
+
+00:03:45.360 --> 00:03:47.720
+I'm going to click compile.
+我将会点击编译。
+
+00:03:47.720 --> 00:03:50.440
+And I'd also like to see this inside the file viewport.
+我也想在文件视窗里看到这个。
+
+00:03:50.440 --> 00:03:51.960
+So go back to my content browser.
+所以请回到我的内容浏览器。
+
+00:03:51.960 --> 00:03:54.640
+I'm going to double click to open my animation blueprint.
+我将双击来打开我的动画蓝图。
+
+00:03:54.640 --> 00:03:58.120
+We first need to run our control rig inside the file ABP.
+我们首先需要在文件ABP里面运行我们的控制钻机。
+
+00:03:58.120 --> 00:04:00.560
+So go back to my Anon graph.
+所以回到我的Anon图。
+
+00:04:00.560 --> 00:04:04.600
+I'm going to select this full body and drag out another pin.
+我将选择这个完整的身体，并拖出另一个针。
+
+00:04:04.600 --> 00:04:10.960
+And I'm going to type in control rig and select this node, scroll down to this control rig
+我将输入控制设备并选择这个节点，向下滚动到这个控制设备
+
+00:04:10.960 --> 00:04:11.960
+class.
+类。
+
+00:04:11.960 --> 00:04:17.760
+And in the drop down here, I'm going to select this CR_climb_myk and click compile.
+在这里的下拉菜单中，我要选择CR_climb_myk，然后点击编译。
+
+00:04:17.760 --> 00:04:20.440
+Now when we click play, this control rig will be run.
+现在当我们点击播放时，这个控制装置将被运行。
+
+00:04:20.440 --> 00:04:21.440
+All right.
+好的。
+
+00:04:21.440 --> 00:04:22.440
+Go back to my viewport.
+回到我的视口。
+
+00:04:22.440 --> 00:04:24.960
+I'm going to click play and we have an issue.
+我将点击播放，我们有一个问题。
+
+00:04:24.960 --> 00:04:27.200
+We cannot see the debug line.
+我们不能看到调试线。
+
+00:04:27.200 --> 00:04:31.760
+And the reason for that is we need to enable the debug shape for our control rig.
+其原因是我们需要为我们的控制装置启用调试形状。
+
+00:04:31.760 --> 00:04:34.680
+And that's something we need to do through console commands.
+而这是我们需要通过控制台命令来做的事情。
+
+00:04:34.680 --> 00:04:43.400
+So I'm going to press the TELTA key on my keyboard and type in a_nmnode.controlrig.debug
+所以我将按下键盘上的TELTA键，输入a_nmnode.controlrig.debug
+
+00:04:43.400 --> 00:04:45.660
+and add in space, type in 1.
+并加上空格，键入1。
+
+00:04:45.660 --> 00:04:49.260
+So this is how we can show the debug shape for our control rig.
+所以这就是我们如何显示我们的控制装置的调试形状。
+
+00:04:49.260 --> 00:04:51.480
+And hit enter.
+然后按回车键。
+
+00:04:51.480 --> 00:04:52.920
+And there you go.
+然后你就可以了。
+
+00:04:52.920 --> 00:04:54.440
+This is our debug line.
+这就是我们的调试线。
+
+00:04:54.440 --> 00:04:56.240
+Our control rig is working.
+我们的控制装置正在工作。
+
+00:04:56.240 --> 00:04:58.640
+That's great.
+这很好。
+
+00:04:58.640 --> 00:05:02.240
+Next thing I'm going to do, I'm going to go back to my Climb_MyK.
+接下来我要做的是，我将回到我的Climb_MyK。
+
+00:05:02.240 --> 00:05:03.680
+Now we have line trace start.
+现在我们有了线追踪的开始。
+
+00:05:03.680 --> 00:05:05.000
+We have line trace end.
+我们有了线迹的终点。
+
+00:05:05.000 --> 00:05:09.880
+I'm going to use this to set up some sort of trace for us to detect the surface.
+我要用它来设置某种跟踪，以便我们检测表面。
+
+00:05:09.880 --> 00:05:12.240
+And to do that, there's one function.
+要做到这一点，有一个函数。
+
+00:05:12.240 --> 00:05:13.860
+It's called severe_trace.
+它叫severe_trace。
+
+00:05:13.860 --> 00:05:15.560
+So we have two options here.
+所以我们在这里有两个选项。
+
+00:05:15.560 --> 00:05:18.740
+So we can trace by object types or by trace channel.
+所以我们可以按对象类型或按跟踪通道来跟踪。
+
+00:05:18.740 --> 00:05:22.640
+Just to be consistent with our code, I'm going to use object types in here.
+为了和我们的代码保持一致，我将在这里使用对象类型。
+
+00:05:22.640 --> 00:05:26.920
+So we need to pass in a start, an end, and the object types.
+所以我们需要传入一个开始，一个结束，以及对象类型。
+
+00:05:26.920 --> 00:05:31.920
+So I'm going to use this one as the starting point and this end for the end.
+所以我打算用这个作为起点，用这个作为终点。
+
+00:05:31.920 --> 00:05:34.520
+For the object types, this is an array.
+对于对象类型，这是一个数组。
+
+00:05:34.520 --> 00:05:38.720
+I'm going to click this button and I'm going to trace for this word static.
+我将点击这个按钮，我将追踪这个词的静态。
+
+00:05:38.720 --> 00:05:40.280
+The radius is five units.
+半径是五个单位。
+
+00:05:40.280 --> 00:05:41.280
+That's fine.
+这很好。
+
+00:05:41.280 --> 00:05:43.840
+And I'm going to draw this hit location.
+我将画出这个击中的位置。
+
+00:05:43.840 --> 00:05:46.080
+And there's another debug function that we can use.
+还有一个调试函数，我们可以使用。
+
+00:05:46.080 --> 00:05:48.560
+So it's called draw_transform.
+所以它被称为draw_transform。
+
+00:05:48.560 --> 00:05:50.840
+And connect this pin to here.
+并将这个引脚连接到这里。
+
+00:05:50.840 --> 00:05:55.680
+And click this dropdown for this transform as in this hit location.
+然后点击这个下拉菜单，在这个位置进行转换。
+
+00:05:55.680 --> 00:05:59.480
+And the mode here, I'm going to change it to box.
+这里的模式，我要把它改成盒子。
+
+00:05:59.480 --> 00:06:03.600
+So I only want to draw this box if we have a valid hit location.
+所以我只想在我们有一个有效的撞击位置时画这个盒子。
+
+00:06:03.600 --> 00:06:08.320
+And for this type of if/else condition, same as Blueprint, we can use the node branch.
+而对于这种类型的如果
+
+00:06:08.320 --> 00:06:13.240
+So I'm going to hold down B and left mouse button click to bring out the branch node,
+null
+
+00:06:13.240 --> 00:06:17.340
+connect this pin to here, and connect this hit to here.
+null
+
+00:06:17.340 --> 00:06:21.200
+So when this condition is true, I'm going to run this node.
+null
+
+00:06:21.200 --> 00:06:27.840
+And I'm going to click compile, hit save, then go back to my viewport, click play.
+null
+
+00:06:27.840 --> 00:06:30.960
+And I'm going to run to the surface here.
+null
+
+00:06:30.960 --> 00:06:33.080
+And you can see we have hit.
+null
+
+00:06:33.080 --> 00:06:43.080
+And this information is extremely valuable for us to do the things we want next.
+null
+
+00:06:43.080 --> 00:06:45.000
+And it's time for a challenge.
+null
+
+00:06:45.000 --> 00:06:46.440
+So a challenge is simple.
+null
+
+00:06:46.440 --> 00:06:51.240
+Same as I did, I'd like you to create a control rig and run it in your animation Blueprint.
+null
+
+00:06:51.240 --> 00:06:56.640
+So I place my control rig now before our montage slot so that the bone data it controls won't
+null
+
+00:06:56.640 --> 00:07:00.680
+mess up with the animation montages that we are using.
+null
+
+00:07:00.680 --> 00:07:04.520
+And once you are sure your control rig is running, same as I did, I'd like you to draw
+null
+
+00:07:04.520 --> 00:07:08.880
+a simple sphere chase with debug shapes showing on your screen.
+null
+
+00:07:08.880 --> 00:07:12.560
+Just in case you won't be able to see the debug shape later, you'll need to use the
+null
+
+00:07:12.560 --> 00:07:18.480
+console command and unknown.controlrig.debug and add in in space 1.
+null
+
+00:07:18.480 --> 00:07:21.440
+So this should help you to enable the debug shape.
+null
+
+00:07:21.440 --> 00:07:25.800
+And most importantly, get comfortable with the control rig editor.
+null
+
+00:07:25.800 --> 00:07:29.960
+Alright pause the video now and give this a go and I'll see you in the next lecture.
+null
+
+00:07:29.960 --> 00:07:41.160
+[Music]
+null
